@@ -57,7 +57,7 @@ params:
     imageHeight: 220
     buttons:
     - name: Resume
-      url: "https://docs.google.com/document/d/1Pdl0n1LOK-vh-RZhKcbRtikHXS4xgiPcnOtZZfskJqw/edit?usp=sharing/"
+      url: "https://docs.google.com/document/d/e/2PACX-1vSPR6q9qMgrr0cGbX6Q1ukGxl1hX7TPpldq5InjNhP1xjzsWrRQdu02uNQ9blATq2VAHCmuKTxzJMrO/pub"
 
   # List View
   hideDescriptionInList: false
