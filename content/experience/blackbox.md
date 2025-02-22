@@ -9,7 +9,6 @@ tags:
     - JavaScript
     - jQuery
     - Bootstrap
-    - C#
     - .NET
     - Web API
     - MySQL
