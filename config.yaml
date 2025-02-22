@@ -1,0 +1,107 @@
+baseURL: "https://arkalim.netlify.app"
+languageCode: en-us
+title: Prajwol Bikram Adhikari
+theme: PaperMod
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 10
+    - identifier: blog
+      name: Blog
+      url: /blog
+      weight: 20
+    #- identifier: projects
+    # name: Projects
+    #  url: /projects
+    #  weight: 30
+    - identifier: experience
+      name: Experience
+      url: /experience
+      weight: 40
+    # identifier: search
+    #  name: Search
+    #  url: /search
+    #  weight: 50
+    # - identifier: tags
+    #   name: Tags
+    #   url: /tags
+    #   weight: 60
+    # - identifier: notes
+    #   name: Notes
+    #   url: https://notes.arkalim.org
+    #   weight: 70
+
+params:
+  # theme
+  showToc: true
+  TocOpen: false
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  hideMeta: false
+
+  # for enchanced SEO
+  env: production
+
+  # Home Page
+  profileMode:
+    enabled: true
+    title: "Prajwol Bikram Adhikari"
+    subtitle: Hi 👋 I'm Prajwol! I'm a tech enthusiast who loves solving problems and creating efficient, scalable solutions. As an Operator at [**AbbVie**](https://www.abbvie.com/), I'm learning about the Manufacturing and Pharmaceutical Industry in America. Lately, I've been diving into building homelab and integrating it with Cloud just for fun. Always curious and eager to learn, I'm all about creating smart, efficient solutions!<br> <br>Let's connect!
+
+ 
+    imageUrl: "home/casual-small-square.jpg"
+    imageWidth: 220
+    imageHeight: 220
+    buttons:
+    - name: Resume
+      url: "https://docs.google.com/document/d/1Pdl0n1LOK-vh-RZhKcbRtikHXS4xgiPcnOtZZfskJqw/edit?usp=sharing/"
+
+  # List View
+  hideDescriptionInList: false
+
+  # cover image for posts
+  cover:
+    hiddenInList: false # hide on list pages and home
+    hiddenInSingle: false # hide on single page
+
+  socialIcons:
+    - name: "email"
+      url: "mailto:prajwolad18@gmail.com"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/prajwolbikramadhikari/"
+    - name: "github"
+      url: "https://github.com/nasdesps"
+    - name: "facebook"
+      url: "https://www.facebook.com/prajwol.adhikari.3/"
+    - name: "x"
+      url: "https://x.com/Prajwolize"
+    - name: "steam"
+      url: "https://steamcommunity.com/id/nasdeps/"
+    #- name: "youtube"
+      #url: "https://www.youtube.com/c/AbdurRahmanKalim"
+
+  # text search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+# for search using Fuse.js
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# allow HTML in MD
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
