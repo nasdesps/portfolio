@@ -88,15 +88,6 @@
     </item>
     
     <item>
-      <title>Certification</title>
-      <link>http://localhost:1313/tags/certification/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/certification/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>CMS</title>
       <link>http://localhost:1313/tags/cms/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -160,24 +151,6 @@
     </item>
     
     <item>
-      <title>Developer</title>
-      <link>http://localhost:1313/tags/developer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/developer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Developer Associate</title>
-      <link>http://localhost:1313/tags/developer-associate/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/developer-associate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>DL</title>
       <link>http://localhost:1313/tags/dl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -210,15 +183,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/drone/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DVA</title>
-      <link>http://localhost:1313/tags/dva/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/dva/</guid>
       <description></description>
     </item>
     

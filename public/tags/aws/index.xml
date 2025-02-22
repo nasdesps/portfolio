@@ -7,15 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://localhost:1313/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>I passed the AWS DVA Certification Exam</title>
-      <link>http://localhost:1313/blog/aws-dva-certification/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/blog/aws-dva-certification/</guid>
-      <description>How I passed the AWS Developer - Associate Certification Exam (DVA-C02)</description>
-    </item>
-    
-    <item>
       <title>Obsidian Publish using GitHub Action</title>
       <link>http://localhost:1313/projects/obsidian-publish-github-action/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

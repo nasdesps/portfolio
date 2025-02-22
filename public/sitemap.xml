@@ -4,8 +4,6 @@
   <url>
     <loc>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/aws-dva-certification/</loc>
-  </url><url>
     <loc>http://localhost:1313/projects/obsidian-publish-github-action/</loc>
   </url><url>
     <loc>http://localhost:1313/projects/kindle-to-notion/</loc>
@@ -56,8 +54,6 @@
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/certification/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/cms/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/cnn/</loc>
@@ -72,10 +68,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/deepseek-r1/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/developer/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/developer-associate/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/dl/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/docker/</loc>
@@ -83,8 +75,6 @@
     <loc>http://localhost:1313/tags/documentation/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/drone/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/dva/</loc>
   </url><url>
     <loc>http://localhost:1313/experience/</loc>
   </url><url>
