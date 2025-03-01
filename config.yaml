@@ -74,6 +74,8 @@ params:
       url: "https://www.linkedin.com/in/prajwolbikramadhikari/"
     - name: "github"
       url: "https://github.com/nasdesps"
+    - name: "dev"
+      url: "https://dev.to/prajwol-ad" 
     - name: "facebook"
       url: "https://www.facebook.com/prajwol.adhikari.3/"
     - name: "x"
