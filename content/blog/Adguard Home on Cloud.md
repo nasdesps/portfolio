@@ -71,7 +71,7 @@ AdGuard Home is installed and running. You can use **CTRL+Shift+V** to paste int
 
 ## Step 3: Configure AdGuard Home
 
-APost-installation, you'll see a list of IP addresses with port `:3000`.
+Post-installation, you'll see a list of IP addresses with port `:3000`.
 ![IP Adguard](/blog/adguard-linode/ip_adguard.jpg)
 1. **Access the Web Interface**: Open your browser and navigate to the IP address followed by `:3000`. If you encounter a security warning, proceed by clicking "Continue to site."
 2. **Initial Setup**: Click 'Get Started' and follow the prompts. When uncertain, default settings are typically fine.
