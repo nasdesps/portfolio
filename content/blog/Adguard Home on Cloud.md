@@ -34,7 +34,7 @@ Ready to embark on this ad-free adventure? Let's get started!
 
 ## Step 1: Create a Linode Cloud Account
 
-Why choose Linode? Through NetworkChuck's referral link, you receive a generous $100 cloud credit - a fantastic start!
+Why choose Linode? Through [NetworkChuck's referral link](https://linode.com/networkchuck), you receive a generous $100 cloud credit - a fantastic start!
 
 - **Sign Up**: Navigate to [Linode's signup page](https://linode.com/networkchuck) and register.
 - **Access the Dashboard**: Log in and select 'Linodes' from the left-side menu.
