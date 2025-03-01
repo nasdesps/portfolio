@@ -81,7 +81,7 @@ Post-installation, you'll see a list of IP addresses with port `:3000`.
 
 ## Step 4: Integrate AdGuard Home with Your Router
 
-After this your AdGuard Home is running, but in order to use it on your devices you need to setup inside your home router for all your devices to be protected. For that, I can't walk you through each and every router settings, but the steps are pretty similar. 
+After this, your AdGuard Home is running, but in order to use it on your devices you need to set up inside your home router for all your devices to be protected. For that, I can't walk you through each and every router's settings, but the steps are pretty similar. 
 
 1. Find your router IP address, you should be able to find it on the back of your router (commonly 192.168.0.1 or 192.169.1.1) enter it into your browser.
 2. Login into your router using the credentials mentioned in the back of your router; the default is often admin for both username and password. I suggest you change your default password.
