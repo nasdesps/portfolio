@@ -1,5 +1,5 @@
 ---
-title: "Running DeepSeek-R1 on a Docker Container on Ubuntu"
+title: "Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu"
 dateString: Feb 2023
 draft: false
 tags:
