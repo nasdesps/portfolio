@@ -54,7 +54,7 @@ Yes, we're already into setting up at this point.
 ```
 sudo apt update && apt upgrade -y
 ```
-- Go ahead and copy this command to Install Adguard Home:
+3. Go ahead and copy this command to Install Adguard Home:
 ```
 curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
 ```
