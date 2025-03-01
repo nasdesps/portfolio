@@ -20,6 +20,8 @@ Imagine AdGuard Home as your personal internet guardian. This versatile tool blo
 
 In today's digital landscape, robust security measures are paramount. Protecting each device shields your family from accidental clicks and malicious attacks, ensuring peace of mind and a secure online environment.
 
+---
+
 # Why on the Cloud?
 
 While setting up AdGuard Home on your home network is great, installing it on a cloud server like Linode takes things up a notch. Here's why:
@@ -29,6 +31,8 @@ While setting up AdGuard Home on your home network is great, installing it on a 
 - **Enhanced Privacy**: Keep your browsing data away from prying eyes.
 
 Ready to embark on this ad-free adventure? Let's get started!
+
+---
 
 # Setting Up The Environment
 
@@ -46,6 +50,8 @@ Why choose Linode? Through [NetworkChuck's referral link](https://linode.com/net
 
 Once your Linode is up and running, access it via the LISH Console or SSH. (use root as localhost login)
 
+---
+
 ## Step 2: Installing AdGuard Home on Linode
 
 Yes, we're already into setting up at this point. 
@@ -61,6 +67,8 @@ curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/s
 
 AdGuard Home is installed and running. You can use **CTRL+Shift+V** to paste into the terminal.
 
+---
+
 ## Step 3: Configure AdGuard Home
 
 APost-installation, you'll see a list of IP addresses with port `:3000`.
@@ -68,7 +76,9 @@ APost-installation, you'll see a list of IP addresses with port `:3000`.
 1. **Access the Web Interface**: Open your browser and navigate to the IP address followed by `:3000`. If you encounter a security warning, proceed by clicking "Continue to site."
 2. **Initial Setup**: Click 'Get Started' and follow the prompts. When uncertain, default settings are typically fine.
 3. **Set Credentials**: Set up the Username and Password.
- 
+
+---
+
 ## Step 4: Integrate AdGuard Home with Your Router
 
 After this your AdGuard Home is running, but in order to use it on your devices you need to setup inside your home router for all your devices to be protected. For that, I can't walk you through each and every router settings, but the steps are pretty similar. 
@@ -80,6 +90,7 @@ After this your AdGuard Home is running, but in order to use it on your devices 
 	- **Set DNS Addresses**: Input your AdGuard Home server's IP as the primary DNS (mine was 96.126.113.207). For secondary DNS, options like `1.1.1.1` (Cloudflare), `9.9.9.9` (Quad9), or `8.8.8.8` (Google) are reliable.
 	- Save and apply the changes.
 
+---
 
 # Fine-Tuning AdGuard Home
 
@@ -98,6 +109,8 @@ If you've done everything till here you should be good, but for those who enjoy 
 	- Enable 'Load Balancing' to distribute queries evenly.
 	- Scroll down to 'DNS server configuration' and enable DNSSEC for enhanced security.
 	- Click on Save.
+
+---
 
 ## Filters
 
