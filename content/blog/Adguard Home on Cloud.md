@@ -40,7 +40,7 @@ Why choose Linode? Through NetworkChuck's referral link, you receive a generous 
 - **Access the Dashboard**: Log in and select 'Linodes' from the left-side menu.
 - **Create a Linode**: Click 'Create Linode,' choose your preferred region, and select an operating system (Debian 11 is a solid choice).
 ![Create a Linode](/blog/adguard-linode/create_linode.jpg)
-- - **Choose a Plan**: The Shared 1GB Nanode instance is sufficient for AdGuard Home.
+- **Choose a Plan**: The Shared 1GB Nanode instance is sufficient for AdGuard Home.
 - **Label and Secure**: Assign a label to your Linode and set a strong root password.
 - **Deploy**: Click 'Create Linode' and wait for it to initialize.
 
@@ -49,7 +49,7 @@ Once your Linode is up and running, access it via the LISH Console or SSH. (use 
 ## Step 2: Installing AdGuard Home on Linode
 
 Yes, we're already into setting up at this point. 
-1. - **Log In**: Access your Linode using SSH or the LISH Console with your root credentials.
+1. **Log In**: Access your Linode using SSH or the LISH Console with your root credentials.
 2.  Update the system:
 ```
 sudo apt update && apt upgrade -y
