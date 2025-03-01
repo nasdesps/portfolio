@@ -94,14 +94,14 @@ After this, your AdGuard Home is running, but in order to use it on your devices
 
 # Fine-Tuning AdGuard Home
 
-If you've done everything till here you should be good, but for those who enjoy customization, AdGuard Home offers a plethora of settings. Some of the customization I did are:
+If you've done everything till here you should be good, but for those who enjoy customizations, AdGuard Home offers a plethora of settings. Some of the customization I did are:
 
 ## Settings
 - Go to Settings -> General Settings: You can enable Parental Control and Safe Search.
 - You can also make your Statistics last longer than 24hrs which is default.
 - Now on Settings -> DNS Settings
-	- By default it uses DNS from quad9 which is pretty good but I suggest you add more.
-	- You can click on list of known DNS providers, where you can choose from.
+	- By default, it uses DNS from quad9 which is pretty good but I suggest you add more.
+	- You can click on the list of known DNS providers, which you can choose from.
 	- I used: 
 		 - https://dns.quad9.net/dns-query
 		 - https://dns.google/dns-query
@@ -115,7 +115,7 @@ If you've done everything till here you should be good, but for those who enjoy 
 ## Filters
 
 ### DNS blocklists
-Go to Filters -> DNS blocklists, here you can add blocklist that people have created and use it to block even more things. By default AdGuard uses AdGuard DNS filter, and you can add more.
+Go to Filters -> DNS blocklists, here you can add a blocklist that people have created and use it to block even more things. By default, AdGuard uses the AdGuard DNS filter, and you can add more.
 - Click on Add blocklist -> Choose from the list
 - Don't choose too many from the list cause it may slow your internet requests.
 ![DNS blocklists](/blog/adguard-linode/dns_blocklists.png)
@@ -128,10 +128,10 @@ Go to Filters -> DNS rewrites, here you can add your own DNS entries, so I added
 ![DNS rewrites](/blog/adguard-linode/dns_rewrite.jpg)
 - And save it.
 
-Now, when I want to go on AdGuard Home dashboard I just type in adguardforme.local and I'm into AdGuard, I don't have to remember the IP address.
+Now, when I want to go on the AdGuard Home dashboard I just type in adguardforme.local and I'm into AdGuard, I don't have to remember the IP address.
 
 ### Custom filtering rules
-Go to Filters -> Custom filtering rules. For some reason when I use Facebook on mobile device stories and videos does not load up, so I added custom filtering rules.
+Go to Filters -> Custom filtering rules. For some reason when I use Facebook on mobile device stories and videos did not load up, so I added custom filtering rules.
 
 ```
 @@||graph.facebook.com^$important
