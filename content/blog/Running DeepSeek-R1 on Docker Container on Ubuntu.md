@@ -19,8 +19,6 @@ Before we dive into setting up DeepSeek-R1, let me explain what a Docker contain
 
 Docker containers encapsulate everything required to run an application: the code, dependencies, and environment settings. This ensures consistency across different machines, which is super important for AI models that rely on precise configurations.
 
----
-
 # Setting Up The Environment
 
 ## Step 1: Install Ubuntu on Windows (If You Haven't Already)
@@ -113,4 +111,15 @@ docker exec -it ollama ollama run deepseek-r1:7b
 After this, play around with the AI, if you wanna exit just type: 
 ```
 /bye
+```
+
+# Starting Deepseek-R1
+
+To Start Deepseek-R1 from next time go to Ubuntu and type:
+```
+docker start ollama
+```
+this will start ollama docker container; then type:
+```
+docker exec -it ollama ollama run deepseek-r1:7b
 ```

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linode on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/tags/linode/</link>
+    <description>Recent content in Linode on Prajwol Bikram Adhikari</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://localhost:1313/tags/linode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Running private Adguard Server on Cloud (Linode)</title>
+      <link>http://localhost:1313/blog/adguard-home-on-cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/adguard-home-on-cloud/</guid>
+      <description>&lt;h1 id=&#34;whats-the-buzz-about-adguard-home&#34;&gt;What&amp;rsquo;s the buzz about AdGuard Home?&lt;/h1&gt;
+&lt;p&gt;Imagine AdGuard Home as your personal internet guardian. This versatile tool blocks ads, trackers, and other online nuisances across all devices connected to your network. Whether you&amp;rsquo;re browsing on your phone, tablet, or computer, AdGuard Home has your back.&lt;/p&gt;
+&lt;p&gt;In today&amp;rsquo;s digital landscape, robust security measures are paramount. Protecting each device shields your family from accidental clicks and malicious attacks, ensuring peace of mind and a secure online environment.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

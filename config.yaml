@@ -82,8 +82,6 @@ params:
       url: "https://steamcommunity.com/id/nasdeps/"
     - name: "soundcloud"
       url: "https://soundcloud.com/prajwol-adhikari-358294646"
-    #- name: "youtube"
-      #url: "https://www.youtube.com/c/AbdurRahmanKalim"
 
   # text search
   fuseOpts:

@@ -4,6 +4,8 @@
   <url>
     <loc>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
   </url><url>
+    <loc>http://localhost:1313/blog/adguard-home-on-cloud/</loc>
+  </url><url>
     <loc>http://localhost:1313/projects/obsidian-publish-github-action/</loc>
   </url><url>
     <loc>http://localhost:1313/projects/kindle-to-notion/</loc>
@@ -34,6 +36,8 @@
   </url><url>
     <loc>http://localhost:1313/tags/.net/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/adguard/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/adobe-photoshop/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/ai/</loc>
@@ -54,6 +58,8 @@
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/cloud/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/cms/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/cnn/</loc>
@@ -70,9 +76,13 @@
   </url><url>
     <loc>http://localhost:1313/tags/dl/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/dns/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/docker/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/documentation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/doh/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/drone/</loc>
   </url><url>
@@ -103,6 +113,8 @@
     <loc>http://localhost:1313/tags/jquery/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/leadership/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/linode/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/linux/</loc>
   </url><url>
