@@ -36,7 +36,7 @@ Ready to embark on this ad-free adventure? Let's get started!
 
 Why choose Linode? Through NetworkChuck's referral link, you receive a generous $100 cloud credit - a fantastic start!
 
-- - **Sign Up**: Navigate to [Linode's signup page](https://linode.com/networkchuck) and register.
+- **Sign Up**: Navigate to [Linode's signup page](https://linode.com/networkchuck) and register.
 - **Access the Dashboard**: Log in and select 'Linodes' from the left-side menu.
 - **Create a Linode**: Click 'Create Linode,' choose your preferred region, and select an operating system (Debian 11 is a solid choice).
 ![Create a Linode](/blog/adguard-linode/create_linode.jpg)
