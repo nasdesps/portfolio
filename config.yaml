@@ -78,8 +78,6 @@ params:
       url: "https://medium.com/@prajwolad18"
     - name: "dev"
       url: "https://dev.to/prajwol-ad" 
-    - name: "facebook"
-      url: "https://www.facebook.com/prajwol.adhikari.3/"
     - name: "x"
       url: "https://x.com/Prajwolize"
     - name: "soundcloud"
