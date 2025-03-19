@@ -49,7 +49,13 @@ params:
   profileMode:
     enabled: true
     title: "Prajwol Bikram Adhikari"
-    subtitle: Hi 👋, Namaste 🙏 I'm Prajwol! <br/> I'm a tech enthusiast who loves solving problems and creating efficient, scalable solutions. As an Operator at [**AbbVie**](https://www.abbvie.com/), I'm learning about the Manufacturing and Pharmaceutical Industry in America. Lately, I've been diving into building homelab and integrating it with Cloud just for fun. Always curious and eager to learn, I'm all about creating smart, efficient solutions!<br> <br>Let's connect!
+    subtitle: > 
+        Hi 👋, Namaste 🙏 I'm Prajwol! <br>
+        I build scalable solutions and love solving problems. Lately, I’ve been exploring homelabs and cloud integration for fun. 
+        Always curious, I dive into new tech to create smarter solutions. 
+        Currently, I’m gaining insights into Manufacturing and Pharma as an Operator at [**AbbVie**](https://www.abbvie.com/).
+        <br><br>
+        Let's connect! 
 
  
     imageUrl: "home/casual-small-square.jpg"
@@ -74,6 +80,8 @@ params:
       url: "https://www.linkedin.com/in/prajwolbikramadhikari/"
     - name: "github"
       url: "https://github.com/nasdesps"
+    - name: "medium"
+      url: "https://medium.com/@prajwolad18"
     - name: "dev"
       url: "https://dev.to/prajwol-ad" 
     - name: "facebook"
