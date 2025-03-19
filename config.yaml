@@ -49,15 +49,9 @@ params:
   profileMode:
     enabled: true
     title: "Prajwol Bikram Adhikari"
-    subtitle: > 
-        Hi 👋, Namaste 🙏 I'm Prajwol! <br>
-        I build scalable solutions and love solving problems. Lately, I’ve been exploring homelabs and cloud integration for fun. 
-        Always curious, I dive into new tech to create smarter solutions. 
-        Currently, I’m gaining insights into Manufacturing and Pharma as an Operator at [**AbbVie**](https://www.abbvie.com/).
-        <br><br>
-        Let's connect! 
+    subtitle: Hi 👋, Namaste 🙏 I'm Prajwol! <br> I build scalable solutions and love solving problems. Lately, I’ve been exploring homelabs and cloud integration for fun. Always curious, I dive into new tech to create smarter solutions. Currently, I’m gaining insights into Manufacturing and Pharma as an Operator at [**AbbVie**](https://www.abbvie.com/).<br><br>Let's connect! 
 
- 
+    # Profile Image
     imageUrl: "home/casual-small-square.jpg"
     imageWidth: 220
     imageHeight: 220
