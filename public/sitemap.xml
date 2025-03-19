@@ -6,24 +6,6 @@
   </url><url>
     <loc>http://localhost:1313/blog/adguard-home-on-cloud/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/obsidian-publish-github-action/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/kindle-to-notion/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/automated-image-captioning/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/todo-list-app/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/face-landmarks-detection/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/gaze-tracking-goggles/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/openquad/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/search-and-reconnaissance-robot/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/sebart-pro/</loc>
-  </url><url>
     <loc>http://localhost:1313/experience/abbvie/</loc>
   </url><url>
     <loc>http://localhost:1313/experience/fedex/</loc>
@@ -42,19 +24,11 @@
   </url><url>
     <loc>http://localhost:1313/tags/ai/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/arduino/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/automation/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/aws/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/bash/</loc>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/bootstrap/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
@@ -62,19 +36,11 @@
   </url><url>
     <loc>http://localhost:1313/tags/cms/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/cnn/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/communication/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/computer-vision/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/crnn/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/css/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/deepseek-r1/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/dl/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/dns/</loc>
   </url><url>
@@ -84,19 +50,11 @@
   </url><url>
     <loc>http://localhost:1313/tags/doh/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/drone/</loc>
-  </url><url>
     <loc>http://localhost:1313/experience/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/flash/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/frontend-development/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/function-test/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/github-action/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/github-actions/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/gmps/</loc>
   </url><url>
@@ -118,23 +76,15 @@
   </url><url>
     <loc>http://localhost:1313/tags/linux/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/lstm/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/macos/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/manufacturing/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/mentorship/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/mkdocs/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/mysql/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/network-support/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/node.js/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/nodejs/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/opensource/</loc>
   </url><url>
@@ -150,21 +100,7 @@
   </url><url>
     <loc>http://localhost:1313/tags/production/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/pytorch/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/raspberry-pi/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/react/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/regex/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/rf-test/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/robotics/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/saas-support/</loc>
   </url><url>
@@ -178,15 +114,11 @@
   </url><url>
     <loc>http://localhost:1313/tags/troubleshooting/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/typescript/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/ubuntu/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/ui/ux/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/web-api/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/web-development/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/windows/</loc>
   </url>
