@@ -49,7 +49,7 @@ params:
   profileMode:
     enabled: true
     title: "hi prajwol here👋"
-    subtitle: Technical Support Specialist from Texas &#x1f1fa;&#x1f1f8;<br>I like to explore homelabs and cloud integration, play guitar and go to live concerts.<br>Currently, gaining insights into Manufacturing and Pharma as an Operator at [**AbbVie**](https://www.abbvie.com/).<br><br>Let's connect! 
+    subtitle: <i>Technical Support Specialist from Texas &#x1f1fa;&#x1f1f8;</i><br>I like to explore homelabs and cloud integration, play guitar and go to live concerts.<br>Currently, gaining insights into Manufacturing and Pharma as an Operator at [**AbbVie**](https://www.abbvie.com/).<br><br>Let's connect! 
 
     # Profile Image
     imageUrl: "home/casual-small-square.jpg"
