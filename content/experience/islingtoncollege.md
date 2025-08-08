@@ -16,24 +16,29 @@ tags:
     - Linux
     - Windows
     - MacOS
-    - GSuite
+    - Google Workspace
     - HTML
     - CSS
     - JavaScript
     - UI/UX
     - Documentation
     - Automation
+    - TCP/IP
+    - DHCP
+    - DNS
+    - LAN/WAN
+    - Cisco Switch
+    - Networking
 showToc: false
 weight: 303
 --- 
 
 ### Description
 
-- Deployed and assisted in managing a helpdesk system on the Ubuntu Server, increasing resolution efficiency for Saas-based customerservice. (UVdesk, Zendesk)  
-- Provided technical support via in-person, email, phone, chat, and ticketing systems ensuring a high CSAT score of 85%. (Asana, Slack)
-- Implemented automation to streamline and optimize repetitive tasks, improving efficiency and manual workload. (OK Goldy)
-- Diagnosed hardware, software, and network issues, resolving 90% of reported problems within SLAs. 
-- Created and maintained helpdesk documentation, reducing repetitive inquiries and improving self-service support.
-- Monitored and maintained network infrastructure using Nagios, cnMaestro, MRTG, and GWN Cloud.
+As the IT Support Specialist for a bustling international college with over 2,500 students and staff, I was at the heart of the campus's technical operations. My responsibilities spanned the entire IT ecosystem, from providing end-to-end support for Windows, Linux, and macOS users to managing a complex, multi-building network infrastructure.
+
+I took pride in being the go-to person for technical challenges, resolving Tier 1 and 2 tickets with a 90% SLA adherence. A key achievement during my time was contributing to a major campus network overhaul, where I was hands-on in deploying and configuring over 100 switches, access points, and IP cameras.
+
+Driven by a desire to improve efficiency, I moved beyond reactive support and embraced automation. I developed and implemented PowerShell scripts that integrated with Google Apps Manager (GAM) to fully automate the user onboarding and offboarding lifecycle. This initiative not only saved countless hours of manual work but also eliminated errors, standardized processes, and allowed the IT team to focus on more strategic projects.
 
 

@@ -11,15 +11,15 @@ tags:
     - GMPs
     - SOPs
     - Troubleshooting
+    - SAP
+    - POMSNET
 showToc: false
 weight: 301
 --- 
 
 ### Description
 
-- Trained and optimized ML-based systems to detect and remove defective products from the production line, maintaining high standards.
-- Optimized production efficiency by effectively operating pharmaceutical production lines, consistently meeting and exceeding established production schedules following SOP’s and GMPs.
-- Identified and resolved mechanical issues promptly to maintain production efficiency.
-- Streamlined operations by performing accurate line setups, clearances, and changeovers, minimizing downtime between batches.
-- Supported operational excellence by assisting machine operators in setup and operation, contributing to seamless and efficient production runs.
+I joined AbbVie initially as a contractor and quickly demonstrated the skills and dedication that led to my conversion to a full-time position. In my role, I stepped into a high-stakes production environment where precision and operational stability are paramount. My work centered on the optimization and maintenance of sophisticated, machine learning-based visual inspection systems. I was responsible for fine-tuning these models, analyzing their performance data, and troubleshooting complex technical issues across both hardware and software, including the POM and PCE systems.
+
+This wasn't just about keeping machines running; it was about enhancing them. By applying a systematic, data-driven approach, I contributed to a 30% reduction in product waste, a metric that translates directly to improved efficiency and sustainability. Working within strict GMPs and utilizing systems like SAP for material tracking, I learned to balance technical problem-solving with rigorous compliance, ensuring that every action contributed to the stability and reliability of mission-critical operations.
 
