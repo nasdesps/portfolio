@@ -61,6 +61,15 @@
     </item>
     
     <item>
+      <title>Cisco Switch</title>
+      <link>http://localhost:1313/tags/cisco-switch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cisco-switch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cloud</title>
       <link>http://localhost:1313/tags/cloud/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -102,6 +111,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/deepseek-r1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DHCP</title>
+      <link>http://localhost:1313/tags/dhcp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/dhcp/</guid>
       <description></description>
     </item>
     
@@ -169,11 +187,11 @@
     </item>
     
     <item>
-      <title>GSuite</title>
-      <link>http://localhost:1313/tags/gsuite/</link>
+      <title>Google Workspace</title>
+      <link>http://localhost:1313/tags/google-workspace/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/gsuite/</guid>
+      <guid>http://localhost:1313/tags/google-workspace/</guid>
       <description></description>
     </item>
     
@@ -219,6 +237,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/jquery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LAN/WAN</title>
+      <link>http://localhost:1313/tags/lan/wan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/lan/wan/</guid>
       <description></description>
     </item>
     
@@ -295,6 +322,15 @@
     </item>
     
     <item>
+      <title>Networking</title>
+      <link>http://localhost:1313/tags/networking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Opensource</title>
       <link>http://localhost:1313/tags/opensource/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -327,6 +363,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/pharmaceutical-industry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>POMSNET</title>
+      <link>http://localhost:1313/tags/pomsnet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/pomsnet/</guid>
       <description></description>
     </item>
     
@@ -367,11 +412,29 @@
     </item>
     
     <item>
+      <title>SAP</title>
+      <link>http://localhost:1313/tags/sap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/sap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>SOPs</title>
       <link>http://localhost:1313/tags/sops/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/sops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TCP/IP</title>
+      <link>http://localhost:1313/tags/tcp/ip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/tcp/ip/</guid>
       <description></description>
     </item>
     
