@@ -5,7 +5,8 @@
     <link>http://localhost:1313/</link>
     <description>Recent content on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu</title>
       <link>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
@@ -70,6 +71,21 @@
       
       <guid>http://localhost:1313/experience/radiantinfotech/</guid>
       <description>Radiant Infotech Pvt.Ltd | Kathmandu, Nepal</description>
+    </item>
+    
+    <item>
+      <title>Privacy Policy</title>
+      <link>http://localhost:1313/privacy-policy/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/privacy-policy/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Welcome to my Privacy Policy. This page informs you of my policies regarding the collection, use, and disclosure of data when you use my website.&lt;/p&gt;
+&lt;h2 id=&#34;data-we-collect&#34;&gt;Data We Collect&lt;/h2&gt;
+&lt;p&gt;To improve the user experience and analyze traffic, this website uses the following third-party services:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cloudflare Web Analytics:&lt;/strong&gt; This service collects anonymous traffic data such as page views and country of origin. It does not use cookies or collect personally identifiable information. You can view their privacy policy &lt;a href=&#34;https://www.cloudflare.com/privacypolicy/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     
