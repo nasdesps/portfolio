@@ -44,5 +44,5 @@ I may update this Privacy Policy from time to time. I will notify you of any cha
 ---
 
 ## Contact Me
-If you have any questions about this Privacy Policy, please contact me at: **[prajwolad18@gmail.com]**
+If you have any questions about this Privacy Policy, please contact me at: **prajwolad18@gmail.com**
 
