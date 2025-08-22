@@ -9,14 +9,14 @@ menu:
       name: Home
       url: /
       weight: 10
+    - identifier: projects
+      name: Projects
+      url: /projects
+      weight: 20
     - identifier: blog
       name: Blog
       url: /blog
-      weight: 20
-    #- identifier: projects
-    # name: Projects
-    #  url: /projects
-    #  weight: 30
+      weight: 30
     - identifier: experience
       name: Experience
       url: /experience

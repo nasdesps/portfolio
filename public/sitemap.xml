@@ -2,9 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
+    <loc>http://localhost:1313/blog/adguard-aws/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/adguard-home-on-cloud/</loc>
+    <loc>http://localhost:1313/projects/adguard-updated/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
+  </url><url>
+    <loc>http://localhost:1313/blog/deepseek-docker/</loc>
+  </url><url>
+    <loc>http://localhost:1313/blog/adguard-linode/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/adguard-home-on-cloud/</loc>
   </url><url>
     <loc>http://localhost:1313/experience/abbvie/</loc>
   </url><url>
@@ -113,6 +121,8 @@
     <loc>http://localhost:1313/tags/problem-solving/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/production/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/rf-test/</loc>
   </url><url>

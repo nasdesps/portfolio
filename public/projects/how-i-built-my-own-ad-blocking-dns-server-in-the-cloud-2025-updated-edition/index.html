@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!) | Prajwol Bikram Adhikari</title>
+<meta name="keywords" content="adguard, cloud, linode, DNS, DoH">
+<meta name="description" content="Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀
+Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it&rsquo;s time for an upgrade! Today, we&rsquo;re going to build our own powerful, network-wide ad-blocker using Amazon Web Services (AWS), and we&rsquo;ll make it secure with our own domain and SSL certificate.
+Think of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/projects/how-i-built-my-own-ad-blocking-dns-server-in-the-cloud-2025-updated-edition/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.8e159e62f02d7d4d5f548c516c00a4346c80759206bcad8dd5461667130fd389.css" integrity="sha256-jhWeYvAtfU1fVIxRbACkNGyAdZIGvK2N1UYWZxMP04k=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/projects/how-i-built-my-own-ad-blocking-dns-server-in-the-cloud-2025-updated-edition/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)" />
+<meta property="og:description" content="Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀
+Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it&rsquo;s time for an upgrade! Today, we&rsquo;re going to build our own powerful, network-wide ad-blocker using Amazon Web Services (AWS), and we&rsquo;ll make it secure with our own domain and SSL certificate.
+Think of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/projects/how-i-built-my-own-ad-blocking-dns-server-in-the-cloud-2025-updated-edition/" /><meta property="article:section" content="projects" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)"/>
+<meta name="twitter:description" content="Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀
+Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it&rsquo;s time for an upgrade! Today, we&rsquo;re going to build our own powerful, network-wide ad-blocker using Amazon Web Services (AWS), and we&rsquo;ll make it secure with our own domain and SSL certificate.
+Think of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Projects",
+      "item": "http://localhost:1313/projects/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)",
+      "item": "http://localhost:1313/projects/how-i-built-my-own-ad-blocking-dns-server-in-the-cloud-2025-updated-edition/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)",
+  "name": "How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)",
+  "description": "Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀 Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it\u0026rsquo;s time for an upgrade! Today, we\u0026rsquo;re going to build our own powerful, network-wide ad-blocker using Amazon Web Services (AWS), and we\u0026rsquo;ll make it secure with our own domain and SSL certificate.\nThink of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them.\n",
+  "keywords": [
+    "adguard", "cloud", "linode", "DNS", "DoH"
+  ],
+  "articleBody": "Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀 Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it’s time for an upgrade! Today, we’re going to build our own powerful, network-wide ad-blocker using Amazon Web Services (AWS), and we’ll make it secure with our own domain and SSL certificate.\nThink of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them.\nThis guide is for everyone, from seasoned tech wizards to curious beginners. We’ll break down every step in simple terms, so grab a coffee, and let’s build something awesome!\n## Chapter 1: Building Our Home in the AWS Cloud ☁️ First, we need a server. We’ll use an Amazon EC2 instance, which is just a fancy name for a virtual computer that you rent.\nSign Up for AWS: If you don’t have an account, head to the AWS website and sign up. You’ll need a credit card for verification, but for this guide, we can often stay within the Free Tier.\nLaunch Your EC2 Instance:\nLog in to your AWS Console and search for EC2. Click “Launch instance”. Name: Give your server a cool name, like AdGuard-Server. Application and OS Images: In the search bar, type Debian and select the latest version (e.g., Debian 12). Make sure it’s marked “Free tier eligible”. Instance Type: Choose t2.micro. This is your free, trusty little server. Key Pair (for login): This is your digital key to the server’s front door. Click “Create a new key pair”, name it something like my-adguard-key, and download the .pem file. Keep this file secret and safe! Network settings (The Firewall): This is crucial. We need to tell our server which doors to open. Click “Edit”. Check the box for “Allow SSH traffic from” and select My IP. This lets you securely log in. Check “Allow HTTPS traffic from the internet” and “Allow HTTP traffic from the internet”. We’ll need these for our secure dashboard later. Launch It! Hit the “Launch instance” button and watch as your new cloud server comes to life.\nGive Your Server a Permanent Address (Elastic IP):\nBy default, your server’s public IP address will change every time it reboots. Let’s make it permanent! In the EC2 menu on the left, go to “Elastic IPs”. Click “Allocate Elastic IP address” and then “Allocate”. Select the new IP address from the list, click “Actions”, and then “Associate Elastic IP address”. Choose your AdGuard-Server instance from the list and click “Associate”. Your server now has a static IP address that will never change! Make a note of this new IP. ## Chapter 2: Opening the Doors (Configuring the Firewall) 🚪 Our server is running, but we need to open a few more specific doors for AdGuard Home to work.\nGo to your EC2 Instance details, click the “Security” tab, and click on the Security Group name. Click “Edit inbound rules” and “Add rule” for each of the following: Port 3000: Custom TCP, Port 3000, Source My IP. (For the initial setup). Port 53 (TCP): Custom TCP, Port 53, Source Anywhere-IPv4. (For DNS). Port 53 (UDP): Custom UDP, Port 53, Source Anywhere-IPv4. (Also for DNS). Port 853: Custom TCP, Port 853, Source Anywhere-IPv4. (For DNS-over-TLS). Click “Save rules”. Your firewall is now ready! ## Chapter 3: Installing AdGuard Home 🛡️ Now, let’s connect to our server and install the magic software.\nConnect via SSH: Open a terminal (PowerShell on Windows, Terminal on Mac/Linux) and use the key you downloaded to connect. Use your new Elastic IP address! # Replace the path and Elastic IP with your own ssh -i \"path/to/my-adguard-key.pem\" admin@YOUR_ELASTIC_IP Install AdGuard Home: Run this one simple command. It downloads and installs everything for you. curl -s -S -L [https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh](https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh) | sh -s -- -v Run the Setup Wizard: The script will give you a link, like http://YOUR_ELASTIC_IP:3000. Open this in your browser. Follow the on-screen steps to create your admin username and password. ## Chapter 4: Giving Your Server a Name (Free Domain with No-IP) 📛 An IP address is hard to remember. Let’s get a free, memorable name for our server.\nSign Up at No-IP: Go to No-IP.com, create a free account, and create a hostname (e.g., my-dns-guardian.ddns.net). Point it to Your Server: When creating the hostname, enter your server’s permanent Elastic IP address. Confirm your account via email. ## Chapter 5: Making It Secure with SSL/TLS 🔐 We’ll use Let’s Encrypt and Certbot to get a free SSL certificate, which lets us use secure https:// and encrypted DNS.\nInstall Certbot: In your SSH session, run these commands:\nsudo apt update sudo apt install certbot -y Get the Certificate: Run this command, replacing the email and domain with your own.\n# This command will temporarily stop any service on port 80, get the certificate, and then finish. sudo certbot certonly --standalone --agree-tos --email YOUR_EMAIL@example.com -d your-no-ip-hostname.ddns.net If it’s successful, it will tell you where your certificate files are saved (usually in /etc/letsencrypt/live/your-no-ip-hostname.ddns.net/).\nConfigure AdGuard Home Encryption:\nGo to your AdGuard Home dashboard (Settings -\u003e Encryption settings). Check “Enable encryption”. In the “Server name” field, enter your No-IP hostname. Under “Certificates”, choose “Set a certificates file path”. Certificate path: /etc/letsencrypt/live/your-no-ip-hostname.ddns.net/fullchain.pem Private key path: /etc/letsencrypt/live/your-no-ip-hostname.ddns.net/privkey.pem Click “Save configuration”. The page will reload on a secure https:// connection! ## Chapter 6: Automating SSL Renewal (Cron Job Magic) ✨ Let’s Encrypt certificates last for 90 days. We can tell our server to automatically renew them.\nOpen the Cron Editor: In SSH, run sudo crab -e and choose nano as your editor. Add the Renewal Job: Add this line to the bottom of the file. It tells the server to try renewing the certificate every day at 2:30 AM. 30 2 * * * /usr/bin/certbot renew --quiet Save and exit (Ctrl+X, then Y, then Enter). Your server will now keep its certificate fresh forever! ## Chapter 7: Testing Your New Superpowers (DoH \u0026 DoT) 🧪 Your server now supports encrypted DNS! You can test it by going to a site like the 1.1.1.1 help page. It should show that you are securely connected to your own resolver and that DNS-over-HTTPS (DoH) or DNS-over-TLS (DoT) is enabled.\n## Chapter 8: Protecting Your Kingdom (Router \u0026 Phone Setup) 🏰 Now, let’s point your devices to their new guardian.\nOn Your Home Router: Log in to your router’s admin page, find the DNS settings, and enter your server’s Elastic IP as the primary DNS server. Leave the secondary field blank! This forces all devices on your Wi-Fi to be protected. On Your Mobile Phone: Android: Go to Settings -\u003e Network -\u003e Private DNS. Choose “Private DNS provider hostname” and enter your No-IP hostname (my-dns-guardian.ddns.net). This gives you ad-blocking everywhere, even on cellular data! iOS: You can use a profile to configure DoH. A simple way is to use a site like AdGuard’s DNS profile generator, but enter your own server’s DoH address (https://my-dns-guardian.ddns.net/dns-query). ## Chapter 9: The Ultimate Safety Net (Creating a Snapshot) 📸 Finally, let’s back up our perfect setup.\nIn the EC2 Console, go to your instance details. Click the “Storage” tab and click the “Volume ID”. Click “Actions” -\u003e “Create snapshot”. Give it a description, like AdGuard-Working-Setup-Backup. If you ever mess something up, you can use this snapshot to restore your server to this exact working state in minutes.\n## You’re a Cloud Wizard! Congratulations! You’ve successfully built a personal, secure, ad-blocking DNS server in the cloud. You’ve learned about cloud computing, firewalls, DNS, SSL, and automation. Go enjoy a faster, cleaner, and more private internet experience. You’ve earned it!\n",
+  "wordCount" : "1311",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/projects/how-i-built-my-own-ad-blocking-dns-server-in-the-cloud-2025-updated-edition/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Prajwol Bikram Adhikari",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Prajwol Bikram Adhikari (Alt + H)">Prajwol Bikram Adhikari</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li></li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/projects/">Projects</a></div>
+    <h1 class="post-title">
+      How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)
+    </h1>
+    <div class="post-meta">
+
+
+Feb 2023
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#your-personal-internet-guardian-how-to-build-a-free-ad-blocker-in-the-cloud-" aria-label="Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀">Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#-chapter-1-building-our-home-in-the-aws-cloud-" aria-label="## Chapter 1: Building Our Home in the AWS Cloud ☁️">## Chapter 1: Building Our Home in the AWS Cloud ☁️</a></li>
+                <li>
+                    <a href="#-chapter-2-opening-the-doors-configuring-the-firewall-" aria-label="## Chapter 2: Opening the Doors (Configuring the Firewall) 🚪">## Chapter 2: Opening the Doors (Configuring the Firewall) 🚪</a></li>
+                <li>
+                    <a href="#-chapter-3-installing-adguard-home-" aria-label="## Chapter 3: Installing AdGuard Home 🛡️">## Chapter 3: Installing AdGuard Home 🛡️</a></li>
+                <li>
+                    <a href="#-chapter-4-giving-your-server-a-name-free-domain-with-no-ip-" aria-label="## Chapter 4: Giving Your Server a Name (Free Domain with No-IP) 📛">## Chapter 4: Giving Your Server a Name (Free Domain with No-IP) 📛</a></li>
+                <li>
+                    <a href="#-chapter-5-making-it-secure-with-ssltls-" aria-label="## Chapter 5: Making It Secure with SSL/TLS 🔐">## Chapter 5: Making It Secure with SSL/TLS 🔐</a></li>
+                <li>
+                    <a href="#-chapter-6-automating-ssl-renewal-cron-job-magic-" aria-label="## Chapter 6: Automating SSL Renewal (Cron Job Magic) ✨">## Chapter 6: Automating SSL Renewal (Cron Job Magic) ✨</a></li>
+                <li>
+                    <a href="#-chapter-7-testing-your-new-superpowers-doh--dot-" aria-label="## Chapter 7: Testing Your New Superpowers (DoH &amp; DoT) 🧪">## Chapter 7: Testing Your New Superpowers (DoH &amp; DoT) 🧪</a></li>
+                <li>
+                    <a href="#-chapter-8-protecting-your-kingdom-router--phone-setup-" aria-label="## Chapter 8: Protecting Your Kingdom (Router &amp; Phone Setup) 🏰">## Chapter 8: Protecting Your Kingdom (Router &amp; Phone Setup) 🏰</a></li>
+                <li>
+                    <a href="#-chapter-9-the-ultimate-safety-net-creating-a-snapshot-" aria-label="## Chapter 9: The Ultimate Safety Net (Creating a Snapshot) 📸">## Chapter 9: The Ultimate Safety Net (Creating a Snapshot) 📸</a></li>
+                <li>
+                    <a href="#-youre-a-cloud-wizard" aria-label="## You&rsquo;re a Cloud Wizard!">## You&rsquo;re a Cloud Wizard!</a>
+                </li>
+            </ul>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="your-personal-internet-guardian-how-to-build-a-free-ad-blocker-in-the-cloud-">Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀<a hidden class="anchor" aria-hidden="true" href="#your-personal-internet-guardian-how-to-build-a-free-ad-blocker-in-the-cloud-">#</a></h1>
+<p>Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it&rsquo;s time for an upgrade! Today, we&rsquo;re going to build our own powerful, network-wide ad-blocker using <strong>Amazon Web Services (AWS)</strong>, and we&rsquo;ll make it secure with our own domain and SSL certificate.</p>
+<p>Think of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them.</p>
+<p>This guide is for everyone, from seasoned tech wizards to curious beginners. We&rsquo;ll break down every step in simple terms, so grab a coffee, and let&rsquo;s build something awesome!</p>
+<hr>
+<h3 id="-chapter-1-building-our-home-in-the-aws-cloud-">## Chapter 1: Building Our Home in the AWS Cloud ☁️<a hidden class="anchor" aria-hidden="true" href="#-chapter-1-building-our-home-in-the-aws-cloud-">#</a></h3>
+<p>First, we need a server. We&rsquo;ll use an <strong>Amazon EC2 instance</strong>, which is just a fancy name for a virtual computer that you rent.</p>
+<ol>
+<li>
+<p><strong>Sign Up for AWS:</strong> If you don&rsquo;t have an account, head to the <a href="https://aws.amazon.com/">AWS website</a> and sign up. You&rsquo;ll need a credit card for verification, but for this guide, we can often stay within the Free Tier.</p>
+</li>
+<li>
+<p><strong>Launch Your EC2 Instance:</strong></p>
+<ul>
+<li>Log in to your AWS Console and search for <strong>EC2</strong>.</li>
+<li>Click <strong>&ldquo;Launch instance&rdquo;</strong>.</li>
+<li><strong>Name:</strong> Give your server a cool name, like <code>AdGuard-Server</code>.</li>
+<li><strong>Application and OS Images:</strong> In the search bar, type <code>Debian</code> and select the latest version (e.g., Debian 12). Make sure it&rsquo;s marked &ldquo;Free tier eligible&rdquo;.</li>
+<li><strong>Instance Type:</strong> Choose <strong><code>t2.micro</code></strong>. This is your free, trusty little server.</li>
+<li><strong>Key Pair (for login):</strong> This is your digital key to the server&rsquo;s front door. Click <strong>&ldquo;Create a new key pair&rdquo;</strong>, name it something like <code>my-adguard-key</code>, and <strong>download the <code>.pem</code> file</strong>. Keep this file secret and safe!</li>
+<li><strong>Network settings (The Firewall):</strong> This is crucial. We need to tell our server which doors to open. Click <strong>&ldquo;Edit&rdquo;</strong>.
+<ul>
+<li>Check the box for <strong>&ldquo;Allow SSH traffic from&rdquo;</strong> and select <strong><code>My IP</code></strong>. This lets you securely log in.</li>
+<li>Check <strong>&ldquo;Allow HTTPS traffic from the internet&rdquo;</strong> and <strong>&ldquo;Allow HTTP traffic from the internet&rdquo;</strong>. We&rsquo;ll need these for our secure dashboard later.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Launch It!</strong> Hit the &ldquo;Launch instance&rdquo; button and watch as your new cloud server comes to life.</p>
+</li>
+<li>
+<p><strong>Give Your Server a Permanent Address (Elastic IP):</strong></p>
+<ul>
+<li>By default, your server&rsquo;s public IP address will change every time it reboots. Let&rsquo;s make it permanent!</li>
+<li>In the EC2 menu on the left, go to <strong>&ldquo;Elastic IPs&rdquo;</strong>.</li>
+<li>Click <strong>&ldquo;Allocate Elastic IP address&rdquo;</strong> and then <strong>&ldquo;Allocate&rdquo;</strong>.</li>
+<li>Select the new IP address from the list, click <strong>&ldquo;Actions&rdquo;</strong>, and then <strong>&ldquo;Associate Elastic IP address&rdquo;</strong>.</li>
+<li>Choose your <code>AdGuard-Server</code> instance from the list and click <strong>&ldquo;Associate&rdquo;</strong>.</li>
+<li>Your server now has a static IP address that will never change! Make a note of this new IP.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="-chapter-2-opening-the-doors-configuring-the-firewall-">## Chapter 2: Opening the Doors (Configuring the Firewall) 🚪<a hidden class="anchor" aria-hidden="true" href="#-chapter-2-opening-the-doors-configuring-the-firewall-">#</a></h3>
+<p>Our server is running, but we need to open a few more specific doors for AdGuard Home to work.</p>
+<ol>
+<li>Go to your EC2 Instance details, click the <strong>&ldquo;Security&rdquo;</strong> tab, and click on the <strong>Security Group name</strong>.</li>
+<li>Click <strong>&ldquo;Edit inbound rules&rdquo;</strong> and <strong>&ldquo;Add rule&rdquo;</strong> for each of the following:
+<ul>
+<li><strong>Port <code>3000</code>:</strong> <code>Custom TCP</code>, Port <code>3000</code>, Source <code>My IP</code>. (For the initial setup).</li>
+<li><strong>Port <code>53</code> (TCP):</strong> <code>Custom TCP</code>, Port <code>53</code>, Source <code>Anywhere-IPv4</code>. (For DNS).</li>
+<li><strong>Port <code>53</code> (UDP):</strong> <code>Custom UDP</code>, Port <code>53</code>, Source <code>Anywhere-IPv4</code>. (Also for DNS).</li>
+<li><strong>Port <code>853</code>:</strong> <code>Custom TCP</code>, Port <code>853</code>, Source <code>Anywhere-IPv4</code>. (For DNS-over-TLS).</li>
+</ul>
+</li>
+<li>Click <strong>&ldquo;Save rules&rdquo;</strong>. Your firewall is now ready!</li>
+</ol>
+<hr>
+<h3 id="-chapter-3-installing-adguard-home-">## Chapter 3: Installing AdGuard Home 🛡️<a hidden class="anchor" aria-hidden="true" href="#-chapter-3-installing-adguard-home-">#</a></h3>
+<p>Now, let&rsquo;s connect to our server and install the magic software.</p>
+<ol>
+<li><strong>Connect via SSH:</strong> Open a terminal (PowerShell on Windows, Terminal on Mac/Linux) and use the key you downloaded to connect. <strong>Use your new Elastic IP address!</strong>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Replace the path and Elastic IP with your own</span>
+</span></span><span style="display:flex;"><span>ssh -i <span style="color:#e6db74">&#34;path/to/my-adguard-key.pem&#34;</span> admin@YOUR_ELASTIC_IP
+</span></span></code></pre></div></li>
+<li><strong>Install AdGuard Home:</strong> Run this one simple command. It downloads and installs everything for you.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -s -S -L <span style="color:#f92672">[</span>https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh<span style="color:#f92672">](</span>https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh<span style="color:#f92672">)</span> | sh -s -- -v
+</span></span></code></pre></div></li>
+<li><strong>Run the Setup Wizard:</strong> The script will give you a link, like <code>http://YOUR_ELASTIC_IP:3000</code>. Open this in your browser. Follow the on-screen steps to create your admin username and password.</li>
+</ol>
+<hr>
+<h3 id="-chapter-4-giving-your-server-a-name-free-domain-with-no-ip-">## Chapter 4: Giving Your Server a Name (Free Domain with No-IP) 📛<a hidden class="anchor" aria-hidden="true" href="#-chapter-4-giving-your-server-a-name-free-domain-with-no-ip-">#</a></h3>
+<p>An IP address is hard to remember. Let&rsquo;s get a free, memorable name for our server.</p>
+<ol>
+<li><strong>Sign Up at No-IP:</strong> Go to <a href="https://www.noip.com/">No-IP.com</a>, create a free account, and create a <strong>hostname</strong> (e.g., <code>my-dns-guardian.ddns.net</code>).</li>
+<li><strong>Point it to Your Server:</strong> When creating the hostname, enter your server&rsquo;s permanent <strong>Elastic IP address</strong>. Confirm your account via email.</li>
+</ol>
+<hr>
+<h3 id="-chapter-5-making-it-secure-with-ssltls-">## Chapter 5: Making It Secure with SSL/TLS 🔐<a hidden class="anchor" aria-hidden="true" href="#-chapter-5-making-it-secure-with-ssltls-">#</a></h3>
+<p>We&rsquo;ll use <strong>Let&rsquo;s Encrypt</strong> and <strong>Certbot</strong> to get a free SSL certificate, which lets us use secure <code>https://</code> and encrypted DNS.</p>
+<ol>
+<li>
+<p><strong>Install Certbot:</strong> In your SSH session, run these commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install certbot -y
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Get the Certificate:</strong> Run this command, replacing the email and domain with your own.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># This command will temporarily stop any service on port 80, get the certificate, and then finish.</span>
+</span></span><span style="display:flex;"><span>sudo certbot certonly --standalone --agree-tos --email YOUR_EMAIL@example.com -d your-no-ip-hostname.ddns.net
+</span></span></code></pre></div><p>If it&rsquo;s successful, it will tell you where your certificate files are saved (usually in <code>/etc/letsencrypt/live/your-no-ip-hostname.ddns.net/</code>).</p>
+</li>
+<li>
+<p><strong>Configure AdGuard Home Encryption:</strong></p>
+<ul>
+<li>Go to your AdGuard Home dashboard (<strong>Settings -&gt; Encryption settings</strong>).</li>
+<li>Check <strong>&ldquo;Enable encryption&rdquo;</strong>.</li>
+<li>In the <strong>&ldquo;Server name&rdquo;</strong> field, enter your No-IP hostname.</li>
+<li>Under <strong>&ldquo;Certificates&rdquo;</strong>, choose <strong>&ldquo;Set a certificates file path&rdquo;</strong>.
+<ul>
+<li><strong>Certificate path:</strong> <code>/etc/letsencrypt/live/your-no-ip-hostname.ddns.net/fullchain.pem</code></li>
+<li><strong>Private key path:</strong> <code>/etc/letsencrypt/live/your-no-ip-hostname.ddns.net/privkey.pem</code></li>
+</ul>
+</li>
+<li>Click <strong>&ldquo;Save configuration&rdquo;</strong>. The page will reload on a secure <code>https://</code> connection!</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="-chapter-6-automating-ssl-renewal-cron-job-magic-">## Chapter 6: Automating SSL Renewal (Cron Job Magic) ✨<a hidden class="anchor" aria-hidden="true" href="#-chapter-6-automating-ssl-renewal-cron-job-magic-">#</a></h3>
+<p>Let&rsquo;s Encrypt certificates last for 90 days. We can tell our server to automatically renew them.</p>
+<ol>
+<li><strong>Open the Cron Editor:</strong> In SSH, run <code>sudo crab -e</code> and choose <code>nano</code> as your editor.</li>
+<li><strong>Add the Renewal Job:</strong> Add this line to the bottom of the file. It tells the server to try renewing the certificate every day at 2:30 AM.
+<pre tabindex="0"><code>30 2 * * * /usr/bin/certbot renew --quiet
+</code></pre></li>
+<li>Save and exit (<code>Ctrl+X</code>, then <code>Y</code>, then <code>Enter</code>). Your server will now keep its certificate fresh forever!</li>
+</ol>
+<hr>
+<h3 id="-chapter-7-testing-your-new-superpowers-doh--dot-">## Chapter 7: Testing Your New Superpowers (DoH &amp; DoT) 🧪<a hidden class="anchor" aria-hidden="true" href="#-chapter-7-testing-your-new-superpowers-doh--dot-">#</a></h3>
+<p>Your server now supports encrypted DNS! You can test it by going to a site like the <a href="https://1.1.1.1/help">1.1.1.1 help page</a>. It should show that you are securely connected to your own resolver and that DNS-over-HTTPS (DoH) or DNS-over-TLS (DoT) is enabled.</p>
+<hr>
+<h3 id="-chapter-8-protecting-your-kingdom-router--phone-setup-">## Chapter 8: Protecting Your Kingdom (Router &amp; Phone Setup) 🏰<a hidden class="anchor" aria-hidden="true" href="#-chapter-8-protecting-your-kingdom-router--phone-setup-">#</a></h3>
+<p>Now, let&rsquo;s point your devices to their new guardian.</p>
+<ul>
+<li><strong>On Your Home Router:</strong> Log in to your router&rsquo;s admin page, find the DNS settings, and enter your server&rsquo;s <strong>Elastic IP</strong> as the primary DNS server. Leave the secondary field blank! This forces all devices on your Wi-Fi to be protected.</li>
+<li><strong>On Your Mobile Phone:</strong>
+<ul>
+<li><strong>Android:</strong> Go to <strong>Settings -&gt; Network -&gt; Private DNS</strong>. Choose &ldquo;Private DNS provider hostname&rdquo; and enter your No-IP hostname (<code>my-dns-guardian.ddns.net</code>). This gives you ad-blocking everywhere, even on cellular data!</li>
+<li><strong>iOS:</strong> You can use a profile to configure DoH. A simple way is to use a site like <a href="https://adguard-dns.io/en/public-dns.html">AdGuard&rsquo;s DNS profile generator</a>, but enter your own server&rsquo;s DoH address (<code>https://my-dns-guardian.ddns.net/dns-query</code>).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-chapter-9-the-ultimate-safety-net-creating-a-snapshot-">## Chapter 9: The Ultimate Safety Net (Creating a Snapshot) 📸<a hidden class="anchor" aria-hidden="true" href="#-chapter-9-the-ultimate-safety-net-creating-a-snapshot-">#</a></h3>
+<p>Finally, let&rsquo;s back up our perfect setup.</p>
+<ol>
+<li>In the EC2 Console, go to your instance details.</li>
+<li>Click the <strong>&ldquo;Storage&rdquo;</strong> tab and click the <strong>&ldquo;Volume ID&rdquo;</strong>.</li>
+<li>Click <strong>&ldquo;Actions&rdquo; -&gt; &ldquo;Create snapshot&rdquo;</strong>.</li>
+<li>Give it a description, like <code>AdGuard-Working-Setup-Backup</code>.</li>
+</ol>
+<p>If you ever mess something up, you can use this snapshot to restore your server to this exact working state in minutes.</p>
+<h3 id="-youre-a-cloud-wizard">## You&rsquo;re a Cloud Wizard!<a hidden class="anchor" aria-hidden="true" href="#-youre-a-cloud-wizard">#</a></h3>
+<p>Congratulations! You&rsquo;ve successfully built a personal, secure, ad-blocking DNS server in the cloud. You&rsquo;ve learned about cloud computing, firewalls, DNS, SSL, and automation. Go enjoy a faster, cleaner, and more private internet experience. You&rsquo;ve earned it!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/adguard/">Adguard</a></li>
+      <li><a href="http://localhost:1313/tags/cloud/">Cloud</a></li>
+      <li><a href="http://localhost:1313/tags/linode/">Linode</a></li>
+      <li><a href="http://localhost:1313/tags/dns/">DNS</a></li>
+      <li><a href="http://localhost:1313/tags/doh/">DoH</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="http://localhost:1313/">Prajwol Bikram Adhikari</a> · <a href="/privacy-policy/">Privacy Policy</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
