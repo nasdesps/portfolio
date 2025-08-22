@@ -85,7 +85,41 @@ Now, let's connect to our server and install the magic software.
 
 ---
 
-### ## Chapter 4: Giving Your Server a Name (Free Domain with No-IP) 📛
+### ## Chapter 4: Teaching Your Guardian Who to Trust and What to Block
+
+With AdGuard Home installed, the next step is to configure its core brain: the DNS servers it gets its answers from and the blocklists it uses to protect your network.
+
+#### **1. Setting Up Upstream DNS Servers**
+Think of "Upstream DNS Servers" as the giant, public phonebooks of the internet. When your AdGuard server doesn't know an address (and it's not on a blocklist), it asks one of these upstreams. It's recommended to use a mix of the best encrypted DNS providers for security, privacy, and speed.
+
+In the AdGuard dashboard, go to **Settings -> DNS settings**. In the **"Upstream DNS servers"** box, enter the following, one per line:
+- https://dns.quad9.net/dns-query
+- https://dns.google/dns-query
+- https://dns.cloudflare.com/dns-query
+
+* **Quad9:** Focuses heavily on security, blocking malicious domains.
+* **Google:** Known for being very fast.
+* **Cloudflare:** A great all-around choice with a strong focus on privacy.
+
+By listing all three, AdGuard Home will intelligently query them in parallel and use the fastest response.
+
+#### **2. Enabling DNSSEC**
+Right below the upstream servers, there's a checkbox for **"Enable DNSSEC"**. You should check this box. DNSSEC is like a digital wax seal on a letter; it verifies that the DNS answers you're getting are authentic and haven't been tampered with. It's a simple, one-click security boost.
+
+#### **3. Choosing Your Blocklists**
+This is the fun part—the actual ad-blocking! Go to **Filters -> DNS blocklists**. For a "Balanced & Powerful" setup that blocks aggressively without a high risk of breaking websites, enable the following lists:
+
+* **AdGuard DNS filter:** A great, well-maintained baseline.
+* **OISD Blocklist Big:** Widely considered one of the best all-in-one lists for blocking ads, trackers, and malware.
+* **HaGeZi's Pro Blocklist:** A fantastic list that adds another layer of aggressive blocking for privacy.
+* **HaGeZi's Threat Intelligence Feed:** A crucial security-only list that focuses on protecting against active threats like phishing and malware.
+
+This combination will give you robust protection against both annoyances and real dangers.
+
+
+---
+
+### ## Chapter 5: Giving Your Server a Name (Free Domain with No-IP) 📛
 
 An IP address is hard to remember. Let's get a free, memorable name for our server.
 
@@ -94,7 +128,7 @@ An IP address is hard to remember. Let's get a free, memorable name for our serv
 
 ---
 
-### ## Chapter 5: Making It Secure with SSL/TLS 🔐
+### ## Chapter 6: Making It Secure with SSL/TLS 🔐
 
 We'll use **Let's Encrypt** and **Certbot** to get a free SSL certificate, which lets us use secure `https://` and encrypted DNS.
 
@@ -123,7 +157,7 @@ We'll use **Let's Encrypt** and **Certbot** to get a free SSL certificate, which
 
 ---
 
-### ## Chapter 6: Automating SSL Renewal (Cron Job Magic) ✨
+### ## Chapter 7: Automating SSL Renewal (Cron Job Magic) ✨
 
 Let's Encrypt certificates last for 90 days. We can tell our server to automatically renew them.
 
@@ -136,7 +170,7 @@ Let's Encrypt certificates last for 90 days. We can tell our server to automatic
 
 ---
 
-### ## Chapter 7: Testing Your New Superpowers (DoH & DoT) 🧪
+### ## Chapter 8: Testing Your New Superpowers (DoH & DoT) 🧪
 
 For a direct confirmation, I used these commands on my computer:
 
@@ -155,18 +189,18 @@ For a direct confirmation, I used these commands on my computer:
 
 ---
 
-### ## Chapter 8: Protecting Your Kingdom (Router & Phone Setup) 🏰
+### ## Chapter 9: Protecting Your Kingdom (Router & Phone Setup) 🏰
 
 Now, let's point your devices to their new guardian.
 
-* **On Your Home Router:** Log in to your router's admin page, find the DNS settings, and enter your server's **Elastic IP** as the primary DNS server. Leave the secondary field blank! This forces all devices on your Wi-Fi to be protected.
+* **On Your Home Router:** Log in to your router's admin page, find the DNS settings, and enter your server's **Elastic IP** as the primary DNS server. Leave the secondary field blank! This forces all devices on your Wi-Fi to be protected. Then, restart your router.
 * **On Your Mobile Phone:**
     * **Android:** Go to **Settings -> Network -> Private DNS**. Choose "Private DNS provider hostname" and enter your No-IP hostname (`my-dns.ddns.net`). This gives you ad-blocking everywhere, even on cellular data!
     * **iOS:** You can use a profile to configure DoH. A simple way is to use a site like [AdGuard's DNS profile generator](https://adguard-dns.io/en/public-dns.html), but enter your own server's DoH address (`https://my-dns.ddns.net/dns-query`).
 
 ---
 
-### ## Chapter 9: The Ultimate Safety Net (Creating a Snapshot) 📸
+### ## Chapter 10: The Ultimate Safety Net (Creating a Snapshot) 📸
 
 Finally, let's back up our perfect setup.
 
@@ -177,6 +211,13 @@ Finally, let's back up our perfect setup.
 
 If you ever mess something up, you can use this snapshot to restore your server to this exact working state in minutes.
 
-### ## You're a Cloud Wizard!
+### ## Bonus Chapter: Common Troubleshooting Tips
 
-Congratulations! You've successfully built a personal, secure, ad-blocking DNS server in the cloud. You've learned about cloud computing, firewalls, DNS, SSL, and automation. Go enjoy a faster, cleaner, and more private internet experience. You've earned it!
+If things aren't working, here are a few common pitfalls to check:
+* **Browser Overrides Everything:** If one device isn't blocking ads, check its browser settings! Modern browsers like Chrome have a "Secure DNS" feature that can bypass your custom setup. You may need to turn this off.
+* **Check Your Laptop's DNS:** Make sure your computer's network settings are set to "Obtain DNS automatically" so it listens to the router. A manually set DNS on your PC will ignore the router's settings.
+* **Beware of IPv6:** If you run into trouble on one device, try disabling IPv6 in that device's Wi-Fi adapter properties to force it to use your working IPv4 setup.
+
+### ## It’s a Wrap!
+
+And there you have it! You've successfully built a personal, secure, ad-blocking DNS server in the cloud. You've learned about cloud computing, firewalls, DNS, SSL, and automation. Go enjoy a faster, cleaner, and more private internet experience.
