@@ -3,11 +3,23 @@ title: How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edit
 dateString: Aug 2025
 draft: false
 tags:
-  - adguard
-  - cloud
-  - linode
+  - AdGuard
+  - CloudComputing
+  - AWS
+  - EC2
+  - Firewall
+  - Elastic IP
+  - LetsEncrypt
+  - Certbot
+  - Debian
+  - No-IP
+  - SSL
+  - TLS
+  - Cron
   - DNS
   - DoH
+  - DoT
+  - DNSSEC
 weight: 101
 cover:
   image: "/projects/adguard-aws/adguard_aws.webp"

@@ -40,6 +40,8 @@
   </url><url>
     <loc>http://localhost:1313/tags/automation/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/aws/</loc>
+  </url><url>
     <loc>http://localhost:1313/blog/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/bootstrap/</loc>
@@ -54,7 +56,11 @@
   </url><url>
     <loc>http://localhost:1313/tags/communication/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/cron/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/css/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/debian/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/deepseek-r1/</loc>
   </url><url>
@@ -68,7 +74,15 @@
   </url><url>
     <loc>http://localhost:1313/tags/doh/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/dot/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/ec2/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/elastic-ip/</loc>
+  </url><url>
     <loc>http://localhost:1313/experience/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/firewall/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/flash/</loc>
   </url><url>
@@ -108,6 +122,8 @@
   </url><url>
     <loc>http://localhost:1313/tags/networking/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/no-ip/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/opensource/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/packaging/</loc>
@@ -134,11 +150,15 @@
   </url><url>
     <loc>http://localhost:1313/tags/sops/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/ssl/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/tcp/ip/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/teamwork/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/tls/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/troubleshooting/</loc>
   </url><url>
