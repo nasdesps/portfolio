@@ -16,7 +16,7 @@
     </item>
     
     <item>
-      <title>Adguard</title>
+      <title>AdGuard</title>
       <link>http://localhost:1313/tags/adguard/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -70,6 +70,15 @@
     </item>
     
     <item>
+      <title>Certbot</title>
+      <link>http://localhost:1313/tags/certbot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/certbot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cisco Switch</title>
       <link>http://localhost:1313/tags/cisco-switch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -84,6 +93,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CloudComputing</title>
+      <link>http://localhost:1313/tags/cloudcomputing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cloudcomputing/</guid>
       <description></description>
     </item>
     
@@ -156,6 +174,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DNSSEC</title>
+      <link>http://localhost:1313/tags/dnssec/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/dnssec/</guid>
       <description></description>
     </item>
     
@@ -318,6 +345,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/leadership/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LetsEncrypt</title>
+      <link>http://localhost:1313/tags/letsencrypt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/letsencrypt/</guid>
       <description></description>
     </item>
     

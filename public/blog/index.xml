@@ -19,10 +19,10 @@
     
     <item>
       <title>Running a Powerful AI Locally with Docker!</title>
-      <link>http://localhost:1313/blog/deepseek-docker/</link>
+      <link>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/deepseek-docker/</guid>
+      <guid>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
       <description>&lt;h1 id=&#34;new-project-alert-running-a-powerful-ai-locally-with-docker&#34;&gt;New Project Alert: Running a Powerful AI Locally with Docker!&lt;/h1&gt;
 &lt;p&gt;Hey everyone, Prajwol here.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;ve always been fascinated by the incredible advancements in AI and large language models. While cloud-based models are powerful, I was really curious about what it would take to run a high-performance model right on my own machine. This gives you ultimate privacy, control, and the ability to experiment without limits.&lt;/p&gt;
@@ -31,10 +31,10 @@
     
     <item>
       <title>My First Cloud Ad-Blocker - A Look Back at AdGuard Home on Linode</title>
-      <link>http://localhost:1313/blog/adguard-linode/</link>
+      <link>http://localhost:1313/blog/adguard-home-on-cloud/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/adguard-linode/</guid>
+      <guid>http://localhost:1313/blog/adguard-home-on-cloud/</guid>
       <description>&lt;h1 id=&#34;my-first-cloud-ad-blocker-a-look-back-at-adguard-home-on-linode&#34;&gt;My First Cloud Ad-Blocker: A Look Back at AdGuard Home on Linode&lt;/h1&gt;
 &lt;p&gt;Hey everyone, Prajwol here.&lt;/p&gt;
 &lt;p&gt;As I continue to explore different cloud projects, I often think back to the ones that had the biggest impact on my day-to-day life. One of the very first projects that truly changed my internet experience was setting up my own ad-blocking DNS server using AdGuard Home on a Linode instance.&lt;/p&gt;

@@ -8,9 +8,9 @@
   </url><url>
     <loc>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/deepseek-docker/</loc>
+    <loc>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/adguard-linode/</loc>
+    <loc>http://localhost:1313/blog/adguard-home-on-cloud/</loc>
   </url><url>
     <loc>http://localhost:1313/projects/adguard-home-on-cloud/</loc>
   </url><url>
@@ -48,9 +48,13 @@
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/certbot/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/cisco-switch/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/cloud/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/cloudcomputing/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/cms/</loc>
   </url><url>
@@ -67,6 +71,8 @@
     <loc>http://localhost:1313/tags/dhcp/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/dns/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/dnssec/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/docker/</loc>
   </url><url>
@@ -105,6 +111,8 @@
     <loc>http://localhost:1313/tags/lan/wan/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/leadership/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/letsencrypt/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/linode/</loc>
   </url><url>
