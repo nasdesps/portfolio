@@ -173,10 +173,10 @@ We'll use **Let's Encrypt** and **Certbot** to get a free SSL certificate, which
 
 Let's Encrypt certificates last for 90 days. We can tell our server to automatically renew them.
 
-1.  **Open the Cron Editor:** In SSH, run `sudo crab -e` and choose `nano` as your editor.
+1.  **Open the Cron Editor:** In SSH, run `sudo crontab -e` and choose `nano` as your editor.
 2.  **Add the Renewal Job:** Add this line to the bottom of the file. It tells the server to try renewing the certificate every day at 2:30 AM.
     ```
-    30 2 * * * /usr/bin/certbot renew --quiet
+    30 2 * * * systemctl stop AdGuardHome.service && certbot renew --quiet && systemctl start AdGuardHome.service
     ```
 3.  Save and exit (`Ctrl+X`, then `Y`, then `Enter`). Your server will now keep its certificate fresh forever!
 
