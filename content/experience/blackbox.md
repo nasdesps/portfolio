@@ -9,7 +9,7 @@ tags:
     - JavaScript
     - jQuery
     - Bootstrap
-    - .NET
+    - C#
     - Web API
     - MySQL
 showToc: false

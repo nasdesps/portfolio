@@ -30,8 +30,6 @@
     <loc>http://localhost:1313/privacy-policy/</loc>
     <lastmod>2025-08-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/.net/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/adguard/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/adobe-photoshop/</loc>
@@ -45,6 +43,8 @@
     <loc>http://localhost:1313/blog/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/bootstrap/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/c%23/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>

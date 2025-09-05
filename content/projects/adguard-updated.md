@@ -113,12 +113,17 @@ In the AdGuard dashboard, go to **Settings -> DNS settings**. In the **"Upstream
 * **Google:** Known for being very fast.
 * **Cloudflare:** A great all-around choice with a strong focus on privacy.
 
-By listing all three, AdGuard Home will intelligently query them in parallel and use the fastest response.
+#### **2. Optimizing DNS Performance**
+Still in the **DNS settings** page, scroll down to optimize how your server queries the upstreams.
 
-#### **2. Enabling DNSSEC**
+* **Parallel requests:** Select this option. This is the fastest and most resilient mode. It sends your DNS query to all three of your upstream servers at the same time and uses the answer from the very first one that responds. This ensures you always get the quickest possible result.
+
+* **Enable EDNS client subnet (ECS):** Check this box. This is very important for services like Netflix, YouTube, and other content delivery networks (CDNs). It helps them give you content from a server that is geographically closest to you, resulting in faster speeds and a better experience.
+
+#### **3. Enabling DNSSEC**
 Right below the upstream servers, there's a checkbox for **"Enable DNSSEC"**. You should check this box. DNSSEC is like a digital wax seal on a letter; it verifies that the DNS answers you're getting are authentic and haven't been tampered with. It's a simple, one-click security boost.
 
-#### **3. Choosing Your Blocklists**
+#### **4. Choosing Your Blocklists**
 This is the fun part—the actual ad-blocking! Go to **Filters -> DNS blocklists**. For a "Balanced & Powerful" setup that blocks aggressively without a high risk of breaking websites, enable the following lists:
 
 * **AdGuard DNS filter:** A great, well-maintained baseline.
