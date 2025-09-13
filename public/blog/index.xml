@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blogs on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/blog/</link>
+    <description>Recent content in Blogs on Prajwol Bikram Adhikari</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Personal Ad-Blocking Server in the Cloud!</title>
+      <link>http://localhost:1313/blog/adguard-aws/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/adguard-aws/</guid>
+      <description>&lt;h1 id=&#34;my-new-weekend-project-building-a-personal-ad-blocking-server-in-the-cloud&#34;&gt;My New Weekend Project: Building a Personal Ad-Blocking Server in the Cloud!&lt;/h1&gt;
+&lt;p&gt;Hey everyone, Prajwol here.&lt;/p&gt;
+&lt;p&gt;Like a lot of you, I spend a good chunk of my day online. And lately, it&amp;rsquo;s felt like I&amp;rsquo;m in a constant battle with pop-ups, trackers, and auto-playing video ads. I&amp;rsquo;ve used browser extensions for years, but I wanted a more powerful solution—something that would protect my entire home network, including my phone and smart TV, without needing to install software everywhere.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Running a Powerful AI Locally with Docker!</title>
+      <link>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
+      <description>&lt;h1 id=&#34;new-project-alert-running-a-powerful-ai-locally-with-docker&#34;&gt;New Project Alert: Running a Powerful AI Locally with Docker!&lt;/h1&gt;
+&lt;p&gt;Hey everyone, Prajwol here.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve always been fascinated by the incredible advancements in AI and large language models. While cloud-based models are powerful, I was really curious about what it would take to run a high-performance model right on my own machine. This gives you ultimate privacy, control, and the ability to experiment without limits.&lt;/p&gt;
+&lt;p&gt;So, for my latest project, I decided to dive in and get the &lt;strong&gt;DeepSeek-R1&lt;/strong&gt; model, a powerful AI, up and running locally using &lt;strong&gt;Docker&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>My First Cloud Ad-Blocker - A Look Back at AdGuard Home on Linode</title>
+      <link>http://localhost:1313/blog/adguard-home-on-cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/adguard-home-on-cloud/</guid>
+      <description>&lt;h1 id=&#34;my-first-cloud-ad-blocker-a-look-back-at-adguard-home-on-linode&#34;&gt;My First Cloud Ad-Blocker: A Look Back at AdGuard Home on Linode&lt;/h1&gt;
+&lt;p&gt;Hey everyone, Prajwol here.&lt;/p&gt;
+&lt;p&gt;As I continue to explore different cloud projects, I often think back to the ones that had the biggest impact on my day-to-day life. One of the very first projects that truly changed my internet experience was setting up my own ad-blocking DNS server using AdGuard Home on a Linode instance.&lt;/p&gt;
+&lt;p&gt;My goal was to find a simple, cost-effective way to block ads and trackers across my entire home network. I wanted a &amp;ldquo;set it and forget it&amp;rdquo; solution that would cover every device—from my phone to my smart TV—without needing to install an app on each one. Linode (now Akamai) was the perfect platform for this: straightforward, powerful, and great for hosting a lightweight service like AdGuard Home.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

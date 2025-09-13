@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LetsEncrypt on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/tags/letsencrypt/</link>
+    <description>Recent content in LetsEncrypt on Prajwol Bikram Adhikari</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://localhost:1313/tags/letsencrypt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)</title>
+      <link>http://localhost:1313/projects/adguard-updated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/adguard-updated/</guid>
+      <description>&lt;h1 id=&#34;your-personal-internet-guardian-how-to-build-a-free-ad-blocker-in-the-cloud-&#34;&gt;Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀&lt;/h1&gt;
+&lt;p&gt;Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it&amp;rsquo;s time for an upgrade! Today, we&amp;rsquo;re going to build our own powerful, network-wide ad-blocker using &lt;strong&gt;Amazon Web Services (AWS)&lt;/strong&gt;, and we&amp;rsquo;ll make it secure with our own domain and SSL certificate.&lt;/p&gt;
+&lt;p&gt;Think of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
