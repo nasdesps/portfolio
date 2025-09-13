@@ -8,7 +8,7 @@ tags:
   - linode
   - DNS
   - DoH
-weight: 103
+weight: 109
 cover:
   image: "/projects/adguard-linode/adguard_cover.jpg"
 ---

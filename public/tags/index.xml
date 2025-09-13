@@ -196,6 +196,15 @@
     </item>
     
     <item>
+      <title>Docker Compose</title>
+      <link>http://localhost:1313/tags/docker-compose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/docker-compose/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Documentation</title>
       <link>http://localhost:1313/tags/documentation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -300,6 +309,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/help-desk-support/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Homelab</title>
+      <link>http://localhost:1313/tags/homelab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/homelab/</guid>
       <description></description>
     </item>
     
@@ -529,11 +547,38 @@
     </item>
     
     <item>
+      <title>Self-Hosting</title>
+      <link>http://localhost:1313/tags/self-hosting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/self-hosting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>http://localhost:1313/tags/server/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>SOPs</title>
       <link>http://localhost:1313/tags/sops/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/sops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>http://localhost:1313/tags/ssh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ssh/</guid>
       <description></description>
     </item>
     
@@ -588,6 +633,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UFW</title>
+      <link>http://localhost:1313/tags/ufw/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ufw/</guid>
       <description></description>
     </item>
     

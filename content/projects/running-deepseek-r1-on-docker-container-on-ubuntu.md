@@ -8,7 +8,7 @@ tags:
   - AI
   - opensource
   - deepseek-r1
-weight: 102
+weight: 110
 cover:
     image: "/projects/deepseek-r1-docker/docker-ai.png"
 ---

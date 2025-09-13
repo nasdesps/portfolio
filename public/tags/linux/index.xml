@@ -7,6 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Part 1: Reviving an Old Laptop with Debian &amp; Docker</title>
+      <link>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to the first post in my new homelab series! I&amp;rsquo;ve always been fascinated by self-hosting and DevOps, and I believe the best way to learn is by doing. In this series, I&amp;rsquo;ll document my journey of turning an old, unused laptop into a powerful, efficient, and secure bare-metal server for hosting a variety of network services.&lt;/p&gt;
+&lt;p&gt;The goal for this first part is to lay a solid foundation. We&amp;rsquo;ll take an old laptop, install a minimal and stable Linux operating system, perform some initial security hardening, and set up Docker as our containerization engine. By the end of this post, we&amp;rsquo;ll have a perfect blank canvas ready for the exciting services we&amp;rsquo;ll deploy in the upcoming parts.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>IT Support Specialist</title>
       <link>http://localhost:1313/experience/islingtoncollege/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

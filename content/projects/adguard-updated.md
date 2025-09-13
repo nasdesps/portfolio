@@ -20,7 +20,7 @@ tags:
   - DoH
   - DoT
   - DNSSEC
-weight: 101
+weight: 102
 cover:
   image: "/projects/adguard-aws/adguard_aws.webp"
 ---
