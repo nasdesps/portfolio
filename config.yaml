@@ -49,7 +49,7 @@ params:
   profileMode:
     enabled: true
     title: "hi prajwol here👋"
-    subtitle: <i>Emerging DevOps Engineer | WGU Master’s in Progress <br> Texas &#x1f1fa;&#x1f1f8;</i><br>Graduate student in Software Engineering (DevOps) at WGU, building homelabs on the side. By day, learning  the ins and outs of pharma manufacturing at [**AbbVie**](https://www.abbvie.com/). Guitarist and live music enthusiast.<br><br>Let's connect! 
+    subtitle: <i>Emerging DevOps Engineer | WGU Master’s in Progress <br> Texas &#x1f1fa;&#x1f1f8;</i><br>Graduate student in Software Engineering (DevOps) at [**WGU**](https://www.wgu.edu/), building homelabs on the side. By day, learning  the ins and outs of pharma manufacturing at [**AbbVie**](https://www.abbvie.com/). Guitarist and live music enthusiast.<br><br>Let's connect! 
 
     # Profile Image
     imageUrl: "home/casual-small-square.jpg"
