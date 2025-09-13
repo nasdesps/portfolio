@@ -124,15 +124,6 @@
     </item>
     
     <item>
-      <title>Csharp</title>
-      <link>http://localhost:1313/tags/csharp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/csharp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>CSS</title>
       <link>http://localhost:1313/tags/css/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -228,6 +219,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/dot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dotnet</title>
+      <link>http://localhost:1313/tags/dotnet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/dotnet/</guid>
       <description></description>
     </item>
     

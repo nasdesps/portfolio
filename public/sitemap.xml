@@ -62,8 +62,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/cron/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/csharp/</loc>
-  </url><url>
     <loc>http://localhost:1313/tags/css/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/debian/</loc>
@@ -85,6 +83,8 @@
     <loc>http://localhost:1313/tags/doh/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/dot/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/dotnet/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/ec2/</loc>
   </url><url>
