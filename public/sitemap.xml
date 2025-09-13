@@ -4,9 +4,9 @@
   <url>
     <loc>http://localhost:1313/blog/adguard-aws/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/adguard-updated/</loc>
-  </url><url>
     <loc>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/adguard-updated/</loc>
   </url><url>
     <loc>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
   </url><url>
