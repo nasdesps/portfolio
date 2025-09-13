@@ -22,7 +22,7 @@ tags:
   - DNSSEC
 weight: 102
 cover:
-  image: "/projects/adguard-aws/adguard_aws.webp"
+  image: "/projects/adguard-aws/adguardaws.png"
 ---
 
 # Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀
