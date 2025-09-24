@@ -66,15 +66,30 @@ First, we need a server. We'll use an **Amazon EC2 instance**, which is just a f
 
 ### ## Chapter 2: Opening the Doors (Configuring the Firewall) 🚪
 
-Our server is running, but we need to open a few more specific doors for AdGuard Home to work.
+Our server is running, but for maximum security, we want to ensure only **you** can access the administrative parts of it. We'll open the public DNS ports to everyone, but lock down the management ports to your home IP address.
 
-1.  Go to your EC2 Instance details, click the **"Security"** tab, and click on the **Security Group name**.
-2.  Click **"Edit inbound rules"** and **"Add rule"** for each of the following:
-    * **Port `3000`:** `Custom TCP`, Port `3000`, Source `My IP`. (For the initial setup).
-    * **Port `53` (TCP):** `Custom TCP`, Port `53`, Source `Anywhere-IPv4`. (For DNS).
-    * **Port `53` (UDP):** `Custom UDP`, Port `53`, Source `Anywhere-IPv4`. (Also for DNS).
-    * **Port `853`:** `Custom TCP`, Port `853`, Source `Anywhere-IPv4`. (For DNS-over-TLS).
-3.  Click **"Save rules"**. Your firewall is now ready!
+1.  **Find Your Public IP Address:** Open a new browser tab and go to a site like [WhatIsMyIP.com](https://www.whatismyip.com/). It will display your home's public IP address. Copy this IP address (it will look something like `203.0.113.55`).
+
+2.  **Edit the Firewall Rules:** Go to your EC2 Instance details, click the **"Security"** tab, and click on the **Security Group name**.
+
+3.  Click **"Edit inbound rules"** and **"Add rule"** for each of the following. This makes sure your DNS is publicly available but the setup panel is locked down to your IP only.
+
+    * **Rule for AdGuard Setup (Port 3000):**
+        * **Type:** `Custom TCP`
+        * **Port range:** `3000`
+        * **Source:** Paste your IP address here, and add `/32` to the end (e.g., `203.0.113.55/32`). The `/32` tells AWS it's a single, specific IP address.
+
+    * **Rule for DNS (Port 53):**
+        * **Type:** `Custom UDP` and `Custom TCP` (you will add two separate rules for this port)
+        * **Port range:** `53`
+        * **Source:** `Anywhere-IPv4`
+
+    * **Rule for DNS-over-TLS (Port 853):**
+        * **Type:** `Custom TCP`
+        * **Port range:** `853`
+        * **Source:** `Anywhere-IPv4`
+
+4.  Click **"Save rules"**. Your firewall is now configured to allow public DNS requests while keeping your management panel secure.
 
 
 
