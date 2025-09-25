@@ -6,21 +6,73 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu | Prajwol Bikram Adhikari</title>
+<script>
+    
+    (function () {
+        const Elem = document.documentElement;
+        const savedTheme = localStorage.getItem('pref-theme');
+        let theme;
+
+        if (savedTheme) {
+            theme = savedTheme;
+        } else {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        if (theme === 'dark') {
+            Elem.classList.add('dark');
+        } else {
+            Elem.classList.remove('dark');
+        }
+    })();
+
+    
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const toggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun');
+        const moonIcon = document.getElementById('moon');
+
+        
+        function updateIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                sunIcon.style.setProperty('display', 'inline-block', 'important');
+                moonIcon.style.setProperty('display', 'none', 'important');
+            } else {
+                sunIcon.style.setProperty('display', 'none', 'important');
+                moonIcon.style.setProperty('display', 'inline-block', 'important');
+            }
+        }
+
+        
+        if (toggle && sunIcon && moonIcon) {
+            updateIcon();
+
+            
+            toggle.addEventListener('click', function () {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('pref-theme', isDark ? 'dark' : 'light');
+                updateIcon(); 
+            });
+        }
+    });
+</script>
 <meta name="keywords" content="docker, ubuntu, AI, opensource, deepseek-r1">
 <meta name="description" content="What&rsquo;s a Docker Container?
 Before we dive into setting up DeepSeek-R1, let me explain what a Docker container is. Imagine you have a toy that works perfectly on your birthday but gets broken if you move it to another room. A Docker container is like a magic box that keeps your AI model (the toy) in perfect condition wherever you take it, whether it&rsquo;s running as a background task, on a web server, or even in the cloud.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.8e159e62f02d7d4d5f548c516c00a4346c80759206bcad8dd5461667130fd389.css" integrity="sha256-jhWeYvAtfU1fVIxRbACkNGyAdZIGvK2N1UYWZxMP04k=" rel="preload stylesheet" as="style">
+<link rel="canonical"
+    href="http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2885677832a85698b0de371109b751f96208e8a347606b229cfd3bd8d7156da3.css" integrity="sha256-KIVneDKoVpiw3jcRCbdR&#43;WII6KNHYGsinP072NcVbaM="
+    rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="icon" href="http://localhost:1313/%20favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/%20favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/%20favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/%20apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/%20safari-pinned-tab.svg">
+<meta name="theme-color" content=" #2e2e33">
+<meta name="msapplication-TileColor" content=" #2e2e33">
 <link rel="alternate" hreflang="en" href="http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/">
 <noscript>
     <style>
@@ -28,7 +80,6 @@ Before we dive into setting up DeepSeek-R1, let me explain what a Docker contain
         .top-link {
             display: none;
         }
-
     </style>
     <style>
         @media (prefers-color-scheme: dark) {
@@ -56,7 +107,6 @@ Before we dive into setting up DeepSeek-R1, let me explain what a Docker contain
                 border-color: var(--theme);
             }
         }
-
     </style>
 </noscript><meta property="og:title" content="Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu" />
 <meta property="og:description" content="What&rsquo;s a Docker Container?
@@ -126,16 +176,6 @@ Before we dive into setting up DeepSeek-R1, let me explain what a Docker contain
 </head>
 
 <body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
 
 <header class="header sticky-header">
     <nav class="nav">
@@ -376,18 +416,6 @@ ollama/ollama
             mybutton.style.opacity = "0";
         }
     };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
 
 </script>
 <script>
