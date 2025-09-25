@@ -3,11 +3,14 @@ title: Running Private Adguard Server on Cloud (Linode)
 dateString: Feb 2023
 draft: false
 tags:
-  - adguard
-  - cloud
-  - linode
+  - AdGuard
+  - CloudComputing
+  - Linode
   - DNS
+  - Self-Hosting
   - DoH
+  - DoT
+  - DNSSEC
 weight: 109
 cover:
   image: "/projects/adguard-linode/adguard_cover.jpg"
@@ -43,7 +46,7 @@ Why choose Linode? Through [NetworkChuck's referral link](https://linode.com/net
 - **Sign Up**: Navigate to [Linode's signup page](https://linode.com/networkchuck) and register.
 - **Access the Dashboard**: Log in and select 'Linodes' from the left-side menu.
 - **Create a Linode**: Click 'Create Linode,' choose your preferred region, and select an operating system (Debian 11 is a solid choice).
-![Create a Linode](/blog/adguard-linode/create_linode.jpg)
+![Create a Linode](/projects/adguard-linode/create_linode.jpg)
 - **Choose a Plan**: The Shared 1GB Nanode instance is sufficient for AdGuard Home.
 - **Label and Secure**: Assign a label to your Linode and set a strong root password.
 - **Deploy**: Click 'Create Linode' and wait for it to initialize.
@@ -76,7 +79,7 @@ AdGuard Home is installed and running. You can use **CTRL+Shift+V** to paste int
 ## Step 3: Configure AdGuard Home
 
 Post-installation, you'll see a list of IP addresses with port `:3000`.
-![IP Adguard](/blog/adguard-linode/ip_adguard.jpg)
+![IP Adguard](/projects/adguard-linode/ip_adguard.jpg)
 
 1. **Access the Web Interface**: Open your browser and navigate to the IP address followed by `:3000`. If you encounter a security warning, proceed by clicking "Continue to site."
 2. **Initial Setup**: Click 'Get Started' and follow the prompts. When uncertain, default settings are typically fine.
@@ -126,7 +129,7 @@ Go to Filters -> DNS blocklists, here you can add a blocklist that people have c
 
 - Click on Add blocklist -> Choose from the list
 - Don't choose too many from the list cause it may slow your internet requests.
-![DNS blocklists](/blog/adguard-linode/dns_blocklists.png)
+![DNS blocklists](/projects/adguard-linode/dns_blocklists.png)
 These are the blocklists I added. And just like that you are blocking more and more things.
 
 ### DNS rewrites
@@ -135,7 +138,7 @@ Go to Filters -> DNS rewrites, here you can add your own DNS entries, so I added
 
 - Click on Add DNS rewrite
 - Type in domain adguardforme.local and your IP address for AdGuard Home.
-![DNS rewrites](/blog/adguard-linode/dns_rewrite.jpg)
+![DNS rewrites](/projects/adguard-linode/dns_rewrite.jpg)
 - And save it.
 
 Now, when I want to go on the AdGuard Home dashboard I just type in adguardforme.local and I'm into AdGuard, I don't have to remember the IP address.

@@ -1,0 +1,34 @@
+<div class="profile">
+    {{- with site.Params.profileMode }}
+    <div class="profile_inner">
+        {{- if .imageUrl }}
+  {{- if $src := resources.Get .imageUrl }}
+    {{/* Define the target display dimensions, defaulting to 220px */}}
+    {{- $width := .imageWidth | default 220 }}
+    {{- $height := .imageHeight | default 220 }}
+
+    {{/* Create a high-resolution WebP version for retina screens (2x the display size) */}}
+    {{- $profileImage := $src.Resize (printf "%dx%d webp" (mul $width 2) (mul $height 2)) }}
+
+    <img src="{{ $profileImage.Permalink }}"
+         alt="{{ .imageTitle | default "profile image" }}"
+         width="{{ $width }}"
+         height="{{ $height }}" />
+  {{- end }}
+{{- end }}
+        <h1>{{ .title | default site.Title | markdownify }}</h1>
+        <span>{{ .subtitle | markdownify }}</span>
+        {{- partial "social_icons.html" site.Params.socialIcons -}}
+
+        {{- with .buttons }}
+        <div class="buttons">
+            {{- range . }}
+            <a class="button" href='{{ trim .url " " }}' target="{{ with .target }}{{ . }}{{ else }}_blank{{ end }}" rel="noopener noreferrer" title="{{ .name }}">
+                <span class="button-inner">{{ .name }}</span>
+            </a>
+            {{- end }}
+        </div>
+        {{- end }}
+    </div>
+    {{- end}}
+</div>

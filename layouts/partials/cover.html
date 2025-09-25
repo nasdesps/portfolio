@@ -1,0 +1,15 @@
+{{- $page := .cxt }}
+{{- with $page.Params.cover }}
+  {{- /* Get the image from the assets folder */}}
+  {{- if $image := resources.Get .image }}
+    {{- /* Create a 400x200px WebP thumbnail, cropping to fit */}}
+    {{- $thumb := $image.Resize "1040x webp" }}
+    <figure class="entry-cover">
+        <img loading="lazy" 
+             src="{{ $thumb.Permalink }}" 
+             alt="Cover image for {{ $page.Title }}" 
+             width="{{ $thumb.Width }}" 
+             height="{{ $thumb.Height }}">
+    </figure>
+  {{- end }}
+{{- end }}

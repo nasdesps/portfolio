@@ -17,5 +17,16 @@
 &lt;p&gt;The goal for this first part is to lay a solid foundation. We&amp;rsquo;ll take an old laptop, install a minimal and stable Linux operating system, perform some initial security hardening, and set up Docker as our containerization engine. By the end of this post, we&amp;rsquo;ll have a perfect blank canvas ready for the exciting services we&amp;rsquo;ll deploy in the upcoming parts.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Running Private Adguard Server on Cloud (Linode)</title>
+      <link>http://localhost:1313/projects/adguard-home-on-cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/adguard-home-on-cloud/</guid>
+      <description>&lt;h1 id=&#34;whats-the-buzz-about-adguard-home&#34;&gt;What&amp;rsquo;s the buzz about AdGuard Home?&lt;/h1&gt;
+&lt;p&gt;Imagine AdGuard Home as your personal internet guardian. This versatile tool blocks ads, trackers, and other online nuisances across all devices connected to your network. Whether you&amp;rsquo;re browsing on your phone, tablet, or computer, AdGuard Home has your back.&lt;/p&gt;
+&lt;p&gt;In today&amp;rsquo;s digital landscape, robust security measures are paramount. Protecting each device shields your family from accidental clicks and malicious attacks, ensuring peace of mind and a secure online environment.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
