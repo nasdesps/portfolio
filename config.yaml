@@ -41,7 +41,8 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   hideMeta: false
-
+  
+  description: "The personal portfolio of Prajwol Bikram Adhikari, an Emerging DevOps Engineer and graduate student, showcasing projects in cloud computing and automation."
   # for enchanced SEO
   env: production
 
