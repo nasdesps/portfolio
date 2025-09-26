@@ -4,6 +4,8 @@ dateString: Aug 2025
 draft: false
 tags:
   - AdGuard
+  - Self-Hosting
+  - Homelab
   - CloudComputing
   - AWS
   - EC2
@@ -20,7 +22,7 @@ tags:
   - DoH
   - DoT
   - DNSSEC
-weight: 102
+weight: 103
 cover:
   image: "/projects/adguard-aws/adguardaws.png"
 ---

@@ -1,6 +1,6 @@
 ---
 title: Running a Powerful AI Locally with Docker!
-dateString: Feb 2023
+dateString: Feb 2025
 draft: false
 tags:
 weight: 102

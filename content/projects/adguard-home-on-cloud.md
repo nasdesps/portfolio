@@ -1,6 +1,6 @@
 ---
 title: Running Private Adguard Server on Cloud (Linode)
-dateString: Feb 2023
+dateString: Feb 2025
 draft: false
 tags:
   - AdGuard

@@ -13,7 +13,7 @@ tags:
   - Firewall
   - UFW
   - SSH
-weight: 101
+weight: 102
 cover:
   image: "/projects/homelab-part1/laptop_server.png"
 ---

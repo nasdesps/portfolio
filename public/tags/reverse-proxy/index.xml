@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Reverse Proxy on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/tags/reverse-proxy/</link>
+    <description>Recent content in Reverse Proxy on Prajwol Bikram Adhikari</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://localhost:1313/tags/reverse-proxy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 2: Homelab Management &amp; Monitoring</title>
+      <link>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to Part 2 of my homelab series! In &lt;a href=&#34;http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/&#34;&gt;Part 1&lt;/a&gt;, we built a solid foundation by turning an old laptop into a hardened Debian server with Docker. Now that our server is running, we need to deploy services to manage, monitor, and easily access our projects.&lt;/p&gt;
+&lt;p&gt;In this guide, we&amp;rsquo;ll deploy three essential stacks. First, &lt;strong&gt;Nginx Proxy Manager (NPM)&lt;/strong&gt; will act as our server&amp;rsquo;s front door and create a shared network for our containers. Second, we&amp;rsquo;ll set up a professional-grade monitoring stack with &lt;strong&gt;Prometheus&lt;/strong&gt; and &lt;strong&gt;Grafana&lt;/strong&gt;. Finally, we&amp;rsquo;ll deploy a &lt;strong&gt;Homer&lt;/strong&gt; dashboard to create a beautiful and convenient launchpad for all our services.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
