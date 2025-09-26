@@ -3,6 +3,7 @@ title: "IT Support Specialist"
 description: "Islington College | Kathmandu, Nepal"
 dateString: Aug 2019 - Jan 2022
 draft: false
+disableShare: true
 tags:
     - SaaS Support
     - Network Support
@@ -31,6 +32,7 @@ tags:
     - Networking
 showToc: false
 weight: 303
+
 --- 
 
 ### Description

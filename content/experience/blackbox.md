@@ -3,6 +3,7 @@ title: "Web Development Intern"
 description: "Blackbox Technologies | Lalitpur, Nepal"
 dateString: Jan 2019 - Apr 2019
 draft: false
+disableShare: true
 tags:
     - HTML
     - CSS
@@ -14,6 +15,7 @@ tags:
     - MySQL
 showToc: false
 weight: 304
+
 --- 
 
 ### Description

@@ -3,6 +3,7 @@ title: "Web Development Intern"
 description: "Radiant Infotech Pvt.Ltd | Kathmandu, Nepal"
 dateString: Jun 2018 - Sep 2018
 draft: false
+disableShare: true
 tags:
     - HTML
     - CSS
@@ -13,6 +14,7 @@ tags:
     - Adobe Photoshop
 showToc: false
 weight: 305
+
 --- 
 
 ### Description

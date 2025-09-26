@@ -3,6 +3,7 @@ title: "Product Testing Associate"
 description: "FedEx | Coppell, TX, USA"
 dateString: Oct 2022 - Jun 2023
 draft: false
+disableShare: true
 tags:
     - Flash
     - Function Test
@@ -11,6 +12,7 @@ tags:
     - Troubleshooting
 showToc: false
 weight: 302
+
 --- 
 
 ### Description

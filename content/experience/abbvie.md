@@ -3,6 +3,7 @@ title: "Operator III"
 description: "AbbVie | Waco, TX, USA"
 dateString: Feb 2024 - Present
 draft: false
+disableShare: true
 tags:
     - Pharmaceutical Industry
     - Manufacturing
@@ -12,9 +13,10 @@ tags:
     - SOPs
     - Troubleshooting
     - SAP
-    - POMSNET
+    - POMSnet
 showToc: false
 weight: 301
+
 --- 
 
 ### Description

@@ -7,6 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Part 2: Homelab Management &amp; Monitoring</title>
+      <link>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to Part 2 of my homelab series! In &lt;a href=&#34;http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/&#34;&gt;Part 1&lt;/a&gt;, we built a solid foundation by turning an old laptop into a hardened Debian server with Docker. Now that our server is running, we need to deploy services to manage, monitor, and easily access our projects.&lt;/p&gt;
+&lt;p&gt;In this guide, we&amp;rsquo;ll deploy three essential stacks. First, &lt;strong&gt;Nginx Proxy Manager (NPM)&lt;/strong&gt; will act as our server&amp;rsquo;s front door and create a shared network for our containers. Second, we&amp;rsquo;ll set up a professional-grade monitoring stack with &lt;strong&gt;Prometheus&lt;/strong&gt; and &lt;strong&gt;Grafana&lt;/strong&gt;. Finally, we&amp;rsquo;ll deploy a &lt;strong&gt;Homer&lt;/strong&gt; dashboard to create a beautiful and convenient launchpad for all our services.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Part 1: Reviving an Old Laptop with Debian &amp; Docker</title>
       <link>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -15,17 +26,6 @@
       <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;Welcome to the first post in my new homelab series! I&amp;rsquo;ve always been fascinated by self-hosting and DevOps, and I believe the best way to learn is by doing. In this series, I&amp;rsquo;ll document my journey of turning an old, unused laptop into a powerful, efficient, and secure bare-metal server for hosting a variety of network services.&lt;/p&gt;
 &lt;p&gt;The goal for this first part is to lay a solid foundation. We&amp;rsquo;ll take an old laptop, install a minimal and stable Linux operating system, perform some initial security hardening, and set up Docker as our containerization engine. By the end of this post, we&amp;rsquo;ll have a perfect blank canvas ready for the exciting services we&amp;rsquo;ll deploy in the upcoming parts.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Part 2: Homelab Management &amp; Monitoring</title>
-      <link>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
-      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Welcome to Part 2 of my homelab series! In &lt;a href=&#34;http://localhost:1313/projects/homelab-part1-debian-docker-foundation/&#34;&gt;Part 1&lt;/a&gt;, we built a solid foundation by turning an old laptop into a hardened Debian server with Docker. Now that our server is running, we need to deploy services to manage, monitor, and easily access our projects.&lt;/p&gt;
-&lt;p&gt;In this guide, we&amp;rsquo;ll deploy three essential stacks. First, &lt;strong&gt;Nginx Proxy Manager (NPM)&lt;/strong&gt; will act as our server&amp;rsquo;s front door and create a shared network for our containers. Second, we&amp;rsquo;ll set up a professional-grade monitoring stack with &lt;strong&gt;Prometheus&lt;/strong&gt; and &lt;strong&gt;Grafana&lt;/strong&gt;. Finally, we&amp;rsquo;ll deploy a &lt;strong&gt;Homer&lt;/strong&gt; dashboard to create a beautiful and convenient launchpad for all our services.&lt;/p&gt;</description>
     </item>
     
     <item>
