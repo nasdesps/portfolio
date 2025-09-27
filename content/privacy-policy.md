@@ -1,6 +1,6 @@
 ---
 title: "Privacy Policy"
-date: 2025-08-17
+date: 2025-09-27
 draft: false
 showToc: false
 ---
@@ -23,9 +23,9 @@ When you request a copy of my resume, you are asked to voluntarily provide your 
 ### Anonymous Usage Data
 To improve the user experience and analyze traffic, this website uses the following third-party services:
 
-* **Cloudflare Web Analytics:** This service collects anonymous traffic data such as page views and country of origin. It does not use cookies or collect personally identifiable information. You can view their privacy policy [here](https://www.cloudflare.com/privacypolicy/).
+* **Umami (Self-Hosted):** This website uses a self-hosted instance of Umami for privacy-focused web analytics. Umami collects anonymous usage data such as page views, referrers, and geographic regions to help me understand website traffic. This service does not use cookies, does not collect any personally identifiable information, and all data is stored on a private server under my control.
 
-* **Microsoft Clarity:** This service helps me understand user behavior through anonymous session recordings and heatmaps. This data is used to improve the website's design and functionality. You can view their privacy policy [here](https://privacy.microsoft.com/en-us/privacystatement).
+* **Cloudflare Web Analytics:** This service collects anonymous traffic data such as page views and country of origin. It does not use cookies or collect personally identifiable information. You can view their privacy policy [here](https://www.cloudflare.com/privacypolicy/).
 
 ---
 
@@ -33,7 +33,8 @@ To improve the user experience and analyze traffic, this website uses the follow
 This website relies on the following third-party service providers to function:
 
 * **Google Workspace (Forms, Sheets, Apps Script):** Used to manage and automate resume requests.
-* **Cloudflare & Microsoft:** Used for collecting anonymous web analytics.
+* **Cloudflare:** Used for collecting anonymous web analytics.
+* **Vercel:** Used to host the self-hosted analytics application.
 * **Netlify & GitHub:** Used for hosting and deploying the website.
 
 ---
@@ -45,4 +46,3 @@ I may update this Privacy Policy from time to time. I will notify you of any cha
 
 ## Contact Me
 If you have any questions about this Privacy Policy, please contact me at: **prajwolad18@gmail.com**
-
