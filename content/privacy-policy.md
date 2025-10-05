@@ -33,8 +33,8 @@ To improve the user experience and analyze traffic, this website uses the follow
 This website relies on the following third-party service providers to function:
 
 * **Google Workspace (Forms, Sheets, Apps Script):** Used to manage and automate resume requests.
-* **Cloudflare:** Used for collecting anonymous web analytics.
-* **Vercel:** Used to host the self-hosted analytics application.
+* **Cloudflare:** Used as a Content Delivery Network (CDN) to improve website performance, as a security firewall to protect against malicious attacks, and for collecting anonymous web analytics.
+* **Vercel:** Used to host the self-hosted Umami analytics application.
 * **Netlify & GitHub:** Used for hosting and deploying the website.
 
 ---
