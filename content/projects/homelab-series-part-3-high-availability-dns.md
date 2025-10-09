@@ -173,6 +173,49 @@ A critical final step for any cloud service is creating a backup. Here is how I 
 4. I clicked the **"Create boot volume backup"** button.
     
 5. I gave the backup a descriptive name (e.g., `AdGuard-Cloud-Backup-YYYY-MM-DD`) and clicked the create button. This creates a full snapshot of my server that I can use to restore it in minutes.
+
+#### **Step 5: ### How to Use Your Cloud DNS on Mobile Devices**
+
+The main benefit of the cloud server is having ad-blocking on the go. Here’s how I set it up on my mobile phone using secure, encrypted DNS.
+
+##### **For Android (Version 9+):**
+
+Modern Android has a built-in feature called "Private DNS" that uses DNS-over-TLS (DoT), which is perfect for this.
+
+1. Open **Settings** on your Android device.
+    
+2. Tap on **"Network & internet"** (this may be called "Connections" on some devices).
+    
+3. Find and tap on **"Private DNS"**. You may need to look under an "Advanced" section.
+    
+4. Select the option labeled **"Private DNS provider hostname"**.
+    
+5. In the text box, enter the **No-IP hostname** you created for your Oracle Cloud server (e.g., `my-cloud-dns.ddns.net`).
+    
+6. Tap **Save**.
+    
+
+Your phone will now send all its DNS queries through an encrypted tunnel to your personal AdGuard Home server in the cloud, giving you ad-blocking on both Wi-Fi and cellular data.
+
+##### **For iOS (iPhone/iPad):**
+
+On iOS, the easiest way to set up encrypted DNS is by installing a configuration profile.
+
+1. On your iPhone or iPad, open Safari.
+    
+2. Go to a DNS profile generator site, like the one provided by AdGuard.
+    
+3. When prompted, enter the **DNS-over-HTTPS (DoH)** address for your cloud server. It will be your No-IP hostname with `/dns-query` at the end (e.g., `https://my-cloud-dns.ddns.net/dns-query`).
+    
+4. Download the generated configuration profile.
+    
+5. Go to your device's **Settings** app. You will see a new **"Profile Downloaded"** item near the top. Tap on it.
+    
+6. Follow the on-screen prompts to **Install** the profile. You may need to enter your device passcode.
+    
+Once installed, your iOS device will also route its DNS traffic through your secure cloud server.
+
+
 ---
 
 ### Chapter 3: Ultimate Local Redundancy (Tertiary DNS with Macvlan)

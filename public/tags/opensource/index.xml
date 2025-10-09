@@ -7,6 +7,61 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://localhost:1313/tags/opensource/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Part 3: A High-Availability DNS Network with AdGuard Home</title>
+      <link>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it&amp;rsquo;s time to build the brain of my network: a robust, redundant, and high-availability DNS system using &lt;strong&gt;AdGuard Home&lt;/strong&gt; that works both at home and on the go.&lt;/p&gt;
+&lt;p&gt;In this detailed guide, I&amp;rsquo;ll walk you through how I deployed a total of &lt;strong&gt;three&lt;/strong&gt; AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Part 2: Homelab Management &amp; Monitoring</title>
+      <link>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to Part 2 of my homelab series! In &lt;a href=&#34;http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/&#34;&gt;Part 1&lt;/a&gt;, we built a solid foundation by turning an old laptop into a hardened Debian server with Docker. Now that our server is running, we need to deploy services to manage, monitor, and easily access our projects.&lt;/p&gt;
+&lt;p&gt;In this guide, we&amp;rsquo;ll deploy three essential stacks. First, &lt;strong&gt;Nginx Proxy Manager (NPM)&lt;/strong&gt; will act as our server&amp;rsquo;s front door and create a shared network for our containers. Second, we&amp;rsquo;ll set up a professional-grade monitoring stack with &lt;strong&gt;Prometheus&lt;/strong&gt; and &lt;strong&gt;Grafana&lt;/strong&gt;. Finally, we&amp;rsquo;ll deploy a &lt;strong&gt;Homer&lt;/strong&gt; dashboard to create a beautiful and convenient launchpad for all our services.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Part 1: Reviving an Old Laptop with Debian &amp; Docker</title>
+      <link>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to the first post in my new homelab series! I&amp;rsquo;ve always been fascinated by self-hosting and DevOps, and I believe the best way to learn is by doing. In this series, I&amp;rsquo;ll document my journey of turning an old, unused laptop into a powerful, efficient, and secure bare-metal server for hosting a variety of network services.&lt;/p&gt;
+&lt;p&gt;The goal for this first part is to lay a solid foundation. We&amp;rsquo;ll take an old laptop, install a minimal and stable Linux operating system, perform some initial security hardening, and set up Docker as our containerization engine. By the end of this post, we&amp;rsquo;ll have a perfect blank canvas ready for the exciting services we&amp;rsquo;ll deploy in the upcoming parts.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)</title>
+      <link>http://localhost:1313/projects/adguard-updated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/adguard-updated/</guid>
+      <description>&lt;h1 id=&#34;your-personal-internet-guardian-how-to-build-a-free-ad-blocker-in-the-cloud-&#34;&gt;Your Personal Internet Guardian: How to Build a FREE Ad-Blocker in the Cloud! 🚀&lt;/h1&gt;
+&lt;p&gt;Hey everyone! A while back, I wrote a guide on setting up AdGuard Home on Linode. The world of tech moves fast, and it&amp;rsquo;s time for an upgrade! Today, we&amp;rsquo;re going to build our own powerful, network-wide ad-blocker using &lt;strong&gt;Amazon Web Services (AWS)&lt;/strong&gt;, and we&amp;rsquo;ll make it secure with our own domain and SSL certificate.&lt;/p&gt;
+&lt;p&gt;Think of this as building a digital gatekeeper for your internet. Before any ads, trackers, or malicious sites can reach your devices, our AdGuard Home server will slam the door shut. The best part? This works on your phone, laptop, smart TV—anything on your network—without installing a single app on them.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Running Private Adguard Server on Cloud (Linode)</title>
+      <link>http://localhost:1313/projects/adguard-home-on-cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/adguard-home-on-cloud/</guid>
+      <description>&lt;h1 id=&#34;whats-the-buzz-about-adguard-home&#34;&gt;What&amp;rsquo;s the buzz about AdGuard Home?&lt;/h1&gt;
+&lt;p&gt;Imagine AdGuard Home as your personal internet guardian. This versatile tool blocks ads, trackers, and other online nuisances across all devices connected to your network. Whether you&amp;rsquo;re browsing on your phone, tablet, or computer, AdGuard Home has your back.&lt;/p&gt;
+&lt;p&gt;In today&amp;rsquo;s digital landscape, robust security measures are paramount. Protecting each device shields your family from accidental clicks and malicious attacks, ensuring peace of mind and a secure online environment.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu</title>
       <link>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
