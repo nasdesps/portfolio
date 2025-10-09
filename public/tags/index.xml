@@ -5,83 +5,21 @@
     <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AdGuard Home</title>
       <link>http://localhost:1313/tags/adguard-home/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/adguard-home/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Adobe Photoshop</title>
-      <link>http://localhost:1313/tags/adobe-photoshop/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/adobe-photoshop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AI</title>
-      <link>http://localhost:1313/tags/ai/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/ai/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Automation</title>
-      <link>http://localhost:1313/tags/automation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/automation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AWS</title>
-      <link>http://localhost:1313/tags/aws/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bootstrap</title>
-      <link>http://localhost:1313/tags/bootstrap/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/bootstrap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Certbot</title>
-      <link>http://localhost:1313/tags/certbot/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/certbot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cisco Switch</title>
-      <link>http://localhost:1313/tags/cisco-switch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/cisco-switch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Cloud</title>
       <link>http://localhost:1313/tags/cloud/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/cloud/</guid>
       <description></description>
@@ -90,88 +28,25 @@
     <item>
       <title>CloudComputing</title>
       <link>http://localhost:1313/tags/cloudcomputing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/cloudcomputing/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>CMS</title>
-      <link>http://localhost:1313/tags/cms/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/cms/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Communication</title>
-      <link>http://localhost:1313/tags/communication/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/communication/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cron</title>
-      <link>http://localhost:1313/tags/cron/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/cron/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CSS</title>
-      <link>http://localhost:1313/tags/css/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/css/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>DDNS</title>
       <link>http://localhost:1313/tags/ddns/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/ddns/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Debian</title>
-      <link>http://localhost:1313/tags/debian/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/debian/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deepseek-R1</title>
-      <link>http://localhost:1313/tags/deepseek-r1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/deepseek-r1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DHCP</title>
-      <link>http://localhost:1313/tags/dhcp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/dhcp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>DNS</title>
       <link>http://localhost:1313/tags/dns/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/dns/</guid>
       <description></description>
@@ -180,7 +55,7 @@
     <item>
       <title>DNSSEC</title>
       <link>http://localhost:1313/tags/dnssec/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/dnssec/</guid>
       <description></description>
@@ -189,34 +64,16 @@
     <item>
       <title>Docker</title>
       <link>http://localhost:1313/tags/docker/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Docker Compose</title>
-      <link>http://localhost:1313/tags/docker-compose/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/docker-compose/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Documentation</title>
-      <link>http://localhost:1313/tags/documentation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/documentation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>DoH</title>
       <link>http://localhost:1313/tags/doh/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/doh/</guid>
       <description></description>
@@ -225,124 +82,25 @@
     <item>
       <title>DoT</title>
       <link>http://localhost:1313/tags/dot/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/dot/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Dotnet</title>
-      <link>http://localhost:1313/tags/dotnet/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/dotnet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>EC2</title>
-      <link>http://localhost:1313/tags/ec2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/ec2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Elastic IP</title>
-      <link>http://localhost:1313/tags/elastic-ip/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/elastic-ip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Firewall</title>
-      <link>http://localhost:1313/tags/firewall/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/firewall/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Flash</title>
-      <link>http://localhost:1313/tags/flash/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/flash/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>FreeDNS</title>
       <link>http://localhost:1313/tags/freedns/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/freedns/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Function Test</title>
-      <link>http://localhost:1313/tags/function-test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/function-test/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GMPs</title>
-      <link>http://localhost:1313/tags/gmps/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/gmps/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Google Workspace</title>
-      <link>http://localhost:1313/tags/google-workspace/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/google-workspace/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Grafana</title>
-      <link>http://localhost:1313/tags/grafana/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/grafana/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hardware Support</title>
-      <link>http://localhost:1313/tags/hardware-support/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/hardware-support/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Help Desk Support</title>
-      <link>http://localhost:1313/tags/help-desk-support/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/help-desk-support/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>High Availability</title>
       <link>http://localhost:1313/tags/high-availability/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/high-availability/</guid>
       <description></description>
@@ -351,178 +109,25 @@
     <item>
       <title>Homelab</title>
       <link>http://localhost:1313/tags/homelab/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/homelab/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Homer</title>
-      <link>http://localhost:1313/tags/homer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/homer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HTML</title>
-      <link>http://localhost:1313/tags/html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/html/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>http://localhost:1313/tags/javascript/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JQuery</title>
-      <link>http://localhost:1313/tags/jquery/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/jquery/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>LAN/WAN</title>
-      <link>http://localhost:1313/tags/lan/wan/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/lan/wan/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Leadership</title>
-      <link>http://localhost:1313/tags/leadership/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/leadership/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>LetsEncrypt</title>
-      <link>http://localhost:1313/tags/letsencrypt/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/letsencrypt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linode</title>
-      <link>http://localhost:1313/tags/linode/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/linode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>http://localhost:1313/tags/linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MacOS</title>
-      <link>http://localhost:1313/tags/macos/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Macvlan</title>
       <link>http://localhost:1313/tags/macvlan/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/macvlan/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Manufacturing</title>
-      <link>http://localhost:1313/tags/manufacturing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/manufacturing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mentorship</title>
-      <link>http://localhost:1313/tags/mentorship/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/mentorship/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Monitoring</title>
-      <link>http://localhost:1313/tags/monitoring/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/monitoring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MySQL</title>
-      <link>http://localhost:1313/tags/mysql/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/mysql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Network Support</title>
-      <link>http://localhost:1313/tags/network-support/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/network-support/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Networking</title>
-      <link>http://localhost:1313/tags/networking/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/networking/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Nginx Proxy Manager</title>
-      <link>http://localhost:1313/tags/nginx-proxy-manager/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/nginx-proxy-manager/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>No-IP</title>
       <link>http://localhost:1313/tags/no-ip/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/no-ip/</guid>
       <description></description>
@@ -531,7 +136,7 @@
     <item>
       <title>OCI</title>
       <link>http://localhost:1313/tags/oci/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/oci/</guid>
       <description></description>
@@ -540,7 +145,7 @@
     <item>
       <title>Opensource</title>
       <link>http://localhost:1313/tags/opensource/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/opensource/</guid>
       <description></description>
@@ -549,79 +154,70 @@
     <item>
       <title>Oracle Cloud</title>
       <link>http://localhost:1313/tags/oracle-cloud/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/oracle-cloud/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Packaging</title>
-      <link>http://localhost:1313/tags/packaging/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/packaging/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Peer Training</title>
-      <link>http://localhost:1313/tags/peer-training/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/peer-training/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pharmaceutical Industry</title>
-      <link>http://localhost:1313/tags/pharmaceutical-industry/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/pharmaceutical-industry/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>POMSnet</title>
-      <link>http://localhost:1313/tags/pomsnet/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/pomsnet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Port Forwarding</title>
       <link>http://localhost:1313/tags/port-forwarding/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/port-forwarding/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Problem Solving</title>
-      <link>http://localhost:1313/tags/problem-solving/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Self-Hosting</title>
+      <link>http://localhost:1313/tags/self-hosting/</link>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/problem-solving/</guid>
+      <guid>http://localhost:1313/tags/self-hosting/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Production</title>
-      <link>http://localhost:1313/tags/production/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Grafana</title>
+      <link>http://localhost:1313/tags/grafana/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/production/</guid>
+      <guid>http://localhost:1313/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Homer</title>
+      <link>http://localhost:1313/tags/homer/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/homer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monitoring</title>
+      <link>http://localhost:1313/tags/monitoring/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx Proxy Manager</title>
+      <link>http://localhost:1313/tags/nginx-proxy-manager/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/nginx-proxy-manager/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Prometheus</title>
       <link>http://localhost:1313/tags/prometheus/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/prometheus/</guid>
       <description></description>
@@ -630,16 +226,475 @@
     <item>
       <title>Reverse Proxy</title>
       <link>http://localhost:1313/tags/reverse-proxy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/reverse-proxy/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Debian</title>
+      <link>http://localhost:1313/tags/debian/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/debian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker Compose</title>
+      <link>http://localhost:1313/tags/docker-compose/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/docker-compose/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Firewall</title>
+      <link>http://localhost:1313/tags/firewall/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/firewall/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://localhost:1313/tags/linux/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>http://localhost:1313/tags/server/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>http://localhost:1313/tags/ssh/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UFW</title>
+      <link>http://localhost:1313/tags/ufw/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ufw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS</title>
+      <link>http://localhost:1313/tags/aws/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Certbot</title>
+      <link>http://localhost:1313/tags/certbot/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/certbot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cron</title>
+      <link>http://localhost:1313/tags/cron/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cron/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>EC2</title>
+      <link>http://localhost:1313/tags/ec2/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ec2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elastic IP</title>
+      <link>http://localhost:1313/tags/elastic-ip/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/elastic-ip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LetsEncrypt</title>
+      <link>http://localhost:1313/tags/letsencrypt/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/letsencrypt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSL</title>
+      <link>http://localhost:1313/tags/ssl/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TLS</title>
+      <link>http://localhost:1313/tags/tls/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/tls/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linode</title>
+      <link>http://localhost:1313/tags/linode/</link>
+      <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/linode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Adobe Photoshop</title>
+      <link>http://localhost:1313/tags/adobe-photoshop/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/adobe-photoshop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AI</title>
+      <link>http://localhost:1313/tags/ai/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automation</title>
+      <link>http://localhost:1313/tags/automation/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bootstrap</title>
+      <link>http://localhost:1313/tags/bootstrap/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/bootstrap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cisco Switch</title>
+      <link>http://localhost:1313/tags/cisco-switch/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cisco-switch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CMS</title>
+      <link>http://localhost:1313/tags/cms/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Communication</title>
+      <link>http://localhost:1313/tags/communication/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/communication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CSS</title>
+      <link>http://localhost:1313/tags/css/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deepseek-R1</title>
+      <link>http://localhost:1313/tags/deepseek-r1/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/deepseek-r1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DHCP</title>
+      <link>http://localhost:1313/tags/dhcp/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/dhcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Documentation</title>
+      <link>http://localhost:1313/tags/documentation/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/documentation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dotnet</title>
+      <link>http://localhost:1313/tags/dotnet/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/dotnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flash</title>
+      <link>http://localhost:1313/tags/flash/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/flash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Function Test</title>
+      <link>http://localhost:1313/tags/function-test/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/function-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GMPs</title>
+      <link>http://localhost:1313/tags/gmps/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/gmps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Google Workspace</title>
+      <link>http://localhost:1313/tags/google-workspace/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/google-workspace/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hardware Support</title>
+      <link>http://localhost:1313/tags/hardware-support/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/hardware-support/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Help Desk Support</title>
+      <link>http://localhost:1313/tags/help-desk-support/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/help-desk-support/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>http://localhost:1313/tags/html/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>http://localhost:1313/tags/javascript/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JQuery</title>
+      <link>http://localhost:1313/tags/jquery/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/jquery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LAN/WAN</title>
+      <link>http://localhost:1313/tags/lan/wan/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/lan/wan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leadership</title>
+      <link>http://localhost:1313/tags/leadership/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/leadership/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MacOS</title>
+      <link>http://localhost:1313/tags/macos/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Manufacturing</title>
+      <link>http://localhost:1313/tags/manufacturing/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/manufacturing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mentorship</title>
+      <link>http://localhost:1313/tags/mentorship/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/mentorship/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>http://localhost:1313/tags/mysql/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network Support</title>
+      <link>http://localhost:1313/tags/network-support/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/network-support/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Networking</title>
+      <link>http://localhost:1313/tags/networking/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Packaging</title>
+      <link>http://localhost:1313/tags/packaging/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/packaging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Peer Training</title>
+      <link>http://localhost:1313/tags/peer-training/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/peer-training/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pharmaceutical Industry</title>
+      <link>http://localhost:1313/tags/pharmaceutical-industry/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/pharmaceutical-industry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>POMSnet</title>
+      <link>http://localhost:1313/tags/pomsnet/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/pomsnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Problem Solving</title>
+      <link>http://localhost:1313/tags/problem-solving/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/problem-solving/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Production</title>
+      <link>http://localhost:1313/tags/production/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/production/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>RF Test</title>
       <link>http://localhost:1313/tags/rf-test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/rf-test/</guid>
       <description></description>
@@ -648,7 +703,7 @@
     <item>
       <title>SaaS Support</title>
       <link>http://localhost:1313/tags/saas-support/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/saas-support/</guid>
       <description></description>
@@ -657,61 +712,25 @@
     <item>
       <title>SAP</title>
       <link>http://localhost:1313/tags/sap/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/sap/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Self-Hosting</title>
-      <link>http://localhost:1313/tags/self-hosting/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/self-hosting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Server</title>
-      <link>http://localhost:1313/tags/server/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/server/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>SOPs</title>
       <link>http://localhost:1313/tags/sops/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/sops/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>SSH</title>
-      <link>http://localhost:1313/tags/ssh/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/ssh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SSL</title>
-      <link>http://localhost:1313/tags/ssl/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/ssl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>TCP/IP</title>
       <link>http://localhost:1313/tags/tcp/ip/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/tcp/ip/</guid>
       <description></description>
@@ -720,25 +739,16 @@
     <item>
       <title>Teamwork</title>
       <link>http://localhost:1313/tags/teamwork/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/teamwork/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>TLS</title>
-      <link>http://localhost:1313/tags/tls/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/tls/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Troubleshooting</title>
       <link>http://localhost:1313/tags/troubleshooting/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/troubleshooting/</guid>
       <description></description>
@@ -747,25 +757,16 @@
     <item>
       <title>Ubuntu</title>
       <link>http://localhost:1313/tags/ubuntu/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>UFW</title>
-      <link>http://localhost:1313/tags/ufw/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/ufw/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>UI/UX</title>
       <link>http://localhost:1313/tags/ui/ux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/ui/ux/</guid>
       <description></description>
@@ -774,7 +775,7 @@
     <item>
       <title>Web API</title>
       <link>http://localhost:1313/tags/web-api/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/web-api/</guid>
       <description></description>
@@ -783,7 +784,7 @@
     <item>
       <title>Windows</title>
       <link>http://localhost:1313/tags/windows/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/windows/</guid>
       <description></description>

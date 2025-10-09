@@ -5,16 +5,15 @@
     <link>http://localhost:1313/tags/linode/</link>
     <description>Recent content in Linode on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/linode/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/linode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Running Private Adguard Server on Cloud (Linode)</title>
       <link>http://localhost:1313/projects/adguard-home-on-cloud/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/adguard-home-on-cloud/</guid>
-      <description>&lt;h1 id=&#34;whats-the-buzz-about-adguard-home&#34;&gt;What&amp;rsquo;s the buzz about AdGuard Home?&lt;/h1&gt;
-&lt;p&gt;Imagine AdGuard Home as your personal internet guardian. This versatile tool blocks ads, trackers, and other online nuisances across all devices connected to your network. Whether you&amp;rsquo;re browsing on your phone, tablet, or computer, AdGuard Home has your back.&lt;/p&gt;
-&lt;p&gt;In today&amp;rsquo;s digital landscape, robust security measures are paramount. Protecting each device shields your family from accidental clicks and malicious attacks, ensuring peace of mind and a secure online environment.&lt;/p&gt;</description>
+      <description>Get universal ad-blocking on all your devices. This guide shows you how to easily set up a private AdGuard Home DNS server on a Linode cloud instance for enhanced security and privacy on the go.</description>
     </item>
     
   </channel>

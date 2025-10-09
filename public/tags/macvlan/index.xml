@@ -5,14 +5,15 @@
     <link>http://localhost:1313/tags/macvlan/</link>
     <description>Recent content in Macvlan on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/macvlan/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/macvlan/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Part 3: A High-Availability DNS Network with AdGuard Home</title>
       <link>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</guid>
-      <description>How I built a high-availability DNS setup using AdGuard Home, Oracle Cloud, and upstream resolvers like Cloudflare, Google, and Quad9.</description>
+      <description>Learn to build a high-availability, ad-blocking DNS network with AdGuard Home. This step-by-step guide covers deploying on a homelab server, a free Oracle Cloud VM, and using Docker macvlan for ultimate redundancy.</description>
     </item>
     
   </channel>

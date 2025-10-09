@@ -5,16 +5,15 @@
     <link>http://localhost:1313/tags/monitoring/</link>
     <description>Recent content in Monitoring on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Part 2: Homelab Management &amp; Monitoring</title>
       <link>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
-      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Welcome to Part 2 of my homelab series! In &lt;a href=&#34;http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/&#34;&gt;Part 1&lt;/a&gt;, we built a solid foundation by turning an old laptop into a hardened Debian server with Docker. Now that our server is running, we need to deploy services to manage, monitor, and easily access our projects.&lt;/p&gt;
-&lt;p&gt;In this guide, we&amp;rsquo;ll deploy three essential stacks. First, &lt;strong&gt;Nginx Proxy Manager (NPM)&lt;/strong&gt; will act as our server&amp;rsquo;s front door and create a shared network for our containers. Second, we&amp;rsquo;ll set up a professional-grade monitoring stack with &lt;strong&gt;Prometheus&lt;/strong&gt; and &lt;strong&gt;Grafana&lt;/strong&gt;. Finally, we&amp;rsquo;ll deploy a &lt;strong&gt;Homer&lt;/strong&gt; dashboard to create a beautiful and convenient launchpad for all our services.&lt;/p&gt;</description>
+      <description>Elevate your homelab with a professional management and monitoring stack. This guide details how to deploy Nginx Proxy Manager, Prometheus, Grafana, and a Homer dashboard using Docker.</description>
     </item>
     
   </channel>

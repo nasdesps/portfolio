@@ -5,46 +5,42 @@
     <link>http://localhost:1313/tags/docker/</link>
     <description>Recent content in Docker on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Part 3: A High-Availability DNS Network with AdGuard Home</title>
       <link>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</guid>
-      <description>How I built a high-availability DNS setup using AdGuard Home, Oracle Cloud, and upstream resolvers like Cloudflare, Google, and Quad9.</description>
+      <description>Learn to build a high-availability, ad-blocking DNS network with AdGuard Home. This step-by-step guide covers deploying on a homelab server, a free Oracle Cloud VM, and using Docker macvlan for ultimate redundancy.</description>
     </item>
     
     <item>
       <title>Part 2: Homelab Management &amp; Monitoring</title>
       <link>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
-      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Welcome to Part 2 of my homelab series! In &lt;a href=&#34;http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/&#34;&gt;Part 1&lt;/a&gt;, we built a solid foundation by turning an old laptop into a hardened Debian server with Docker. Now that our server is running, we need to deploy services to manage, monitor, and easily access our projects.&lt;/p&gt;
-&lt;p&gt;In this guide, we&amp;rsquo;ll deploy three essential stacks. First, &lt;strong&gt;Nginx Proxy Manager (NPM)&lt;/strong&gt; will act as our server&amp;rsquo;s front door and create a shared network for our containers. Second, we&amp;rsquo;ll set up a professional-grade monitoring stack with &lt;strong&gt;Prometheus&lt;/strong&gt; and &lt;strong&gt;Grafana&lt;/strong&gt;. Finally, we&amp;rsquo;ll deploy a &lt;strong&gt;Homer&lt;/strong&gt; dashboard to create a beautiful and convenient launchpad for all our services.&lt;/p&gt;</description>
+      <description>Elevate your homelab with a professional management and monitoring stack. This guide details how to deploy Nginx Proxy Manager, Prometheus, Grafana, and a Homer dashboard using Docker.</description>
     </item>
     
     <item>
       <title>Part 1: Reviving an Old Laptop with Debian &amp; Docker</title>
       <link>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</guid>
-      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Welcome to the first post in my new homelab series! I&amp;rsquo;ve always been fascinated by self-hosting and DevOps, and I believe the best way to learn is by doing. In this series, I&amp;rsquo;ll document my journey of turning an old, unused laptop into a powerful, efficient, and secure bare-metal server for hosting a variety of network services.&lt;/p&gt;
-&lt;p&gt;The goal for this first part is to lay a solid foundation. We&amp;rsquo;ll take an old laptop, install a minimal and stable Linux operating system, perform some initial security hardening, and set up Docker as our containerization engine. By the end of this post, we&amp;rsquo;ll have a perfect blank canvas ready for the exciting services we&amp;rsquo;ll deploy in the upcoming parts.&lt;/p&gt;</description>
+      <description>Kickstart your homelab by turning an old laptop into a secure server. This guide details the process of installing Debian, performing initial hardening, and setting up Docker and Docker Compose for a solid foundation.</description>
     </item>
     
     <item>
       <title>Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu</title>
       <link>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
-      <description>&lt;h1 id=&#34;whats-a-docker-container&#34;&gt;What&amp;rsquo;s a Docker Container?&lt;/h1&gt;
-&lt;p&gt;Before we dive into setting up DeepSeek-R1, let me explain what a Docker container is. Imagine you have a toy that works perfectly on your birthday but gets broken if you move it to another room. A Docker container is like a magic box that keeps your AI model (the toy) in perfect condition wherever you take it, whether it&amp;rsquo;s running as a background task, on a web server, or even in the cloud.&lt;/p&gt;</description>
+      <description>Dive into local AI! This guide shows you how to easily run the powerful DeepSeek-R1 model on Ubuntu using Ollama and Docker, complete with all the necessary commands for setup and execution.</description>
     </item>
     
   </channel>
