@@ -160,10 +160,19 @@ For maximum security, I locked down the administrative ports to only my home IP 
 2. **Enable Encryption:** In my cloud AdGuard's dashboard (**Settings > Encryption settings**), I enabled encryption, entered my No-IP hostname, and used the built-in function to request a Let's Encrypt certificate.
     
 
-#### **Step 4: Cloud Backups**
+#### **Step 4: Creating a Cloud Backup (Snapshot)**
 
-A critical final step for any cloud service is backups. I make sure to take periodic **snapshots** of my Oracle Cloud instance directly from the OCI console. This allows me to quickly restore the entire server in case of a problem.
+A critical final step for any cloud service is creating a backup. Here is how I did it in OCI:
 
+1. In the OCI Console, I navigated to the details page for my `AdGuard-Cloud` instance.
+    
+2. Under the "Resources" menu on the left, I clicked on **"Boot volume"**.
+    
+3. On the Boot Volume details page, under "Resources," I clicked **"Boot volume backups"**.
+    
+4. I clicked the **"Create boot volume backup"** button.
+    
+5. I gave the backup a descriptive name (e.g., `AdGuard-Cloud-Backup-YYYY-MM-DD`) and clicked the create button. This creates a full snapshot of my server that I can use to restore it in minutes.
 ---
 
 ### Chapter 3: Ultimate Local Redundancy (Tertiary DNS with Macvlan)
@@ -179,7 +188,7 @@ For an extra layer of redundancy _within_ my homelab, I created a third AdGuard 
       -o parent=eth0 homelab_net
     ```
     
-1. **Deploy Tertiary Instance:** I created a new folder (`~/docker/adguard-tertiary`) and this `docker-compose.yml`. Notice there are no `ports` since the container gets its own IP.
+2. **Deploy Tertiary Instance:** I created a new folder (`~/docker/adguard-tertiary`) and this `docker-compose.yml`. Notice there are no `ports` since the container gets its own IP.
     
     ```yaml
     services:
@@ -199,8 +208,14 @@ For an extra layer of redundancy _within_ my homelab, I created a third AdGuard 
         external: true
     ```
     
-2. **Configure Router:** In my router's DHCP settings, I added its unique IP (`192.168.1.11`) as the **Secondary DNS Server**.
+3. **Configure Router for Local Failover:** To complete the local redundancy, I went back into my router's DHCP settings.
     
+    - In the **Primary DNS** field, I have the IP of my main homelab server (e.g., `192.168.1.10`).
+        
+    - In the **Secondary DNS** field, I entered the unique IP address I assigned to my macvlan container (e.g., `192.168.1.11`).
+        
+    
+    Now, if my primary AdGuard container has an issue, all devices on my network will automatically fail over to the tertiary instance.
 
 ---
 
