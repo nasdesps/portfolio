@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Part 3: A High-Availability DNS Network with AdGuard Home | Prajwol Bikram Adhikari</title>
+<script>
+    
+    (function () {
+        const Elem = document.documentElement;
+        const savedTheme = localStorage.getItem('pref-theme');
+        let theme;
+
+        if (savedTheme) {
+            theme = savedTheme;
+        } else {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        if (theme === 'dark') {
+            Elem.classList.add('dark');
+        } else {
+            Elem.classList.remove('dark');
+        }
+    })();
+
+    
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const toggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun');
+        const moonIcon = document.getElementById('moon');
+
+        
+        function updateIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                sunIcon.style.setProperty('display', 'inline-block', 'important');
+                moonIcon.style.setProperty('display', 'none', 'important');
+            } else {
+                sunIcon.style.setProperty('display', 'none', 'important');
+                moonIcon.style.setProperty('display', 'inline-block', 'important');
+            }
+        }
+
+        
+        if (toggle && sunIcon && moonIcon) {
+            updateIcon();
+
+            
+            toggle.addEventListener('click', function () {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('pref-theme', isDark ? 'dark' : 'light');
+                updateIcon(); 
+            });
+        }
+    });
+</script>
+<meta name="keywords" content="Homelab, AdGuard Home, DNS, DoH, DoT, High Availability, Oracle Cloud, CloudComputing, Cloud, OCI, Docker, Macvlan, DDNS, FreeDNS, No-IP, Port Forwarding, DNSSEC, Self-Hosting, Opensource">
+<meta name="description" content="Introduction
+Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it&rsquo;s time to build the brain of my network: a robust, redundant, and high-availability DNS system using AdGuard Home that works both at home and on the go.
+In this detailed guide, I&rsquo;ll walk you through how I deployed a total of three AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy.">
+<meta name="author" content="">
+<link rel="canonical"
+    href="http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2885677832a85698b0de371109b751f96208e8a347606b229cfd3bd8d7156da3.css" integrity="sha256-KIVneDKoVpiw3jcRCbdR&#43;WII6KNHYGsinP072NcVbaM="
+    rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+</noscript><meta property="og:title" content="Part 3: A High-Availability DNS Network with AdGuard Home" />
+<meta property="og:description" content="Introduction
+Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it&rsquo;s time to build the brain of my network: a robust, redundant, and high-availability DNS system using AdGuard Home that works both at home and on the go.
+In this detailed guide, I&rsquo;ll walk you through how I deployed a total of three AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/" />
+<meta property="og:image" content="http://localhost:1313/projects/homelab-part3/homelab-part3.png" /><meta property="article:section" content="projects" />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://localhost:1313/projects/homelab-part3/homelab-part3.png" />
+<meta name="twitter:title" content="Part 3: A High-Availability DNS Network with AdGuard Home"/>
+<meta name="twitter:description" content="Introduction
+Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it&rsquo;s time to build the brain of my network: a robust, redundant, and high-availability DNS system using AdGuard Home that works both at home and on the go.
+In this detailed guide, I&rsquo;ll walk you through how I deployed a total of three AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Projects",
+      "item": "http://localhost:1313/projects/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Part 3: A High-Availability DNS Network with AdGuard Home",
+      "item": "http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Part 3: A High-Availability DNS Network with AdGuard Home",
+  "name": "Part 3: A High-Availability DNS Network with AdGuard Home",
+  "description": "Introduction Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it\u0026rsquo;s time to build the brain of my network: a robust, redundant, and high-availability DNS system using AdGuard Home that works both at home and on the go.\nIn this detailed guide, I\u0026rsquo;ll walk you through how I deployed a total of three AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy.\n",
+  "keywords": [
+    "Homelab", "AdGuard Home", "DNS", "DoH", "DoT", "High Availability", "Oracle Cloud", "CloudComputing", "Cloud", "OCI", "Docker", "Macvlan", "DDNS", "FreeDNS", "No-IP", "Port Forwarding", "DNSSEC", "Self-Hosting", "Opensource"
+  ],
+  "articleBody": "Introduction Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it’s time to build the brain of my network: a robust, redundant, and high-availability DNS system using AdGuard Home that works both at home and on the go.\nIn this detailed guide, I’ll walk you through how I deployed a total of three AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy.\nChapter 1: The Local Workhorse (Primary DNS) I started by deploying my main, day-to-day DNS resolver on my homelab server.\nStep 1: Deploying AdGuard Home with Docker Compose First, I SSHed into my server, created a directory for the project, and a docker-compose.yml file to define the service.\nmkdir -p ~/docker/adguard-primary cd ~/docker/adguard-primary nano docker-compose.yml I pasted in the following configuration. This runs the AdGuard Home container, maps all the necessary ports for DNS and the web UI, and connects it to the shared npm_default network I set up in Part 2.\nservices: adguardhome: image: adguard/adguardhome:latest container_name: adguard-primary restart: unless-stopped ports: - \"53:53/tcp\" - \"53:53/udp\" - \"8080:80/tcp\" # Web UI - \"853:853/tcp\" # DNS-over-TLS volumes: - ./workdir:/opt/adguardhome/work - ./confdir:/opt/adguardhome/conf networks: - npm_default networks: npm_default: external: true I then launched the container by running:\ndocker compose up -d Step 2: Initial AdGuard Home Setup Wizard I navigated to http://:3000 in my web browser to start the setup wizard.\nI clicked “Get Started.”\nOn the “Admin Web Interface” screen, I changed the “Listen Interface” to All interfaces and the port to 80.\nOn the “DNS server” screen, I changed the “Listen Interface” to All interfaces and left the port as 53.\nI followed the prompts to create my admin username and password.\nOnce the setup was complete, I was redirected to my main dashboard, now available at http://:8080.\nStep 3: Configure My Home Router To make all my devices use AdGuard automatically, I logged into my home router’s admin panel, found the DHCP Server settings, and changed the Primary DNS Server to my homelab’s static IP address (e.g., 192.168.1.10).\nChapter 2: The Cloud Failover (Secondary DNS on Oracle Cloud) An off-site DNS server ensures I have ad-blocking on my mobile devices and acts as a backup.\nWhy I Chose Oracle Cloud After testing the free tiers of both AWS and Linode, I chose Oracle Cloud Infrastructure (OCI). In my experience, OCI’s “Always Free” tier is far more generous with its resources. It provides powerful Ampere A1 Compute instances with up to 4 CPU cores and 24 GB of RAM, plus 200 GB of storage and significant bandwidth, all for free. This was ideal for running my service 24/7 without the strict limitations or eventual costs associated with other providers.\nStep 1: Launching the Oracle Cloud VM Sign Up: I created my account on the Oracle Cloud website.\nCreate VM Instance: In the OCI console, I navigated to Compute \u003e Instances and clicked “Create instance”.\nConfigure Instance:\nName: I gave it a name like AdGuard-Cloud.\nImage and Shape: I clicked “Edit”. For the image, I selected Ubuntu. For the shape, I selected “Ampere” and chose the VM.Standard.A1.Flex shape (it’s “Always Free-eligible”).\nNetworking: I used the default VCN and made sure “Assign a public IPv4 address” was checked.\nSSH Keys: I added my SSH public key.\nI clicked Create. Once the instance was running, I took note of its Public IP Address.\nStep 2: Configuring the Cloud Firewall For maximum security, I locked down the administrative ports to only my home IP address.\nFind My Public IP: I went to a site like whatismyip.com and copied my home’s public IP address.\nEdit Security List: I navigated to my instance’s details page, clicked the subnet link, then clicked the “Security List” link.\nI clicked “Add Ingress Rules” and added the following rules:\nFor SSH (Port 22): I set the Source to my home’s public IP, followed by /32 (e.g., 203.0.113.55/32). This is a critical security step.\nFor AdGuard Setup (Port 3000): I also set the Source to my home’s public IP with /32.\nFor AdGuard Web UI (Port 80/443): I set the Source to my home’s public IP with /32 as well.\nFor Public DNS (Port 53, 853, etc.): I set the Source to 0.0.0.0/0 (Anywhere) to allow all my devices to connect from any network.\nStep 3: Installing AdGuard Home \u0026 Configuring SSL Connect via SSH: I used the public IP and my SSH key to connect to the VM.\nRun Install Script: I chose to install AdGuard Home directly on the OS for this instance.\ncurl -s -S -L [https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh](https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh) | sh -s -- -v Get a Hostname: I went to No-IP.com, created a free hostname (e.g., my-cloud-dns.ddns.net), and pointed it to my cloud VM’s public IP.\nEnable Encryption: In my cloud AdGuard’s dashboard (Settings \u003e Encryption settings), I enabled encryption, entered my No-IP hostname, and used the built-in function to request a Let’s Encrypt certificate.\nStep 4: Cloud Backups A critical final step for any cloud service is backups. I make sure to take periodic snapshots of my Oracle Cloud instance directly from the OCI console. This allows me to quickly restore the entire server in case of a problem.\nChapter 3: Ultimate Local Redundancy (Tertiary DNS with Macvlan) For an extra layer of redundancy within my homelab, I created a third AdGuard instance. By using an advanced Docker network mode called macvlan, this container gets its own unique IP address on my home network, making it a truly independent resolver.\nCreate Macvlan Network: First, I created the macvlan network, telling it which of my physical network cards to use (eth0 in my case).\ndocker network create -d macvlan \\ --subnet=192.168.1.0/24 \\ --gateway=192.168.1.1 \\ -o parent=eth0 homelab_net Deploy Tertiary Instance: I created a new folder (~/docker/adguard-tertiary) and this docker-compose.yml. Notice there are no ports since the container gets its own IP.\nservices: adguardhome2: image: adguard/adguardhome:latest container_name: adguardhome2 volumes: - \"./work:/opt/adguardhome/work\" - \"./conf:/opt/adguardhome/conf\" networks: homelab_net: ipv4_address: 192.168.1.11 # The new, unique IP for this container restart: unless-stopped networks: homelab_net: external: true Configure Router: In my router’s DHCP settings, I added its unique IP (192.168.1.11) as the Secondary DNS Server.\nChapter 4: Fine-Tuning and Integration Finally, I implemented some best practices on my primary AdGuard Home instance.\nUpstream DNS Servers: Under Settings \u003e DNS Settings, I configured AdGuard to send requests to multiple resolvers in parallel for speed and reliability, using Cloudflare (1.1.1.1), Google (8.8.8.8), and Quad9 (9.9.9.9).\nEnable DNSSEC: In the same settings page, I enabled DNSSEC to verify the integrity of DNS responses.\nDNS Blocklists: I added several popular lists from the “Filters \u003e DNS blocklists” page, including the AdGuard DNS filter and the OISD Blocklist, for robust protection.\nDNS Rewrites for Local Services: This is the key to a clean homelab experience. For each service, I performed a detailed two-step process:\nCreate the Proxy Host in Nginx Proxy Manager: I logged into my NPM admin panel, went to Hosts \u003e Proxy Hosts, and clicked “Add Proxy Host”. For my Homer dashboard, I set the Forward Hostname to homer (the container name) and the Forward Port to 8080 (its internal port), using homer.local as the domain name.\nCreate the DNS Rewrite in AdGuard Home: I logged into my primary AdGuard dashboard, went to Filters \u003e DNS Rewrites, and clicked “Add DNS rewrite”. I entered homer.local as the domain and the IP address of my Nginx Proxy Manager server as the answer.\nConclusion I’ve now built an incredibly robust, multi-layered DNS infrastructure. My home devices use the primary local server, which is backed up by a second, independent local server, and my mobile devices use a completely separate cloud instance for on-the-go protection. This provides a resilient, secure, and ad-free internet experience.\nIn the final part of this series, we’ll shift our focus from deploying services to maintaining them. I’ll show you how I set up a fully automated operations pipeline for my homelab, including daily off-site backups, automatic container updates with Watchtower, and proactive alerting with Prometheus. Stay tuned!\n",
+  "wordCount" : "1369",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/projects/homelab-part3/homelab-part3.png","datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Prajwol Bikram Adhikari",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Prajwol Bikram Adhikari (Alt + H)">Prajwol Bikram Adhikari</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li></li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/projects/">Projects</a></div>
+    <h1 class="post-title">
+      Part 3: A High-Availability DNS Network with AdGuard Home
+    </h1>
+    <div class="post-meta">
+
+
+Oct 2025
+
+</div>
+  </header>
+    <figure class="entry-cover">
+        <img loading="lazy" 
+             src="http://localhost:1313/projects/homelab-part3/homelab-part3_hu_e47afa265496769e.webp" 
+             alt="Cover image for Part 3: A High-Availability DNS Network with AdGuard Home" 
+             width="1040" 
+             height="585">
+    </figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+                <li>
+                    <a href="#chapter-1-the-local-workhorse-primary-dns" aria-label="Chapter 1: The Local Workhorse (Primary DNS)">Chapter 1: The Local Workhorse (Primary DNS)</a><ul>
+                        
+                <li>
+                    <a href="#step-1-deploying-adguard-home-with-docker-compose" aria-label="Step 1: Deploying AdGuard Home with Docker Compose"><strong>Step 1: Deploying AdGuard Home with Docker Compose</strong></a></li>
+                <li>
+                    <a href="#step-2-initial-adguard-home-setup-wizard" aria-label="Step 2: Initial AdGuard Home Setup Wizard"><strong>Step 2: Initial AdGuard Home Setup Wizard</strong></a></li>
+                <li>
+                    <a href="#step-3-configure-my-home-router" aria-label="Step 3: Configure My Home Router"><strong>Step 3: Configure My Home Router</strong></a></li></ul>
+                </li>
+                <li>
+                    <a href="#chapter-2-the-cloud-failover-secondary-dns-on-oracle-cloud" aria-label="Chapter 2: The Cloud Failover (Secondary DNS on Oracle Cloud)">Chapter 2: The Cloud Failover (Secondary DNS on Oracle Cloud)</a><ul>
+                        
+                <li>
+                    <a href="#why-i-chose-oracle-cloud" aria-label="Why I Chose Oracle Cloud"><strong>Why I Chose Oracle Cloud</strong></a></li>
+                <li>
+                    <a href="#step-1-launching-the-oracle-cloud-vm" aria-label="Step 1: Launching the Oracle Cloud VM"><strong>Step 1: Launching the Oracle Cloud VM</strong></a></li>
+                <li>
+                    <a href="#step-2-configuring-the-cloud-firewall" aria-label="Step 2: Configuring the Cloud Firewall"><strong>Step 2: Configuring the Cloud Firewall</strong></a></li>
+                <li>
+                    <a href="#step-3-installing-adguard-home--configuring-ssl" aria-label="Step 3: Installing AdGuard Home &amp; Configuring SSL"><strong>Step 3: Installing AdGuard Home &amp; Configuring SSL</strong></a></li>
+                <li>
+                    <a href="#step-4-cloud-backups" aria-label="Step 4: Cloud Backups"><strong>Step 4: Cloud Backups</strong></a></li></ul>
+                </li>
+                <li>
+                    <a href="#chapter-3-ultimate-local-redundancy-tertiary-dns-with-macvlan" aria-label="Chapter 3: Ultimate Local Redundancy (Tertiary DNS with Macvlan)">Chapter 3: Ultimate Local Redundancy (Tertiary DNS with Macvlan)</a></li>
+                <li>
+                    <a href="#chapter-4-fine-tuning-and-integration" aria-label="Chapter 4: Fine-Tuning and Integration">Chapter 4: Fine-Tuning and Integration</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h3>
+<p>Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it&rsquo;s time to build the brain of my network: a robust, redundant, and high-availability DNS system using <strong>AdGuard Home</strong> that works both at home and on the go.</p>
+<p>In this detailed guide, I&rsquo;ll walk you through how I deployed a total of <strong>three</strong> AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy.</p>
+<hr>
+<h3 id="chapter-1-the-local-workhorse-primary-dns">Chapter 1: The Local Workhorse (Primary DNS)<a hidden class="anchor" aria-hidden="true" href="#chapter-1-the-local-workhorse-primary-dns">#</a></h3>
+<p>I started by deploying my main, day-to-day DNS resolver on my homelab server.</p>
+<h4 id="step-1-deploying-adguard-home-with-docker-compose"><strong>Step 1: Deploying AdGuard Home with Docker Compose</strong><a hidden class="anchor" aria-hidden="true" href="#step-1-deploying-adguard-home-with-docker-compose">#</a></h4>
+<p>First, I SSHed into my server, created a directory for the project, and a <code>docker-compose.yml</code> file to define the service.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p ~/docker/adguard-primary
+</span></span><span style="display:flex;"><span>cd ~/docker/adguard-primary
+</span></span><span style="display:flex;"><span>nano docker-compose.yml
+</span></span></code></pre></div><p>I pasted in the following configuration. This runs the AdGuard Home container, maps all the necessary ports for DNS and the web UI, and connects it to the shared <code>npm_default</code> network I set up in Part 2.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">adguardhome</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">adguard/adguardhome:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">adguard-primary</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;53:53/tcp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;53:53/udp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;8080:80/tcp&#34;</span>      <span style="color:#75715e"># Web UI</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;853:853/tcp&#34;</span>      <span style="color:#75715e"># DNS-over-TLS</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./workdir:/opt/adguardhome/work</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./confdir:/opt/adguardhome/conf</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">npm_default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">npm_default</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>I then launched the container by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><h4 id="step-2-initial-adguard-home-setup-wizard"><strong>Step 2: Initial AdGuard Home Setup Wizard</strong><a hidden class="anchor" aria-hidden="true" href="#step-2-initial-adguard-home-setup-wizard">#</a></h4>
+<ol>
+<li>
+<p>I navigated to <code>http://&lt;your-server-ip&gt;:3000</code> in my web browser to start the setup wizard.</p>
+</li>
+<li>
+<p>I clicked &ldquo;Get Started.&rdquo;</p>
+</li>
+<li>
+<p>On the &ldquo;Admin Web Interface&rdquo; screen, I changed the &ldquo;Listen Interface&rdquo; to <code>All interfaces</code> and the port to <code>80</code>.</p>
+</li>
+<li>
+<p>On the &ldquo;DNS server&rdquo; screen, I changed the &ldquo;Listen Interface&rdquo; to <code>All interfaces</code> and left the port as <code>53</code>.</p>
+</li>
+<li>
+<p>I followed the prompts to create my admin username and password.</p>
+</li>
+<li>
+<p>Once the setup was complete, I was redirected to my main dashboard, now available at <code>http://&lt;your-server-ip&gt;:8080</code>.</p>
+</li>
+</ol>
+<h4 id="step-3-configure-my-home-router"><strong>Step 3: Configure My Home Router</strong><a hidden class="anchor" aria-hidden="true" href="#step-3-configure-my-home-router">#</a></h4>
+<p>To make all my devices use AdGuard automatically, I logged into my home router&rsquo;s admin panel, found the <strong>DHCP Server</strong> settings, and changed the <strong>Primary DNS Server</strong> to my homelab&rsquo;s static IP address (e.g., <code>192.168.1.10</code>).</p>
+<hr>
+<h3 id="chapter-2-the-cloud-failover-secondary-dns-on-oracle-cloud">Chapter 2: The Cloud Failover (Secondary DNS on Oracle Cloud)<a hidden class="anchor" aria-hidden="true" href="#chapter-2-the-cloud-failover-secondary-dns-on-oracle-cloud">#</a></h3>
+<p>An off-site DNS server ensures I have ad-blocking on my mobile devices and acts as a backup.</p>
+<h4 id="why-i-chose-oracle-cloud"><strong>Why I Chose Oracle Cloud</strong><a hidden class="anchor" aria-hidden="true" href="#why-i-chose-oracle-cloud">#</a></h4>
+<p>After testing the free tiers of both AWS and Linode, I chose <strong>Oracle Cloud Infrastructure (OCI)</strong>. In my experience, OCI&rsquo;s &ldquo;Always Free&rdquo; tier is far more generous with its resources. It provides powerful Ampere A1 Compute instances with up to 4 CPU cores and 24 GB of RAM, plus 200 GB of storage and significant bandwidth, all for free. This was ideal for running my service 24/7 without the strict limitations or eventual costs associated with other providers.</p>
+<h4 id="step-1-launching-the-oracle-cloud-vm"><strong>Step 1: Launching the Oracle Cloud VM</strong><a hidden class="anchor" aria-hidden="true" href="#step-1-launching-the-oracle-cloud-vm">#</a></h4>
+<ol>
+<li>
+<p><strong>Sign Up:</strong> I created my account on the Oracle Cloud website.</p>
+</li>
+<li>
+<p><strong>Create VM Instance:</strong> In the OCI console, I navigated to Compute &gt; Instances and clicked &ldquo;Create instance&rdquo;.</p>
+</li>
+<li>
+<p><strong>Configure Instance:</strong></p>
+<ul>
+<li>
+<p><strong>Name:</strong> I gave it a name like <code>AdGuard-Cloud</code>.</p>
+</li>
+<li>
+<p><strong>Image and Shape:</strong> I clicked &ldquo;Edit&rdquo;. For the image, I selected Ubuntu. For the shape, I selected &ldquo;Ampere&rdquo; and chose the <code>VM.Standard.A1.Flex</code> shape (it&rsquo;s &ldquo;Always Free-eligible&rdquo;).</p>
+</li>
+<li>
+<p><strong>Networking:</strong> I used the default VCN and made sure &ldquo;Assign a public IPv4 address&rdquo; was checked.</p>
+</li>
+<li>
+<p><strong>SSH Keys:</strong> I added my SSH public key.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>I clicked <strong>Create</strong>. Once the instance was running, I took note of its <strong>Public IP Address</strong>.</p>
+</li>
+</ol>
+<h4 id="step-2-configuring-the-cloud-firewall"><strong>Step 2: Configuring the Cloud Firewall</strong><a hidden class="anchor" aria-hidden="true" href="#step-2-configuring-the-cloud-firewall">#</a></h4>
+<p>For maximum security, I locked down the administrative ports to only my home IP address.</p>
+<ol>
+<li>
+<p><strong>Find My Public IP:</strong> I went to a site like <code>whatismyip.com</code> and copied my home&rsquo;s public IP address.</p>
+</li>
+<li>
+<p><strong>Edit Security List:</strong> I navigated to my instance&rsquo;s details page, clicked the subnet link, then clicked the &ldquo;Security List&rdquo; link.</p>
+</li>
+<li>
+<p>I clicked &ldquo;Add Ingress Rules&rdquo; and added the following rules:</p>
+<ul>
+<li>
+<p><strong>For SSH (Port 22):</strong> I set the Source to my home&rsquo;s public IP, followed by <code>/32</code> (e.g., <code>203.0.113.55/32</code>). This is a critical security step.</p>
+</li>
+<li>
+<p><strong>For AdGuard Setup (Port 3000):</strong> I also set the Source to my home&rsquo;s public IP with <code>/32</code>.</p>
+</li>
+<li>
+<p><strong>For AdGuard Web UI (Port 80/443):</strong> I set the Source to my home&rsquo;s public IP with <code>/32</code> as well.</p>
+</li>
+<li>
+<p><strong>For Public DNS (Port 53, 853, etc.):</strong> I set the Source to <code>0.0.0.0/0</code> (Anywhere) to allow all my devices to connect from any network.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="step-3-installing-adguard-home--configuring-ssl"><strong>Step 3: Installing AdGuard Home &amp; Configuring SSL</strong><a hidden class="anchor" aria-hidden="true" href="#step-3-installing-adguard-home--configuring-ssl">#</a></h4>
+<ol>
+<li>
+<p><strong>Connect via SSH:</strong> I used the public IP and my SSH key to connect to the VM.</p>
+</li>
+<li>
+<p><strong>Run Install Script:</strong> I chose to install AdGuard Home directly on the OS for this instance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -s -S -L <span style="color:#f92672">[</span>https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh<span style="color:#f92672">](</span>https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh<span style="color:#f92672">)</span> | sh -s -- -v
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Get a Hostname:</strong> I went to <strong>No-IP.com</strong>, created a free hostname (e.g., <code>my-cloud-dns.ddns.net</code>), and pointed it to my cloud VM&rsquo;s public IP.</p>
+</li>
+<li>
+<p><strong>Enable Encryption:</strong> In my cloud AdGuard&rsquo;s dashboard (<strong>Settings &gt; Encryption settings</strong>), I enabled encryption, entered my No-IP hostname, and used the built-in function to request a Let&rsquo;s Encrypt certificate.</p>
+</li>
+</ol>
+<h4 id="step-4-cloud-backups"><strong>Step 4: Cloud Backups</strong><a hidden class="anchor" aria-hidden="true" href="#step-4-cloud-backups">#</a></h4>
+<p>A critical final step for any cloud service is backups. I make sure to take periodic <strong>snapshots</strong> of my Oracle Cloud instance directly from the OCI console. This allows me to quickly restore the entire server in case of a problem.</p>
+<hr>
+<h3 id="chapter-3-ultimate-local-redundancy-tertiary-dns-with-macvlan">Chapter 3: Ultimate Local Redundancy (Tertiary DNS with Macvlan)<a hidden class="anchor" aria-hidden="true" href="#chapter-3-ultimate-local-redundancy-tertiary-dns-with-macvlan">#</a></h3>
+<p>For an extra layer of redundancy <em>within</em> my homelab, I created a third AdGuard instance. By using an advanced Docker network mode called <strong>macvlan</strong>, this container gets its own unique IP address on my home network, making it a truly independent resolver.</p>
+<ol>
+<li>
+<p><strong>Create Macvlan Network:</strong> First, I created the macvlan network, telling it which of my physical network cards to use (<code>eth0</code> in my case).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create -d macvlan <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet<span style="color:#f92672">=</span>192.168.1.0/24 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --gateway<span style="color:#f92672">=</span>192.168.1.1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -o parent<span style="color:#f92672">=</span>eth0 homelab_net
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Deploy Tertiary Instance:</strong> I created a new folder (<code>~/docker/adguard-tertiary</code>) and this <code>docker-compose.yml</code>. Notice there are no <code>ports</code> since the container gets its own IP.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">adguardhome2</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">adguard/adguardhome:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">adguardhome2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;./work:/opt/adguardhome/work&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;./conf:/opt/adguardhome/conf&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">homelab_net</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ipv4_address</span>: <span style="color:#ae81ff">192.168.1.11</span> <span style="color:#75715e"># The new, unique IP for this container</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">homelab_net</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Configure Router:</strong> In my router&rsquo;s DHCP settings, I added its unique IP (<code>192.168.1.11</code>) as the <strong>Secondary DNS Server</strong>.</p>
+</li>
+</ol>
+<hr>
+<h3 id="chapter-4-fine-tuning-and-integration">Chapter 4: Fine-Tuning and Integration<a hidden class="anchor" aria-hidden="true" href="#chapter-4-fine-tuning-and-integration">#</a></h3>
+<p>Finally, I implemented some best practices on my primary AdGuard Home instance.</p>
+<ul>
+<li>
+<p><strong>Upstream DNS Servers:</strong> Under <strong>Settings &gt; DNS Settings</strong>, I configured AdGuard to send requests to multiple resolvers in parallel for speed and reliability, using <strong>Cloudflare (<code>1.1.1.1</code>)</strong>, <strong>Google (<code>8.8.8.8</code>)</strong>, and <strong>Quad9 (<code>9.9.9.9</code>)</strong>.</p>
+</li>
+<li>
+<p><strong>Enable DNSSEC:</strong> In the same settings page, I enabled DNSSEC to verify the integrity of DNS responses.</p>
+</li>
+<li>
+<p><strong>DNS Blocklists:</strong> I added several popular lists from the &ldquo;Filters &gt; DNS blocklists&rdquo; page, including the <strong>AdGuard DNS filter</strong> and the <strong>OISD Blocklist</strong>, for robust protection.</p>
+</li>
+<li>
+<p><strong>DNS Rewrites for Local Services:</strong> This is the key to a clean homelab experience. For each service, I performed a detailed two-step process:</p>
+<ol>
+<li>
+<p><strong>Create the Proxy Host in Nginx Proxy Manager:</strong> I logged into my NPM admin panel, went to <strong>Hosts &gt; Proxy Hosts</strong>, and clicked &ldquo;Add Proxy Host&rdquo;. For my Homer dashboard, I set the <strong>Forward Hostname</strong> to <code>homer</code> (the container name) and the <strong>Forward Port</strong> to <code>8080</code> (its internal port), using <code>homer.local</code> as the domain name.</p>
+</li>
+<li>
+<p><strong>Create the DNS Rewrite in AdGuard Home:</strong> I logged into my primary AdGuard dashboard, went to <strong>Filters &gt; DNS Rewrites</strong>, and clicked &ldquo;Add DNS rewrite&rdquo;. I entered <code>homer.local</code> as the domain and the IP address of my Nginx Proxy Manager server as the answer.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
+<p>I&rsquo;ve now built an incredibly robust, multi-layered DNS infrastructure. My home devices use the primary local server, which is backed up by a second, independent local server, and my mobile devices use a completely separate cloud instance for on-the-go protection. This provides a resilient, secure, and ad-free internet experience.</p>
+<p>In the final part of this series, we&rsquo;ll shift our focus from deploying services to maintaining them. I&rsquo;ll show you how I set up a fully automated operations pipeline for my homelab, including daily off-site backups, automatic container updates with Watchtower, and proactive alerting with Prometheus. Stay tuned!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/homelab/">Homelab</a></li>
+      <li><a href="http://localhost:1313/tags/adguard-home/">AdGuard Home</a></li>
+      <li><a href="http://localhost:1313/tags/dns/">DNS</a></li>
+      <li><a href="http://localhost:1313/tags/doh/">DoH</a></li>
+      <li><a href="http://localhost:1313/tags/dot/">DoT</a></li>
+      <li><a href="http://localhost:1313/tags/high-availability/">High Availability</a></li>
+      <li><a href="http://localhost:1313/tags/oracle-cloud/">Oracle Cloud</a></li>
+      <li><a href="http://localhost:1313/tags/cloudcomputing/">CloudComputing</a></li>
+      <li><a href="http://localhost:1313/tags/cloud/">Cloud</a></li>
+      <li><a href="http://localhost:1313/tags/oci/">OCI</a></li>
+      <li><a href="http://localhost:1313/tags/docker/">Docker</a></li>
+      <li><a href="http://localhost:1313/tags/macvlan/">Macvlan</a></li>
+      <li><a href="http://localhost:1313/tags/ddns/">DDNS</a></li>
+      <li><a href="http://localhost:1313/tags/freedns/">FreeDNS</a></li>
+      <li><a href="http://localhost:1313/tags/no-ip/">No-IP</a></li>
+      <li><a href="http://localhost:1313/tags/port-forwarding/">Port Forwarding</a></li>
+      <li><a href="http://localhost:1313/tags/dnssec/">DNSSEC</a></li>
+      <li><a href="http://localhost:1313/tags/self-hosting/">Self-Hosting</a></li>
+      <li><a href="http://localhost:1313/tags/opensource/">Opensource</a></li>
+    </ul>
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 3: A High-Availability DNS Network with AdGuard Home on twitter"
+        href="https://twitter.com/intent/tweet/?text=Part%203%3a%20A%20High-Availability%20DNS%20Network%20with%20AdGuard%20Home&amp;url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-3-high-availability-dns%2f&amp;hashtags=Homelab%2cAdGuardHome%2cDNS%2cDoH%2cDoT%2cHighAvailability%2cOracleCloud%2cCloudComputing%2cCloud%2cOCI%2cDocker%2cMacvlan%2cDDNS%2cFreeDNS%2cNo-IP%2cPortForwarding%2cDNSSEC%2cSelf-Hosting%2cOpensource">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 3: A High-Availability DNS Network with AdGuard Home on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-3-high-availability-dns%2f&amp;title=Part%203%3a%20A%20High-Availability%20DNS%20Network%20with%20AdGuard%20Home&amp;summary=Part%203%3a%20A%20High-Availability%20DNS%20Network%20with%20AdGuard%20Home&amp;source=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-3-high-availability-dns%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 3: A High-Availability DNS Network with AdGuard Home on reddit"
+        href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-3-high-availability-dns%2f&title=Part%203%3a%20A%20High-Availability%20DNS%20Network%20with%20AdGuard%20Home">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 3: A High-Availability DNS Network with AdGuard Home on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-3-high-availability-dns%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 3: A High-Availability DNS Network with AdGuard Home on whatsapp"
+        href="https://api.whatsapp.com/send?text=Part%203%3a%20A%20High-Availability%20DNS%20Network%20with%20AdGuard%20Home%20-%20http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-3-high-availability-dns%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 3: A High-Availability DNS Network with AdGuard Home on telegram"
+        href="https://telegram.me/share/url?text=Part%203%3a%20A%20High-Availability%20DNS%20Network%20with%20AdGuard%20Home&amp;url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-3-high-availability-dns%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="http://localhost:1313/">Prajwol Bikram Adhikari</a> · <a href="/privacy-policy/">Privacy Policy</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

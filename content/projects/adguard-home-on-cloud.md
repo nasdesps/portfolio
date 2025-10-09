@@ -3,14 +3,16 @@ title: Running Private Adguard Server on Cloud (Linode)
 dateString: Feb 2025
 draft: false
 tags:
-  - AdGuard
+  - AdGuard Home
   - CloudComputing
+  - Cloud
   - Linode
   - DNS
   - Self-Hosting
   - DoH
   - DoT
   - DNSSEC
+  - Opensource
 weight: 109
 cover:
   image: "/projects/adguard-linode/adguard_cover.jpg"

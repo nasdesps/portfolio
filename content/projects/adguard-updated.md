@@ -3,10 +3,11 @@ title: How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edit
 dateString: Aug 2025
 draft: false
 tags:
-  - AdGuard
+  - AdGuard Home
   - Self-Hosting
   - Homelab
   - CloudComputing
+  - Cloud
   - AWS
   - EC2
   - Firewall
@@ -22,7 +23,10 @@ tags:
   - DoH
   - DoT
   - DNSSEC
-weight: 103
+  - Opensource
+  - DoH
+  - DoT
+weight: 108
 cover:
   image: "/projects/adguard-aws/adguardaws.png"
 ---

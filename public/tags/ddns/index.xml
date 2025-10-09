@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DDNS on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/tags/ddns/</link>
+    <description>Recent content in DDNS on Prajwol Bikram Adhikari</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://localhost:1313/tags/ddns/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 3: A High-Availability DNS Network with AdGuard Home</title>
+      <link>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to Part 3 of my homelab series! In the previous parts, I built my server and deployed a suite of management and monitoring tools. Now, it&amp;rsquo;s time to build the brain of my network: a robust, redundant, and high-availability DNS system using &lt;strong&gt;AdGuard Home&lt;/strong&gt; that works both at home and on the go.&lt;/p&gt;
+&lt;p&gt;In this detailed guide, I&amp;rsquo;ll walk you through how I deployed a total of &lt;strong&gt;three&lt;/strong&gt; AdGuard Home instances, each with its own unique IP address. I set up a primary resolver on my homelab, a secondary failover resolver in the cloud for my mobile devices, and a tertiary resolver on a separate virtual network for local redundancy.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

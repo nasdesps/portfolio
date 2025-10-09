@@ -16,6 +16,15 @@
     </item>
     
     <item>
+      <title>AdGuard Home</title>
+      <link>http://localhost:1313/tags/adguard-home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/adguard-home/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Adobe Photoshop</title>
       <link>http://localhost:1313/tags/adobe-photoshop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -120,6 +129,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DDNS</title>
+      <link>http://localhost:1313/tags/ddns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ddns/</guid>
       <description></description>
     </item>
     
@@ -259,6 +277,15 @@
     </item>
     
     <item>
+      <title>FreeDNS</title>
+      <link>http://localhost:1313/tags/freedns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/freedns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Function Test</title>
       <link>http://localhost:1313/tags/function-test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -309,6 +336,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/help-desk-support/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>High Availability</title>
+      <link>http://localhost:1313/tags/high-availability/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/high-availability/</guid>
       <description></description>
     </item>
     
@@ -412,6 +448,15 @@
     </item>
     
     <item>
+      <title>Macvlan</title>
+      <link>http://localhost:1313/tags/macvlan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/macvlan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Manufacturing</title>
       <link>http://localhost:1313/tags/manufacturing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -484,11 +529,29 @@
     </item>
     
     <item>
+      <title>OCI</title>
+      <link>http://localhost:1313/tags/oci/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/oci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Opensource</title>
       <link>http://localhost:1313/tags/opensource/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/opensource/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oracle Cloud</title>
+      <link>http://localhost:1313/tags/oracle-cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/oracle-cloud/</guid>
       <description></description>
     </item>
     
@@ -525,6 +588,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/pomsnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Port Forwarding</title>
+      <link>http://localhost:1313/tags/port-forwarding/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/port-forwarding/</guid>
       <description></description>
     </item>
     

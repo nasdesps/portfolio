@@ -3,12 +3,13 @@ title: "Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu"
 dateString: Feb 2025
 draft: false
 tags:
-  - docker
-  - ubuntu
+  - Docker
+  - Ubuntu
   - AI
-  - opensource
-  - deepseek-r1
+  - Opensource
+  - Deepseek-r1
   - Self-Hosting
+  - Homelab
 weight: 110
 cover:
     image: "/projects/deepseek-r1-docker/docker-ai.png"

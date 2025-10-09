@@ -14,6 +14,8 @@
   </url><url>
     <loc>http://localhost:1313/blog/adguard-home-on-cloud/</loc>
   </url><url>
+    <loc>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</loc>
+  </url><url>
     <loc>http://localhost:1313/projects/adguard-home-on-cloud/</loc>
   </url><url>
     <loc>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</loc>
@@ -35,6 +37,8 @@
     <lastmod>2025-09-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/adguard/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/adguard-home/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/adobe-photoshop/</loc>
   </url><url>
@@ -63,6 +67,8 @@
     <loc>http://localhost:1313/tags/cron/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/css/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/ddns/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/debian/</loc>
   </url><url>
@@ -96,6 +102,8 @@
   </url><url>
     <loc>http://localhost:1313/tags/flash/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/freedns/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/function-test/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/gmps/</loc>
@@ -107,6 +115,8 @@
     <loc>http://localhost:1313/tags/hardware-support/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/help-desk-support/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/high-availability/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/homelab/</loc>
   </url><url>
@@ -130,6 +140,8 @@
   </url><url>
     <loc>http://localhost:1313/tags/macos/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/macvlan/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/manufacturing/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/mentorship/</loc>
@@ -146,7 +158,11 @@
   </url><url>
     <loc>http://localhost:1313/tags/no-ip/</loc>
   </url><url>
+    <loc>http://localhost:1313/tags/oci/</loc>
+  </url><url>
     <loc>http://localhost:1313/tags/opensource/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/oracle-cloud/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/packaging/</loc>
   </url><url>
@@ -155,6 +171,8 @@
     <loc>http://localhost:1313/tags/pharmaceutical-industry/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/pomsnet/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/port-forwarding/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/problem-solving/</loc>
   </url><url>

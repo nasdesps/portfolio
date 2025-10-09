@@ -12,7 +12,8 @@ tags:
   - Monitoring
   - Homer
   - Self-Hosting
-weight: 101
+  - Opensource
+weight: 102
 cover:
   image: "/projects/homelab-part2/homelab-part2.png"
 ---
