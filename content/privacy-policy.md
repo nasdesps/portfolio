@@ -1,6 +1,7 @@
 ---
 title: "Privacy Policy"
 date: 2025-09-27
+description: "Review the Privacy Policy for this personal portfolio. This page outlines what data is collected (e.g., for resume requests) and details our use of privacy-focused, cookie-less analytics to protect your information."
 draft: false
 showToc: false
 ---

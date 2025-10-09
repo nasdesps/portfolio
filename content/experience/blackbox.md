@@ -2,6 +2,7 @@
 title: "Web Development Intern"
 description: "Blackbox Technologies | Lalitpur, Nepal"
 dateString: Jan 2019 - Apr 2019
+date: 2025-02-21
 draft: false
 disableShare: true
 tags:

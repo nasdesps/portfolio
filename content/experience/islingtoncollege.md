@@ -1,6 +1,7 @@
 ---
 title: "IT Support Specialist"
 description: "Islington College | Kathmandu, Nepal"
+date: 2025-02-21
 dateString: Aug 2019 - Jan 2022
 draft: false
 disableShare: true

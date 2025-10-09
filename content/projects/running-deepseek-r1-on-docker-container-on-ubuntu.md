@@ -1,6 +1,8 @@
 ---
 title: "Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu"
+date: 2025-02-21
 dateString: Feb 2025
+description: "Dive into local AI! This guide shows you how to easily run the powerful DeepSeek-R1 model on Ubuntu using Ollama and Docker, complete with all the necessary commands for setup and execution."
 draft: false
 tags:
   - Docker
@@ -13,6 +15,7 @@ tags:
 weight: 110
 cover:
     image: "/projects/deepseek-r1-docker/docker-ai.png"
+    alt: "A stylized illustration of a container ship, representing Docker, carrying cargo of servers. The ship is integrated into a larger technical diagram, symbolizing a containerized application and its ecosystem."
 ---
 
 # What's a Docker Container?

@@ -1,6 +1,8 @@
 ---
 title: "Part 2: Homelab Management & Monitoring"
+date: 2025-09-25
 dateString: Sep 2025
+description: "Elevate your homelab with a professional management and monitoring stack. This guide details how to deploy Nginx Proxy Manager, Prometheus, Grafana, and a Homer dashboard using Docker."
 draft: false
 tags:
   - Homelab
@@ -16,6 +18,7 @@ tags:
 weight: 102
 cover:
   image: "/projects/homelab-part2/homelab-part2.png"
+  alt: "A futuristic data dashboard with multiple glowing panels showing server health statistics, a real-time world network map, and performance graphs, representing a monitoring stack built with Grafana and Prometheus."
 ---
 
 ### Introduction

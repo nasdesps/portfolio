@@ -1,6 +1,7 @@
 ---
 title: "Operator III"
 description: "AbbVie | Waco, TX, USA"
+date: 2025-02-21
 dateString: Feb 2024 - Present
 draft: false
 disableShare: true

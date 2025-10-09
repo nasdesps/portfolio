@@ -1,6 +1,7 @@
 ---
 title: "Web Development Intern"
 description: "Radiant Infotech Pvt.Ltd | Kathmandu, Nepal"
+date: 2025-02-21
 dateString: Jun 2018 - Sep 2018
 draft: false
 disableShare: true

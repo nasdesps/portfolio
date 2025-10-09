@@ -1,6 +1,8 @@
 ---
-title: Running Private Adguard Server on Cloud (Linode)
+title: "Running Private Adguard Server on Cloud (Linode)"
+date: 2025-02-28
 dateString: Feb 2025
+description: "Get universal ad-blocking on all your devices. This guide shows you how to easily set up a private AdGuard Home DNS server on a Linode cloud instance for enhanced security and privacy on the go."
 draft: false
 tags:
   - AdGuard Home
@@ -16,6 +18,7 @@ tags:
 weight: 109
 cover:
   image: "/projects/adguard-linode/adguard_cover.jpg"
+  alt: "A conceptual image showing a glowing cloud icon containing a security shield, projecting protection over a laptop and tablet on a desk. This visual represents a private, cloud-based DNS filter like AdGuard Home securing personal devices."
 ---
 
 

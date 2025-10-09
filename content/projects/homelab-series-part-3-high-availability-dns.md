@@ -1,6 +1,8 @@
 ---
 title: "Part 3: A High-Availability DNS Network with AdGuard Home"
+date: 2025-10-08
 dateString: Oct 2025
+description: "Learn to build a high-availability, ad-blocking DNS network with AdGuard Home. This step-by-step guide covers deploying on a homelab server, a free Oracle Cloud VM, and using Docker macvlan for ultimate redundancy."
 draft: false
 tags:
   - Homelab
@@ -25,6 +27,7 @@ tags:
 weight: 101
 cover:
   image: "/projects/homelab-part3/homelab-part3.png"
+  alt: "An architectural diagram of a secure DNS service, represented by a green shield. The service utilizes upstream DNS providers like Cloudflare, Google, and Quad9, is hosted on Oracle Cloud servers, and provides a secure connection to the internet."
 ---
 
 ### Introduction

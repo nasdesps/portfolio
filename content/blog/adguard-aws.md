@@ -1,6 +1,8 @@
 ---
 title: Building a Personal Ad-Blocking Server in the Cloud!
+date: 2025-08-25
 dateString: Aug 2025
+description: "A personal blog post on the motivation and journey behind building a private, ad-blocking DNS server on AWS. Learn why I tackled this project and how it led to a faster, cleaner internet."
 draft: false
 tags:
 weight: 101

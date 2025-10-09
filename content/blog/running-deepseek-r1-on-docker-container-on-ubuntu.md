@@ -1,6 +1,8 @@
 ---
 title: Running a Powerful AI Locally with Docker!
+date: 2025-02-21
 dateString: Feb 2025
+description: "Curious about running a powerful AI on your own machine? This post introduces my project guide for setting up the DeepSeek-R1 model locally using Docker for ultimate privacy and control."
 draft: false
 tags:
 weight: 102

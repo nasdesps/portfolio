@@ -1,6 +1,8 @@
 ---
 title: "Part 1: Reviving an Old Laptop with Debian & Docker"
+date: 2025-09-18
 dateString: Sep 2025
+description: "Kickstart your homelab by turning an old laptop into a secure server. This guide details the process of installing Debian, performing initial hardening, and setting up Docker and Docker Compose for a solid foundation."
 draft: false
 tags:
   - Homelab
@@ -17,6 +19,7 @@ tags:
 weight: 103
 cover:
   image: "/projects/homelab-part1/laptop_server.png"
+  alt: "An old laptop being used as a homelab server, sitting on a desk with its screen displaying a command-line interface. It is connected to a network switch, with a glowing data network graphic in the background."
 ---
 
 ### Introduction
