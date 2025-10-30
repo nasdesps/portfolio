@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Watchtower on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/tags/watchtower/</link>
+    <description>Recent content in Watchtower on Prajwol Bikram Adhikari</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/watchtower/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 4: Automating a Homelab with Backups, Updates, and Alerts</title>
+      <link>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</link>
+      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</guid>
+      <description>A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager.</description>
+    </item>
+    
+  </channel>
+</rss>

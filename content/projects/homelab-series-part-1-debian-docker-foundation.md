@@ -16,7 +16,7 @@ tags:
   - UFW
   - SSH
   - Opensource
-weight: 103
+weight: 104
 cover:
   image: "/projects/homelab-part1/laptop_server.png"
   alt: "An old laptop being used as a homelab server, sitting on a desk with its screen displaying a command-line interface. It is connected to a network switch, with a glowing data network graphic in the background."

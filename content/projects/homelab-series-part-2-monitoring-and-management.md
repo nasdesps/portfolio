@@ -15,7 +15,7 @@ tags:
   - Homer
   - Self-Hosting
   - Opensource
-weight: 102
+weight: 103
 cover:
   image: "/projects/homelab-part2/homelab-part2.png"
   alt: "A futuristic data dashboard with multiple glowing panels showing server health statistics, a real-time world network map, and performance graphs, representing a monitoring stack built with Grafana and Prometheus."

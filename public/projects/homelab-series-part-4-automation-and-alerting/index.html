@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Part 4: Automating a Homelab with Backups, Updates, and Alerts | Prajwol Bikram Adhikari</title>
+<script>
+    
+    (function () {
+        const Elem = document.documentElement;
+        const savedTheme = localStorage.getItem('pref-theme');
+        let theme;
+
+        if (savedTheme) {
+            theme = savedTheme;
+        } else {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        if (theme === 'dark') {
+            Elem.classList.add('dark');
+        } else {
+            Elem.classList.remove('dark');
+        }
+    })();
+
+    
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const toggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun');
+        const moonIcon = document.getElementById('moon');
+
+        
+        function updateIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                sunIcon.style.setProperty('display', 'inline-block', 'important');
+                moonIcon.style.setProperty('display', 'none', 'important');
+            } else {
+                sunIcon.style.setProperty('display', 'none', 'important');
+                moonIcon.style.setProperty('display', 'inline-block', 'important');
+            }
+        }
+
+        
+        if (toggle && sunIcon && moonIcon) {
+            updateIcon();
+
+            
+            toggle.addEventListener('click', function () {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('pref-theme', isDark ? 'dark' : 'light');
+                updateIcon(); 
+            });
+        }
+    });
+</script>
+<meta name="keywords" content="Homelab, Automation, DevOps, Backups, rclone, Cron, Google Drive, Watchtower, Prometheus, Alertmanager, Discord, Docker, Self-Hosting, Opensource">
+<meta name="description" content="A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager.">
+<meta name="author" content="">
+<link rel="canonical"
+    href="http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2885677832a85698b0de371109b751f96208e8a347606b229cfd3bd8d7156da3.css" integrity="sha256-KIVneDKoVpiw3jcRCbdR&#43;WII6KNHYGsinP072NcVbaM="
+    rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+    </style>
+</noscript><meta property="og:title" content="Part 4: Automating a Homelab with Backups, Updates, and Alerts" />
+<meta property="og:description" content="A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/" />
+      <meta property="og:image" content="http://localhost:1313/projects/homelab-part4/homelab-part4_hu_ad588fd5a13c0b28.jpg"><meta property="article:section" content="projects" />
+<meta property="article:published_time" content="2025-10-30T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2025-10-30T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://localhost:1313/projects/homelab-part4/homelab-part4.png" />
+<meta name="twitter:title" content="Part 4: Automating a Homelab with Backups, Updates, and Alerts"/>
+<meta name="twitter:description" content="A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Projects",
+      "item": "http://localhost:1313/projects/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Part 4: Automating a Homelab with Backups, Updates, and Alerts",
+      "item": "http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Part 4: Automating a Homelab with Backups, Updates, and Alerts",
+  "name": "Part 4: Automating a Homelab with Backups, Updates, and Alerts",
+  "description": "A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager.",
+  "keywords": [
+    "Homelab", "Automation", "DevOps", "Backups", "rclone", "Cron", "Google Drive", "Watchtower", "Prometheus", "Alertmanager", "Discord", "Docker", "Self-Hosting", "Opensource"
+  ],
+  "articleBody": "Introduction Welcome to the part 4 of the homelab series! In the previous parts, we built a server, deployed a suite of services, and configured our network. Now, it’s time to make it resilient and self-maintaining. A homelab isn’t just about setting things up; it’s about keeping them running reliably.\nThis guide will show you how to set up the three pillars of modern IT operations: Automated Backups, Automated Updates, and Proactive Alerting. By the end, you’ll have a homelab that runs itself, ensures your data is safe, stays up-to-date, and notifies you when something goes wrong.\nChapter 1: The Automated Backup Strategy (at 3 AM) A solid backup strategy is non-negotiable. I implemented a robust system inspired by the “3-2-1” rule, focusing on redundancy and an off-site copy. My strategy involves maintaining two copies of my data in two separate locations: one local backup on the server itself for fast recovery, and one automated, off-site backup to Google Drive to protect against a local disaster like a fire or hardware failure.\nThis script runs at 3 AM, creates a local backup, uploads it, and then notifies Discord.\nStep 1: Configure rclone for Google Drive First, you need a tool to communicate with Google Drive. We’ll use rclone.\nInstall rclone on your Debian server: sudo -v ; curl [https://rclone.org/install.sh](https://rclone.org/install.sh) | sudo bash Run the interactive setup: rclone config Follow the Prompts: n (New remote) * name\u003e: gdrive (You can name it anything) storage\u003e: Find and select drive (Google Drive). client_id\u003e \u0026 client_secret\u003e: Press Enter for both to leave blank. scope\u003e: Choose 1 (Full access). Use auto config? y/n\u003e: This is a critical step. Since we are on a headless server, type n and press Enter. Authorize Headless: rclone will give you a command to run on a machine with a web browser (like your main computer). On your main computer (where you have rclone installed), run the rclone authorize \"drive\" \"...\" command. This will open your browser, ask you to log in to Google, and grant permission. * Your main computer’s terminal will then output a block of text (your config_token). Paste Token: Copy the token from your main computer and paste it back into your server’s rclone prompt. Finish the prompts, and your connection is complete. Step 2: Create the Backup Script Next, create a shell script to perform the backup.\nCreate the file and make it executable:\nnano ~/backup.sh chmod +x ~/backup.sh Paste in the following script. You must edit the first 7 variables to match your setup.\n#!/bin/bash # --- Configuration --- SOURCE_DIR=\"/path/to/your/docker\" # \u003c-- Change to your Docker projects directory BACKUP_DIR=\"/path/to/your/backups\" # \u003c-- Change to your backups folder FILENAME=\"homelab-backup-$(date +%Y-%m-%d).tar.gz\" LOCAL_RETENTION_DAYS=3 CLOUD_RETENTION_DAYS=3 RCLONE_REMOTE=\"gdrive\" # \u003c-- Must match your rclone remote name RCLONE_DEST=\"Homelab Backups\" # \u003c-- Folder name in Google Drive # --- \"https://discordapp.com/api/webhooks/141949178941/6Tx6f1yjf26LztQ\" --- DISCORD_WEBHOOK_URL=\"YOUR_DISCORD_WEBHOOK_URL\" # --- Notification Function --- send_notification() { MESSAGE=$1 curl -H \"Content-Type: application/json\" -X POST -d \"{\\\"content\\\": \\\"$MESSAGE\\\"}\" \"$DISCORD_WEBHOOK_URL\" } # --- Script Logic --- echo \"--- Starting Homelab Backup: $(date) ---\" send_notification \"✅ Starting Homelab Backup...\" # 1. Create local backup echo \"Creating local backup...\" tar -czf \"${BACKUP_DIR}/${FILENAME}\" -C \"${SOURCE_DIR}\" . echo \"Local backup created at ${BACKUP_DIR}/${FILENAME}\" # 2. Upload to Google Drive echo \"Uploading backup to ${RCLONE_REMOTE}...\" rclone copy \"${BACKUP_DIR}/${FILENAME}\" \"${RCLONE_REMOTE}:${RCLONE_DEST}\" echo \"Upload complete.\" # 3. Clean up local backups echo \"Cleaning up local backups older than ${LOCAL_RETENTION_DAYS} days...\" find \"${BACKUP_DIR}\" -type f -name \"*.tar.gz\" -mtime +${LOCAL_RETENTION_DAYS} -delete echo \"Local cleanup complete.\" # 4. Clean up cloud backups echo \"Cleaning up cloud backups older than ${CLOUD_RETENTION_DAYS} days...\" rclone delete \"${RCLONE_REMOTE}:${RCLONE_DEST}\" --min-age ${CLOUD_RETENTION_DAYS}d echo \"Cloud cleanup complete.\" echo \"Backup process finished.\" send_notification \"🎉 Homelab backup and cloud upload completed successfully!\" Step 3: Automate with Cron To run this script automatically, you must add it to the root user’s crontab. This is critical for giving the script permission to read all Docker files.\nOpen the root crontab editor: sudo crontab -e Add the following line to schedule the backup for 3:00 AM every morning: 0 3 * * * /path/to/your/backup.sh You will now get a fresh, off-site backup every night and a Discord message when it’s done. Chapter 2: Automated Updates with Watchtower (at 6 AM) Manually updating every Docker container is tedious. We can automate this by deploying Watchtower.\nStep 1: The Docker Compose File Create a docker-compose.yml for Watchtower. This configuration schedules it to run once a day at 6:00 AM, clean up old images, and send a Discord notification only if it finds an update.\nmkdir -p ~/docker/watchtower\ncd ~/docker/watchtower\nnano docker-compose.yml\nPaste in this configuration:\nservices: watchtower: image: containrrr/watchtower container_name: watchtower restart: unless-stopped volumes: - /var/run/docker.sock:/var/run/docker.sock environment: # Timezone setting TZ: America/Chicago # Discord notification settings WATCHTOWER_NOTIFICATIONS: shoutrrr WATCHTOWER_NOTIFICATION_URL: \"discord://YOUR_DISCORD_WEBHOOK_ID_URL\u003e # Notification settings WATCHTOWER_NOTIFICATIONS_LEVEL: info WATCHTOWER_NOTIFICATION_REPORT: \"true\" WATCHTOWER_NOTIFICATIONS_HOSTNAME: Homelab-Laptop # Update settings WATCHTOWER_CLEANUP: \"true\" WATCHTOWER_INCLUDE_STOPPED: \"false\" WATCHTOWER_INCLUDE_RESTARTING: \"true\" WATCHTOWER_SCHEDULE: \"0 0 6 * * *\" Note: The WATCHTOWER_NOTIFICATION_URL uses a special shoutrrr format for Discord, which looks like discord://token@webhook-id.\nNow, every morning at 6:00 AM, Watchtower will scan all running containers and update any that have a new image available.\nChapter 3: Proactive Alerting (24/7) The final piece of automation is proactive alerting. This setup ensures you are immediately notified via Discord if something goes wrong.\nStep 1: The Alerting Pipeline The pipeline we’ll build is: Prometheus (detects problems) -\u003e Alertmanager (groups and routes alerts) -\u003e Discord (notifies you).\nStep 2: Deploy Alertmanager First, deploy Alertmanager. It must be on the same npm_default network as Prometheus.\nmkdir -p ~/docker/alertmanager\ncd ~/docker/alertmanager\nCreate the alertmanager.yml configuration file:\nnano alertmanager.yml Paste in this configuration. It uses advanced routing to send critical alerts every 2 hours and warning alerts every 12 hours.\nglobal: resolve_timeout: 5m route: group_by: [\"alertname\", \"severity\"] group_wait: 30s group_interval: 10m repeat_interbal: 12h receiver: \"discord-notifications\" routes: - receiver: \"discord-notifications\" matchers: - severity=\"critical\" repeat_interval: 2h - receiver: \"discord-notifications\" matchers: - severity=\"warning\" repeat_interval: 12h receivers: - name: \"discord-notifications\" discord_configs: - webhook_url: \"YOUR_DISCORD_WEBHOOK_URL\" send_resolved: true Now create the docker-compose.yml for Alertmanager:\nnano docker-compose.yml Paste in the following:\nservices: alertmanager: image: prom/alertmanager:latest container_name: alertmanager restart: unless-stopped volumes: - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml networks: - npm_default networks: npm_default: external: true Launch it: docker compose up -d\nStep 3: Configure Prometheus Finally, tell Prometheus to send alerts to Alertmanager and load your rules.\nCreate your rules file, ~/docker/monitoring/alert_rules.yml, with rules for “Instance Down,” “High CPU,” “Low Disk Space,” etc.\nAdd the alert_rules.yml as a volume in your ~/docker/monitoring/docker-compose.yml.\nAdd the alerting and rule_files blocks to your ~/docker/monitoring/prometheus.yml:\ngroups: -name: Critical System Alerts interval: 30s rules: - alert: InstanceDown expr: up == 0 for: 2m labels: severity: critical annotations: summary: \"🔴 Instance {{ $labels.instance }} is DOWN\" description: \"Service {{ $labels.job }} has been unreachable for 2 minutes.\" - alert: LaptopOnBattery expr: node_power_supply_online == 0 for: 5m labels: severity: critical annotations: summary: \"🔋 Server running on BATTERY\" description: \"Homelab has been unplugged for 5 minutes. Check power connection!\" - alert: LowBatteryLevel expr: node_power_supply_capacity \u003c 20 and node_power_supply_online == 0 for: 1m labels: severity: critical annotations: summary: \"⚠️ CRITICAL: Battery at {{ $value }}%\" description: \"Battery below 20%. Server may shut down soon!\" - alert: DiskAlmostFull expr: (node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"} / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"}) * 100 \u003c 10 for: 5m labels: severity: critical annotations: summary: \"💾 Disk space critically low: {{ $value | humanize }}% remaining\" description: \"Root filesystem has less than 10% free space.\" - alert: OutOfMemory expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 \u003c 5 for: 2m labels: severity: critical annotations: summary: \"🧠 Memory critically low: {{ $value | humanize }}% available\" description: \"Less than 5% memory available. System may become unresponsive.\" - alert: CriticalCpuTemperature expr: node_hwmon_temp_celsius{chip=\"coretemp\"} \u003e 95 for: 2m labels: severity: critical annotations: summary: \"🔥 CRITICAL CPU Temperature: {{ $value }}°C\" description: \"CPU temperature exceeds 95°C. Thermal throttling or shutdown imminent!\" - name: Warning System Alerts interval: 1m rules: - alert: HighCpuUsage expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100) \u003e 80 for: 5m labels: severity: warning annotations: summary: \"⚡ High CPU usage: {{ $value | humanize }}%\" description: \"CPU usage above 80% for 5 minutes on {{ $labels.instance }}\" - alert: HighSystemLoad expr: node_load5 / on(instance) count(node_cpu_seconds_total{mode=\"idle\"}) by (instance) \u003e 1.5 for: 10m labels: severity: warning annotations: summary: \"📊 High system load: {{ $value | humanize }}\" description: \"5-minute load average is 1.5x CPU cores for 10 minutes.\" - alert: HighMemoryUsage expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 \u003c 20 for: 5m labels: severity: warning annotations: summary: \"🧠 High memory usage: {{ $value | humanize }}% available\" description: \"Less than 20% memory available.\" - alert: HighCpuTemperature expr: node_hwmon_temp_celsius{chip=\"coretemp\"} \u003e 85 for: 5m labels: severity: warning annotations: summary: \"🌡️ High CPU temperature: {{ $value }}°C\" description: \"CPU temperature above 85°C. Consider improving cooling.\" - alert: HighNvmeTemperature expr: node_hwmon_temp_celsius{chip=\"nvme\"} \u003e 65 for: 10m labels: severity: warning annotations: summary: \"💿 High NVMe temperature: {{ $value }}°C\" description: \"NVMe drive temperature above 65°C for 10 minutes.\" - alert: DiskSpaceLow expr: (node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"} / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"tmpfs\"}) * 100 \u003c 20 for: 10m labels: severity: warning annotations: summary: \"💾 Disk space low: {{ $value | humanize }}% remaining\" description: \"Root filesystem has less than 20% free space.\" - alert: HighSwapUsage expr: ((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes * 100) \u003e 50 for: 10m labels: severity: warning annotations: summary: \"💱 High swap usage: {{ $value | humanize }}%\" description: \"Swap usage above 50%. System may be memory-constrained.\" # Monitor your USB-C hub ethernet adapter (enx00) - alert: EthernetInterfaceDown expr: node_network_up{device=\"enx00\"} == 0 for: 2m labels: severity: warning annotations: summary: \"🌐 USB-C Ethernet adapter is DISCONNECTED\" description: \"Your USB-C hub ethernet connection (enx00) is down. Check cable or hub.\" - alert: HighNetworkErrors expr: rate(node_network_receive_errs_total{device=\"enx00\"}[5m]) \u003e 10 or rate(node_network_transmit_errs_total{device=\"enx00\"}[5m]) \u003e 10 for: 5m labels: severity: warning annotations: summary: \"🌐 High network errors on USB-C ethernet\" description: \"Your ethernet adapter is experiencing high error rate. Check cable quality.\" - name: Docker Container Alerts interval: 1m rules: # Simplified alert - just checks if container exporter is working - alert: ContainerMonitoringDown expr: absent(container_last_seen) for: 2m labels: severity: warning annotations: summary: \"🐳 Container monitoring is down\" description: \"cAdvisor or container metrics are not available. Check if containers are being monitored.\" - alert: ContainerRestarting expr: rate(container_start_time_seconds[5m]) \u003e 0.01 for: 2m labels: severity: warning annotations: summary: \"🐳 Container {{ $labels.name }} is restarting\" description: \"Container {{ $labels.name }} has restarted recently.\" - alert: ContainerHighCpu expr: rate(container_cpu_usage_seconds_total{name!~\".*POD.*\",name!=\"\"}[5m]) * 100 \u003e 80 for: 10m labels: severity: warning annotations: summary: \"🐳 Container {{ $labels.name }} high CPU: {{ $value | humanize }}%\" description: \"Container CPU usage above 80% for 10 minutes.\" Restart Prometheus to apply the changes: bash cd ~/docker/monitoring docker compose up -d --force-recreate prometheus Now, if any service fails or your server’s resources run low, you will get an instant notification in Discord.\nStep 3: The Critical Firewall Fix You may find your alerts are not sending. This is often due to a conflict between Docker and ufw.\nOpen the main ufw configuration file: sudo nano /etc/default/ufw Change DEFAULT_FORWARD_POLICY=\"DROP\" to DEFAULT_FORWARD_POLICY=\"ACCEPT\". Reload the firewall: sudo ufw reload Restart your containers that need internet access: docker compose restart Now, if any service fails or your server’s resources run low, you will get an instant notification in Discord.\nConclusion Our homelab has now truly come to life. It’s no longer just a collection of services but a resilient, self-maintaining platform. With automated backups to Google Drive, daily updates via Watchtower, and proactive alerts with Prometheus and Alertmanager, our server can now run 24/7 with minimal manual intervention. We’ve built a solid, reliable, and intelligent system.\nBut there’s one critical piece still missing: end-to-end security for our local services.\nRight now, we’re accessing our dashboards at addresses like http://grafana.local, which browsers flag as “Not Secure.” What if we could use a real, public domain name for our internal services and get a valid HTTPS certificate, all without opening a single port on our router?\nIn the next part of this series, I’ll show you exactly how to do that. We’ll dive into an advanced but powerful setup using Cloudflare and Nginx Proxy Manager to bring trusted, zero-exposure SSL to everything we’ve built.\nStay tuned!\n",
+  "wordCount" : "1993",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/projects/homelab-part4/homelab-part4.png","datePublished": "2025-10-30T00:00:00Z",
+  "dateModified": "2025-10-30T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Prajwol Bikram Adhikari",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Prajwol Bikram Adhikari (Alt + H)">Prajwol Bikram Adhikari</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li></li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/projects/">Projects</a></div>
+    <h1 class="post-title">
+      Part 4: Automating a Homelab with Backups, Updates, and Alerts
+    </h1>
+    <div class="post-description">
+      A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager.
+    </div>
+    <div class="post-meta">
+
+
+Oct 2025
+
+</div>
+  </header>
+    <figure class="entry-cover">
+        <img loading="lazy" 
+             src="http://localhost:1313/projects/homelab-part4/homelab-part4_hu_1966927334a0147f.webp" 
+             alt="Cover image for Part 4: Automating a Homelab with Backups, Updates, and Alerts" 
+             width="1040" 
+             height="585">
+    </figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+                <li>
+                    <a href="#chapter-1-the-automated-backup-strategy-at-3-am" aria-label="Chapter 1: The Automated Backup Strategy (at 3 AM)">Chapter 1: The Automated Backup Strategy (at 3 AM)</a><ul>
+                        
+                <li>
+                    <a href="#step-1-configure-rclone-for-google-drive" aria-label="Step 1: Configure rclone for Google Drive"><strong>Step 1: Configure <code>rclone</code> for Google Drive</strong></a></li>
+                <li>
+                    <a href="#step-2-create-the-backup-script" aria-label="Step 2: Create the Backup Script"><strong>Step 2: Create the Backup Script</strong></a></li>
+                <li>
+                    <a href="#step-3-automate-with-cron" aria-label="Step 3: Automate with Cron"><strong>Step 3: Automate with Cron</strong></a></li></ul>
+                </li>
+                <li>
+                    <a href="#chapter-2-automated-updates-with-watchtower-at-6-am" aria-label="Chapter 2: Automated Updates with Watchtower (at 6 AM)">Chapter 2: Automated Updates with Watchtower (at 6 AM)</a><ul>
+                        
+                <li>
+                    <a href="#step-1-the-docker-compose-file" aria-label="Step 1: The Docker Compose File"><strong>Step 1: The Docker Compose File</strong></a></li></ul>
+                </li>
+                <li>
+                    <a href="#chapter-3-proactive-alerting-247" aria-label="Chapter 3: Proactive Alerting (24/7)">Chapter 3: Proactive Alerting (24/7)</a><ul>
+                        
+                <li>
+                    <a href="#step-1-the-alerting-pipeline" aria-label="Step 1: The Alerting Pipeline"><strong>Step 1: The Alerting Pipeline</strong></a></li>
+                <li>
+                    <a href="#step-2-deploy-alertmanager" aria-label="Step 2: Deploy Alertmanager"><strong>Step 2: Deploy Alertmanager</strong></a></li>
+                <li>
+                    <a href="#step-3-configure-prometheus" aria-label="Step 3: Configure Prometheus"><strong>Step 3: Configure Prometheus</strong></a></li>
+                <li>
+                    <a href="#step-3-the-critical-firewall-fix" aria-label="Step 3: The Critical Firewall Fix"><strong>Step 3: The Critical Firewall Fix</strong></a></li></ul>
+                </li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h3>
+<p>Welcome to the part 4 of the homelab series! In the previous parts, we built a server, deployed a suite of services, and configured our network. Now, it&rsquo;s time to make it resilient and self-maintaining. A homelab isn&rsquo;t just about setting things up; it&rsquo;s about keeping them running reliably.</p>
+<p>This guide will show you how to set up the three pillars of modern IT operations: <strong>Automated Backups</strong>, <strong>Automated Updates</strong>, and <strong>Proactive Alerting</strong>. By the end, you&rsquo;ll have a homelab that runs itself, ensures your data is safe, stays up-to-date, and notifies you when something goes wrong.</p>
+<hr>
+<h3 id="chapter-1-the-automated-backup-strategy-at-3-am">Chapter 1: The Automated Backup Strategy (at 3 AM)<a hidden class="anchor" aria-hidden="true" href="#chapter-1-the-automated-backup-strategy-at-3-am">#</a></h3>
+<p>A solid backup strategy is non-negotiable. I implemented a robust system inspired by the &ldquo;3-2-1&rdquo; rule, focusing on redundancy and an off-site copy. My strategy involves maintaining <strong>two copies</strong> of my data in <strong>two separate locations</strong>: one local backup on the server itself for fast recovery, and one automated, off-site backup to Google Drive to protect against a local disaster like a fire or hardware failure.</p>
+<p>This script runs at 3 AM, creates a local backup, uploads it, and then notifies Discord.</p>
+<h4 id="step-1-configure-rclone-for-google-drive"><strong>Step 1: Configure <code>rclone</code> for Google Drive</strong><a hidden class="anchor" aria-hidden="true" href="#step-1-configure-rclone-for-google-drive">#</a></h4>
+<p>First, you need a tool to communicate with Google Drive. We&rsquo;ll use <code>rclone</code>.</p>
+<ol>
+<li><strong>Install <code>rclone</code></strong> on your Debian server:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -v ; curl <span style="color:#f92672">[</span>https://rclone.org/install.sh<span style="color:#f92672">](</span>https://rclone.org/install.sh<span style="color:#f92672">)</span> | sudo bash
+</span></span></code></pre></div></li>
+<li><strong>Run the interactive setup:</strong>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rclone config
+</span></span></code></pre></div></li>
+<li><strong>Follow the Prompts:</strong>
+<ul>
+<li><code>n</code> (New remote) *</li>
+<li><code>name&gt;</code>: <code>gdrive</code> (You can name it anything)</li>
+<li><code>storage&gt;</code>: Find and select <code>drive</code> (Google Drive).</li>
+<li><code>client_id&gt;</code> &amp; <code>client_secret&gt;</code>: Press Enter for both to leave blank.</li>
+<li><code>scope&gt;</code>: Choose <code>1</code> (Full access).</li>
+<li><code>Use auto config? y/n&gt;</code>: This is a <strong>critical step</strong>. Since we are on a headless server, type <code>n</code> and press Enter.</li>
+</ul>
+</li>
+<li><strong>Authorize Headless:</strong>
+<ul>
+<li><code>rclone</code> will give you a command to run on a machine <em>with a web browser</em> (like your main computer).</li>
+<li>On your main computer (where you have <code>rclone</code> installed), run the <code>rclone authorize &quot;drive&quot; &quot;...&quot;</code> command.</li>
+<li>This will open your browser, ask you to log in to Google, and grant permission. * Your main computer&rsquo;s terminal will then output a block of text (your <code>config_token</code>).</li>
+</ul>
+</li>
+<li><strong>Paste Token:</strong> Copy the token from your main computer and paste it back into your server&rsquo;s <code>rclone</code> prompt.</li>
+<li>Finish the prompts, and your connection is complete.</li>
+</ol>
+<h4 id="step-2-create-the-backup-script"><strong>Step 2: Create the Backup Script</strong><a hidden class="anchor" aria-hidden="true" href="#step-2-create-the-backup-script">#</a></h4>
+<p>Next, create a shell script to perform the backup.</p>
+<ol>
+<li>
+<p>Create the file and make it executable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nano ~/backup.sh
+</span></span><span style="display:flex;"><span>chmod +x ~/backup.sh
+</span></span></code></pre></div></li>
+<li>
+<p>Paste in the following script. <strong>You must edit the first 7 variables</strong> to match your setup.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- Configuration ---</span>
+</span></span><span style="display:flex;"><span>SOURCE_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/path/to/your/docker&#34;</span>  <span style="color:#75715e"># &lt;-- Change to your Docker projects directory</span>
+</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/path/to/your/backups&#34;</span>  <span style="color:#75715e"># &lt;-- Change to your backups folder</span>
+</span></span><span style="display:flex;"><span>FILENAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;homelab-backup-</span><span style="color:#66d9ef">$(</span>date +%Y-%m-%d<span style="color:#66d9ef">)</span><span style="color:#e6db74">.tar.gz&#34;</span>
+</span></span><span style="display:flex;"><span>LOCAL_RETENTION_DAYS<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>CLOUD_RETENTION_DAYS<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>RCLONE_REMOTE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gdrive&#34;</span>  <span style="color:#75715e"># &lt;-- Must match your rclone remote name</span>
+</span></span><span style="display:flex;"><span>RCLONE_DEST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Homelab Backups&#34;</span>  <span style="color:#75715e"># &lt;-- Folder name in Google Drive</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- &#34;https://discordapp.com/api/webhooks/141949178941/6Tx6f1yjf26LztQ&#34; ---</span>
+</span></span><span style="display:flex;"><span>DISCORD_WEBHOOK_URL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YOUR_DISCORD_WEBHOOK_URL&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- Notification Function ---</span>
+</span></span><span style="display:flex;"><span>send_notification<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    MESSAGE<span style="color:#f92672">=</span>$1
+</span></span><span style="display:flex;"><span>    curl -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -X POST -d <span style="color:#e6db74">&#34;{\&#34;content\&#34;: \&#34;</span>$MESSAGE<span style="color:#e6db74">\&#34;}&#34;</span> <span style="color:#e6db74">&#34;</span>$DISCORD_WEBHOOK_URL<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- Script Logic ---</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;--- Starting Homelab Backup: </span><span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span><span style="color:#e6db74"> ---&#34;</span>
+</span></span><span style="display:flex;"><span>send_notification <span style="color:#e6db74">&#34;✅ Starting Homelab Backup...&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Create local backup</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating local backup...&#34;</span>
+</span></span><span style="display:flex;"><span>tar -czf <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>FILENAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> -C <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SOURCE_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> .
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Local backup created at </span><span style="color:#e6db74">${</span>BACKUP_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>FILENAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Upload to Google Drive</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Uploading backup to </span><span style="color:#e6db74">${</span>RCLONE_REMOTE<span style="color:#e6db74">}</span><span style="color:#e6db74">...&#34;</span>
+</span></span><span style="display:flex;"><span>rclone copy <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>FILENAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>RCLONE_REMOTE<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span>RCLONE_DEST<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Upload complete.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Clean up local backups</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Cleaning up local backups older than </span><span style="color:#e6db74">${</span>LOCAL_RETENTION_DAYS<span style="color:#e6db74">}</span><span style="color:#e6db74"> days...&#34;</span>
+</span></span><span style="display:flex;"><span>find <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> -type f -name <span style="color:#e6db74">&#34;*.tar.gz&#34;</span> -mtime +<span style="color:#e6db74">${</span>LOCAL_RETENTION_DAYS<span style="color:#e6db74">}</span> -delete
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Local cleanup complete.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Clean up cloud backups</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Cleaning up cloud backups older than </span><span style="color:#e6db74">${</span>CLOUD_RETENTION_DAYS<span style="color:#e6db74">}</span><span style="color:#e6db74"> days...&#34;</span>
+</span></span><span style="display:flex;"><span>rclone delete <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>RCLONE_REMOTE<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span>RCLONE_DEST<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> --min-age <span style="color:#e6db74">${</span>CLOUD_RETENTION_DAYS<span style="color:#e6db74">}</span>d
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Cloud cleanup complete.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Backup process finished.&#34;</span>
+</span></span><span style="display:flex;"><span>send_notification <span style="color:#e6db74">&#34;🎉 Homelab backup and cloud upload completed successfully!&#34;</span>
+</span></span></code></pre></div></li>
+</ol>
+<h4 id="step-3-automate-with-cron"><strong>Step 3: Automate with Cron</strong><a hidden class="anchor" aria-hidden="true" href="#step-3-automate-with-cron">#</a></h4>
+<p>To run this script automatically, you must add it to the <code>root</code> user&rsquo;s crontab. This is critical for giving the script permission to read all Docker files.</p>
+<ol>
+<li>Open the root crontab editor:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo crontab -e
+</span></span></code></pre></div></li>
+<li>Add the following line to schedule the backup for 3:00 AM every morning:
+<code>   0 3 * * * /path/to/your/backup.sh</code>
+You will now get a fresh, off-site backup every night and a Discord message when it&rsquo;s done.</li>
+</ol>
+<hr>
+<h3 id="chapter-2-automated-updates-with-watchtower-at-6-am">Chapter 2: Automated Updates with Watchtower (at 6 AM)<a hidden class="anchor" aria-hidden="true" href="#chapter-2-automated-updates-with-watchtower-at-6-am">#</a></h3>
+<p>Manually updating every Docker container is tedious. We can automate this by deploying <strong>Watchtower</strong>.</p>
+<h4 id="step-1-the-docker-compose-file"><strong>Step 1: The Docker Compose File</strong><a hidden class="anchor" aria-hidden="true" href="#step-1-the-docker-compose-file">#</a></h4>
+<p>Create a <code>docker-compose.yml</code> for Watchtower. This configuration schedules it to run once a day at 6:00 AM, clean up old images, and send a Discord notification <em>only</em> if it finds an update.</p>
+<ol>
+<li>
+<p><code>mkdir -p ~/docker/watchtower</code></p>
+</li>
+<li>
+<p><code>cd ~/docker/watchtower</code></p>
+</li>
+<li>
+<p><code>nano docker-compose.yml</code></p>
+</li>
+<li>
+<p>Paste in this configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">watchtower</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">containrrr/watchtower</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">watchtower</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>	    <span style="color:#75715e"># Timezone setting</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#f92672">TZ</span>: <span style="color:#ae81ff">America/Chicago</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#75715e"># Discord notification settings</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#f92672">WATCHTOWER_NOTIFICATIONS</span>: <span style="color:#ae81ff">shoutrrr</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#f92672">WATCHTOWER_NOTIFICATION_URL</span>: <span style="color:#e6db74">&#34;discord://YOUR_DISCORD_WEBHOOK_ID_URL&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    # Notification settings
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    WATCHTOWER_NOTIFICATIONS_LEVEL: info
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    WATCHTOWER_NOTIFICATION_REPORT: &#34;</span><span style="color:#66d9ef">true</span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    WATCHTOWER_NOTIFICATIONS_HOSTNAME: Homelab-Laptop
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    # Update settings
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    WATCHTOWER_CLEANUP: &#34;</span><span style="color:#66d9ef">true</span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    WATCHTOWER_INCLUDE_STOPPED: &#34;</span><span style="color:#66d9ef">false</span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    WATCHTOWER_INCLUDE_RESTARTING: &#34;</span><span style="color:#66d9ef">true</span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">	    WATCHTOWER_SCHEDULE: &#34;</span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">6</span> * * <span style="color:#75715e">*&#34;</span>
+</span></span></code></pre></div><p><em>Note: The <code>WATCHTOWER_NOTIFICATION_URL</code> uses a special <code>shoutrrr</code> format for Discord, which looks like <code>discord://token@webhook-id</code>.</em></p>
+</li>
+</ol>
+<p>Now, every morning at 6:00 AM, Watchtower will scan all running containers and update any that have a new image available.</p>
+<hr>
+<h3 id="chapter-3-proactive-alerting-247">Chapter 3: Proactive Alerting (24/7)<a hidden class="anchor" aria-hidden="true" href="#chapter-3-proactive-alerting-247">#</a></h3>
+<p>The final piece of automation is proactive alerting. This setup ensures you are immediately notified via Discord if something goes wrong.</p>
+<h4 id="step-1-the-alerting-pipeline"><strong>Step 1: The Alerting Pipeline</strong><a hidden class="anchor" aria-hidden="true" href="#step-1-the-alerting-pipeline">#</a></h4>
+<p>The pipeline we&rsquo;ll build is: <strong>Prometheus</strong> (detects problems) -&gt; <strong>Alertmanager</strong> (groups and routes alerts) -&gt; <strong>Discord</strong> (notifies you).</p>
+<h4 id="step-2-deploy-alertmanager"><strong>Step 2: Deploy Alertmanager</strong><a hidden class="anchor" aria-hidden="true" href="#step-2-deploy-alertmanager">#</a></h4>
+<p>First, deploy Alertmanager. It must be on the same <code>npm_default</code> network as Prometheus.</p>
+<ol>
+<li>
+<p><code>mkdir -p ~/docker/alertmanager</code></p>
+</li>
+<li>
+<p><code>cd ~/docker/alertmanager</code></p>
+</li>
+<li>
+<p>Create the <code>alertmanager.yml</code> configuration file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nano alertmanager.yml
+</span></span></code></pre></div></li>
+<li>
+<p>Paste in this configuration. It uses advanced routing to send <code>critical</code> alerts every 2 hours and <code>warning</code> alerts every 12 hours.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resolve_timeout</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">route</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">group_by</span>: [<span style="color:#e6db74">&#34;alertname&#34;</span>, <span style="color:#e6db74">&#34;severity&#34;</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">group_wait</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">group_interval</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">repeat_interbal</span>: <span style="color:#ae81ff">12h</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">receiver</span>: <span style="color:#e6db74">&#34;discord-notifications&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">routes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">receiver</span>: <span style="color:#e6db74">&#34;discord-notifications&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">matchers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">severity=&#34;critical&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repeat_interval</span>: <span style="color:#ae81ff">2h</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">receiver</span>: <span style="color:#e6db74">&#34;discord-notifications&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">matchers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">severity=&#34;warning&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repeat_interval</span>: <span style="color:#ae81ff">12h</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">receivers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;discord-notifications&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">discord_configs</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">webhook_url</span>: <span style="color:#e6db74">&#34;YOUR_DISCORD_WEBHOOK_URL&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">send_resolved</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Now create the <code>docker-compose.yml</code> for Alertmanager:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nano docker-compose.yml
+</span></span></code></pre></div></li>
+<li>
+<p>Paste in the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">alertmanager</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">prom/alertmanager:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">alertmanager</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./alertmanager.yml:/etc/alertmanager/alertmanager.yml</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">npm_default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">npm_default</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Launch it: <code>docker compose up -d</code></p>
+</li>
+</ol>
+<h4 id="step-3-configure-prometheus"><strong>Step 3: Configure Prometheus</strong><a hidden class="anchor" aria-hidden="true" href="#step-3-configure-prometheus">#</a></h4>
+<p>Finally, tell Prometheus to send alerts to Alertmanager and load your rules.</p>
+<ol>
+<li>
+<p>Create your rules file, <code>~/docker/monitoring/alert_rules.yml</code>, with rules for &ldquo;Instance Down,&rdquo; &ldquo;High CPU,&rdquo; &ldquo;Low Disk Space,&rdquo; etc.</p>
+</li>
+<li>
+<p>Add the <code>alert_rules.yml</code> as a volume in your <code>~/docker/monitoring/docker-compose.yml</code>.</p>
+</li>
+<li>
+<p>Add the <code>alerting</code> and <code>rule_files</code> blocks to your <code>~/docker/monitoring/prometheus.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>    <span style="color:#f92672">groups</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-name</span>: <span style="color:#ae81ff">Critical System Alerts</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rules</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">InstanceDown</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">up == 0</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">critical</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🔴 Instance {{ $labels.instance }} is DOWN&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Service {{ $labels.job }} has been unreachable for 2 minutes.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">LaptopOnBattery</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">node_power_supply_online == 0</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">for</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">critical</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🔋 Server running on BATTERY&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Homelab has been unplugged for 5 minutes. Check power connection!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">LowBatteryLevel</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">node_power_supply_capacity &lt; 20 and node_power_supply_online == 0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">critical</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;⚠️ CRITICAL: Battery at {{ $value }}%&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Battery below 20%. Server may shut down soon!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">DiskAlmostFull</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">(node_filesystem_avail_bytes{mountpoint=&#34;/&#34;,fstype!=&#34;tmpfs&#34;} / node_filesystem_size_bytes{mountpoint=&#34;/&#34;,fstype!=&#34;tmpfs&#34;}) * 100 &lt; 10</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">critical</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;💾 Disk space critically low: {{ $value | humanize }}% remaining&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Root filesystem has less than 10% free space.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">OutOfMemory</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">(node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 &lt; 5</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">critical</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🧠 Memory critically low: {{ $value | humanize }}% available&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Less than 5% memory available. System may become unresponsive.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">CriticalCpuTemperature</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">node_hwmon_temp_celsius{chip=&#34;coretemp&#34;} &gt; 95</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">critical</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🔥 CRITICAL CPU Temperature: {{ $value }}°C&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;CPU temperature exceeds 95°C. Thermal throttling or shutdown imminent!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Warning System Alerts</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">interval</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">rules</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighCpuUsage</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">100</span> - <span style="color:#ae81ff">(avg by (instance) (rate(node_cpu_seconds_total{mode=&#34;idle&#34;}[5m])) * 100) &gt; 80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;⚡ High CPU usage: {{ $value | humanize }}%&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;CPU usage above 80% for 5 minutes on {{ $labels.instance }}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighSystemLoad</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">node_load5 / on(instance) count(node_cpu_seconds_total{mode=&#34;idle&#34;}) by (instance) &gt; 1.5</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;📊 High system load: {{ $value | humanize }}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;5-minute load average is 1.5x CPU cores for 10 minutes.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighMemoryUsage</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">(node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 &lt; 20</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🧠 High memory usage: {{ $value | humanize }}% available&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Less than 20% memory available.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighCpuTemperature</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">node_hwmon_temp_celsius{chip=&#34;coretemp&#34;} &gt; 85</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🌡️ High CPU temperature: {{ $value }}°C&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;CPU temperature above 85°C. Consider improving cooling.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighNvmeTemperature</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">node_hwmon_temp_celsius{chip=&#34;nvme&#34;} &gt; 65</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;💿 High NVMe temperature: {{ $value }}°C&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;NVMe drive temperature above 65°C for 10 minutes.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">DiskSpaceLow</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">(node_filesystem_avail_bytes{mountpoint=&#34;/&#34;,fstype!=&#34;tmpfs&#34;} / node_filesystem_size_bytes{mountpoint=&#34;/&#34;,fstype!=&#34;tmpfs&#34;}) * 100 &lt; 20</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;💾 Disk space low: {{ $value | humanize }}% remaining&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Root filesystem has less than 20% free space.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighSwapUsage</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes * 100) &gt; 50</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;💱 High swap usage: {{ $value | humanize }}%&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Swap usage above 50%. System may be memory-constrained.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Monitor your USB-C hub ethernet adapter (enx00)</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">EthernetInterfaceDown</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">node_network_up{device=&#34;enx00&#34;} == 0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🌐 USB-C Ethernet adapter is DISCONNECTED&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Your USB-C hub ethernet connection (enx00) is down. Check cable or hub.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">HighNetworkErrors</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">rate(node_network_receive_errs_total{device=&#34;enx00&#34;}[5m]) &gt; 10 or rate(node_network_transmit_errs_total{device=&#34;enx00&#34;}[5m]) &gt; 10</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🌐 High network errors on USB-C ethernet&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Your ethernet adapter is experiencing high error rate. Check cable quality.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Docker Container Alerts</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">interval</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">rules</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Simplified alert - just checks if container exporter is working</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">ContainerMonitoringDown</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">absent(container_last_seen)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🐳 Container monitoring is down&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;cAdvisor or container metrics are not available. Check if containers are being monitored.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">ContainerRestarting</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">rate(container_start_time_seconds[5m]) &gt; 0.01</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">2m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🐳 Container {{ $labels.name }} is restarting&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Container {{ $labels.name }} has restarted recently.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">alert</span>: <span style="color:#ae81ff">ContainerHighCpu</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expr</span>: <span style="color:#ae81ff">rate(container_cpu_usage_seconds_total{name!~&#34;.*POD.*&#34;,name!=&#34;&#34;}[5m]) * 100 &gt; 80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">for</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;🐳 Container {{ $labels.name }} high CPU: {{ $value | humanize }}%&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Container CPU usage above 80% for 10 minutes.&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Restart Prometheus to apply the changes:
+<code>bash cd ~/docker/monitoring docker compose up -d --force-recreate prometheus </code>
+Now, if any service fails or your server&rsquo;s resources run low, you will get an instant notification in Discord.</p>
+</li>
+</ol>
+<h4 id="step-3-the-critical-firewall-fix"><strong>Step 3: The Critical Firewall Fix</strong><a hidden class="anchor" aria-hidden="true" href="#step-3-the-critical-firewall-fix">#</a></h4>
+<p>You may find your alerts are not sending. This is often due to a conflict between Docker and <code>ufw</code>.</p>
+<ol>
+<li>Open the main <code>ufw</code> configuration file:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/default/ufw
+</span></span></code></pre></div><ol start="2">
+<li>Change <code>DEFAULT_FORWARD_POLICY=&quot;DROP&quot;</code> to <code>DEFAULT_FORWARD_POLICY=&quot;ACCEPT&quot;</code>.</li>
+<li>Reload the firewall:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw reload
+</span></span></code></pre></div><ol start="4">
+<li>Restart your containers that need internet access:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  docker compose restart 
+</span></span></code></pre></div><p>Now, if any service fails or your server&rsquo;s resources run low, you will get an instant notification in Discord.</p>
+<hr>
+<h3 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
+<p>Our homelab has now truly come to life. It&rsquo;s no longer just a collection of services but a resilient, self-maintaining platform. With automated backups to Google Drive, daily updates via Watchtower, and proactive alerts with Prometheus and Alertmanager, our server can now run 24/7 with minimal manual intervention. We&rsquo;ve built a solid, reliable, and intelligent system.</p>
+<p>But there&rsquo;s one critical piece still missing: end-to-end security for our local services.</p>
+<p>Right now, we&rsquo;re accessing our dashboards at addresses like <code>http://grafana.local</code>, which browsers flag as &ldquo;Not Secure.&rdquo; What if we could use a real, public domain name for our <em>internal</em> services and get a valid HTTPS certificate, all without opening a single port on our router?</p>
+<p>In the next part of this series, I&rsquo;ll show you exactly how to do that. We&rsquo;ll dive into an advanced but powerful setup using Cloudflare and Nginx Proxy Manager to bring trusted, zero-exposure SSL to everything we&rsquo;ve built.</p>
+<p>Stay tuned!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/homelab/">Homelab</a></li>
+      <li><a href="http://localhost:1313/tags/automation/">Automation</a></li>
+      <li><a href="http://localhost:1313/tags/devops/">DevOps</a></li>
+      <li><a href="http://localhost:1313/tags/backups/">Backups</a></li>
+      <li><a href="http://localhost:1313/tags/rclone/">Rclone</a></li>
+      <li><a href="http://localhost:1313/tags/cron/">Cron</a></li>
+      <li><a href="http://localhost:1313/tags/google-drive/">Google Drive</a></li>
+      <li><a href="http://localhost:1313/tags/watchtower/">Watchtower</a></li>
+      <li><a href="http://localhost:1313/tags/prometheus/">Prometheus</a></li>
+      <li><a href="http://localhost:1313/tags/alertmanager/">Alertmanager</a></li>
+      <li><a href="http://localhost:1313/tags/discord/">Discord</a></li>
+      <li><a href="http://localhost:1313/tags/docker/">Docker</a></li>
+      <li><a href="http://localhost:1313/tags/self-hosting/">Self-Hosting</a></li>
+      <li><a href="http://localhost:1313/tags/opensource/">Opensource</a></li>
+    </ul>
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 4: Automating a Homelab with Backups, Updates, and Alerts on twitter"
+        href="https://twitter.com/intent/tweet/?text=Part%204%3a%20Automating%20a%20Homelab%20with%20Backups%2c%20Updates%2c%20and%20Alerts&amp;url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-4-automation-and-alerting%2f&amp;hashtags=Homelab%2cAutomation%2cDevOps%2cBackups%2crclone%2cCron%2cGoogleDrive%2cWatchtower%2cPrometheus%2cAlertmanager%2cDiscord%2cDocker%2cSelf-Hosting%2cOpensource">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 4: Automating a Homelab with Backups, Updates, and Alerts on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-4-automation-and-alerting%2f&amp;title=Part%204%3a%20Automating%20a%20Homelab%20with%20Backups%2c%20Updates%2c%20and%20Alerts&amp;summary=Part%204%3a%20Automating%20a%20Homelab%20with%20Backups%2c%20Updates%2c%20and%20Alerts&amp;source=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-4-automation-and-alerting%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 4: Automating a Homelab with Backups, Updates, and Alerts on reddit"
+        href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-4-automation-and-alerting%2f&title=Part%204%3a%20Automating%20a%20Homelab%20with%20Backups%2c%20Updates%2c%20and%20Alerts">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 4: Automating a Homelab with Backups, Updates, and Alerts on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-4-automation-and-alerting%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 4: Automating a Homelab with Backups, Updates, and Alerts on whatsapp"
+        href="https://api.whatsapp.com/send?text=Part%204%3a%20Automating%20a%20Homelab%20with%20Backups%2c%20Updates%2c%20and%20Alerts%20-%20http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-4-automation-and-alerting%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Part 4: Automating a Homelab with Backups, Updates, and Alerts on telegram"
+        href="https://telegram.me/share/url?text=Part%204%3a%20Automating%20a%20Homelab%20with%20Backups%2c%20Updates%2c%20and%20Alerts&amp;url=http%3a%2f%2flocalhost%3a1313%2fprojects%2fhomelab-series-part-4-automation-and-alerting%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="http://localhost:1313/">Prajwol Bikram Adhikari</a> · <a href="/privacy-policy/">Privacy Policy</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

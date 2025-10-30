@@ -6,7 +6,16 @@
     <description>Recent content in Self-Hosting on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 4: Automating a Homelab with Backups, Updates, and Alerts</title>
+      <link>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</link>
+      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</guid>
+      <description>A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager.</description>
+    </item>
+    
     <item>
       <title>Part 3: A High-Availability DNS Network with AdGuard Home</title>
       <link>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</link>
