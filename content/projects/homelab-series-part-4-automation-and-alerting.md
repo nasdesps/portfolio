@@ -470,7 +470,7 @@ sudo ufw reload
 4. Restart your containers that need internet access:
 
 ```bash
-	docker compose restart
+docker compose restart
 ```
 
 Now, if any service fails or your server's resources run low, you will get an instant notification in Discord.
