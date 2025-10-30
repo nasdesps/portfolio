@@ -134,8 +134,7 @@ To run this script automatically, you must add it to the `root` user's crontab. 
     sudo crontab -e
     ```
 2.  Add the following line to schedule the backup for 3:00 AM every morning:
-    `    0 3 * * * /path/to/your/backup.sh
-   `
+    `   0 3 * * * /path/to/your/backup.sh`
     You will now get a fresh, off-site backup every night and a Discord message when it's done.
 
 ---
@@ -268,20 +267,20 @@ Finally, tell Prometheus to send alerts to Alertmanager and load your rules.
 3.  Add the `alerting` and `rule_files` blocks to your `~/docker/monitoring/prometheus.yml`:
 
     ```yaml
-        groups:
-        -name: Critical System Alerts
-        interval: 30s
-        rules:
-          - alert: InstanceDown
-          expr: up == 0
-          for: 2m
-          labels:
-            severity: critical
-          annotations:
-            summary: "🔴 Instance {{ $labels.instance }} is DOWN"
-            description: "Service {{ $labels.job }} has been unreachable for 2 minutes."
+    groups:
+      -name: Critical System Alerts
+      interval: 30s
+      rules:
+        - alert: InstanceDown
+        expr: up == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "🔴 Instance {{ $labels.instance }} is DOWN"
+          description: "Service {{ $labels.job }} has been unreachable for 2 minutes."
 
-          - alert: LaptopOnBattery
+        - alert: LaptopOnBattery
           expr: node_power_supply_online == 0
           for: 5m
           labels:
@@ -290,166 +289,165 @@ Finally, tell Prometheus to send alerts to Alertmanager and load your rules.
             summary: "🔋 Server running on BATTERY"
             description: "Homelab has been unplugged for 5 minutes. Check power connection!"
 
-      - alert: LowBatteryLevel
-        expr: node_power_supply_capacity < 20 and node_power_supply_online == 0
-        for: 1m
-        labels:
-          severity: critical
-        annotations:
-          summary: "⚠️ CRITICAL: Battery at {{ $value }}%"
-          description: "Battery below 20%. Server may shut down soon!"
+        - alert: LowBatteryLevel
+          expr: node_power_supply_capacity < 20 and node_power_supply_online == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "⚠️ CRITICAL: Battery at {{ $value }}%"
+            description: "Battery below 20%. Server may shut down soon!"
 
-      - alert: DiskAlmostFull
-        expr: (node_filesystem_avail_bytes{mountpoint="/",fstype!="tmpfs"} / node_filesystem_size_bytes{mountpoint="/",fstype!="tmpfs"}) * 100 < 10
-        for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "💾 Disk space critically low: {{ $value | humanize }}% remaining"
-          description: "Root filesystem has less than 10% free space."
+        - alert: DiskAlmostFull
+          expr: (node_filesystem_avail_bytes{mountpoint="/",fstype!="tmpfs"} / node_filesystem_size_bytes{mountpoint="/",fstype!="tmpfs"}) * 100 < 10
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "💾 Disk space critically low: {{ $value | humanize }}% remaining"
+            description: "Root filesystem has less than 10% free space."
 
-      - alert: OutOfMemory
-        expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 5
-        for: 2m
-        labels:
-          severity: critical
-        annotations:
-          summary: "🧠 Memory critically low: {{ $value | humanize }}% available"
-          description: "Less than 5% memory available. System may become unresponsive."
+        - alert: OutOfMemory
+          expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 5
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "🧠 Memory critically low: {{ $value | humanize }}% available"
+            description: "Less than 5% memory available. System may become unresponsive."
+
+        - alert: CriticalCpuTemperature
+          expr: node_hwmon_temp_celsius{chip="coretemp"} > 95
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "🔥 CRITICAL CPU Temperature: {{ $value }}°C"
+            description: "CPU temperature exceeds 95°C. Thermal throttling or shutdown imminent!"
+
+      - name: Warning System Alerts
+      interval: 1m
+      rules:
+        - alert: HighCpuUsage
+          expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "⚡ High CPU usage: {{ $value | humanize }}%"
+            description: "CPU usage above 80% for 5 minutes on {{ $labels.instance }}"
+
+        - alert: HighSystemLoad
+          expr: node_load5 / on(instance) count(node_cpu_seconds_total{mode="idle"}) by (instance) > 1.5
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "📊 High system load: {{ $value | humanize }}"
+            description: "5-minute load average is 1.5x CPU cores for 10 minutes."
+
+        - alert: HighMemoryUsage
+          expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 20
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "🧠 High memory usage: {{ $value | humanize }}% available"
+            description: "Less than 20% memory available."
+
+        - alert: HighCpuTemperature
+          expr: node_hwmon_temp_celsius{chip="coretemp"} > 85
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "🌡️ High CPU temperature: {{ $value }}°C"
+            description: "CPU temperature above 85°C. Consider improving cooling."
 
 
-      - alert: CriticalCpuTemperature
-        expr: node_hwmon_temp_celsius{chip="coretemp"} > 95
-        for: 2m
-        labels:
-          severity: critical
-        annotations:
-          summary: "🔥 CRITICAL CPU Temperature: {{ $value }}°C"
-          description: "CPU temperature exceeds 95°C. Thermal throttling or shutdown imminent!"
+        - alert: HighNvmeTemperature
+          expr: node_hwmon_temp_celsius{chip="nvme"} > 65
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "💿 High NVMe temperature: {{ $value }}°C"
+            description: "NVMe drive temperature above 65°C for 10 minutes."
 
-    - name: Warning System Alerts
-    interval: 1m
-    rules:
-      - alert: HighCpuUsage
-        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
-        for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "⚡ High CPU usage: {{ $value | humanize }}%"
-          description: "CPU usage above 80% for 5 minutes on {{ $labels.instance }}"
+        - alert: DiskSpaceLow
+          expr: (node_filesystem_avail_bytes{mountpoint="/",fstype!="tmpfs"} / node_filesystem_size_bytes{mountpoint="/",fstype!="tmpfs"}) * 100 < 20
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "💾 Disk space low: {{ $value | humanize }}% remaining"
+            description: "Root filesystem has less than 20% free space."
 
-      - alert: HighSystemLoad
-        expr: node_load5 / on(instance) count(node_cpu_seconds_total{mode="idle"}) by (instance) > 1.5
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "📊 High system load: {{ $value | humanize }}"
-          description: "5-minute load average is 1.5x CPU cores for 10 minutes."
+        - alert: HighSwapUsage
+          expr: ((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes * 100) > 50
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "💱 High swap usage: {{ $value | humanize }}%"
+            description: "Swap usage above 50%. System may be memory-constrained."
 
-      - alert: HighMemoryUsage
-        expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 20
-        for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "🧠 High memory usage: {{ $value | humanize }}% available"
-          description: "Less than 20% memory available."
+        # Monitor your USB-C hub ethernet adapter (enx00)
+        - alert: EthernetInterfaceDown
+          expr: node_network_up{device="enx00"} == 0
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "🌐 USB-C Ethernet adapter is DISCONNECTED"
+            description: "Your USB-C hub ethernet connection (enx00) is down. Check cable or hub."
 
-      - alert: HighCpuTemperature
-        expr: node_hwmon_temp_celsius{chip="coretemp"} > 85
-        for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "🌡️ High CPU temperature: {{ $value }}°C"
-          description: "CPU temperature above 85°C. Consider improving cooling."
+        - alert: HighNetworkErrors
+          expr: rate(node_network_receive_errs_total{device="enx00"}[5m]) > 10 or rate(node_network_transmit_errs_total{device="enx00"}[5m]) > 10
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "🌐 High network errors on USB-C ethernet"
+            description: "Your ethernet adapter is experiencing high error rate. Check cable quality."
 
+      - name: Docker Container Alerts
+      interval: 1m
+      rules:
+        # Simplified alert - just checks if container exporter is working
+        - alert: ContainerMonitoringDown
+          expr: absent(container_last_seen)
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "🐳 Container monitoring is down"
+            description: "cAdvisor or container metrics are not available. Check if containers are being monitored."
 
-      - alert: HighNvmeTemperature
-        expr: node_hwmon_temp_celsius{chip="nvme"} > 65
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "💿 High NVMe temperature: {{ $value }}°C"
-          description: "NVMe drive temperature above 65°C for 10 minutes."
+        - alert: ContainerRestarting
+          expr: rate(container_start_time_seconds[5m]) > 0.01
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "🐳 Container {{ $labels.name }} is restarting"
+            description: "Container {{ $labels.name }} has restarted recently."
 
-      - alert: DiskSpaceLow
-        expr: (node_filesystem_avail_bytes{mountpoint="/",fstype!="tmpfs"} / node_filesystem_size_bytes{mountpoint="/",fstype!="tmpfs"}) * 100 < 20
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "💾 Disk space low: {{ $value | humanize }}% remaining"
-          description: "Root filesystem has less than 20% free space."
-
-      - alert: HighSwapUsage
-        expr: ((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes * 100) > 50
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "💱 High swap usage: {{ $value | humanize }}%"
-          description: "Swap usage above 50%. System may be memory-constrained."
-
-      # Monitor your USB-C hub ethernet adapter (enx00)
-      - alert: EthernetInterfaceDown
-        expr: node_network_up{device="enx00"} == 0
-        for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "🌐 USB-C Ethernet adapter is DISCONNECTED"
-          description: "Your USB-C hub ethernet connection (enx00) is down. Check cable or hub."
-
-      - alert: HighNetworkErrors
-        expr: rate(node_network_receive_errs_total{device="enx00"}[5m]) > 10 or rate(node_network_transmit_errs_total{device="enx00"}[5m]) > 10
-        for: 5m
-        labels:
-          severity: warning
-        annotations:
-          summary: "🌐 High network errors on USB-C ethernet"
-          description: "Your ethernet adapter is experiencing high error rate. Check cable quality."
-
-    - name: Docker Container Alerts
-    interval: 1m
-    rules:
-      # Simplified alert - just checks if container exporter is working
-      - alert: ContainerMonitoringDown
-        expr: absent(container_last_seen)
-        for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "🐳 Container monitoring is down"
-          description: "cAdvisor or container metrics are not available. Check if containers are being monitored."
-
-      - alert: ContainerRestarting
-        expr: rate(container_start_time_seconds[5m]) > 0.01
-        for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "🐳 Container {{ $labels.name }} is restarting"
-          description: "Container {{ $labels.name }} has restarted recently."
-
-      - alert: ContainerHighCpu
-        expr: rate(container_cpu_usage_seconds_total{name!~".*POD.*",name!=""}[5m]) * 100 > 80
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "🐳 Container {{ $labels.name }} high CPU: {{ $value | humanize }}%"
-          description: "Container CPU usage above 80% for 10 minutes."
+        - alert: ContainerHighCpu
+          expr: rate(container_cpu_usage_seconds_total{name!~".*POD.*",name!=""}[5m]) * 100 > 80
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "🐳 Container {{ $labels.name }} high CPU: {{ $value | humanize }}%"
+            description: "Container CPU usage above 80% for 10 minutes."
     ```
 
 4.  Restart Prometheus to apply the changes:
     `bash
-    cd ~/docker/monitoring
-    docker compose up -d --force-recreate prometheus
-    `
+cd ~/docker/monitoring
+docker compose up -d --force-recreate prometheus
+`
     Now, if any service fails or your server's resources run low, you will get an instant notification in Discord.
 
 #### **Step 3: The Critical Firewall Fix**
@@ -457,19 +455,25 @@ Finally, tell Prometheus to send alerts to Alertmanager and load your rules.
 You may find your alerts are not sending. This is often due to a conflict between Docker and `ufw`.
 
 1. Open the main `ufw` configuration file:
-  ```bash
-  sudo nano /etc/default/ufw
-  ```
+
+```bash
+sudo nano /etc/default/ufw
+```
+
 2. Change `DEFAULT_FORWARD_POLICY="DROP"` to `DEFAULT_FORWARD_POLICY="ACCEPT"`.
 3. Reload the firewall:
-  ```bash
-  sudo ufw reload
-  ```
+
+```bash
+sudo ufw reload
+```
+
 4. Restart your containers that need internet access:
-  ```bash 
-	docker compose restart 
-  ```
-  Now, if any service fails or your server's resources run low, you will get an instant notification in Discord.
+
+```bash
+	docker compose restart
+```
+
+Now, if any service fails or your server's resources run low, you will get an instant notification in Discord.
 
 ---
 
