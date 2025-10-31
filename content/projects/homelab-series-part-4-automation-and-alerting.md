@@ -467,22 +467,22 @@ You may find your alerts are not sending. This is often due to a conflict betwee
 
 1. Open the main `ufw` configuration file:
 
-```bash
-sudo nano /etc/default/ufw
-```
+    ```bash
+    sudo nano /etc/default/ufw
+    ```
 
 2. Change `DEFAULT_FORWARD_POLICY="DROP"` to `DEFAULT_FORWARD_POLICY="ACCEPT"`.
 3. Reload the firewall:
 
-```bash
-sudo ufw reload
-```
+    ```bash
+    sudo ufw reload
+    ```
 
 4. Restart your containers that need internet access:
 
-```bash
-docker compose restart
-```
+    ```bash
+    docker compose restart
+    ```
 
 Now, if any service fails or your server's resources run low, you will get an instant notification in Discord.
 
