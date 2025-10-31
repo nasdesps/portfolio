@@ -61,7 +61,8 @@ First, you need a tool to communicate with Google Drive. We'll use `rclone`.
 4.  **Authorize Headless:**
     - `rclone` will give you a command to run on a machine _with a web browser_ (like your main computer).
     - On your main computer (where you have `rclone` installed), run the `rclone authorize "drive" "..."` command.
-    - This will open your browser, ask you to log in to Google, and grant permission. \* Your main computer's terminal will then output a block of text (your `config_token`).
+    - This will open your browser, ask you to log in to Google, and grant permission.
+    - Your main computer's terminal will then output a block of text (your `config_token`).
 5.  **Paste Token:** Copy the token from your main computer and paste it back into your server's `rclone` prompt.
 6.  Finish the prompts, and your connection is complete.
 
