@@ -136,7 +136,7 @@ To run this script automatically, you must add it to the `root` user's crontab. 
     ```
 2.  Add the following line to schedule the backup for 3:00 AM every morning:
     `   0 3 * * * /path/to/your/backup.sh`
-    You will now get a fresh, off-site backup every night and a Discord message when it's done.
+    You will now get a fresh, onsite and off-site backup every night and a Discord message when it's done.
 
 ---
 
@@ -264,7 +264,17 @@ First, deploy Alertmanager. It must be on the same `npm_default` network as Prom
 Finally, tell Prometheus to send alerts to Alertmanager and load your rules.
 
 1.  Create your rules file, `~/docker/monitoring/alert_rules.yml`, with rules for "Instance Down," "High CPU," "Low Disk Space," etc.
+```bash
+cd ~/docker/monitoring
+nano alert_rules.yml
+```
 2.  Add the `alert_rules.yml` as a volume in your `~/docker/monitoring/docker-compose.yml`.
+```yaml
+volumes:
+  - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+  - prometheus_data:/prometheus
+```
 3.  Add the `alerting` and `rule_files` blocks to your `~/docker/monitoring/prometheus.yml`:
 
     ```yaml
@@ -445,10 +455,10 @@ Finally, tell Prometheus to send alerts to Alertmanager and load your rules.
     ```
 
 4.  Restart Prometheus to apply the changes:
-    `bash
-cd ~/docker/monitoring
-docker compose up -d --force-recreate prometheus
-`
+    ```bash
+    cd ~/docker/monitoring
+    docker compose up -d --force-recreate prometheus
+    ```
     Now, if any service fails or your server's resources run low, you will get an instant notification in Discord.
 
 #### **Step 3: The Critical Firewall Fix**
