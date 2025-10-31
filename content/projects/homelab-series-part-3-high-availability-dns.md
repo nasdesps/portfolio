@@ -155,7 +155,7 @@ For maximum security, I locked down the administrative ports to only my home IP 
 2. **Run Install Script:** I chose to install AdGuard Home directly on the OS for this instance.
     
     ```bash
-    curl -s -S -L [https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh](https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh) | sh -s -- -v
+    curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
     ```
     
 1. **Get a Hostname:** I went to **No-IP.com**, created a free hostname (e.g., `my-cloud-dns.ddns.net`), and pointed it to my cloud VM's public IP.

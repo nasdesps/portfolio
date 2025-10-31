@@ -115,7 +115,7 @@ Now, let's connect to our server and install the magic software.
     ```
 2.  **Install AdGuard Home:** Run this one simple command. It downloads and installs everything for you.
     ```bash
-    curl -s -S -L [https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh](https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh) | sh -s -- -v
+    curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
     ```
 3.  **Run the Setup Wizard:** The script will give you a link, like `http://YOUR_ELASTIC_IP:3000`. Open this in your browser. Follow the on-screen steps to create your admin username and password.
 
