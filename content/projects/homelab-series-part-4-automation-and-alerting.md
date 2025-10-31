@@ -264,17 +264,17 @@ First, deploy Alertmanager. It must be on the same `npm_default` network as Prom
 Finally, tell Prometheus to send alerts to Alertmanager and load your rules.
 
 1.  Create your rules file, `~/docker/monitoring/alert_rules.yml`, with rules for "Instance Down," "High CPU," "Low Disk Space," etc.
-```bash
-cd ~/docker/monitoring
-nano alert_rules.yml
-```
+    ```bash
+    cd ~/docker/monitoring
+    nano alert_rules.yml
+    ```
 2.  Add the `alert_rules.yml` as a volume in your `~/docker/monitoring/docker-compose.yml`.
-```yaml
-volumes:
-  - ./prometheus.yml:/etc/prometheus/prometheus.yml
-  - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
-  - prometheus_data:/prometheus
-```
+    ```yaml
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+    - prometheus_data:/prometheus
+    ```
 3.  Add the `alerting` and `rule_files` blocks to your `~/docker/monitoring/prometheus.yml`:
 
     ```yaml
