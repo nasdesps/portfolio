@@ -1,5 +1,5 @@
 ---
-title: "How I Built My Own Ad-Blocking DNS Server in the Cloud (2025 Updated Edition!)"
+title: "How I Built My Own Ad-Blocking DNS Server in the Cloud (Updated AWS Edition!)"
 date: 2025-08-25
 dateString: Aug 2025
 description: "Enjoy a faster, ad-free internet everywhere. This 2025 guide details how to build a free, private DNS server with AdGuard Home on an AWS EC2 instance, complete with SSL encryption and automated renewal."
