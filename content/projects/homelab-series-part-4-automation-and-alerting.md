@@ -45,7 +45,7 @@ First, you need a tool to communicate with Google Drive. We'll use `rclone`.
 
 1.  **Install `rclone`** on your Debian server:
     ```bash
-    sudo -v ; curl [https://rclone.org/install.sh](https://rclone.org/install.sh) | sudo bash
+    sudo -v ; curl https://rclone.org/install.sh | sudo bash
     ```
 2.  **Run the interactive setup:**
     ```bash
