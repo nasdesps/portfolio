@@ -2,7 +2,7 @@
 title: "Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust"
 date: 2025-11-07
 dateString: Nov 2025
-description: ""
+description: "Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports."
 draft: false
 tags:
   - Homelab
