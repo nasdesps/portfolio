@@ -6,7 +6,106 @@
     <description>Recent content in Tags on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.Np</title>
+      <link>http://localhost:1313/tags/.np/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/.np/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloudflare</title>
+      <link>http://localhost:1313/tags/cloudflare/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cloudflare/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://localhost:1313/tags/docker/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Homelab</title>
+      <link>http://localhost:1313/tags/homelab/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/homelab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTTPS</title>
+      <link>http://localhost:1313/tags/https/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/https/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx Proxy Manager</title>
+      <link>http://localhost:1313/tags/nginx-proxy-manager/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/nginx-proxy-manager/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>http://localhost:1313/tags/security/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Self-Hosting</title>
+      <link>http://localhost:1313/tags/self-hosting/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/self-hosting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSL</title>
+      <link>http://localhost:1313/tags/ssl/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tunnels</title>
+      <link>http://localhost:1313/tags/tunnels/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/tunnels/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Zero Trust</title>
+      <link>http://localhost:1313/tags/zero-trust/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/zero-trust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Alertmanager</title>
       <link>http://localhost:1313/tags/alertmanager/</link>
@@ -62,29 +161,11 @@
     </item>
     
     <item>
-      <title>Docker</title>
-      <link>http://localhost:1313/tags/docker/</link>
-      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Google Drive</title>
       <link>http://localhost:1313/tags/google-drive/</link>
       <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/google-drive/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Homelab</title>
-      <link>http://localhost:1313/tags/homelab/</link>
-      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/homelab/</guid>
       <description></description>
     </item>
     
@@ -112,15 +193,6 @@
       <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/rclone/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Self-Hosting</title>
-      <link>http://localhost:1313/tags/self-hosting/</link>
-      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/self-hosting/</guid>
       <description></description>
     </item>
     
@@ -296,15 +368,6 @@
     </item>
     
     <item>
-      <title>Nginx Proxy Manager</title>
-      <link>http://localhost:1313/tags/nginx-proxy-manager/</link>
-      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/nginx-proxy-manager/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Reverse Proxy</title>
       <link>http://localhost:1313/tags/reverse-proxy/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
@@ -418,15 +481,6 @@
       <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/letsencrypt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SSL</title>
-      <link>http://localhost:1313/tags/ssl/</link>
-      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/ssl/</guid>
       <description></description>
     </item>
     

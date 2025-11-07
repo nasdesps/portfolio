@@ -6,7 +6,18 @@
     <description>Recent content in SSL on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust</title>
+      <link>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Welcome to Part 5 of this homelab series! In the previous parts, we&amp;rsquo;ve built a Debian server, deployed a full suite of services with Docker, and set up a high-availability DNS network. But one critical piece is still missing: end-to-end security.&lt;/p&gt;
+&lt;p&gt;Until now, we&amp;rsquo;ve been accessing local services via &lt;code&gt;http://grafana.local&lt;/code&gt;, which browsers correctly flag as &amp;ldquo;Not Secure.&amp;rdquo; The common solution is to open ports 80 and 443 on our router, but that exposes our server and home network to the entire internet—a huge security risk.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>How I Built My Own Ad-Blocking DNS Server in the Cloud (Updated AWS Edition!)</title>
       <link>http://localhost:1313/projects/adguard-updated/</link>

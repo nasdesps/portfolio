@@ -157,13 +157,51 @@ For maximum security, I locked down the administrative ports to only my home IP 
     ```bash
     curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
     ```
+    > The script will give you a link, like `http://YOUR_INSTANCE_IP:3000`. Open this in your browser. Follow the on-screen steps to create your admin username and password.
     
-1. **Get a Hostname:** I went to **No-IP.com**, created a free hostname (e.g., `my-cloud-dns.ddns.net`), and pointed it to my cloud VM's public IP.
+3. **Get a Hostname:** I went to **No-IP.com**, created a free hostname (e.g., `my-cloud-dns.ddns.net`), and pointed it to my cloud VM's public IP.
     
-2. **Enable Encryption:** In my cloud AdGuard's dashboard (**Settings > Encryption settings**), I enabled encryption, entered my No-IP hostname, and used the built-in function to request a Let's Encrypt certificate.
-    
+2. **Enable Encryption:** We'll use **Let's Encrypt** and **Certbot** to get a free SSL certificate, which lets us use secure `https://` and encrypted DNS.
 
-#### **Step 4: Creating a Cloud Backup (Snapshot)**
+    - **Install Certbot:** In your SSH session, run these commands:
+    ```bash
+    sudo apt update
+    sudo apt install certbot -y
+    ```
+    - **Get the Certificate:** Run this command, replacing the email and domain with your own.
+    ```bash
+    # This command will temporarily stop any service on port 80, get the certificate, and then finish.
+    sudo certbot certonly --standalone --agree-tos --email YOUR_EMAIL@example.com -d your-no-ip-hostname.ddns.net
+    ```
+    If it's successful, it will tell you where your certificate files are saved (usually in `/etc/letsencrypt/live/your-no-ip-hostname.ddns.net/`).
+
+    - **Configure AdGuard Home Encryption:**
+      * Go to your AdGuard Home dashboard (**Settings -> Encryption settings**).
+      * Check **"Enable encryption"**.
+      * In the **"Server name"** field, enter your No-IP hostname.
+      * Under **"Certificates"**, choose **"Set a certificates file path"**.
+        * **Certificate path:** `/etc/letsencrypt/live/your-no-ip-hostname.ddns.net/fullchain.pem`
+        * **Private key path:** `/etc/letsencrypt/live/your-no-ip-hostname.ddns.net/privkey.pem`
+    * Click **"Save configuration"**. The page will reload on a secure `https://` connection!
+    
+#### **Step 4: Automating SSL Renewal (Cron Job)**
+
+Let's Encrypt certificates last for 90 days. We can tell our server to automatically renew them.
+
+1. **Open Firewall (Port 80):** Certbot *requires* **port 80** for its renewal challenge. We must add this `ufw` rule on our server, or the renewal will fail.
+    ```bash
+    sudo ufw allow 80/tcp
+    ```
+2.  **Open the Cron Editor:** In SSH, run `sudo crontab -e` and choose `nano` as your editor.
+3.  **Add the Renewal Job:** Add this line to the bottom of the file. It tells the server to try renewing the certificate every day at 2:30 AM.
+    ```
+    30 2 * * * certbot renew --quiet --pre-hook "systemctl stop AdGuardHome.service" --post-hook "systemctl start AdGuardHome.service"
+    ```
+    **Note:** The `--post-hook` is critical. It *guarantees* AdGuard Home restarts even if the renewal fails, which prevents a service outage.
+
+4.  **Save and exit** (`Ctrl+X`, then `Y`, then `Enter`). Your server will now keep its certificate fresh forever!
+
+#### **Step 5: Creating a Cloud Backup (Snapshot)**
 
 A critical final step for any cloud service is creating a backup. Here is how I did it in OCI:
 
@@ -177,7 +215,8 @@ A critical final step for any cloud service is creating a backup. Here is how I 
     
 5. I gave the backup a descriptive name (e.g., `AdGuard-Cloud-Backup-YYYY-MM-DD`) and clicked the create button. This creates a full snapshot of my server that I can use to restore it in minutes.
 
-#### **Step 5: ### How to Use Your Cloud DNS on Mobile Devices**
+
+#### **Step 6: How to Use Your Cloud DNS on Mobile Devices**
 
 The main benefit of the cloud server is having ad-blocking on the go. Here’s how I set it up on my mobile phone using secure, encrypted DNS.
 
