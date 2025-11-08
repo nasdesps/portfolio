@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Educations on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/education/</link>
+    <description>Recent content in Educations on Prajwol Bikram Adhikari</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://localhost:1313/education/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Master&#39;s of Science in Software Engineering and DevOps Engineering</title>
+      <link>http://localhost:1313/education/masters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/education/masters/</guid>
+      <description>Western Governors University | Millcreek, UT</description>
+    </item>
+    
+    <item>
+      <title>Bachelor&#39;s of Science (Hons) in Computing</title>
+      <link>http://localhost:1313/education/bachelors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/education/bachelors/</guid>
+      <description>London Metropolitan University | London, England</description>
+    </item>
+    
+  </channel>
+</rss>

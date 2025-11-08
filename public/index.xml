@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>Master&#39;s of Science in Software Engineering and DevOps Engineering</title>
+      <link>http://localhost:1313/education/masters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/education/masters/</guid>
+      <description>Western Governors University | Millcreek, UT</description>
+    </item>
+    
+    <item>
       <title>Part 4: Automating a Homelab with Backups, Updates, and Alerts</title>
       <link>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</link>
       <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
@@ -50,6 +59,15 @@
       
       <guid>http://localhost:1313/blog/adguard-aws/</guid>
       <description>A personal blog post on the motivation and journey behind building a private, ad-blocking DNS server on AWS. Learn why I tackled this project and how it led to a faster, cleaner internet.</description>
+    </item>
+    
+    <item>
+      <title>Bachelor&#39;s of Science (Hons) in Computing</title>
+      <link>http://localhost:1313/education/bachelors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/education/bachelors/</guid>
+      <description>London Metropolitan University | London, England</description>
     </item>
     
     <item>
@@ -121,7 +139,7 @@
       <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/experience/abbvie/</guid>
-      <description>AbbVie | Waco, TX, USA</description>
+      <description>AbbVie | Waco, TX</description>
     </item>
     
     <item>
@@ -130,7 +148,7 @@
       <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/experience/fedex/</guid>
-      <description>FedEx | Coppell, TX, USA</description>
+      <description>FedEx | Coppell, TX</description>
     </item>
     
     <item>

@@ -13,8 +13,7 @@
       <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/blog/building-a-free-homelab/</guid>
-      <description>&lt;p&gt;It’s a familiar story for any tech enthusiast: the &amp;ldquo;digital graveyard.&amp;rdquo; That drawer or closet shelf filled with old laptops, tablets, and single-board computers. We know they &lt;em&gt;work&lt;/em&gt;, but they’ve been replaced by newer, shinier tech. For me, it was an old laptop that still had plenty of life, but not as my daily driver.&lt;/p&gt;
-&lt;p&gt;I had a choice: let it gather more dust, or turn it into a project.&lt;/p&gt;</description>
+      <description>Follow my journey of turning a dusty old laptop into a powerful, secure homelab for $0. A complete guide to self-hosting, DevOps, and cloud tools.</description>
     </item>
     
   </channel>
