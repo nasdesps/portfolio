@@ -50,13 +50,25 @@
     <loc>http://localhost:1313/experience/radiantinfotech/</loc>
     <lastmod>2025-02-21T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2025-11-07T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/cloudflare/</loc>
+    <lastmod>2025-11-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/devops/</loc>
+    <lastmod>2025-11-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/diy/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/docker/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/domain/</loc>
+    <lastmod>2025-11-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/frugal-tech/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/homelab/</loc>
@@ -86,6 +98,9 @@
     <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/blog/building-a-free-homelab/</loc>
+    <lastmod>2025-11-07T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/tunnels/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
@@ -102,9 +117,6 @@
     <lastmod>2025-10-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/cron/</loc>
-    <lastmod>2025-10-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/devops/</loc>
     <lastmod>2025-10-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/discord/</loc>
@@ -207,9 +219,6 @@
     <lastmod>2025-09-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/aws/</loc>
-    <lastmod>2025-08-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2025-08-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/certbot/</loc>

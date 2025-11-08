@@ -6,7 +6,16 @@
     <description>Recent content in Blogs on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The $0 Homelab: From a Dusty Laptop to a Secure, Global Platform</title>
+      <link>http://localhost:1313/blog/building-a-free-homelab/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/building-a-free-homelab/</guid>
+      <description>Follow my journey of turning a dusty old laptop into a powerful, secure homelab for $0. A complete guide to self-hosting, DevOps, and cloud tools.</description>
+    </item>
+    
     <item>
       <title>Building a Personal Ad-Blocking Server in the Cloud!</title>
       <link>http://localhost:1313/blog/adguard-aws/</link>
@@ -17,21 +26,21 @@
     </item>
     
     <item>
-      <title>Running a Powerful AI Locally with Docker!</title>
-      <link>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
-      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
-      <description>Curious about running a powerful AI on your own machine? This post introduces my project guide for setting up the DeepSeek-R1 model locally using Docker for ultimate privacy and control.</description>
-    </item>
-    
-    <item>
       <title>My First Cloud Ad-Blocker - A Look Back at AdGuard Home on Linode</title>
       <link>http://localhost:1313/blog/adguard-home-on-cloud/</link>
       <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/blog/adguard-home-on-cloud/</guid>
       <description>A look back at my first cloud ad-blocking project. This post reflects on setting up AdGuard Home on Linode—a perfect starting point for anyone new to self-hosting and network privacy.</description>
+    </item>
+    
+    <item>
+      <title>Running a Powerful AI Locally with Docker!</title>
+      <link>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
+      <description>Curious about running a powerful AI on your own machine? This post introduces my project guide for setting up the DeepSeek-R1 model locally using Docker for ultimate privacy and control.</description>
     </item>
     
   </channel>

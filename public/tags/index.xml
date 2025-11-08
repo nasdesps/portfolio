@@ -17,6 +17,24 @@
     </item>
     
     <item>
+      <title>DevOps</title>
+      <link>http://localhost:1313/tags/devops/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DIY</title>
+      <link>http://localhost:1313/tags/diy/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Docker</title>
       <link>http://localhost:1313/tags/docker/</link>
       <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
@@ -31,6 +49,15 @@
       <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/domain/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Frugal Tech</title>
+      <link>http://localhost:1313/tags/frugal-tech/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/frugal-tech/</guid>
       <description></description>
     </item>
     
@@ -139,15 +166,6 @@
       <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/cron/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DevOps</title>
-      <link>http://localhost:1313/tags/devops/</link>
-      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/devops/</guid>
       <description></description>
     </item>
     

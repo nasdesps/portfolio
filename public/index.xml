@@ -13,18 +13,16 @@
       <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</guid>
-      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Welcome to Part 5 of this homelab series! In the previous parts, we&amp;rsquo;ve built a Debian server, deployed a full suite of services with Docker, and set up a high-availability DNS network. But one critical piece is still missing: end-to-end security.&lt;/p&gt;
-&lt;p&gt;Until now, we&amp;rsquo;ve been accessing local services via &lt;code&gt;http://grafana.local&lt;/code&gt;, which browsers correctly flag as &amp;ldquo;Not Secure.&amp;rdquo; The common solution is to open ports 80 and 443 on our router, but that exposes our server and home network to the entire internet—a huge security risk.&lt;/p&gt;</description>
+      <description>Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports.</description>
     </item>
     
     <item>
-      <title>Building a Personal Ad-Blocking Server in the Cloud!</title>
-      <link>http://localhost:1313/blog/adguard-aws/</link>
-      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      <title>The $0 Homelab: From a Dusty Laptop to a Secure, Global Platform</title>
+      <link>http://localhost:1313/blog/building-a-free-homelab/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/adguard-aws/</guid>
-      <description>A personal blog post on the motivation and journey behind building a private, ad-blocking DNS server on AWS. Learn why I tackled this project and how it led to a faster, cleaner internet.</description>
+      <guid>http://localhost:1313/blog/building-a-free-homelab/</guid>
+      <description>Follow my journey of turning a dusty old laptop into a powerful, secure homelab for $0. A complete guide to self-hosting, DevOps, and cloud tools.</description>
     </item>
     
     <item>
@@ -46,12 +44,12 @@
     </item>
     
     <item>
-      <title>Running a Powerful AI Locally with Docker!</title>
-      <link>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
-      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      <title>Building a Personal Ad-Blocking Server in the Cloud!</title>
+      <link>http://localhost:1313/blog/adguard-aws/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
-      <description>Curious about running a powerful AI on your own machine? This post introduces my project guide for setting up the DeepSeek-R1 model locally using Docker for ultimate privacy and control.</description>
+      <guid>http://localhost:1313/blog/adguard-aws/</guid>
+      <description>A personal blog post on the motivation and journey behind building a private, ad-blocking DNS server on AWS. Learn why I tackled this project and how it led to a faster, cleaner internet.</description>
     </item>
     
     <item>
@@ -61,15 +59,6 @@
       
       <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
       <description>Elevate your homelab with a professional management and monitoring stack. This guide details how to deploy Nginx Proxy Manager, Prometheus, Grafana, and a Homer dashboard using Docker.</description>
-    </item>
-    
-    <item>
-      <title>My First Cloud Ad-Blocker - A Look Back at AdGuard Home on Linode</title>
-      <link>http://localhost:1313/blog/adguard-home-on-cloud/</link>
-      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/blog/adguard-home-on-cloud/</guid>
-      <description>A look back at my first cloud ad-blocking project. This post reflects on setting up AdGuard Home on Linode—a perfect starting point for anyone new to self-hosting and network privacy.</description>
     </item>
     
     <item>
@@ -91,6 +80,15 @@
     </item>
     
     <item>
+      <title>My First Cloud Ad-Blocker - A Look Back at AdGuard Home on Linode</title>
+      <link>http://localhost:1313/blog/adguard-home-on-cloud/</link>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/adguard-home-on-cloud/</guid>
+      <description>A look back at my first cloud ad-blocking project. This post reflects on setting up AdGuard Home on Linode—a perfect starting point for anyone new to self-hosting and network privacy.</description>
+    </item>
+    
+    <item>
       <title>Running Private Adguard Server on Cloud (Linode)</title>
       <link>http://localhost:1313/projects/adguard-home-on-cloud/</link>
       <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
@@ -106,6 +104,15 @@
       
       <guid>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
       <description>Dive into local AI! This guide shows you how to easily run the powerful DeepSeek-R1 model on Ubuntu using Ollama and Docker, complete with all the necessary commands for setup and execution.</description>
+    </item>
+    
+    <item>
+      <title>Running a Powerful AI Locally with Docker!</title>
+      <link>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
+      <description>Curious about running a powerful AI on your own machine? This post introduces my project guide for setting up the DeepSeek-R1 model locally using Docker for ultimate privacy and control.</description>
     </item>
     
     <item>

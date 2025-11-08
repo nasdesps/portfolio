@@ -57,9 +57,7 @@
     });
 </script>
 <meta name="keywords" content="Homelab, Cloudflare, Zero Trust, Tunnels, Nginx Proxy Manager, SSL, HTTPS, Security, Docker, Self-Hosting, Domain">
-<meta name="description" content="Introduction
-Welcome to Part 5 of this homelab series! In the previous parts, we&rsquo;ve built a Debian server, deployed a full suite of services with Docker, and set up a high-availability DNS network. But one critical piece is still missing: end-to-end security.
-Until now, we&rsquo;ve been accessing local services via http://grafana.local, which browsers correctly flag as &ldquo;Not Secure.&rdquo; The common solution is to open ports 80 and 443 on our router, but that exposes our server and home network to the entire internet—a huge security risk.">
+<meta name="description" content="Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports.">
 <meta name="author" content="">
 <link rel="canonical"
     href="http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/">
@@ -110,9 +108,7 @@ Until now, we&rsquo;ve been accessing local services via http://grafana.local, w
         }
     </style>
 </noscript><meta property="og:title" content="Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust" />
-<meta property="og:description" content="Introduction
-Welcome to Part 5 of this homelab series! In the previous parts, we&rsquo;ve built a Debian server, deployed a full suite of services with Docker, and set up a high-availability DNS network. But one critical piece is still missing: end-to-end security.
-Until now, we&rsquo;ve been accessing local services via http://grafana.local, which browsers correctly flag as &ldquo;Not Secure.&rdquo; The common solution is to open ports 80 and 443 on our router, but that exposes our server and home network to the entire internet—a huge security risk." />
+<meta property="og:description" content="Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/" />
       <meta property="og:image" content="http://localhost:1313/projects/homelab-part5/homelab-part5_hu_fa4261d42128b09d.jpg"><meta property="article:section" content="projects" />
@@ -122,9 +118,7 @@ Until now, we&rsquo;ve been accessing local services via http://grafana.local, w
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="http://localhost:1313/projects/homelab-part5/homelab-part5.png" />
 <meta name="twitter:title" content="Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust"/>
-<meta name="twitter:description" content="Introduction
-Welcome to Part 5 of this homelab series! In the previous parts, we&rsquo;ve built a Debian server, deployed a full suite of services with Docker, and set up a high-availability DNS network. But one critical piece is still missing: end-to-end security.
-Until now, we&rsquo;ve been accessing local services via http://grafana.local, which browsers correctly flag as &ldquo;Not Secure.&rdquo; The common solution is to open ports 80 and 443 on our router, but that exposes our server and home network to the entire internet—a huge security risk."/>
+<meta name="twitter:description" content="Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports."/>
 
 
 <script type="application/ld+json">
@@ -153,7 +147,7 @@ Until now, we&rsquo;ve been accessing local services via http://grafana.local, w
   "@type": "BlogPosting",
   "headline": "Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust",
   "name": "Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust",
-  "description": "Introduction Welcome to Part 5 of this homelab series! In the previous parts, we\u0026rsquo;ve built a Debian server, deployed a full suite of services with Docker, and set up a high-availability DNS network. But one critical piece is still missing: end-to-end security.\nUntil now, we\u0026rsquo;ve been accessing local services via http://grafana.local, which browsers correctly flag as \u0026ldquo;Not Secure.\u0026rdquo; The common solution is to open ports 80 and 443 on our router, but that exposes our server and home network to the entire internet—a huge security risk.\n",
+  "description": "Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports.",
   "keywords": [
     "Homelab", "Cloudflare", "Zero Trust", "Tunnels", "Nginx Proxy Manager", "SSL", "HTTPS", "Security", "Docker", "Self-Hosting", "Domain"
   ],
@@ -241,6 +235,9 @@ Until now, we&rsquo;ve been accessing local services via http://grafana.local, w
     <h1 class="post-title">
       Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust
     </h1>
+    <div class="post-description">
+      Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports.
+    </div>
     <div class="post-meta">
 
 

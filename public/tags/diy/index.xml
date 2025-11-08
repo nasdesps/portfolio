@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Security on Prajwol Bikram Adhikari</title>
-    <link>http://localhost:1313/tags/security/</link>
-    <description>Recent content in Security on Prajwol Bikram Adhikari</description>
+    <title>DIY on Prajwol Bikram Adhikari</title>
+    <link>http://localhost:1313/tags/diy/</link>
+    <description>Recent content in DIY on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/security/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust</title>
-      <link>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</link>
-      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</guid>
-      <description>Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports.</description>
-    </item>
-    
+    <lastBuildDate>Fri, 07 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/diy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The $0 Homelab: From a Dusty Laptop to a Secure, Global Platform</title>
       <link>http://localhost:1313/blog/building-a-free-homelab/</link>
