@@ -7,6 +7,7 @@ draft: false
 weight: 101
 author: " | Prajwol Bikram Adikari"
 tags: ["Homelab", "DevOps", "Self-Hosting", "Security", "Frugal Tech", "DIY"]
+showToc: false
 ---
 
 It’s a familiar story for any tech enthusiast: the "digital graveyard." That drawer or closet shelf filled with old laptops, tablets, and single-board computers. We know they *work*, but they’ve been replaced by newer, shinier tech. For me, it was an old laptop that still had plenty of life, but not as my daily driver.
