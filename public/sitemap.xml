@@ -8,6 +8,8 @@
     <loc>http://localhost:1313/blog/building-a-free-homelab/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/education/masters/</loc>
+  </url><url>
     <loc>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</loc>
     <lastmod>2025-10-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -16,6 +18,8 @@
   </url><url>
     <loc>http://localhost:1313/blog/adguard-aws/</loc>
     <lastmod>2025-08-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/education/bachelors/</loc>
   </url><url>
     <loc>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</loc>
     <lastmod>2025-09-25T00:00:00+00:00</lastmod>
@@ -377,13 +381,9 @@
     <loc>http://localhost:1313/tags/windows/</loc>
     <lastmod>2025-02-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/education/bachelors/</loc>
-  </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
     <loc>http://localhost:1313/education/</loc>
-  </url><url>
-    <loc>http://localhost:1313/education/masters/</loc>
   </url><url>
     <loc>http://localhost:1313/search/</loc>
   </url>

@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 date: 2025-09-27
-description: "Review the Privacy Policy for this personal portfolio. This page outlines what data is collected and details our use of both privacy-focused and traditional analytics services to protect your information."
+description: "Review the Privacy Policy for this personal portfolio. This page outlines what data is collected and details our use of privacy-focused analytics services to protect your information."
 draft: false
 showToc: false
 ---
@@ -22,13 +22,11 @@ When you request a copy of my resume, you are asked to voluntarily provide your 
 * **How it's used:** Your email will not be used for marketing purposes, sold, or shared with any third parties.
 
 ### Anonymous Usage Data
-To improve the user experience and analyze traffic, this website uses a combination of privacy-focused and traditional analytics services:
+To improve the user experience and analyze traffic, this website uses privacy-focused analytics services:
 
 * **Umami (Self-Hosted):** This website uses a self-hosted instance of Umami for privacy-focused web analytics. Umami collects anonymous usage data such as page views, referrers, and geographic regions to help me understand website traffic. This service does not use cookies, does not collect any personally identifiable information, and all data is stored on a private server under my control.
 
 * **Cloudflare Web Analytics:** This service collects anonymous traffic data such as page views and country of origin. It does not use cookies or collect personally identifiable information. You can view their privacy policy [here](https://www.cloudflare.com/privacypolicy/).
-
-* **Google Analytics 4 (GA4):** This website also uses Google Analytics 4 to collect information about how visitors interact with the site. GA4 uses cookies and other identifiers to gather data such as page views, user interactions, and demographic information. This data is used to analyze website performance and improve the user experience. Because GA4 uses cookies, we are required to ask for your consent, which is managed by the consent banner that appears when you first visit the site. You can learn more about how Google uses data [here](https://policies.google.com/technologies/partner-sites).
 
 ---
 
@@ -37,7 +35,6 @@ This website relies on the following third-party service providers to function:
 
 * **Google Workspace (Forms, Sheets, Apps Script):** Used to manage and automate resume requests.
 * **Cloudflare:** Used as a Content Delivery Network (CDN) to improve website performance, as a security firewall to protect against malicious attacks, and for collecting anonymous web analytics.
-* **Google Analytics**: Used to analyze website performance and user interaction.
 * **Vercel:** Used to host the self-hosted Umami analytics application.
 * **Netlify & GitHub:** Used for hosting and deploying the website.
 
