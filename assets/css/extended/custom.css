@@ -497,6 +497,97 @@ html:not(.dark) .footer a:hover {
     }
 }
 
+/* Extra small screens (like Pixel Fold inner screen) */
+@media screen and (max-width: 400px) {
+
+    /* Further reduce dotted circle on very small screens */
+    .profile-image-wrapper {
+        padding: 1px;
+        border-width: 1px;
+    }
+
+    /* Scale down profile image on very small screens */
+    .profile-image-wrapper img {
+        max-width: 120px;
+        max-height: 120px;
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    /* Scale down main heading */
+    .profile h1 {
+        font-size: 2rem !important;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Scale down subtitle/greeting text */
+    .profile h1+span {
+        font-size: 0.9rem;
+    }
+
+    /* Reduce profile description font size */
+    .profile-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+    /* Reduce code tag size */
+    .code-tag {
+        font-size: 0.75rem !important;
+        padding: 5px 10px !important;
+    }
+
+    /* Reduce location tag size */
+    .location-tag {
+        font-size: 0.85rem;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    /* Scale down tech badges */
+    .tech-badge {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+    }
+
+    .tech-stack {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    /* Scale down buttons and social icons */
+    .button,
+    .dark a.button {
+        height: 40px;
+        padding: 0 16px;
+        font-size: 0.9rem;
+    }
+
+    .social-icons {
+        height: 40px;
+        padding: 0 12px;
+        gap: 12px;
+    }
+
+    .social-icons a svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .profile-actions {
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    /* Reduce overall padding */
+    .profile,
+    .main {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+}
+
 /* Remove default styling from post tags to avoid double box */
 .post-tags li a {
     background: none !important;
