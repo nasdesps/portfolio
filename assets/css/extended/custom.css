@@ -472,25 +472,12 @@ html:not(.dark) .footer a:hover {
     }
 
     #menu {
-        /* 1. Turn off the "slider" behavior */
-        overflow-x: visible !important;
-        white-space: normal !important;
-
-        /* 2. Enable "Flex Wrapping" */
-        display: flex;
-        flex-wrap: wrap;
-        /* Allows items to drop to a second line */
-        justify-content: center;
-        /* Centers them (looks better when stacked) */
-
-        /* 3. Spacing */
-        padding-bottom: 10px;
-        gap: 8px 15px;
-        /* 8px vertical space, 15px horizontal space */
-    }
-
-    #menu li {
-        display: inline-block;
+        overflow-x: auto;
+        white-space: nowrap;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        /* Space for scrollbar if visible */
     }
 
     /* Hide scrollbar for cleaner look */
