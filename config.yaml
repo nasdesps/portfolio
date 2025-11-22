@@ -63,8 +63,8 @@ params:
 
     # Profile Image
     imageUrl: "home/casual-small-square.jpg"
-    imageWidth: 220
-    imageHeight: 220
+    imageWidth: 215
+    imageHeight: 215
     buttons:
     - name: "Resume"
       url: "https://forms.gle/y4fGDZ1q5HTDsLSH6"
