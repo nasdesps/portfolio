@@ -1,3 +1,286 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    --font-primary: 'Inter', sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
+
+    /* Light Theme Defaults */
+    --profile-desc: #4b5563;
+    --white-bold: #1f2937;
+    --tech-badge-bg: #f1f5f9;
+    --tech-badge-border: #cbd5e1;
+    --tech-badge-text: #475569;
+    --code-tag-bg: #f1f5f9;
+    --code-tag-border: #e2e8f0;
+    --code-tag-text: #475569;
+    --social-bg: rgba(0, 0, 0, 0.05);
+    --social-border: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme Palette */
+.dark {
+    --theme: #0f1115;
+    /* Main Background: Very dark blue-grey */
+    --entry: rgba(255, 255, 255, 0.05);
+    /* Glassmorphism Elements */
+    --primary: #e2e8f0;
+    /* Primary Text: Light gray */
+    --secondary: #9ca3af;
+    /* Muted Text: Mid-gray */
+    --tertiary: #4b5563;
+    --content: #e2e8f0;
+    --hljs-bg: #1e293b;
+    --code-bg: #1e293b;
+    --border: rgba(255, 255, 255, 0.05);
+
+    /* Dark Theme Overrides */
+    --profile-desc: #94a3b8;
+    --white-bold: #ffffff;
+    --tech-badge-bg: rgba(30, 41, 59, 0.5);
+    --tech-badge-border: rgba(71, 85, 105, 0.5);
+    --tech-badge-text: #cbd5e1;
+    --code-tag-bg: rgba(30, 41, 59, 0.5);
+    --code-tag-border: rgba(56, 189, 248, 0.2);
+    --code-tag-text: #94a3b8;
+    --social-bg: rgba(22, 27, 34, 0.8);
+    /* Darker background for social icons */
+    --social-border: rgba(48, 54, 61, 0.8);
+}
+
+/* Typography */
+body {
+    font-family: var(--font-primary);
+}
+
+code,
+kbd,
+pre,
+samp,
+.code-font {
+    font-family: var(--font-code);
+}
+
+/* Headings - Scoped to Dark Mode */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+    color: #ffffff;
+    /* Pure white for headings in dark mode */
+}
+
+/* Links & Accents - Scoped to Dark Mode */
+.dark a {
+    color: #38bdf8;
+    /* Light Blue in dark mode */
+}
+
+/* Profile Mode Specifics */
+.profile h1 {
+    font-size: 3.5rem;
+    /* Larger title */
+    margin-bottom: 1rem;
+}
+
+.text-highlight {
+    color: #38bdf8;
+    /* Light Blue */
+}
+
+/* Code Tag Style */
+.code-tag {
+    font-family: var(--font-code);
+    background: var(--code-tag-bg);
+    border: 1px solid var(--code-tag-border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    display: inline-block;
+    color: var(--code-tag-text);
+    margin-bottom: 24px;
+    font-size: 1rem;
+}
+
+.code-tag .prompt {
+    color: #38bdf8;
+    margin-right: 8px;
+}
+
+.code-tag .pipe {
+    color: #475569;
+    margin: 0 8px;
+}
+
+/* Profile Description */
+.profile-description {
+    max-width: 700px;
+    margin: 0 auto 24px;
+    color: var(--profile-desc);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.white-bold {
+    color: var(--white-bold);
+    font-weight: 600;
+}
+
+/* Location Tag */
+.location-tag {
+    color: #64748b;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.location-tag .dot {
+    color: #334155;
+}
+
+.grey-icon {
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+/* Tech Stack Badges */
+.tech-stack {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.tech-badge {
+    background: var(--tech-badge-bg);
+    border: 1px solid var(--tech-badge-border);
+    color: var(--tech-badge-text);
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+    border-color: #38bdf8;
+    color: #38bdf8;
+    transform: translateY(-1px);
+}
+
+/* Profile Actions Container */
+.profile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* Reduced gap to 8px */
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Buttons Wrapper */
+.buttons {
+    display: flex;
+    align-items: center;
+    margin: 0 !important;
+    /* Force no margin */
+    padding: 0 !important;
+    /* Force no padding */
+}
+
+/* Buttons (Resume Button) */
+.button,
+.dark a.button {
+    background-color: #0284c7;
+    /* Darker Blue */
+    color: #ffffff;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0 24px;
+    /* Horizontal padding only */
+    height: 48px;
+    /* Fixed height to match social icons */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1rem;
+    margin: 0 !important;
+    /* Reset margin */
+    line-height: 1;
+    border: none;
+    /* Ensure no border */
+}
+
+.button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    /* Glow effect */
+}
+
+/* Social Icons Container - Glassmorphism */
+.social-icons {
+    background: var(--social-bg);
+    border: 1px solid var(--social-border);
+    padding: 0 20px;
+    /* Horizontal padding */
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    /* Glass effect */
+    display: inline-flex;
+    gap: 20px;
+    /* Gap between icons */
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    /* Fixed height */
+    margin: 0 !important;
+    /* Reset margin */
+    min-width: auto;
+    /* Ensure no fixed min-width */
+    width: auto;
+    /* Ensure it wraps content */
+    box-sizing: border-box;
+    /* Ensure padding is included in width */
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* Fill the container height */
+    margin: 0 !important;
+    /* Ensure no margin on links */
+    padding: 0 !important;
+    /* Ensure no padding on links */
+}
+
+.social-icons a svg {
+    width: 22px;
+    /* Slightly larger icons */
+    height: 22px;
+    fill: currentColor;
+    color: #94a3b8;
+    transition: color 0.2s ease;
+}
+
+.social-icons a:hover svg {
+    color: #38bdf8;
+}
+
+/* Ensure background is applied */
 html.dark body {
     background: var(--theme);
     color: var(--content);

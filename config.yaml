@@ -25,18 +25,6 @@ menu:
       name: Education
       url: /education
       weight: 50
-    # identifier: search
-    #  name: Search
-    #  url: /search
-    #  weight: 50
-    # - identifier: tags
-    #   name: Tags
-    #   url: /tags
-    #   weight: 60
-    # - identifier: notes
-    #   name: Notes
-    #   url: https://notes.arkalim.org
-    #   weight: 70
 
 params:
   # theme
@@ -54,15 +42,31 @@ params:
   # Home Page
   profileMode:
     enabled: true
-    title: "hi prajwol here👋"
-    subtitle: <i>Emerging DevOps Engineer | WGU Master’s in Progress <br> Texas &#x1f1fa;&#x1f1f8;</i><br>Graduate student in Software Engineering (DevOps) at [**WGU**](https://www.wgu.edu/), building homelabs on the side. By day, learning  the ins and outs of pharma manufacturing at [**AbbVie**](https://www.abbvie.com/). Guitarist and live music enthusiast.<br><br>Let's connect! 
+    title: "Hi, I'm <span class=\"text-highlight\">Prajwol</span> 👋"
+    subtitle: >
+        <div class="code-tag">
+            <span class="prompt">>_</span> Aspiring DevOps Engineer_ <span class="pipe">|</span> WGU Master's Student
+        </div>
+        <div class="profile-description">
+            Graduate student in Software Engineering at <a href="https://www.wgu.edu/" target="_blank"><strong class="white-bold">WGU</strong></a>. Building homelabs, automating pipelines, and learning the intricacies of pharma manufacturing at <a href="https://www.abbvie.com/" target="_blank"><strong class="white-bold">AbbVie</strong></a>.
+        </div>
+        <div class="location-tag">
+            <span class="grey-icon">📍</span> Texas, USA <span class="dot">•</span> <span class="grey-icon">🎸</span> Guitarist
+        </div>
+        <div class="tech-stack">
+            <a href="/tags/docker/"><span class="tech-badge">Docker</span></a>
+            <a href="/tags/linux/"><span class="tech-badge">Linux</span></a>
+            <a href="/tags/automation/"><span class="tech-badge">Automation</span></a>
+            <a href="/tags/cicd/"><span class="tech-badge">CI/CD</span></a>
+            <a href="/tags/cloud/"><span class="tech-badge">Cloud</span></a>
+        </div>
 
     # Profile Image
     imageUrl: "home/casual-small-square.jpg"
     imageWidth: 220
     imageHeight: 220
     buttons:
-    - name: Resume
+    - name: "Resume"
       url: "https://forms.gle/y4fGDZ1q5HTDsLSH6"
 
   # List View
@@ -74,6 +78,7 @@ params:
     hiddenInSingle: false # hide on single page
 
   socialIcons:
+    
     - name: "email"
       url: "mailto:prajwolad18@gmail.com"
     - name: "linkedin"
@@ -88,6 +93,7 @@ params:
       url: "https://x.com/Prajwolize"
     - name: "soundcloud"
       url: "https://soundcloud.com/prajwol-adhikari-358294646"
+    
 
   # text search
   fuseOpts:

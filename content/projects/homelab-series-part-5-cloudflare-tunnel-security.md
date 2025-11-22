@@ -6,6 +6,9 @@ description: "Learn how to build a secure, globally-accessible homelab using a C
 draft: false
 tags:
   - Homelab
+  - CloudComputing
+  - Cloud
+  - Linux
   - Cloudflare
   - Zero Trust
   - Tunnels

@@ -11,6 +11,7 @@ tags:
     - Hardware Support
     - Help Desk Support
     - Mentorship
+    - CICD
     - Problem Solving
     - Communication
     - Teamwork
@@ -31,6 +32,8 @@ tags:
     - LAN/WAN
     - Cisco Switch
     - Networking
+    - Cloud
+    
 showToc: false
 weight: 303
 

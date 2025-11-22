@@ -8,6 +8,7 @@ tags:
   - Docker
   - Ubuntu
   - AI
+  - Linux
   - Opensource
   - Deepseek-r1
   - Self-Hosting

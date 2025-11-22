@@ -6,7 +6,43 @@
     <description>Recent content in Linux on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust</title>
+      <link>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</guid>
+      <description>Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports.</description>
+    </item>
+    
+    <item>
+      <title>Part 4: Automating a Homelab with Backups, Updates, and Alerts</title>
+      <link>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</link>
+      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-4-automation-and-alerting/</guid>
+      <description>A step-by-step guide to making your homelab self-maintaining. Learn to automate backups to Google Drive with rclone, manage container updates with Watchtower, and send proactive alerts to Discord using Prometheus and Alertmanager.</description>
+    </item>
+    
+    <item>
+      <title>Part 3: A High-Availability DNS Network with AdGuard Home</title>
+      <link>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</link>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</guid>
+      <description>Learn to build a high-availability, ad-blocking DNS network with AdGuard Home. This step-by-step guide covers deploying on a homelab server, a free Oracle Cloud VM, and using Docker macvlan for ultimate redundancy.</description>
+    </item>
+    
+    <item>
+      <title>Part 2: Homelab Management &amp; Monitoring</title>
+      <link>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-2-monitoring-and-management/</guid>
+      <description>Elevate your homelab with a professional management and monitoring stack. This guide details how to deploy Nginx Proxy Manager, Prometheus, Grafana, and a Homer dashboard using Docker.</description>
+    </item>
+    
     <item>
       <title>Part 1: Reviving an Old Laptop with Debian &amp; Docker</title>
       <link>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</link>
@@ -14,6 +50,33 @@
       
       <guid>http://localhost:1313/projects/homelab-series-part-1-debian-docker-foundation/</guid>
       <description>Kickstart your homelab by turning an old laptop into a secure server. This guide details the process of installing Debian, performing initial hardening, and setting up Docker and Docker Compose for a solid foundation.</description>
+    </item>
+    
+    <item>
+      <title>How I Built My Own Ad-Blocking DNS Server in the Cloud (Updated AWS Edition!)</title>
+      <link>http://localhost:1313/projects/adguard-updated/</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/adguard-updated/</guid>
+      <description>Enjoy a faster, ad-free internet everywhere. This 2025 guide details how to build a free, private DNS server with AdGuard Home on an AWS EC2 instance, complete with SSL encryption and automated renewal.</description>
+    </item>
+    
+    <item>
+      <title>Running Private Adguard Server on Cloud (Linode)</title>
+      <link>http://localhost:1313/projects/adguard-home-on-cloud/</link>
+      <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/adguard-home-on-cloud/</guid>
+      <description>Get universal ad-blocking on all your devices. This guide shows you how to easily set up a private AdGuard Home DNS server on a Linode cloud instance for enhanced security and privacy on the go.</description>
+    </item>
+    
+    <item>
+      <title>Dive into AI Fun: Running DeepSeek-R1 on a Docker Container on Ubuntu</title>
+      <link>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/running-deepseek-r1-on-docker-container-on-ubuntu/</guid>
+      <description>Dive into local AI! This guide shows you how to easily run the powerful DeepSeek-R1 model on Ubuntu using Ollama and Docker, complete with all the necessary commands for setup and execution.</description>
     </item>
     
     <item>

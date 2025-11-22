@@ -6,7 +6,16 @@
     <description>Recent content in CloudComputing on Prajwol Bikram Adhikari</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/cloudcomputing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/cloudcomputing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 5: Securing a Homelab with Cloudflare Tunnels and Zero Trust</title>
+      <link>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/homelab-series-part-5-cloudflare-tunnel-security/</guid>
+      <description>Learn how to build a secure, globally-accessible homelab using a Cloudflare Tunnel. This guide covers implementing a Zero Trust security model to protect your services and eliminate the need for open router ports.</description>
+    </item>
+    
     <item>
       <title>Part 3: A High-Availability DNS Network with AdGuard Home</title>
       <link>http://localhost:1313/projects/homelab-series-part-3-high-availability-dns/</link>

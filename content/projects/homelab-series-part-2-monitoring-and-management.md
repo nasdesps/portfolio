@@ -9,6 +9,7 @@ tags:
   - Docker
   - Nginx Proxy Manager
   - Reverse Proxy
+  - Linux
   - Grafana
   - Prometheus
   - Monitoring

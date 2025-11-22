@@ -15,6 +15,7 @@ tags:
   - CloudComputing
   - Cloud
   - OCI
+  - Linux
   - Docker
   - Macvlan
   - DDNS

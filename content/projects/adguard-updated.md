@@ -10,6 +10,7 @@ tags:
   - Homelab
   - CloudComputing
   - Cloud
+  - Linux
   - AWS
   - EC2
   - Firewall
