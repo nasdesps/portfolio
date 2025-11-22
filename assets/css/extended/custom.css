@@ -489,9 +489,12 @@ html:not(.dark) .footer a:hover {
     .code-tag {
         font-size: 0.85rem;
         padding: 6px 12px;
-        white-space: nowrap;
-        overflow-x: auto;
-        max-width: 100%;
+        white-space: pre-wrap !important; /* CHANGED from nowrap to pre-wrap */
+        word-break: break-word;           /* ADDED: Ensures long words break if needed */
+        overflow-wrap: break-word;        /* ADDED: Standard wrapping */
+        max-width: 100%;                  /* ADDED: strict width limit */
+        display: inline-block;            /* ADDED: helps contained wrapping */
+        line-height: 1.5;                 /* ADDED: Better spacing when wrapped */
     }
 
     /* Hide scrollbar for code-tag */
