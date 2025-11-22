@@ -82,7 +82,7 @@ samp,
 .profile h1 {
     font-size: 3.5rem;
     /* Larger title */
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .text-highlight {
@@ -99,7 +99,7 @@ samp,
     padding: 8px 16px;
     display: inline-block;
     color: var(--code-tag-text);
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     font-size: 1rem;
 }
 
@@ -116,10 +116,24 @@ samp,
 /* Profile Description */
 .profile-description {
     max-width: 700px;
-    margin: 0 auto 24px;
+    margin: 0 auto 16px;
     color: var(--profile-desc);
     font-size: 1.1rem;
     line-height: 1.6;
+}
+
+.profile-description a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.profile-description a:hover {
+    color: #38bdf8 !important;
+}
+
+.profile-description a:hover .white-bold,
+.profile-description a:hover strong {
+    color: #38bdf8 !important;
 }
 
 .white-bold {
@@ -130,7 +144,7 @@ samp,
 /* Location Tag */
 .location-tag {
     color: #64748b;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -152,7 +166,7 @@ samp,
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
 }
 
 .tech-badge {
@@ -178,7 +192,7 @@ samp,
     justify-content: center;
     gap: 8px;
     /* Reduced gap to 8px */
-    margin-top: 20px;
+    margin-top: 16px;
     flex-wrap: wrap;
 }
 
@@ -284,4 +298,126 @@ samp,
 html.dark body {
     background: var(--theme);
     color: var(--content);
+}
+
+/* Disable click animation for education articles */
+.education-entry:active {
+    transform: none !important;
+}
+
+/* Profile Image Dotted Circle */
+.profile-image-wrapper {
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    border: 2px dashed #64748b;
+    padding: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.profile-image-wrapper:hover {
+    border-color: rgba(56, 189, 248, 0.5);
+}
+
+.profile-image-wrapper img {
+    display: block;
+    border-radius: 50%;
+}
+
+/* Navigation Styling */
+.nav {
+    border-bottom: 1px solid var(--border);
+}
+
+/* Navigation menu links - grey color for dark theme */
+#menu li a span {
+    color: #9ca3af;
+    transition: color 0.2s ease;
+}
+
+#menu li a:hover span {
+    color: #38bdf8;
+}
+
+/* Light theme navigation */
+html:not(.dark) #menu li a span {
+    color: #6b7280;
+}
+
+html:not(.dark) #menu li a:hover span {
+    color: #0284c7;
+}
+
+/* Footer Separation */
+.footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Footer links - grey color matching navigation */
+.footer a {
+    color: #9ca3af;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: #38bdf8;
+}
+
+/* Light theme footer */
+html:not(.dark) .footer a {
+    color: #6b7280;
+}
+
+html:not(.dark) .footer a:hover {
+    color: #0284c7;
+}
+
+/* Wave Emoji Animation */
+.wave-emoji {
+    display: inline-block;
+    cursor: default;
+}
+
+.wave-emoji:hover {
+    animation: wave 2.5s infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(14deg);
+    }
+
+    20% {
+        transform: rotate(-8deg);
+    }
+
+    30% {
+        transform: rotate(14deg);
+    }
+
+    40% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    60% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }

@@ -329,6 +329,13 @@ html.dark body {
     border-bottom: 1px solid var(--border);
 }
 
+/* Remove all underlines and borders from navigation links */
+#menu li a {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
 /* Navigation menu links - grey color for dark theme */
 #menu li a span {
     color: #9ca3af;
@@ -346,6 +353,25 @@ html:not(.dark) #menu li a span {
 
 html:not(.dark) #menu li a:hover span {
     color: #0284c7;
+}
+
+/* Active page navigation - bright white in dark mode, no underline */
+#menu li a span.active {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Extra rule to ensure no underline on active links */
+#menu li a:has(span.active) {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Active page navigation - dark text in light mode */
+html:not(.dark) #menu li a span.active {
+    color: #1f2937 !important;
+    font-weight: 600;
 }
 
 /* Footer Separation */
