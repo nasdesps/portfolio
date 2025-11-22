@@ -25,6 +25,11 @@ menu:
       name: Education
       url: /education
       weight: 50
+    - identifier: search
+      name: Search
+      url: /search
+      weight: 60
+    
 
 params:
   # theme

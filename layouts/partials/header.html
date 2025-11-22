@@ -1,5 +1,3 @@
-
-
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
@@ -9,23 +7,23 @@
                 {{- if site.Params.label.icon }}
                 {{- $img := resources.Get site.Params.label.icon }}
                 {{- if $img }}
-                    {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
-                    {{- if hugo.IsExtended -}}
-                        {{- $processableFormats = $processableFormats | append "webp" -}}
-                    {{- end -}}
-                    {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
-                    {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
-                        {{- if site.Params.label.iconHeight }}
-                            {{- $img = $img.Resize (printf "x%d" site.Params.label.iconHeight) }}
-                        {{ else }}
-                            {{- $img = $img.Resize "x30" }}
-                        {{- end }}
-                    {{- end }}
-                    <img src="{{ $img.Permalink }}" alt="logo" aria-label="logo"
-                        height="{{- site.Params.label.iconHeight | default "30" -}}">
+                {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+                {{- if hugo.IsExtended -}}
+                {{- $processableFormats = $processableFormats | append "webp" -}}
+                {{- end -}}
+                {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+                {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
+                {{- if site.Params.label.iconHeight }}
+                {{- $img = $img.Resize (printf "x%d" site.Params.label.iconHeight) }}
+                {{ else }}
+                {{- $img = $img.Resize "x30" }}
+                {{- end }}
+                {{- end }}
+                <img src="{{ $img.Permalink }}" alt="logo" aria-label="logo"
+                    height="{{- site.Params.label.iconHeight | default " 30" -}}">
                 {{- else }}
                 <img src="{{- site.Params.label.icon | absURL -}}" alt="logo" aria-label="logo"
-                    height="{{- site.Params.label.iconHeight | default "30" -}}">
+                    height="{{- site.Params.label.iconHeight | default " 30" -}}">
                 {{- end -}}
                 {{- end -}}
                 {{- $label_text -}}
@@ -63,7 +61,8 @@
                     {{- range . -}}
                     {{- if ne $lang .Lang }}
                     <li>
-                        <a href="{{- .Permalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}"
+                        <a href="{{- .Permalink -}}"
+                            title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}"
                             aria-label="{{ .Language.LanguageName | default (.Lang | title) }}">
                             {{- if (and site.Params.displayFullLangName (.Language.LanguageName)) }}
                             {{- .Language.LanguageName | emojify -}}
@@ -85,11 +84,21 @@
             {{- $page_url:= $currentPage.Permalink | absLangURL }}
             {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
             <li>
-                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
-                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
+                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)"
+                    | safeHTMLAttr) ("" | safeHTMLAttr ) }}" {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" |
+                    safeHTMLAttr ) }}>
                     <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
                         {{- .Pre }}
+                        {{- if eq .Identifier "search" }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="vertical-align: text-bottom;">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        {{- else }}
                         {{- .Name -}}
+                        {{- end }}
                         {{ .Post -}}
                     </span>
                 </a>
