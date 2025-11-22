@@ -450,201 +450,20 @@ html:not(.dark) .footer a:hover {
 
 /* Mobile Menu - Horizontal Scroll */
 @media screen and (max-width: 768px) {
-    #menu {
-        overflow-x: auto;
-        white-space: nowrap;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 5px;
-        /* Space for scrollbar if visible */
+
+    /* Fix mobile padding to prevent left-side cutting */
+    .profile,
+    .main {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
-    /* Ensure it wraps content */
-    box-sizing: border-box;
-    /* Ensure padding is included in width */
-}
-
-.social-icons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    /* Fill the container height */
-    margin: 0 !important;
-    /* Ensure no margin on links */
-    padding: 0 !important;
-    /* Ensure no padding on links */
-}
-
-.social-icons a svg {
-    width: 22px;
-    /* Slightly larger icons */
-    height: 22px;
-    fill: currentColor;
-    color: #94a3b8;
-    transition: color 0.2s ease;
-}
-
-.social-icons a:hover svg {
-    color: #38bdf8;
-}
-
-/* Ensure background is applied */
-html.dark body {
-    background: var(--theme);
-    color: var(--content);
-}
-
-/* Disable click animation for education articles */
-.education-entry:active {
-    transform: none !important;
-}
-
-/* Profile Image Dotted Circle */
-.profile-image-wrapper {
-    display: inline-block;
-    position: relative;
-    border-radius: 50%;
-    border: 2px dashed #64748b;
-    padding: 8px;
-    transition: border-color 0.3s ease;
-}
-
-.profile-image-wrapper:hover {
-    border-color: rgba(56, 189, 248, 0.5);
-}
-
-.profile-image-wrapper img {
-    display: block;
-    border-radius: 50%;
-}
-
-/* Navigation Styling */
-.nav {
-    border-bottom: 1px solid var(--border);
-}
-
-/* Remove all underlines and borders from navigation links */
-#menu li a {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* Navigation menu links - grey color for dark theme */
-#menu li a span {
-    color: #9ca3af;
-    transition: color 0.2s ease;
-}
-
-#menu li a:hover span {
-    color: #38bdf8;
-}
-
-/* Light theme navigation */
-html:not(.dark) #menu li a span {
-    color: #6b7280;
-}
-
-html:not(.dark) #menu li a:hover span {
-    color: #0284c7;
-}
-
-/* Active page navigation - bright white in dark mode, no underline */
-#menu li a span.active {
-    color: #ffffff !important;
-    font-weight: 600;
-}
-
-/* Extra rule to ensure no underline on active links */
-#menu li a:has(span.active) {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* Active page navigation - dark text in light mode */
-html:not(.dark) #menu li a span.active {
-    color: #1f2937 !important;
-    font-weight: 600;
-}
-
-/* Footer Separation */
-.footer {
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-    margin-top: 24px;
-    text-align: center;
-    width: 100%;
-    max-width: 100%;
-}
-
-/* Footer links - grey color matching navigation */
-.footer a {
-    color: #9ca3af;
-    transition: color 0.2s ease;
-}
-
-.footer a:hover {
-    color: #38bdf8;
-}
-
-/* Light theme footer */
-html:not(.dark) .footer a {
-    color: #6b7280;
-}
-
-html:not(.dark) .footer a:hover {
-    color: #0284c7;
-}
-
-/* Wave Emoji Animation */
-.wave-emoji {
-    display: inline-block;
-    cursor: default;
-}
-
-.wave-emoji:hover {
-    animation: wave 2.5s infinite;
-    transform-origin: 70% 70%;
-}
-
-@keyframes wave {
-    0% {
-        transform: rotate(0deg);
+    /* Reduce dotted circle padding and border on mobile */
+    .profile-image-wrapper {
+        padding: 2px;
+        border-width: 1px;
     }
 
-    10% {
-        transform: rotate(14deg);
-    }
-
-    20% {
-        transform: rotate(-8deg);
-    }
-
-    30% {
-        transform: rotate(14deg);
-    }
-
-    40% {
-        transform: rotate(-4deg);
-    }
-
-    50% {
-        transform: rotate(10deg);
-    }
-
-    60% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-/* Mobile Menu - Horizontal Scroll */
-@media screen and (max-width: 768px) {
     #menu {
         overflow-x: auto;
         white-space: nowrap;
@@ -658,6 +477,7 @@ html:not(.dark) .footer a:hover {
     #menu::-webkit-scrollbar {
         display: none;
     }
+
     /* Code tag mobile optimization */
     .code-tag {
         font-size: 0.85rem;
@@ -671,7 +491,6 @@ html:not(.dark) .footer a:hover {
     .code-tag::-webkit-scrollbar {
         display: none;
     }
-
 
     #menu li {
         display: inline-block;
