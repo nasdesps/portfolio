@@ -658,6 +658,20 @@ html:not(.dark) .footer a:hover {
     #menu::-webkit-scrollbar {
         display: none;
     }
+    /* Code tag mobile optimization */
+    .code-tag {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+        white-space: nowrap;
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    /* Hide scrollbar for code-tag */
+    .code-tag::-webkit-scrollbar {
+        display: none;
+    }
+
 
     #menu li {
         display: inline-block;
