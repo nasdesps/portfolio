@@ -605,6 +605,48 @@ html:not(.dark) .footer a:hover {
     }
 }
 
+/* Ultra small screens (like Pixel Fold outer screen) */
+@media screen and (max-width: 360px) {
+
+    /* Even more compact code tag for ultra-narrow screens */
+    .code-tag {
+        font-size: 0.7rem !important;
+        padding: 4px 8px !important;
+        display: inline-block !important;
+        white-space: normal !important;
+        word-wrap: break-word;
+        max-width: 100%;
+        line-height: 1.5;
+    }
+
+    /* Ensure prompt and text can wrap independently */
+    .code-tag .prompt,
+    .code-tag .pipe {
+        display: inline;
+        white-space: normal;
+    }
+
+    /* Further reduce heading size */
+    .profile h1 {
+        font-size: 1.75rem !important;
+    }
+
+    /* Smaller profile image for ultra-narrow screens */
+    .profile-image-wrapper img {
+        max-width: 130px !important;
+        max-height: 130px !important;
+        width: 130px !important;
+        height: 130px !important;
+    }
+
+    /* Tighter padding overall */
+    .profile,
+    .main {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
 /* Remove default styling from post tags to avoid double box */
 .post-tags li a {
     background: none !important;
