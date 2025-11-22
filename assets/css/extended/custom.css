@@ -615,8 +615,11 @@ html:not(.dark) .footer a:hover {
         display: inline-block !important;
         white-space: normal !important;
         word-wrap: break-word;
-        max-width: 100%;
+        overflow-wrap: break-word;
+        max-width: calc(100vw - 24px);
         line-height: 1.5;
+        box-sizing: border-box;
+        hyphens: auto;
     }
 
     /* Ensure prompt and text can wrap independently */
