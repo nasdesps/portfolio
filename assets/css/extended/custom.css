@@ -48,6 +48,13 @@
     --social-border: rgba(48, 54, 61, 0.8);
 }
 
+/* Prevent mobile browsers from automatically resizing text */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
 /* Typography */
 body {
     font-family: var(--font-primary);
