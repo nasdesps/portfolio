@@ -506,12 +506,12 @@ html:not(.dark) .footer a:hover {
         border-width: 1px;
     }
 
-    /* Scale down profile image on very small screens */
+    /* Scale down profile image to appropriate size for small screens */
     .profile-image-wrapper img {
-        max-width: 120px;
-        max-height: 120px;
-        width: 120px !important;
-        height: 120px !important;
+        max-width: 140px;
+        max-height: 140px;
+        width: 140px !important;
+        height: 140px !important;
     }
 
     /* Scale down main heading */
@@ -532,10 +532,27 @@ html:not(.dark) .footer a:hover {
         margin-bottom: 12px;
     }
 
-    /* Reduce code tag size */
+    /* Allow code tag to wrap on very small screens */
     .code-tag {
         font-size: 0.75rem !important;
         padding: 5px 10px !important;
+        white-space: normal !important;
+        text-align: center;
+        overflow-x: visible !important;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        line-height: 1.4;
+    }
+
+    .code-tag .prompt {
+        white-space: nowrap;
+    }
+
+    .code-tag .pipe {
+        margin: 0 4px;
     }
 
     /* Reduce location tag size */
