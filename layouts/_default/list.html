@@ -69,7 +69,6 @@
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
     </h2>
   </header>
-  <!-- Added a custom param hideDescriptionInList  -->
   {{- if (ne (.Param "hideDescriptionInList") true) }}
   <div class="entry-content">
     <p>{{ .Description }}</p>

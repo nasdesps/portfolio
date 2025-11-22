@@ -42,13 +42,13 @@ params:
   # Home Page
   profileMode:
     enabled: true
-    title: "Hi, I'm <span class=\"text-highlight\">Prajwol</span> 👋"
+    title: "Hi, I'm <span class=\"text-highlight\">Prajwol</span> <span class=\"wave-emoji\">👋</span>"
     subtitle: >
         <div class="code-tag">
             <span class="prompt">>_</span> Aspiring DevOps Engineer_ <span class="pipe">|</span> WGU Master's Student
         </div>
         <div class="profile-description">
-            Graduate student in Software Engineering at <a href="https://www.wgu.edu/" target="_blank"><strong class="white-bold">WGU</strong></a>. Building homelabs, automating pipelines, and learning the intricacies of pharma manufacturing at <a href="https://www.abbvie.com/" target="_blank"><strong class="white-bold">AbbVie</strong></a>.
+            Graduate student in Software Engineering & DevOps at <a href="https://www.wgu.edu/" target="_blank"><strong class="white-bold">WGU</strong></a>. Building homelabs, automating pipelines, and learning the intricacies of pharma manufacturing at <a href="https://www.abbvie.com/" target="_blank"><strong class="white-bold">AbbVie</strong></a>.
         </div>
         <div class="location-tag">
             <span class="grey-icon">📍</span> Texas, USA <span class="dot">•</span> <span class="grey-icon">🎸</span> Guitarist
@@ -117,3 +117,7 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+
+minify:
+  disableXML: true
+  minifyOutput: true
