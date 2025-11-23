@@ -22,7 +22,6 @@
         fill="#ffffffff"
         text-anchor="end"
         dominant-baseline="central">प्र</text>
-#ebebebff
   <!-- 
     The 'P'
     Positioned slightly to the left to overlap with the Pra stem.
@@ -36,5 +35,4 @@
         fill="#050505ff"
         text-anchor="start"
         dominant-baseline="central">P</text>
-#0f1115
 </svg>
