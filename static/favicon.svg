@@ -1,25 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <!-- 
-    High-Contrast DevOps Favicon - "प्रP" (Maximized)
-    Strategy: Ultra-large font size to utilize all available space (Google-style).
-    Font: Rounded sans-serif stack for circular harmony.
+    High-Contrast DevOps Favicon - "प्रP" Monogram (Shared Stem)
+    Strategy: 
+      - Separate text elements to manually overlap the characters.
+      - Merge the right stem of 'Pra' with the left stem of 'P'.
+      - Mask the top bar of 'Pra'.
   -->
   
   <!-- Background: Solid Sky Blue (#38bdf8) -->
   <circle cx="256" cy="256" r="256" fill="#38bdf8"/>
   
-  <!-- The Static 'प्रP' -->
   <!-- 
-       Font size increased to 400 to aggressively fill the circle.
-       y-coordinate adjusted to visually center the visual mass.
-       Font stack prioritized for rounded geometric shapes.
+    The 'प्र' (Pra) 
+    Positioned slightly to the left.
+    Text-anchor end aligns the right side (the stem) towards the center.
   -->
-  <text x="50%" y="55%" 
-        font-family="'Arial Rounded MT Bold', 'Varela Round', 'Nunito', 'Segoe UI', sans-serif" 
+  <text x="285" y="56%" 
+        font-family="'Arial Rounded MT Bold', 'Varela Round', 'Nunito', sans-serif" 
         font-weight="900" 
-        font-size="375" 
-        fill="#0f1115"
-        text-anchor="middle"
-        dominant-baseline="central">प्रP</text>
-
+        font-size="370" 
+        fill="#ffffffff"
+        text-anchor="end"
+        dominant-baseline="central">प्र</text>
+#ebebebff
+  <!-- 
+    The 'P'
+    Positioned slightly to the left to overlap with the Pra stem.
+    The x coordinate (225) is chosen to pull the P back onto the Pra's stem.
+    (285 - 225 = 60px overlap)
+  -->
+  <text x="225" y="56%" 
+        font-family="'Arial Rounded MT Bold', 'Varela Round', 'Nunito', sans-serif" 
+        font-weight="900" 
+        font-size="380" 
+        fill="#050505ff"
+        text-anchor="start"
+        dominant-baseline="central">P</text>
+#0f1115
 </svg>
