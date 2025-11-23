@@ -44,6 +44,9 @@ params:
   # for enchanced SEO
   env: production
 
+  assets:
+    favicon: "favicon.svg"
+
   # Home Page
   profileMode:
     enabled: true

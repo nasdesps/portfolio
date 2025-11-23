@@ -13,36 +13,36 @@
     // This script is placed in the <head> to prevent the dark-mode flash and handle all toggle logic.
     (function () {
         const Elem = document.documentElement;
-        const savedTheme = localStorage.getItem('pref-theme');
+        const savedTheme = localStorage.getItem("pref-theme");
         let theme;
 
         if (savedTheme) {
             theme = savedTheme;
         } else {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
 
-        if (theme === 'dark') {
-            Elem.classList.add('dark');
+        if (theme === "dark") {
+            Elem.classList.add("dark");
         } else {
-            Elem.classList.remove('dark');
+            Elem.classList.remove("dark");
         }
     })();
 
     // This part runs after the page is loaded to handle interactions.
-    window.addEventListener('DOMContentLoaded', (event) => {
-        const toggle = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('sun');
-        const moonIcon = document.getElementById('moon');
+    window.addEventListener("DOMContentLoaded", (event) => {
+        const toggle = document.getElementById("theme-toggle");
+        const sunIcon = document.getElementById("sun");
+        const moonIcon = document.getElementById("moon");
 
         // Function to update the icon based on the current theme
         function updateIcon() {
-            if (document.documentElement.classList.contains('dark')) {
-                sunIcon.style.setProperty('display', 'inline-block', 'important');
-                moonIcon.style.setProperty('display', 'none', 'important');
+            if (document.documentElement.classList.contains("dark")) {
+                sunIcon.style.setProperty("display", "inline-block", "important");
+                moonIcon.style.setProperty("display", "none", "important");
             } else {
-                sunIcon.style.setProperty('display', 'none', 'important');
-                moonIcon.style.setProperty('display', 'inline-block', 'important');
+                sunIcon.style.setProperty("display", "none", "important");
+                moonIcon.style.setProperty("display", "inline-block", "important");
             }
         }
 
@@ -51,9 +51,9 @@
             updateIcon();
 
             // Add the click event listener
-            toggle.addEventListener('click', function () {
-                const isDark = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('pref-theme', isDark ? 'dark' : 'light');
+            toggle.addEventListener("click", function () {
+                const isDark = document.documentElement.classList.toggle("dark");
+                localStorage.setItem("pref-theme", isDark ? "dark" : "light");
                 updateIcon(); // Update the icon after every click
             });
         }
@@ -153,7 +153,7 @@ fingerprint }}
 {{- end }}
 
 {{- /* Favicons */}}
-<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon | default "favicon.svg" | absURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
 <link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
