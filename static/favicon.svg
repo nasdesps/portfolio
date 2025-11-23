@@ -1,27 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <!-- 
-    High-Contrast DevOps Favicon - "P_"
-    Strategy: Static 'P' with a blinking underscore cursor.
+    High-Contrast DevOps Favicon - "प्रP" (Maximized)
+    Strategy: Ultra-large font size to utilize all available space (Google-style).
+    Font: Rounded sans-serif stack for circular harmony.
   -->
   
   <!-- Background: Solid Sky Blue (#38bdf8) -->
   <circle cx="256" cy="256" r="256" fill="#38bdf8"/>
   
-  <!-- The Static 'P' -->
-  <!-- Positioned slightly left (x=210) to balance the underscore -->
-  <text x="210" y="370" 
-        font-family="monospace, sans-serif" 
+  <!-- The Static 'प्रP' -->
+  <!-- 
+       Font size increased to 400 to aggressively fill the circle.
+       y-coordinate adjusted to visually center the visual mass.
+       Font stack prioritized for rounded geometric shapes.
+  -->
+  <text x="50%" y="55%" 
+        font-family="'Arial Rounded MT Bold', 'Varela Round', 'Nunito', 'Segoe UI', sans-serif" 
         font-weight="900" 
-        font-size="350" 
+        font-size="375" 
         fill="#0f1115"
         text-anchor="middle"
-        style="font-family: 'JetBrains Mono', 'Courier New', monospace;">P</text>
-        
-  <!-- The Blinking Underscore '_' -->
-  <!-- A rectangle positioned at the baseline to mimic a heavy terminal underscore -->
-  <rect x="310" y="330" width="70" height="40" fill="#0f1115">
-    <!-- Animation: Sharp blink (1s duration) -->
-    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
-  </rect>
+        dominant-baseline="central">प्रP</text>
 
 </svg>
