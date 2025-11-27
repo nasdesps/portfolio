@@ -1,38 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    
+  <!-- Background: Dark Theme (#0f1115) -->
+  <circle cx="256" cy="256" r="256" fill="#0f1115"/>
   <!-- 
-    High-Contrast DevOps Favicon - "प्रP" Monogram (Shared Stem)
-    Strategy: 
-      - Separate text elements to manually overlap the characters.
-      - Merge the right stem of 'Pra' with the left stem of 'P'.
-      - Mask the top bar of 'Pra'.
+    The 'प्र' (Pra)
   -->
-  
-  <!-- Background: Solid Sky Blue (#38bdf8) -->
-  <circle cx="256" cy="256" r="256" fill="#38bdf8"/>
-  
-  <!-- 
-    The 'प्र' (Pra) 
-    Positioned slightly to the left.
-    Text-anchor end aligns the right side (the stem) towards the center.
-  -->
-  <text x="285" y="56%" 
-        font-family="'Arial Rounded MT Bold', 'Varela Round', 'Nunito', sans-serif" 
-        font-weight="900" 
-        font-size="370" 
-        fill="#ffffffff"
-        text-anchor="end"
-        dominant-baseline="central">प्र</text>
-  <!-- 
-    The 'P'
-    Positioned slightly to the left to overlap with the Pra stem.
-    The x coordinate (225) is chosen to pull the P back onto the Pra's stem.
-    (285 - 225 = 60px overlap)
-  -->
-  <text x="225" y="56%" 
+  <text x="315" y="56%" 
         font-family="'Arial Rounded MT Bold', 'Varela Round', 'Nunito', sans-serif" 
         font-weight="900" 
         font-size="380" 
-        fill="#050505ff"
+        fill="#38bdf8"
+        text-anchor="end"
+        dominant-baseline="central">प्र</text>
+
+  <!-- 
+    The 'P'
+  -->
+  <text x="190" y="56%" 
+        font-family="'Arial Rounded MT Bold', 'Varela Round', 'Nunito', sans-serif" 
+        font-weight="900" 
+        font-size="404" 
+        fill="#38bdf8"
         text-anchor="start"
         dominant-baseline="central">P</text>
+
 </svg>
