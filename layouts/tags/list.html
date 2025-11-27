@@ -1,0 +1,33 @@
+{{- define "main" }}
+
+<header class="page-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+</header>
+
+<div class="tags-list">
+    {{- $pages := .Pages }}
+    {{- range $pages }}
+    <a href="{{ .RelPermalink }}" class="tag-card-link" aria-label="tag link to {{ .Title }}">
+        <article class="tag-card">
+            <div class="tag-card-content">
+                <h2 class="tag-title">{{ .Title }}</h2>
+                {{- if .Description }}
+                <p class="tag-description">{{ .Description }}</p>
+                {{- end }}
+                <div class="tag-meta">
+                    <span class="post-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end
+                        }}</span>
+                </div>
+            </div>
+        </article>
+    </a>
+    {{- end }}
+</div>
+
+{{- end }}{{/* end main */}}

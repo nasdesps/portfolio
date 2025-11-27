@@ -5,15 +5,11 @@ dateString: Expected 2027
 draft: false
 disableShare: true
 weight: 101
-
+tags:
+    - DevOps Security
+    - Continuous Integration and Delivery
+    - Network Architecture and Cloud Computing
+    - DevOps Foundations
+    - Data Structures
+    - Advanced Software Engineering
 ---
-
-**Key Projects:**
-* Built a full CI/CD pipeline using Jenkins and Docker for a Python web app.
-* Developed a serverless application on AWS using Lambda and API Gateway.
-
-**Relevant Coursework:**
-* Advanced DevOps and CI/CD
-* Secure Software Engineering
-* Cloud-Native Application Development
-* Software Architecture

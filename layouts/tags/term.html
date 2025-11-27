@@ -1,0 +1,43 @@
+{{- define "main" }}
+
+<header class="page-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+    <div class="tag-term-meta">
+        <span class="post-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span>
+    </div>
+</header>
+
+<div class="tag-posts-grid">
+    {{- range .Pages }}
+    <a href="{{ .RelPermalink }}" class="tag-post-card-link" aria-label="post link to {{ .Title }}">
+        <article class="tag-post-card">
+            {{- if .Params.cover.image }}
+            <div class="tag-post-image">
+                <img loading="lazy" src="{{ .Params.cover.image | relURL }}"
+                    alt="{{ .Params.cover.alt | default .Title }}">
+            </div>
+            {{- end }}
+
+            <div class="tag-post-content">
+                <h2 class="tag-post-title">{{ .Title }}</h2>
+                {{- if .Description }}
+                <p class="tag-post-description">{{ .Description }}</p>
+                {{- end }}
+
+                <div class="tag-post-meta">
+                    <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+                    <span class="read-time">{{ .ReadingTime }} min read</span>
+                </div>
+            </div>
+        </article>
+    </a>
+    {{- end }}
+</div>
+
+{{- end }}{{/* end main */}}

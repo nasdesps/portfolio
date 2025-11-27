@@ -1,0 +1,43 @@
+{{- define "main" }}
+<header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+</header>
+
+<div class="blog-list">
+    {{- $pages := .Pages }}
+    {{- if .IsHome }}
+    {{- $pages = .Site.RegularPages }}
+    {{- end }}
+
+    {{- range $pages }}
+    <a href="{{ .RelPermalink }}" class="blog-card-link" aria-label="post link to {{ .Title }}">
+        <article class="blog-card">
+            <div class="blog-card-header">
+                <h2 class="blog-card-title">{{ .Title }}</h2>
+                <div class="blog-meta">
+                    <span class="blog-date">{{ .Date.Format "Jan 02, 2006" }}</span>
+                    <span class="blog-read-time">{{ .ReadingTime }} min read</span>
+                </div>
+            </div>
+
+            <div class="blog-content">
+                <p class="blog-description">{{ .Description }}</p>
+            </div>
+
+            {{- if .Params.tags }}
+            <div class="blog-tags">
+                {{- range .Params.tags }}
+                <span class="blog-tag">{{ . }}</span>
+                {{- end }}
+            </div>
+            {{- end }}
+        </article>
+    </a>
+    {{- end }}
+</div>
+{{- end }}

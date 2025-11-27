@@ -1,9 +1,9 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
     {{- if site.Copyright }}
-    <span>{{ site.Copyright | markdownify }} · <a href="{{ " /privacy-policy/" | relURL }}">Privacy Policy</a> </span>
+    <span>{{ site.Copyright | markdownify }} · <a href="{{ "/privacy-policy/" | relURL }}">Privacy Policy</a> </span>
     {{- else }}
-    <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a> · <a href="{{ " /privacy-policy/" |
+    <span>&copy; {{ now.Year }} <a href="{{ "" | relLangURL }}">{{ site.Title }}</a> · <a href="{{ "/privacy-policy/" |
             relURL }}">Privacy Policy</a></span>
     {{- end }}
 </footer>
@@ -114,3 +114,5 @@
     });
 </script>
 {{- end }}
+
+<div class="bg-glow"></div>

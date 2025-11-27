@@ -1,0 +1,63 @@
+{{- define "main" }}
+<header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+</header>
+
+<div class="project-grid">
+    {{- $pages := .Pages }}
+    {{- if .IsHome }}
+    {{- $pages = .Site.RegularPages }}
+    {{- end }}
+
+    {{- range $pages }}
+    <a href="{{ .RelPermalink }}" class="project-card-link" aria-label="project link to {{ .Title }}">
+        <article class="project-card">
+            <div class="card-header">
+                <div class="window-controls">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="window-title">{{ .Params.slug | default .File.BaseFileName }}</div>
+            </div>
+
+            <div class="card-image">
+                {{- if .Params.cover.image }}
+                <img loading="lazy" src="{{ .Params.cover.image | relURL }}"
+                    alt="{{ .Params.cover.alt | default .Title }}">
+                {{- end }}
+
+                {{- if .Params.icon }}
+                <div class="card-icon">
+                    <img src="{{ .Params.icon | relURL }}" alt="icon">
+                </div>
+                {{- end }}
+            </div>
+
+            <div class="card-content">
+                <h2 class="card-title">{{ .Title }}</h2>
+                <p class="card-description">{{ .Description }}</p>
+
+                {{- if .Params.tags }}
+                <div class="card-tags">
+                    {{- range .Params.tags }}
+                    <span class="project-tag">{{ . }}</span>
+                    {{- end }}
+                </div>
+                {{- end }}
+            </div>
+
+            <div class="card-footer">
+                <span class="card-date">{{ .Date.Format "Jan 2006" }}</span>
+                <span class="view-project">view_project -></span>
+            </div>
+        </article>
+    </a>
+    {{- end }}
+</div>
+{{- end }}

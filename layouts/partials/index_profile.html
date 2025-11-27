@@ -26,7 +26,7 @@
         </div>
         {{- else }}
         <div class="profile-image-wrapper">
-            <img src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default " profile image" }}"
+            <img src="{{ .imageUrl | relURL }}" alt="{{ .imageTitle | default " profile image" }}"
                 height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
         </div>
         {{- end }}

@@ -7,6 +7,7 @@ draft: false
 tags:
 weight: 110
 author: " | Prajwol Bikram Adikari"
+tags: ["Homelab", "DevOps", "Self-Hosting", "Security", "AWS", "DIY", "LLM", "Docker"]
 showToc: false
 ---
 # New Project Alert: Running a Powerful AI Locally with Docker!

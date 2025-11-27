@@ -7,6 +7,7 @@ draft: false
 tags:
 weight: 102
 author: " | Prajwol Bikram Adikari"
+tags: ["Homelab", "DevOps", "Self-Hosting", "Security", "DIY", "Cloud", "AWS", "DIY"]
 showToc: false
 ---
 
