@@ -6,3 +6,19 @@
  HUGO_VERSION = "0.143.1"
  HUGO_ENV = "production"
  HUGO_ENABLEGITINFO = "false"
+
+[[redirects]]
+  # Redirect any Netlify subdomain access to the primary domain to avoid duplicate content
+  # Note: Replacing prajwolar based on inferred naming. Change if your exact netlify subdomain differs.
+  from = "https://prajwol-adhikari.netlify.app/*"
+  to = "https://www.prajwolbikramadhikari.com.np/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-XSS-Protection = "1; mode=block"

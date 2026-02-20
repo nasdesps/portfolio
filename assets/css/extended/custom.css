@@ -1,5 +1,51 @@
-/* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+/* Local Fonts */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/inter-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/inter-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/inter-600.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/inter-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono-700.woff2') format('woff2');
+}
 
 :root {
     --font-primary: 'Inter', sans-serif;
@@ -31,43 +77,43 @@
 
 /* Dark Theme Palette */
 .dark {
-    --theme: #0f1115;
-    /* Main Background: Very dark blue-grey */
-    --entry: rgba(255, 255, 255, 0.05);
+    --theme: #0b0f19;
+    /* Main Background: Deep slate/midnight blue */
+    --entry: rgba(255, 255, 255, 0.03);
     /* Glassmorphism Elements */
-    --primary: #e2e8f0;
-    /* Primary Text: Light gray */
-    --secondary: #9ca3af;
-    /* Muted Text: Mid-gray */
-    --tertiary: #4b5563;
+    --primary: #f8fafc;
+    /* Primary Text: Bright white/gray */
+    --secondary: #94a3b8;
+    /* Muted Text: Slate */
+    --tertiary: #475569;
     --content: #e2e8f0;
-    --hljs-bg: #1e293b;
+    --hljs-bg: #0b0f19;
     --code-bg: #1e293b;
-    --border: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.08);
 
     /* Dark Theme Overrides */
-    --profile-desc: #94a3b8;
+    --profile-desc: #cbd5e1;
     --white-bold: #ffffff;
-    --tech-badge-bg: rgba(30, 41, 59, 0.5);
-    --tech-badge-border: rgba(71, 85, 105, 0.5);
-    --tech-badge-text: #cbd5e1;
-    --code-tag-bg: rgba(30, 41, 59, 0.5);
-    --code-tag-border: rgba(56, 189, 248, 0.2);
+    --tech-badge-bg: rgba(14, 165, 233, 0.1);
+    --tech-badge-border: rgba(14, 165, 233, 0.3);
+    --tech-badge-text: #38bdf8;
+    --code-tag-bg: #111827;
+    --code-tag-border: #1e293b;
     --code-tag-text: #94a3b8;
-    --social-bg: rgba(22, 27, 34, 0.8);
+    --social-bg: rgba(17, 24, 39, 0.8);
     /* Darker background for social icons */
-    --social-border: rgba(48, 54, 61, 0.8);
+    --social-border: rgba(31, 41, 55, 0.8);
 
     /* Component Theme Variables (Dark) */
-    --card-bg: #0f1319;
-    --card-border: #1e293b;
-    --card-header-bg: #161b22;
-    --card-text-primary: #f1f5f9;
+    --card-bg: #111827;
+    --card-border: #1f2937;
+    --card-header-bg: #111827;
+    --card-text-primary: #f8fafc;
     --card-text-secondary: #94a3b8;
-    --card-tag-bg: rgba(30, 41, 59, 0.5);
-    --card-tag-border: rgba(148, 163, 184, 0.2);
-    --timeline-line-color: #1e293b;
-    --timeline-marker-bg: #0f1115;
+    --card-tag-bg: rgba(14, 165, 233, 0.1);
+    --card-tag-border: rgba(14, 165, 233, 0.2);
+    --timeline-line-color: #1f2937;
+    --timeline-marker-bg: #0b0f19;
 }
 
 /* Prevent mobile browsers from automatically resizing text */
@@ -80,6 +126,39 @@ html {
 /* Typography */
 body {
     font-family: var(--font-primary);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: var(--spacing-lg, 2rem);
+    margin-bottom: var(--spacing-md, 1rem);
+    color: var(--card-text-primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
 }
 
 code,
@@ -98,7 +177,7 @@ samp,
 .dark h5,
 .dark h6 {
     color: var(--card-text-primary);
-    /* Pure white for headings in dark mode */
+    /* Bright white for headings in dark mode */
 }
 
 /* Links & Accents - Scoped to Dark Mode */
@@ -108,15 +187,22 @@ samp,
 }
 
 /* Profile Mode Specifics */
+.profile {
+    padding: var(--spacing-xl, 4rem) 0;
+}
+
 .profile h1 {
-    font-size: 3.5rem;
-    /* Larger title */
-    margin-bottom: 0.5rem;
+    font-size: 4.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .text-highlight {
-    color: #38bdf8;
-    /* Light Blue */
+    color: #0ea5e9;
 }
 
 /* Code Tag Style */
@@ -125,30 +211,32 @@ samp,
     background: var(--code-tag-bg);
     border: 1px solid var(--code-tag-border);
     border-radius: 8px;
-    padding: 8px 16px;
+    padding: 10px 20px;
     display: inline-block;
     color: var(--code-tag-text);
-    margin-bottom: 16px;
-    font-size: 1rem;
+    margin-bottom: 24px;
+    font-size: 1.05rem;
 }
 
 .code-tag .prompt {
-    color: #38bdf8;
+    color: var(--tech-badge-text);
     margin-right: 8px;
+    font-weight: 700;
 }
 
 .code-tag .pipe {
-    color: #475569;
-    margin: 0 8px;
+    color: var(--tertiary);
+    margin: 0 12px;
 }
 
 /* Profile Description */
 .profile-description {
-    max-width: 700px;
-    margin: 0 auto 16px;
+    max-width: 750px;
+    margin: 0 auto 32px;
     color: var(--profile-desc);
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    font-weight: 400;
 }
 
 .profile-description a {
@@ -157,12 +245,12 @@ samp,
 }
 
 .profile-description a:hover {
-    color: #38bdf8 !important;
+    color: var(--tech-badge-text) !important;
 }
 
 .profile-description a:hover .white-bold,
 .profile-description a:hover strong {
-    color: #38bdf8 !important;
+    color: var(--tech-badge-text) !important;
 }
 
 .white-bold {
@@ -173,7 +261,9 @@ samp,
 /* Location Tag */
 .location-tag {
     color: var(--card-text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: 32px;
+    font-weight: 500;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -181,41 +271,48 @@ samp,
 }
 
 .location-tag .dot {
-    color: #334155;
+    color: var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .grey-icon {
-    filter: grayscale(100%);
-    opacity: 0.7;
+    display: inline-flex;
+    align-items: center;
+    color: var(--secondary);
 }
 
 /* Tech Stack Badges */
 .tech-stack {
     display: flex;
-
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 24px;
+    margin-bottom: 40px;
 }
 
 .tech-badge {
     background: var(--tech-badge-bg);
     border: 1px solid var(--tech-badge-border);
     color: var(--tech-badge-text);
-    padding: 6px 16px;
+    font-family: var(--font-code);
+    padding: 8px 18px;
     border-radius: 6px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 700;
     transition: all 0.2s ease;
 }
 
 .tech-badge:hover {
-    border-color: #38bdf8;
-    color: #38bdf8;
-    transform: translateY(-1px);
+    /* Glassmorphism Hover */
+    background: rgba(14, 165, 233, 0.15);
+    border-color: rgba(14, 165, 233, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--white-bold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.25);
 }
 
 /* Profile Actions Container */
@@ -242,9 +339,9 @@ samp,
 /* Buttons (Resume Button) */
 .button,
 .dark a.button {
-    background-color: #0284c7;
-    /* Darker Blue */
-    color: var(--card-text-primary);
+    background-color: #0ea5e9;
+    /* Vibrant Electric Blue */
+    color: #ffffff;
     font-family: var(--font-primary);
     font-weight: 600;
     border-radius: 8px;
@@ -272,7 +369,9 @@ samp,
 
 .button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    background-color: #0284c7;
+    /* Slightly darker vibrant blue on hover */
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
     /* Glow effect */
 }
 
@@ -316,7 +415,6 @@ samp,
 
 .social-icons a svg {
     width: 22px;
-    /* Slightly larger icons */
     height: 22px;
     fill: currentColor;
     color: var(--card-text-secondary);
@@ -479,6 +577,14 @@ html:not(.dark) .footer a:hover {
     100% {
         transform: rotate(0deg);
     }
+}
+
+/* Custom Emoji Tinting for "namaste" hand */
+.hand-emoji {
+    display: inline-block;
+    /* Restored original yellow emoji colors by removing hue-rotate filter */
+    margin-left: 8px;
+    font-size: 1.1em;
 }
 
 /* Mobile Menu - Horizontal Scroll */
@@ -716,13 +822,14 @@ html:not(.dark) .footer a:hover {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
-    padding: 24px;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    padding: 32px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .timeline-card:hover {
-    border-color: rgba(56, 189, 248, 0.3);
-    transform: translateY(-2px);
+    border-color: var(--tech-badge-text);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
 }
 
 .timeline-header {
@@ -799,25 +906,25 @@ html:not(.dark) .footer a:hover {
 /* Project Grid Styles */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
 }
 
 .project-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    border-color: #38bdf8;
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(14, 165, 233, 0.1);
+    border-color: var(--tech-badge-text);
 }
 
 /* Window Header */
@@ -1243,13 +1350,29 @@ html:not(.dark) .footer a:hover {
 }
 
 .post-content pre {
-    background: var(--card-header-bg);
-    border: 1px solid var(--card-border);
+    background: var(--hljs-bg) !important;
+    border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
     overflow-x: auto;
     margin: 2rem 0;
     line-height: 1.6;
+}
+
+/* Unify Hugo's Chroma highlighting wrappers so they don't produce a double-box */
+.post-content .highlight:not(table) {
+    background: var(--hljs-bg) !important;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.post-content .highlight:not(table) pre {
+    margin: 0;
+    background: transparent !important;
+    border: none;
+    padding: 1.25rem 1.5rem;
 }
 
 .post-content pre code {
@@ -1348,11 +1471,6 @@ html:not(.dark) .footer a:hover {
         font-size: 1.25rem;
     }
 
-    color: var(--card-text-secondary);
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
 }
 
 .entry-cover {
@@ -1428,32 +1546,7 @@ html:not(.dark) .footer a:hover {
     border-bottom-color: #38bdf8;
 }
 
-.post-content code {
-    font-family: var(--font-code);
-    font-size: 0.9375rem;
-    background: var(--card-tag-bg);
-    border: 1px solid var(--card-tag-border);
-    padding: 0.125rem 0.375rem;
-    border-radius: 4px;
-    color: var(--card-text-primary);
-}
 
-.post-content pre {
-    background: var(--card-header-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    overflow-x: auto;
-    margin: 2rem 0;
-    line-height: 1.6;
-}
-
-.post-content pre code {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 0.9375rem;
-}
 
 .post-content blockquote {
     border-left: 4px solid #38bdf8;
@@ -1726,4 +1819,84 @@ html:not(.dark) .footer a:hover {
     .tag-post-image {
         height: 180px;
     }
+}
+
+/* Skills Matrix */
+.skills-section {
+    margin-top: var(--spacing-xl, 4rem);
+    padding-top: var(--spacing-xl, 4rem);
+    border-top: 1px solid var(--border);
+    animation: fade-in 0.5s ease;
+}
+
+.skills-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: var(--spacing-lg, 2rem);
+    text-align: center;
+    color: var(--card-text-primary);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5), 0 0 16px rgba(14, 165, 233, 0.05);
+    border-color: var(--tech-badge-text);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.skill-icon {
+    color: var(--tech-badge-text);
+}
+
+.skill-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--card-text-primary);
+}
+
+.skill-card p {
+    color: var(--card-text-secondary);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    font-family: var(--font-code);
+    background: var(--tech-badge-bg);
+    border: 1px solid var(--tech-badge-border);
+    color: var(--tech-badge-text);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
