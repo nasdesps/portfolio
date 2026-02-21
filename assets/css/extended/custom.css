@@ -590,6 +590,29 @@ html:not(.dark) .footer a:hover {
 /* Mobile Menu - Horizontal Scroll */
 @media screen and (max-width: 768px) {
 
+    /* Override flex on heading to prevent awkward column wrapping of text nodes and scale down */
+    .profile h1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.25rem;
+        margin-bottom: 0.5rem;
+        gap: 6px;
+    }
+
+    /* Scale down subtitle/greeting text */
+    .profile h1+span {
+        font-size: 1.1rem;
+    }
+
+    /* Reduce profile description font size */
+    .profile-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
     /* Fix mobile padding to prevent left-side cutting */
     .profile,
     .main {
@@ -640,6 +663,30 @@ html:not(.dark) .footer a:hover {
         display: none;
     }
 
+    /* Reduce location tag size */
+    .location-tag {
+        font-size: 0.95rem;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    /* Scale down tech badges */
+    .tech-badge {
+        font-size: 0.85rem;
+        padding: 6px 14px;
+    }
+
+    .tech-stack {
+        gap: 8px;
+        margin-bottom: 24px;
+        padding: 4px 8px !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: calc(100vw - 24px);
+        box-sizing: border-box;
+    }
+
     #menu li {
         display: inline-block;
     }
@@ -664,7 +711,7 @@ html:not(.dark) .footer a:hover {
 
     /* Scale down main heading */
     .profile h1 {
-        font-size: 2rem !important;
+        font-size: 1.75rem !important;
         margin-bottom: 0.25rem;
     }
 
@@ -716,18 +763,9 @@ html:not(.dark) .footer a:hover {
         padding: 4px 12px;
     }
 
+    /* Tech-stack scaling (Layout flex rules are inherited from 768px via CSS cascading) */
     .tech-stack {
-        gap: 8px;
         margin-bottom: 16px;
-        padding: 4px 8px !important;
-        display: inline-block !important;
-        white-space: normal !important;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        max-width: calc(100vw - 24px);
-        line-height: 1.5;
-        box-sizing: border-box;
-        hyphens: auto;
     }
 
     /* Ensure prompt and text can wrap independently */
