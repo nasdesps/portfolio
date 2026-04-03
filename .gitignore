@@ -1,1 +1,4 @@
+# Hugo temporary and output files
+.hugo_build.lock
 public/
+resources/
