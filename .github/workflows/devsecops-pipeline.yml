@@ -51,7 +51,7 @@ jobs:
             -v ${{ github.workspace }}:/src \
             -w /src \
             floryn90/hugo:ext-alpine \
-            hugo --minify --gc
+            --minify --gc
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
