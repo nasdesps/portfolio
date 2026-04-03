@@ -53,6 +53,15 @@ jobs:
             -w /src \
             floryn90/hugo:0.120.4-ext-alpine \
             --minify --gc
+
+      # Upload uncompressed HTML for Lighthouse
+      - name: Upload uncompressed artifact for Lighthouse
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-site
+          path: public/
+
+        # Upload compressed tarball for GitHub Pages
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
@@ -68,7 +77,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: github-pages # upload-pages-artifact names it this by default
+          name: public-site
           path: public/
       - name: Serve & audit
         uses: treosh/lighthouse-ci-action@v11
