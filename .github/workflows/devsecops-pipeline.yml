@@ -1,0 +1,90 @@
+name: DevSecOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, devsecops-pipeline]
+
+# ── OIDC Permissions for GitHub Pages & CodeQL ──
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  security-events: write
+
+jobs:
+  # ── Stage 1: Secret Scanning ──────────────────────────────────────
+  secret-scan:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Stage 2: SAST (CodeQL) ────────────────────────────────────────
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+      - uses: github/codeql-action/autobuild@v3
+      - uses: github/codeql-action/analyze@v3
+
+  # ── Stage 3: Build ────────────────────────────────────────────────
+  build:
+    name: Build Hugo
+    runs-on: ubuntu-latest
+    needs: [secret-scan]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Build with Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/src \
+            -w /src \
+            floryn90/hugo:ext-alpine \
+            hugo --minify --gc
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
+
+  # ── Stage 4: Lighthouse ───────────────────────────────────────────
+  lighthouse:
+    name: Lighthouse Audit
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages # upload-pages-artifact names it this by default
+          path: public/
+      - name: Serve & audit
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: .lighthouserc.json
+
+  # ── Stage 5: Deploy (Blue/Green Staging) ─────────────────────────
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: [build, lighthouse, codeql]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
