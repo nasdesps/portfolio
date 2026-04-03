@@ -79,6 +79,11 @@ jobs:
         with:
           name: public-site
           path: public/
+
+      # NEW SRE FIX: Delete admin files before the audit so LHCI ignores them
+      - name: Prune non-content files from audit
+        run: rm -f public/google*.html public/404.html
+
       - name: Serve & audit
         uses: treosh/lighthouse-ci-action@v11
         with:
