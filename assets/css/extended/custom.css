@@ -1938,3 +1938,9 @@ html:not(.dark) .footer a:hover {
     font-size: 0.85rem;
     font-weight: 600;
 }
+
+/* Accessibility Fix: Underline links in post content so they do not rely solely on color */
+.post-content a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
