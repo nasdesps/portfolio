@@ -6,10 +6,10 @@ draft: false
 disableShare: true
 weight: 101
 tags:
-    - DevOps Security
-    - Continuous Integration and Delivery
-    - Network Architecture and Cloud Computing
-    - DevOps Foundations
-    - Data Structures
-    - Advanced Software Engineering
+  - DevOps Security
+  - Continuous Integration and Delivery
+  - Network Architecture and Cloud Computing
+  - DevOps Foundations
+  - Data Structures
+  - Advanced Software Engineering
 ---

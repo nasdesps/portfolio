@@ -4,7 +4,6 @@ date: 2025-02-21
 dateString: Feb 2025
 description: "Curious about running a powerful AI on your own machine? This post introduces my project guide for setting up the DeepSeek-R1 model locally using Docker for ultimate privacy and control."
 draft: false
-tags:
 weight: 110
 author: " | Prajwol Bikram Adikari"
 tags: ["Homelab", "DevOps", "Self-Hosting", "Security", "AWS", "DIY", "LLM", "Docker"]

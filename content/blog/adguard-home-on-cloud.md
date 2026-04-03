@@ -4,7 +4,6 @@ date: 2025-08-23
 dateString: Aug 2025
 description: "A look back at my first cloud ad-blocking project. This post reflects on setting up AdGuard Home on Linode—a perfect starting point for anyone new to self-hosting and network privacy."
 draft: false
-tags:
 weight: 109
 author: " | Prajwol Bikram Adikari"
 tags: ["Homelab", "Self-Hosting", "Security", "DIY", "Cloud", "Linode", "DIY"]

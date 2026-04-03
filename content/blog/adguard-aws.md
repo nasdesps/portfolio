@@ -4,10 +4,19 @@ date: 2025-08-25
 dateString: Aug 2025
 description: "A personal blog post on the motivation and journey behind building a private, ad-blocking DNS server on AWS. Learn why I tackled this project and how it led to a faster, cleaner internet."
 draft: false
-tags:
 weight: 102
 author: " | Prajwol Bikram Adikari"
-tags: ["Homelab", "DevOps", "Self-Hosting", "Security", "DIY", "Cloud", "AWS", "DIY"]
+tags:
+  [
+    "Homelab",
+    "DevOps",
+    "Self-Hosting",
+    "Security",
+    "DIY",
+    "Cloud",
+    "AWS",
+    "DIY",
+  ]
 showToc: false
 ---
 
@@ -30,4 +39,5 @@ I documented every single step of my journey, from the first click in the AWS co
 It was a challenging but really rewarding project. Let me know what you think!
 
 ---
-*Published: Friday, August 22, 2025*
+
+_Published: Friday, August 22, 2025_
