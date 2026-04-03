@@ -2,7 +2,7 @@ name: DevSecOps CI/CD Pipeline
 
 on:
   push:
-    branches: [main, devsecops-pipeline]
+    branches: [master, devsecops-pipeline]
 
 # ── OIDC Permissions for GitHub Pages & CodeQL ──
 permissions:
