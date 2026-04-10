@@ -2529,4 +2529,12 @@ html.dark .lab-callout {
     .zone-tags { padding-left: 10px; }
     .zone-connector { margin-left: 60px; padding-left: 10px; }
     .phase-detail { display: none; }
+}
+
+/* ── ASCII Art Box-Drawing Fix ── */
+/* Web fonts like IBM Plex Mono often have mismatched character widths for box drawing */
+/* Force plain text code blocks (like topology diagrams) to use metric-perfect system fonts */
+code.language-text, 
+pre > code.language-text {
+    font-family: ui-monospace, Consolas, "Cascadia Code", "Courier New", monospace !important;
 }
