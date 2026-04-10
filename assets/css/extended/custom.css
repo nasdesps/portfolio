@@ -401,7 +401,7 @@ html.dark body {
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 16px; /* Reduced from 24px */
 }
 
 .profile-image-wrapper img:hover {
@@ -415,10 +415,10 @@ html.dark body {
     border: 2px dashed #64748b !important;
     transition: border-color 0.3s ease;
     box-sizing: content-box;
-    width: 180px !important;
-    height: 180px !important;
-    max-width: 180px !important;
-    max-height: 180px !important;
+    width: 200px !important;
+    height: 200px !important;
+    max-width: 200px !important;
+    max-height: 200px !important;
     object-fit: cover;
 }
 
@@ -603,6 +603,13 @@ html:not(.dark) .footer a:hover {
         font-size: 1.1rem;
     }
 
+    /* Remove 100vh minimum height to eliminate blank space below profile */
+    .main .profile {
+        min-height: auto !important;
+        padding-top: 32px !important;
+        padding-bottom: 32px !important;
+    }
+
     /* Reduce profile description font size */
     .profile-description {
         font-size: 1.1rem;
@@ -620,10 +627,10 @@ html:not(.dark) .footer a:hover {
     /* Reduce dotted circle border on mobile but keep padding uniform */
     .profile-image-wrapper img {
         border-width: 1px !important;
-        width: 150px !important;
-        height: 150px !important;
-        max-width: 150px !important;
-        max-height: 150px !important;
+        width: 160px !important;
+        height: 160px !important;
+        max-width: 160px !important;
+        max-height: 160px !important;
     }
 
     #menu {
@@ -702,10 +709,10 @@ html:not(.dark) .footer a:hover {
 
     /* Scale down profile image for small screens */
     .profile-image-wrapper img {
-        width: 130px !important;
-        height: 130px !important;
-        max-width: 130px !important;
-        max-height: 130px !important;
+        width: 150px !important;
+        height: 150px !important;
+        max-width: 150px !important;
+        max-height: 150px !important;
     }
 
     /* Scale down main heading */
@@ -781,10 +788,10 @@ html:not(.dark) .footer a:hover {
 
     /* Smaller profile image for ultra-narrow screens */
     .profile-image-wrapper img {
-        width: 130px !important;
-        height: 130px !important;
-        max-width: 130px !important;
-        max-height: 130px !important;
+        width: 150px !important;
+        height: 150px !important;
+        max-width: 150px !important;
+        max-height: 150px !important;
     }
 
     /* Tighter padding overall */
