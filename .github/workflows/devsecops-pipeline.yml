@@ -3,6 +3,8 @@ name: DevSecOps CI/CD Pipeline
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
 
 # ── Global Permissions ──
 permissions:
@@ -42,6 +44,7 @@ jobs:
   dependency-review:
     name: Dependency Review
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/dependency-review-action@v4
@@ -53,6 +56,7 @@ jobs:
     name: Build Hugo
     runs-on: ubuntu-latest
     needs: [secret-scan, codeql, dependency-review]
+    if: ${{ !failure() && !cancelled() }}
     steps:
       - uses: actions/checkout@v4
         with:
