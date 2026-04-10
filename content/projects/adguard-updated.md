@@ -30,6 +30,7 @@ tags:
   - DoH
   - DoT
 weight: 115
+project_series: "Standalone Deployments"
 author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/adguard-aws/adguardaws.png"

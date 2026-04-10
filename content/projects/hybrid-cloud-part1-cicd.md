@@ -20,9 +20,10 @@ tags:
   - GitHub
   - Homelab
 weight: 101
+project_series: "Hybrid Cloud"
 cover:
   image: "/projects/hybrid-cloud-part1/hybrid-cloud-part1.png"
-  alt: 'GitHub Actions workflow showing all five pipeline stages with green checkmarks — Gitleaks, CodeQL, Build Hugo, Lighthouse Audit, and Deploy to GitHub Pages.'
+  alt: "GitHub Actions workflow showing all five pipeline stages with green checkmarks — Gitleaks, CodeQL, Build Hugo, Lighthouse Audit, and Deploy to GitHub Pages."
 ---
 
 ### Introduction
@@ -182,7 +183,10 @@ build:
   if: ${{ !failure() && !cancelled() }}
 ```
 
-This tells the build: proceed as long as nothing actually failed or was cancelled. Skipped does not count as failed.
+This condition is applied to the build, Lighthouse, and deploy
+jobs. Each one proceeds as long as nothing upstream actually
+failed or was cancelled — a skipped dependency review on a
+direct push does not block the rest of the pipeline.
 
 ---
 
@@ -239,10 +243,12 @@ lighthouse:
   name: Lighthouse Audit
   runs-on: ubuntu-latest
   needs: [build]
+
   steps:
     - uses: actions/checkout@v4
     - name: Download artifact
       uses: actions/download-artifact@v4
+      if: ${{ !failure() && !cancelled() }}
       with:
         name: public-site
         path: public/
@@ -300,6 +306,7 @@ deploy:
   name: Deploy to GitHub Pages
   runs-on: ubuntu-latest
   needs: [build, lighthouse]
+  if: ${{ !failure() && !cancelled() }}
   environment:
     name: github-pages
     url: ${{ steps.deployment.outputs.page_url }}
@@ -430,6 +437,7 @@ jobs:
     name: Lighthouse Audit
     runs-on: ubuntu-latest
     needs: [build]
+    if: ${{ !failure() && !cancelled() }}
     steps:
       - uses: actions/checkout@v4
       - name: Download artifact
@@ -450,6 +458,7 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: [build, lighthouse]
+    if: ${{ !failure() && !cancelled() }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

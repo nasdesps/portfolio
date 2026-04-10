@@ -18,6 +18,7 @@ tags:
   - DNSSEC
   - Opensource
 weight: 116
+project_series: "Standalone Deployments"
 cover:
   image: "/projects/adguard-linode/adguard_cover.jpg"
   alt: "A conceptual image showing a glowing cloud icon containing a security shield, projecting protection over a laptop and tablet on a desk. This visual represents a private, cloud-based DNS filter like AdGuard Home securing personal devices."

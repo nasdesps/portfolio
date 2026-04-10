@@ -17,6 +17,7 @@ tags:
   - SSH
   - Opensource
 weight: 114
+project_series: "Homelab"
 author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/homelab-part1/laptop_server.png"

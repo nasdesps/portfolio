@@ -157,10 +157,10 @@ html:not(.dark) a {
 }
 
 .profile h1 {
-    font-size: 4.5rem;
+    font-size: 3rem;
     font-weight: 800;
     letter-spacing: -0.03em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -175,12 +175,13 @@ html:not(.dark) a {
     font-family: var(--font-code);
     background: var(--code-tag-bg);
     border: 1px solid var(--code-tag-border);
-    border-radius: 8px;
-    padding: 10px 20px;
-    display: inline-block;
+    border-radius: 6px;
+    padding: 6px 16px;
+    display: inline-flex;
+    align-items: center;
     color: var(--code-tag-text);
     margin-bottom: 24px;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
 }
 
 .code-tag .prompt {
@@ -196,11 +197,11 @@ html:not(.dark) a {
 
 /* Profile Description */
 .profile-description {
-    max-width: 750px;
-    margin: 0 auto 32px;
+    max-width: 680px;
+    margin: 0 auto 24px;
     color: var(--profile-desc);
-    font-size: 1.25rem;
-    line-height: 1.7;
+    font-size: 1.15rem;
+    line-height: 1.6;
     font-weight: 400;
 }
 
@@ -226,9 +227,9 @@ html:not(.dark) a {
 /* Location Tag */
 .location-tag {
     color: var(--card-text-secondary);
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,10 +252,10 @@ html:not(.dark) a {
 /* Tech Stack Badges */
 .tech-stack {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
 .tech-badge {
@@ -262,9 +263,9 @@ html:not(.dark) a {
     border: 1px solid var(--tech-badge-border);
     color: var(--tech-badge-text);
     font-family: var(--font-code);
-    padding: 8px 18px;
+    padding: 6px 16px;
     border-radius: 6px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 700;
     transition: all 0.2s ease;
 }
@@ -285,9 +286,8 @@ html:not(.dark) a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    /* Reduced gap to 8px */
-    margin-top: 16px;
+    gap: 16px;
+    margin-top: 8px;
     flex-wrap: wrap;
 }
 
@@ -309,14 +309,14 @@ html:not(.dark) a {
     font-family: var(--font-primary);
     font-weight: 600;
     border-radius: 8px;
-    padding: 0 24px;
-    height: 48px;
+    padding: 0 20px;
+    height: 44px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin: 0 !important;
     line-height: 1;
     border: none;
@@ -337,17 +337,14 @@ html:not(.dark) a {
 .social-icons {
     background: var(--social-bg);
     border: 1px solid var(--social-border);
-    padding: 0 20px;
-    /* Horizontal padding */
+    padding: 0 16px;
     border-radius: 8px;
     backdrop-filter: blur(10px);
-    /* Glass effect */
     display: inline-flex;
-    gap: 20px;
-    /* Gap between icons */
+    gap: 16px;
     justify-content: center;
     align-items: center;
-    height: 48px;
+    height: 44px;
     /* Fixed height */
     margin: 0 !important;
     /* Reset margin */
@@ -400,21 +397,29 @@ html.dark body {
 
 /* Profile Image Dotted Circle */
 .profile-image-wrapper {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    border-radius: 50%;
-    border: 2px dashed #64748b;
-    padding: 8px;
-    transition: border-color 0.3s ease;
+    margin-bottom: 24px;
 }
 
-.profile-image-wrapper:hover {
+.profile-image-wrapper img:hover {
     border-color: rgba(56, 189, 248, 0.5);
 }
 
 .profile-image-wrapper img {
     display: block;
     border-radius: 50%;
+    padding: 8px !important;
+    border: 2px dashed #64748b !important;
+    transition: border-color 0.3s ease;
+    box-sizing: content-box;
+    width: 180px !important;
+    height: 180px !important;
+    max-width: 180px !important;
+    max-height: 180px !important;
+    object-fit: cover;
 }
 
 /* Navigation Styling — unified with Lab page */
@@ -434,7 +439,7 @@ html.dark .nav {
 .logo a {
     font-family: var(--font-primary) !important;
     font-weight: 600 !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     color: var(--accent-tag) !important;
 }
 
@@ -442,10 +447,10 @@ html.dark .logo a {
     color: #58a6ff !important;
 }
 
-/* Nav links — match lab: 14px Outfit, grey */
+/* Nav links — 16px Outfit, grey */
 #menu a {
     font-family: var(--font-primary);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* Remove all underlines and borders from navigation links */
@@ -612,10 +617,13 @@ html:not(.dark) .footer a:hover {
         padding-right: 16px;
     }
 
-    /* Reduce dotted circle padding and border on mobile */
-    .profile-image-wrapper {
-        padding: 2px;
-        border-width: 1px;
+    /* Reduce dotted circle border on mobile but keep padding uniform */
+    .profile-image-wrapper img {
+        border-width: 1px !important;
+        width: 150px !important;
+        height: 150px !important;
+        max-width: 150px !important;
+        max-height: 150px !important;
     }
 
     #menu {
@@ -688,17 +696,16 @@ html:not(.dark) .footer a:hover {
 @media screen and (max-width: 400px) {
 
     /* Further reduce dotted circle on very small screens */
-    .profile-image-wrapper {
-        padding: 1px;
-        border-width: 1px;
+    .profile-image-wrapper img {
+        border-width: 1px !important;
     }
 
-    /* Scale down profile image to appropriate size for small screens */
+    /* Scale down profile image for small screens */
     .profile-image-wrapper img {
-        max-width: 140px;
-        max-height: 140px;
-        width: 140px !important;
-        height: 140px !important;
+        width: 130px !important;
+        height: 130px !important;
+        max-width: 130px !important;
+        max-height: 130px !important;
     }
 
     /* Scale down main heading */
@@ -774,10 +781,10 @@ html:not(.dark) .footer a:hover {
 
     /* Smaller profile image for ultra-narrow screens */
     .profile-image-wrapper img {
-        max-width: 130px !important;
-        max-height: 130px !important;
         width: 130px !important;
         height: 130px !important;
+        max-width: 130px !important;
+        max-height: 130px !important;
     }
 
     /* Tighter padding overall */
@@ -2173,9 +2180,14 @@ html.dark .lab-tag-teal   { color: #58a6ff; }
 .chrome-dots .d-green { background: var(--lab-green); }
 
 .chrome-slug {
+    display: block;
     font-family: var(--font-code);
     font-size: 12px;
     color: var(--lab-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 .chrome-link {
@@ -2192,9 +2204,39 @@ html.dark .chrome-link { color: #58a6ff; }
     display: flex;
     align-items: center;
     gap: 16px;
+    min-width: 0;
 }
 
 .chrome-body { padding: 20px 24px; }
+
+.chrome-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 24px;
+    border-top: 1px solid var(--card-border);
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+}
+
+.chrome-footer:hover {
+    background: var(--card-header-bg);
+}
+
+.full-diagram-text {
+    font-family: var(--font-code);
+    font-size: 13px;
+    color: var(--card-text-secondary);
+    transition: color 0.2s ease;
+}
+
+.chrome-footer:hover .full-diagram-text {
+    color: var(--accent-tag);
+}
+
+html.dark .chrome-footer:hover .full-diagram-text {
+    color: #58a6ff;
+}
 
 /* ── Zone Diagram ── */
 .zone-row {
@@ -2479,6 +2521,5 @@ html.dark .lab-callout {
     .zone-label { width: 60px; font-size: 8px; padding-right: 10px; }
     .zone-tags { padding-left: 10px; }
     .zone-connector { margin-left: 60px; padding-left: 10px; }
-    .chrome-header-right { display: none; }
     .phase-detail { display: none; }
 }

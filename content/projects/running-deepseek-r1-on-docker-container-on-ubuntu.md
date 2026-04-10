@@ -14,6 +14,7 @@ tags:
   - Self-Hosting
   - Homelab
 weight: 120
+project_series: "Standalone Deployments"
 author: " | Prajwol Bikram Adikari"
 cover:
     image: "/projects/deepseek-r1-docker/docker-ai.png"

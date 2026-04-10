@@ -17,17 +17,17 @@
         {{ else if .imageWidth }}
         {{- $img = $img.Resize (printf "%dx" .imageWidth) }}
         {{ else }}
-        {{- $img = $img.Resize "150x150" }}
+        {{- $img = $img.Resize "600x600" }}
         {{- end }}
         {{- end }}
         <div class="profile-image-wrapper">
             <img src="{{ $img.Permalink }}" alt="{{ .imageTitle | default " profile image" }}"
-                height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+                height="{{ .imageHeight | default 240 }}" width="{{ .imageWidth | default 240 }}" />
         </div>
         {{- else }}
         <div class="profile-image-wrapper">
             <img src="{{ .imageUrl | relURL }}" alt="{{ .imageTitle | default " profile image" }}"
-                height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+                height="{{ .imageHeight | default 240 }}" width="{{ .imageWidth | default 240 }}" />
         </div>
         {{- end }}
         {{- end }}

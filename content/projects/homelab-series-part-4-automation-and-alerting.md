@@ -21,6 +21,7 @@ tags:
   - Self-Hosting
   - Opensource
 weight: 111
+project_series: "Homelab"
 author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/homelab-part4/homelab-part4.png"

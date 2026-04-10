@@ -20,6 +20,7 @@ tags:
   - Self-Hosting
   - Domain
 weight: 110
+project_series: "Homelab"
 author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/homelab-part5/homelab-part5.png"
