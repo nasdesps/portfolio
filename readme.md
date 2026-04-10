@@ -1,7 +1,7 @@
 # prajwolbikramadhikari.com.np
 
 [![DevSecOps CI/CD](https://github.com/nasdesps/portfolio/actions/workflows/devsecops-pipeline.yml/badge.svg)](https://github.com/nasdesps/portfolio/actions/workflows/devsecops-pipeline.yml)
-[![Lighthouse Performance](https://img.shields.io/badge/Lighthouse-90%2B-39d353?logo=lighthouse&logoColor=white)](https://github.com/nasdesps/portfolio/actions/workflows/deploy.yml)
+[![Lighthouse Performance](https://img.shields.io/badge/Lighthouse-90%2B-39d353?logo=lighthouse&logoColor=white)](https://github.com/nasdesps/portfolio/actions/workflows/devsecops-pipeline.yml)
 
 Personal portfolio and technical blog built with Hugo. Every commit passes a multi-stage DevSecOps pipeline before reaching production — no manual deploys, no stored credentials.
 
