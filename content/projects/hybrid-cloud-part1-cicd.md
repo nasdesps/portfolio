@@ -4,6 +4,7 @@ date: 2026-04-10
 dateString: April 2026
 description: "Learn how to build a professional, multi-stage DevSecOps pipeline for your portfolio site using GitHub Actions. This guide covers parallel security gates with Gitleaks and CodeQL, containerized Hugo builds, Lighthouse performance audits, and secretless OIDC deployments — no stored tokens."
 draft: false
+author: " | Prajwol Bikram Adikari"
 tags:
   - DevOps
   - DevSecOps

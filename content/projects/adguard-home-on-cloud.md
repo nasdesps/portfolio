@@ -4,6 +4,7 @@ date: 2025-02-28
 dateString: Feb 2025
 description: "Get universal ad-blocking on all your devices. This guide shows you how to easily set up a private AdGuard Home DNS server on a Linode cloud instance for enhanced security and privacy on the go."
 draft: false
+author: " | Prajwol Bikram Adikari"
 tags:
   - AdGuard Home
   - CloudComputing

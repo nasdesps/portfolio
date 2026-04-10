@@ -14,6 +14,7 @@ tags:
   - Self-Hosting
   - Homelab
 weight: 120
+author: " | Prajwol Bikram Adikari"
 cover:
     image: "/projects/deepseek-r1-docker/docker-ai.png"
     alt: "A stylized illustration of a container ship, representing Docker, carrying cargo of servers. The ship is integrated into a larger technical diagram, symbolizing a containerized application and its ecosystem."

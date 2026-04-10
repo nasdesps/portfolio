@@ -17,6 +17,7 @@ tags:
   - Self-Hosting
   - Opensource
 weight: 113
+author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/homelab-part2/homelab-part2.png"
   alt: "A futuristic data dashboard with multiple glowing panels showing server health statistics, a real-time world network map, and performance graphs, representing a monitoring stack built with Grafana and Prometheus."

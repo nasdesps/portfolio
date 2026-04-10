@@ -20,6 +20,7 @@ tags:
   - Self-Hosting
   - Domain
 weight: 110
+author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/homelab-part5/homelab-part5.png"
   alt: "A diagram of a Zero Trust architecture, showing how a Cloudflare Tunnel securely connects a homelab server to the public internet via Cloudflare's network."

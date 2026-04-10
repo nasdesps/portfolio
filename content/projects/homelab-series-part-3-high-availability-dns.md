@@ -26,6 +26,7 @@ tags:
   - Self-Hosting
   - Opensource
 weight: 112
+author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/homelab-part3/homelab-part3.png"
   alt: "An architectural diagram of a secure DNS service, represented by a green shield. The service utilizes upstream DNS providers like Cloudflare, Google, and Quad9, is hosted on Oracle Cloud servers, and provides a secure connection to the internet."

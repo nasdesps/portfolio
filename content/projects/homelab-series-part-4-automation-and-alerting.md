@@ -21,6 +21,7 @@ tags:
   - Self-Hosting
   - Opensource
 weight: 111
+author: " | Prajwol Bikram Adikari"
 cover:
   image: "/projects/homelab-part4/homelab-part4.png"
   alt: "An architectural diagram of a homelab automation loop. An icon for 'HOMELAB' points to 'BACKUPS,' which points to 'UPDATES,' which points to 'ALERTS,' which points back to 'HOMELAB.' In the center, Google Drive and Discord icons show their integration in the process."
