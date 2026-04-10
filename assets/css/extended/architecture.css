@@ -1,0 +1,557 @@
+/* ══════════════════════════════════════════════════════════════
+   Architecture Page Styles
+   All selectors scoped under .arch-wrap to avoid conflicts.
+   Reuses lab-tag, status-dot classes from custom.css.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Zone Color Variables ── */
+:root {
+    --az-purple: #8250df;
+    --az-amber:  #9a6700;
+    --az-coral:  #cf222e;
+    --az-teal:   #0e7490;
+    --az-green:  #1a7f37;
+}
+
+.dark {
+    --az-purple: #a78bfa;
+    --az-amber:  #fbbf24;
+    --az-coral:  #f87171;
+    --az-teal:   #2dd4bf;
+    --az-green:  #34d399;
+}
+
+/* ── Page Subtitle ── */
+.arch-wrap .arch-subtitle {
+    font-size: 16px;
+    color: var(--card-text-secondary);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-top: -8px;
+}
+
+/* ── Status Bar ── */
+.arch-wrap .arch-status-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.arch-wrap .arch-status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--card-text-secondary);
+    padding: 4px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: var(--card-bg);
+}
+
+.arch-wrap .arch-status-item .status-dot {
+    width: 6px;
+    height: 6px;
+    margin-top: 0;
+    position: static;
+}
+
+.arch-wrap .arch-status-item .status-dot::after {
+    display: none;
+}
+
+/* ── Zone Container ── */
+.arch-wrap .az-zones {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ── Zone Card ── */
+.arch-wrap .az-zone {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+}
+
+/* ── Zone Header ── */
+.arch-wrap .az-zone-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--card-border);
+    background: var(--card-header-bg);
+}
+
+.arch-wrap .az-zone-num {
+    font-family: var(--font-code);
+    font-size: 12px;
+    color: var(--lab-muted);
+    min-width: 24px;
+}
+
+.arch-wrap .az-zone-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.arch-wrap .az-zone-title {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.arch-wrap .az-zone-badge {
+    font-family: var(--font-code);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid;
+    white-space: nowrap;
+}
+
+/* ── Zone Color Modifiers ── */
+.arch-wrap .az-z1 .az-zone-dot   { background: var(--az-purple); }
+.arch-wrap .az-z1 .az-zone-title { color: var(--az-purple); }
+.arch-wrap .az-z1 .az-zone-badge { color: var(--az-purple); border-color: var(--az-purple); }
+
+.arch-wrap .az-z2 .az-zone-dot   { background: var(--az-amber); }
+.arch-wrap .az-z2 .az-zone-title { color: var(--az-amber); }
+.arch-wrap .az-z2 .az-zone-badge { color: var(--az-amber); border-color: var(--az-amber); }
+
+.arch-wrap .az-z3 .az-zone-dot   { background: var(--az-coral); }
+.arch-wrap .az-z3 .az-zone-title { color: var(--az-coral); }
+.arch-wrap .az-z3 .az-zone-badge { color: var(--az-coral); border-color: var(--az-coral); }
+
+.arch-wrap .az-z4 .az-zone-dot   { background: var(--az-teal); }
+.arch-wrap .az-z4 .az-zone-title { color: var(--az-teal); }
+.arch-wrap .az-z4 .az-zone-badge { color: var(--az-teal); border-color: var(--az-teal); }
+
+.arch-wrap .az-z5 .az-zone-dot   { background: var(--az-green); }
+.arch-wrap .az-z5 .az-zone-title { color: var(--az-green); }
+.arch-wrap .az-z5 .az-zone-badge { color: var(--az-green); border-color: var(--az-green); }
+
+/* ── Zone Body ── */
+.arch-wrap .az-zone-body {
+    padding: 20px;
+}
+
+/* ── Node Grid ── */
+.arch-wrap .az-node-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.arch-wrap .az-node-grid.cols-4 .az-node { flex: 1 1 140px; }
+.arch-wrap .az-node-grid.cols-3 .az-node { flex: 1 1 180px; }
+.arch-wrap .az-node-grid.cols-2 .az-node { flex: 1 1 220px; }
+
+/* ── Node Card ── */
+.arch-wrap .az-node {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    min-width: 140px;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.arch-wrap .az-node:hover {
+    border-color: var(--lab-border-hover, rgba(88, 166, 255, 0.30));
+    transform: translateY(-1px);
+}
+
+.arch-wrap .az-node-label {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--lab-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+
+.arch-wrap .az-node-name {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--card-text-primary);
+    margin-bottom: 3px;
+    line-height: 1.3;
+}
+
+.arch-wrap .az-node-desc {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--card-text-secondary);
+    line-height: 1.4;
+}
+
+.arch-wrap .az-node-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+/* Small node variant (inside location subzones) */
+.arch-wrap .az-node-sm {
+    padding: 10px 12px;
+}
+
+.arch-wrap .az-node-sm .az-node-name {
+    font-size: 13px;
+}
+
+.arch-wrap .az-node-sm .az-node-desc {
+    font-size: 11px;
+}
+
+/* Connector node variant */
+.arch-wrap .az-node-connector {
+    background: var(--card-bg);
+    border-style: dashed;
+}
+
+/* Connector text (below zone 01 grid) */
+.arch-wrap .az-connector-text {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--card-text-secondary);
+    margin-top: 12px;
+    padding: 8px 14px;
+    border-left: 2px solid var(--card-border);
+}
+
+/* ── Subzone ── */
+.arch-wrap .az-subzone-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.arch-wrap .az-subzone-row > .az-subzone {
+    flex: 1 1 260px;
+}
+
+.arch-wrap .az-subzone {
+    border: 1px dashed var(--card-border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+}
+
+.arch-wrap .az-subzone-title {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--lab-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arch-wrap .az-subzone-title::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lab-muted);
+    flex-shrink: 0;
+}
+
+.arch-wrap .az-subzone-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.arch-wrap .az-subzone-grid .az-node {
+    flex: 1 1 130px;
+}
+
+/* ── Location Row (Zone 04) ── */
+.arch-wrap .az-location-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.arch-wrap .az-location-col {
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.arch-wrap .az-location-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--card-header-bg);
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+}
+
+.arch-wrap .az-location-flag {
+    font-size: 16px;
+}
+
+.arch-wrap .az-location-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.arch-wrap .az-location-name {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--card-text-primary);
+    display: block;
+}
+
+.arch-wrap .az-location-detail {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--card-text-secondary);
+    display: block;
+}
+
+.arch-wrap .az-location-badge {
+    font-family: var(--font-code);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.arch-wrap .lb-waco   { color: var(--az-teal);   border-color: var(--az-teal); }
+.arch-wrap .lb-oracle { color: var(--accent-tag); border-color: var(--accent-tag); }
+.arch-wrap .lb-nl     { color: var(--az-purple);  border-color: var(--az-purple); }
+
+html.dark .arch-wrap .lb-oracle { color: #58a6ff; border-color: #58a6ff; }
+
+/* ── Connection Fabric ── */
+.arch-wrap .az-fabric {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: var(--card-header-bg);
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+}
+
+.arch-wrap .az-fabric-title {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--lab-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.arch-wrap .az-fabric-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.arch-wrap .az-fabric-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-code);
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+
+.arch-wrap .az-fabric-from {
+    color: var(--card-text-secondary);
+    min-width: 110px;
+}
+
+.arch-wrap .az-fabric-arrow {
+    color: var(--lab-muted);
+}
+
+.arch-wrap .az-fabric-to {
+    color: var(--card-text-secondary);
+    min-width: 110px;
+}
+
+.arch-wrap .az-fabric-via {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.arch-wrap .via-teal  { color: var(--az-teal);   border-color: var(--az-teal); }
+.arch-wrap .via-blue  { color: var(--accent-tag); border-color: var(--accent-tag); }
+.arch-wrap .via-amber { color: var(--az-amber);  border-color: var(--az-amber); }
+.arch-wrap .via-gray  { color: var(--card-text-secondary);  border-color: var(--card-border); }
+
+html.dark .arch-wrap .via-blue { color: #58a6ff; border-color: #58a6ff; }
+
+/* ── Zone Divider ── */
+.arch-wrap .az-zone-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+    position: relative;
+}
+
+.arch-wrap .az-zone-divider::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 28px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom, var(--card-border), transparent);
+}
+
+.arch-wrap .az-zone-divider-icon {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-code);
+    font-size: 12px;
+    color: var(--lab-muted);
+    z-index: 1;
+}
+
+/* ── Legend ── */
+.arch-wrap .az-legend {
+    margin-top: 32px;
+    padding: 16px 20px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: var(--card-bg);
+}
+
+.arch-wrap .az-legend-title {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--lab-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+}
+
+.arch-wrap .az-legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.arch-wrap .az-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-code);
+    font-size: 12px;
+    color: var(--card-text-secondary);
+}
+
+.arch-wrap .az-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.arch-wrap .az-dot-purple { background: var(--az-purple); }
+.arch-wrap .az-dot-amber  { background: var(--az-amber); }
+.arch-wrap .az-dot-coral  { background: var(--az-coral); }
+.arch-wrap .az-dot-teal   { background: var(--az-teal); }
+.arch-wrap .az-dot-green  { background: var(--az-green); }
+
+.arch-wrap .az-status-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--card-border);
+}
+
+.arch-wrap .az-status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--card-text-secondary);
+    padding: 4px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: var(--card-header-bg);
+}
+
+.arch-wrap .az-status-item .status-dot {
+    width: 6px;
+    height: 6px;
+    margin-top: 0;
+    position: static;
+}
+
+.arch-wrap .az-status-item .status-dot::after {
+    display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+    .arch-wrap .az-location-row {
+        flex-direction: column;
+    }
+
+    .arch-wrap .az-node-grid.cols-4 .az-node {
+        flex: 1 1 calc(50% - 5px);
+    }
+
+    .arch-wrap .az-fabric-via {
+        margin-left: 0;
+        margin-top: 2px;
+    }
+
+    .arch-wrap .az-fabric-row {
+        gap: 4px;
+    }
+
+    .arch-wrap .arch-status-bar {
+        gap: 6px;
+    }
+
+    .arch-wrap .az-subzone-row {
+        flex-direction: column;
+    }
+
+    .arch-wrap .az-legend-items {
+        gap: 10px;
+    }
+}

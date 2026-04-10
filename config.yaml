@@ -24,6 +24,10 @@ menu:
       name: Projects
       url: /projects
       weight: 20
+    - identifier: lab
+      name: Lab
+      url: /lab/
+      weight: 25
     - identifier: blog
       name: Blog
       url: /blog
@@ -71,7 +75,7 @@ params:
     title: "Hi, I'm&nbsp;<span class=\"text-highlight\">Prajwol</span> <span class=\"hand-emoji\">🙏</span>"
     subtitle: >
         <div class="code-tag">
-            <span class="prompt">>_</span> Aspiring DevOps Engineer <span class="pipe">|</span> WGU Master's Student
+            <span class="prompt">>_</span> Hybrid Cloud Architect <span class="pipe">|</span> WGU Master's Student
         </div>
         <div class="profile-description">
             Software Engineering & DevOps Grad Student at <a href="https://www.wgu.edu/" target="_blank"><strong class="white-bold">WGU</strong></a>. Building highly-available homelabs, automating CI/CD pipelines, and driving operational excellence at <a href="https://www.abbvie.com/" target="_blank"><strong class="white-bold">AbbVie</strong></a>.

@@ -1,0 +1,390 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="lab-subtitle">
+    {{ .Description }}
+  </div>
+  {{- end }}
+</header>
+
+<!-- ════ Section 1 — Live Infrastructure Status ════ -->
+<section>
+  <div class="lab-section-label"><span>Live infrastructure status</span></div>
+  <div class="status-grid">
+
+    <div class="status-card">
+      <div class="status-dot green"></div>
+      <div class="status-info">
+        <div class="status-name-row">
+          <div class="status-name">Homelab</div>
+          <span class="lab-tag lab-tag-green">operational</span>
+        </div>
+        <div class="status-meta">Debian · Docker · K3s master<br>Waco, Texas · on-premise</div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-dot green"></div>
+      <div class="status-info">
+        <div class="status-name-row">
+          <div class="status-name">Oracle Cloud</div>
+          <span class="lab-tag lab-tag-green">operational</span>
+        </div>
+        <div class="status-meta">ARM Ampere A1 · 4vCPU 24GB<br>Phoenix, AZ · K3s worker</div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-dot green"></div>
+      <div class="status-info">
+        <div class="status-name-row">
+          <div class="status-name">Insomnia 24/7</div>
+          <span class="lab-tag lab-tag-accent">monitoring</span>
+        </div>
+        <div class="status-meta">Shell server · node exporter<br>Amsterdam, NL · SSH tunnel</div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-dot green"></div>
+      <div class="status-info">
+        <div class="status-name-row">
+          <div class="status-name">Portfolio site</div>
+          <span class="lab-tag lab-tag-green">live</span>
+        </div>
+        <div class="status-meta">prajwolbikramadhikari.com.np<br>GitHub Pages · Cloudflare CDN</div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-dot green"></div>
+      <div class="status-info">
+        <div class="status-name-row">
+          <div class="status-name">CI/CD pipeline</div>
+          <span class="lab-tag lab-tag-green">passing</span>
+        </div>
+        <div class="status-meta">GitHub Actions · Gitleaks<br>CodeQL · Lighthouse CI</div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-dot amber"></div>
+      <div class="status-info">
+        <div class="status-name-row">
+          <div class="status-name">Terraform IaC</div>
+          <span class="lab-tag lab-tag-amber">in progress</span>
+        </div>
+        <div class="status-meta">AWS S3 state · Cloudflare DNS<br>12 records under management</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ Section 2 — Architecture Overview ════ -->
+<section>
+  <div class="lab-section-label"><span>Architecture overview</span></div>
+  <div class="chrome-card">
+    <div class="chrome-header">
+      <div class="chrome-dots">
+        <span class="d-red"></span><span class="d-amber"></span><span class="d-green"></span>
+      </div>
+      <div class="chrome-header-right">
+        <span class="chrome-slug">three-continent-sre-showcase.hcl</span>
+        <a href="/architecture/" class="chrome-link">full diagram →</a>
+      </div>
+    </div>
+    <div class="chrome-body">
+
+      <!-- pipeline -->
+      <div class="zone-row">
+        <div class="zone-label">pipeline</div>
+        <div class="zone-tags">
+          <span class="lab-tag lab-tag-purple">GitHub Actions</span>
+          <span class="lab-tag lab-tag-purple">Gitleaks</span>
+          <span class="lab-tag lab-tag-purple">CodeQL</span>
+          <span class="lab-tag lab-tag-purple">Lighthouse CI</span>
+          <span class="lab-tag lab-tag-purple">OIDC deploy</span>
+          <span class="lab-tag lab-tag-purple">GitHub Pages</span>
+        </div>
+      </div>
+      <div class="zone-connector"></div>
+
+      <!-- edge -->
+      <div class="zone-row">
+        <div class="zone-label">edge</div>
+        <div class="zone-tags">
+          <span class="lab-tag lab-tag-amber">Cloudflare DNS</span>
+          <span class="lab-tag lab-tag-amber">CDN + SSL</span>
+          <span class="lab-tag lab-tag-amber">Zero Trust tunnel</span>
+          <span class="lab-tag lab-tag-amber">DMARC · SPF · DKIM</span>
+        </div>
+      </div>
+      <div class="zone-connector"></div>
+
+      <!-- IaC -->
+      <div class="zone-row">
+        <div class="zone-label">IaC</div>
+        <div class="zone-tags">
+          <span class="lab-tag lab-tag-red">Terraform</span>
+          <span class="lab-tag lab-tag-red">AWS S3 state</span>
+          <span class="lab-tag lab-tag-red">DynamoDB lock</span>
+          <span class="lab-tag lab-tag-red">IAM + OIDC</span>
+        </div>
+      </div>
+      <div class="zone-connector"></div>
+
+      <!-- compute -->
+      <div class="zone-row">
+        <div class="zone-label">compute</div>
+        <div class="zone-tags">
+          <span class="lab-tag lab-tag-teal">K3s master (Waco)</span>
+          <span class="lab-tag lab-tag-teal">K3s worker (Phoenix)</span>
+          <span class="lab-tag lab-tag-teal">Tailscale mesh</span>
+          <span class="lab-tag lab-tag-teal">Insomnia NL</span>
+          <span class="lab-tag lab-tag-teal">SSH tunnel</span>
+          <span class="lab-tag lab-tag-teal">Docker services x7</span>
+        </div>
+      </div>
+      <div class="zone-connector"></div>
+
+      <!-- observe -->
+      <div class="zone-row">
+        <div class="zone-label">observe</div>
+        <div class="zone-tags">
+          <span class="lab-tag lab-tag-gray">Prometheus federation</span>
+          <span class="lab-tag lab-tag-gray">Grafana dashboards</span>
+          <span class="lab-tag lab-tag-gray">Blackbox exporter</span>
+          <span class="lab-tag lab-tag-gray">n8n automation</span>
+          <span class="lab-tag lab-tag-gray">Discord alerts</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ Section 3 — Technology Stack ════ -->
+<section>
+  <div class="lab-section-label"><span>Technology stack</span></div>
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-category">CI/CD</div>
+      <div class="tech-tags">
+        <span class="lab-tag lab-tag-green">GitHub Actions</span>
+        <span class="lab-tag lab-tag-green">Gitleaks</span>
+        <span class="lab-tag lab-tag-green">CodeQL</span>
+        <span class="lab-tag lab-tag-green">Lighthouse CI</span>
+        <span class="lab-tag lab-tag-green">OIDC</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Infrastructure as Code</div>
+      <div class="tech-tags">
+        <span class="lab-tag lab-tag-amber">Terraform</span>
+        <span class="lab-tag lab-tag-amber">AWS S3</span>
+        <span class="lab-tag lab-tag-amber">DynamoDB</span>
+        <span class="lab-tag lab-tag-amber">Cloudflare TF</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Networking</div>
+      <div class="tech-tags">
+        <span class="lab-tag lab-tag-green">Cloudflare ZT</span>
+        <span class="lab-tag lab-tag-green">Tailscale</span>
+        <span class="lab-tag lab-tag-green">AdGuard Home</span>
+        <span class="lab-tag lab-tag-green">NPM</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Containers and Orchestration</div>
+      <div class="tech-tags">
+        <span class="lab-tag lab-tag-green">Docker</span>
+        <span class="lab-tag lab-tag-green">Docker Compose</span>
+        <span class="lab-tag lab-tag-gray">K3s</span>
+        <span class="lab-tag lab-tag-gray">Helm</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Observability</div>
+      <div class="tech-tags">
+        <span class="lab-tag lab-tag-green">Prometheus</span>
+        <span class="lab-tag lab-tag-green">Grafana</span>
+        <span class="lab-tag lab-tag-green">cAdvisor</span>
+        <span class="lab-tag lab-tag-gray">Blackbox</span>
+        <span class="lab-tag lab-tag-gray">Alertmanager</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Automation</div>
+      <div class="tech-tags">
+        <span class="lab-tag lab-tag-green">n8n</span>
+        <span class="lab-tag lab-tag-green">Discord webhooks</span>
+        <span class="lab-tag lab-tag-gray">Pushgateway</span>
+        <span class="lab-tag lab-tag-gray">rsync</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="legend-row">
+    <div class="legend-item"><span class="lab-tag lab-tag-green">live</span> running in production</div>
+    <div class="legend-item"><span class="lab-tag lab-tag-amber">in progress</span> actively building</div>
+    <div class="legend-item"><span class="lab-tag lab-tag-gray">planned</span> next phase</div>
+  </div>
+</section>
+
+<!-- ════ Section 4 — Build Progress ════ -->
+<section>
+  <div class="lab-section-label"><span>Build progress</span></div>
+  <div class="phase-list">
+
+    <div class="phase-row">
+      <div class="phase-num">01</div>
+      <div class="phase-icon">⚡</div>
+      <div class="phase-info">
+        <div class="phase-name">CI/CD and DevSecOps</div>
+        <div class="phase-detail">GitHub Actions · Gitleaks · CodeQL · Lighthouse · OIDC deploy</div>
+      </div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-green">complete</span></div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">02</div>
+      <div class="phase-icon">⚙</div>
+      <div class="phase-info">
+        <div class="phase-name">Infrastructure as Code</div>
+        <div class="phase-detail">Terraform · AWS S3 state · Cloudflare DNS · OCI instances</div>
+      </div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-amber">in progress</span></div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">03</div>
+      <div class="phase-icon">☸</div>
+      <div class="phase-info">
+        <div class="phase-name">K3s high availability cluster</div>
+        <div class="phase-detail">Waco master + Phoenix worker · Tailscale mesh VPN</div>
+      </div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-gray">planned</span></div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">04</div>
+      <div class="phase-icon">◎</div>
+      <div class="phase-info">
+        <div class="phase-name">Global observability</div>
+        <div class="phase-detail">Prometheus federation · 3-continent Grafana · NL latency probes</div>
+      </div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-gray">planned</span></div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">05</div>
+      <div class="phase-icon">⟳</div>
+      <div class="phase-info">
+        <div class="phase-name">Event-driven automation</div>
+        <div class="phase-detail">n8n · Alertmanager · GitHub webhooks · Discord incident routing</div>
+      </div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-gray">planned</span></div>
+    </div>
+
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-fill"></div>
+  </div>
+  <div class="progress-label">1 of 5 phases complete</div>
+</section>
+
+<!-- ════ Section 5 — Certifications ════ -->
+<section>
+  <div class="lab-section-label"><span>Certifications and learning path</span></div>
+  <div class="cert-grid">
+
+    <div class="cert-card">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-info">
+        <div class="cert-name">WGU M.S. Software Engineering</div>
+        <div class="cert-sub">DevOps focus · in progress<br>GitLab CI/CD · DR planning</div>
+        <span class="cert-eta">est. completion 2026</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">☁</div>
+      <div class="cert-info">
+        <div class="cert-name">AWS SAA-C03</div>
+        <div class="cert-sub">Solutions Architect Associate<br>studying post-WGU completion</div>
+        <span class="cert-eta">target Q1 2027</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">⬡</div>
+      <div class="cert-info">
+        <div class="cert-name">HashiCorp Terraform Associate</div>
+        <div class="cert-sub">hands-on IaC from this project<br>next certification</div>
+        <span class="cert-eta">after SAA-C03</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ Section 6 — Source Code ════ -->
+<section>
+  <div class="lab-section-label"><span>Source code and writing</span></div>
+  <div class="source-grid">
+
+    <a href="#" target="_blank" rel="noopener noreferrer" class="source-card">
+      <div class="source-icon">⌥</div>
+      <div class="source-info">
+        <div class="source-name">homelab-iac</div>
+        <div class="source-sub">Terraform source</div>
+      </div>
+    </a>
+
+    <a href="https://github.com/nasdesps/portfolio" target="_blank" rel="noopener noreferrer" class="source-card">
+      <div class="source-icon">⌥</div>
+      <div class="source-info">
+        <div class="source-name">portfolio</div>
+        <div class="source-sub">Hugo source</div>
+      </div>
+    </a>
+
+    <a href="https://dev.to/prajwol-ad" target="_blank" rel="noopener noreferrer" class="source-card">
+      <div class="source-icon">✍</div>
+      <div class="source-info">
+        <div class="source-name">Dev.to</div>
+        <div class="source-sub">Build writeups</div>
+      </div>
+    </a>
+
+    <a href="https://hashnode.com/@nasdeps" target="_blank" rel="noopener noreferrer" class="source-card">
+      <div class="source-icon">✍</div>
+      <div class="source-info">
+        <div class="source-name">Hashnode</div>
+        <div class="source-sub">Technical posts</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ════ Footer Note ════ -->
+<div class="lab-callout">
+  <strong>Note:</strong> Status indicators above reflect manually updated states during the build phase. Once Phase 4
+  (observability) is complete, this page will pull live node health from a sanitized public API endpoint — real uptime
+  data, no raw Prometheus exposure.
+</div>
+
+{{- end }}

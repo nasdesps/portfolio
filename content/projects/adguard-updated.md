@@ -29,7 +29,7 @@ tags:
   - Opensource
   - DoH
   - DoT
-weight: 108
+weight: 115
 cover:
   image: "/projects/adguard-aws/adguardaws.png"
   alt: "A security shield with the AWS logo at the center, visually blocking unwanted internet traffic like ads (shopping cart icon) and trackers (browser window icon). This represents a cloud-based ad-blocking DNS filter."
