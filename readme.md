@@ -127,4 +127,4 @@ Full config: [`.lighthouserc.json`](.lighthouserc.json)
 
 ---
 
-_Prajwol Bikram Adhikari · [prajwolbikramadhikari.com.np](https://prajwolbikramadhikari.com.np) · [LinkedIn](https://linkedin.com/in/YOUR_PROFILE)_
+_Prajwol Bikram Adhikari · [prajwolbikramadhikari.com.np](https://prajwolbikramadhikari.com.np) · [LinkedIn](https://linkedin.com/in/pbadk/)_
