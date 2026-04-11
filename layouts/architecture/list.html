@@ -1,439 +1,440 @@
 {{- define "main" }}
 <div class="arch-wrap">
 
-<header class="page-header">
+  <header class="page-header">
     <h1>{{ .Title }}</h1>
     <div class="arch-subtitle">{{ .Description | safeHTML }}</div>
-</header>
+  </header>
 
-<!-- Status bar -->
-<div class="arch-status-bar">
-  <div class="arch-status-item"><span class="status-dot green"></span> CI/CD — live</div>
-  <div class="arch-status-item"><span class="status-dot green"></span> Cloudflare — live</div>
-  <div class="arch-status-item"><span class="status-dot amber"></span> Terraform — in progress</div>
-  <div class="arch-status-item"><span class="status-dot gray"></span> K3s — planned</div>
-  <div class="arch-status-item"><span class="status-dot gray"></span> Prometheus — planned</div>
-  <div class="arch-status-item"><span class="status-dot gray"></span> n8n — planned</div>
-</div>
-
-<!-- ════ Zone Diagram ════ -->
-<div class="az-zones">
-
-  <!-- ── Zone 01 — Developer & Pipeline ── -->
-  <div class="az-zone az-z1">
-    <div class="az-zone-header">
-      <span class="az-zone-num">01</span>
-      <span class="az-zone-dot"></span>
-      <span class="az-zone-title">Developer &amp; Pipeline</span>
-      <span class="az-zone-badge">CI/CD · DevSecOps</span>
-    </div>
-    <div class="az-zone-body">
-      <div class="az-node-grid cols-4">
-
-        <div class="az-node">
-          <div class="az-node-label">source</div>
-          <div class="az-node-name">GitHub Repo</div>
-          <div class="az-node-desc">hugo portfolio · homelab-iac tf</div>
-          <div class="az-node-tags"><span class="lab-tag lab-tag-purple">git push</span></div>
-        </div>
-
-        <div class="az-node">
-          <div class="az-node-label">security gates</div>
-          <div class="az-node-name">GitHub Actions</div>
-          <div class="az-node-desc">parallel security · scan on every push</div>
-          <div class="az-node-tags">
-            <span class="lab-tag lab-tag-purple">Gitleaks</span>
-            <span class="lab-tag lab-tag-purple">CodeQL</span>
-          </div>
-        </div>
-
-        <div class="az-node">
-          <div class="az-node-label">performance</div>
-          <div class="az-node-name">Lighthouse CI</div>
-          <div class="az-node-desc">perf ≥ 90 · a11y ≥ 90</div>
-          <div class="az-node-tags"><span class="lab-tag lab-tag-purple">gates all pass</span></div>
-        </div>
-
-        <div class="az-node">
-          <div class="az-node-label">deploy</div>
-          <div class="az-node-name">GitHub Pages</div>
-          <div class="az-node-desc">OIDC auth · no stored secrets</div>
-          <div class="az-node-tags"><span class="lab-tag lab-tag-purple">username.github.io</span></div>
-        </div>
-
-      </div>
-      <div class="az-connector-text">also triggers → Terraform plan on .tf changes via OIDC → AWS</div>
-    </div>
+  <!-- Status bar -->
+  <div class="arch-status-bar">
+    <div class="arch-status-item"><span class="status-dot green"></span> CI/CD — live</div>
+    <div class="arch-status-item"><span class="status-dot green"></span> Cloudflare — live</div>
+    <div class="arch-status-item"><span class="status-dot amber"></span> Terraform — in progress</div>
+    <div class="arch-status-item"><span class="status-dot gray"></span> K3s — planned</div>
+    <div class="arch-status-item"><span class="status-dot gray"></span> Prometheus — planned</div>
+    <div class="arch-status-item"><span class="status-dot gray"></span> n8n — planned</div>
   </div>
 
-  <!-- Zone divider -->
-  <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
+  <!-- ════ Zone Diagram ════ -->
+  <div class="az-zones">
 
-  <!-- ── Zone 02 — Edge Security & Global Delivery ── -->
-  <div class="az-zone az-z2">
-    <div class="az-zone-header">
-      <span class="az-zone-num">02</span>
-      <span class="az-zone-dot"></span>
-      <span class="az-zone-title">Edge Security &amp; Global Delivery</span>
-      <span class="az-zone-badge">Cloudflare · DNS · ZT Tunnels</span>
-    </div>
-    <div class="az-zone-body">
-      <div class="az-subzone-row">
+    <!-- ── Zone 01 — Developer & Pipeline ── -->
+    <div class="az-zone az-z1">
+      <div class="az-zone-header">
+        <span class="az-zone-num">01</span>
+        <span class="az-zone-dot"></span>
+        <span class="az-zone-title">Developer &amp; Pipeline</span>
+        <span class="az-zone-badge">CI/CD · DevSecOps</span>
+      </div>
+      <div class="az-zone-body">
+        <div class="az-node-grid cols-4">
 
-        <div class="az-subzone">
-          <div class="az-subzone-title">Public traffic — portfolio</div>
-          <div class="az-subzone-grid">
-            <div class="az-node">
-              <div class="az-node-label">DNS + CDN</div>
-              <div class="az-node-name">Cloudflare Edge</div>
-              <div class="az-node-desc">prajwolbikramadhikari.com.np</div>
-              <div class="az-node-tags">
-                <span class="lab-tag lab-tag-amber">proxied</span>
-                <span class="lab-tag lab-tag-amber">SSL</span>
-                <span class="lab-tag lab-tag-amber">DDoS</span>
-              </div>
-            </div>
-            <div class="az-node">
-              <div class="az-node-label">email security</div>
-              <div class="az-node-name">DNS Records</div>
-              <div class="az-node-desc">DMARC p=reject · SPF -all · DKIM</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-amber">TXT managed</span></div>
+          <div class="az-node">
+            <div class="az-node-label">source</div>
+            <div class="az-node-name">GitHub Repo</div>
+            <div class="az-node-desc">hugo portfolio · homelab-iac tf</div>
+            <div class="az-node-tags"><span class="lab-tag lab-tag-purple">git push</span></div>
+          </div>
+
+          <div class="az-node">
+            <div class="az-node-label">security gates</div>
+            <div class="az-node-name">GitHub Actions</div>
+            <div class="az-node-desc">parallel security · scan on every push</div>
+            <div class="az-node-tags">
+              <span class="lab-tag lab-tag-purple">Gitleaks</span>
+              <span class="lab-tag lab-tag-purple">CodeQL</span>
             </div>
           </div>
-        </div>
 
-        <div class="az-subzone">
-          <div class="az-subzone-title">Private access — homelab services</div>
-          <div class="az-subzone-grid">
-            <div class="az-node">
-              <div class="az-node-label">tunnel id</div>
-              <div class="az-node-name">Zero Trust Tunnel</div>
-              <div class="az-node-desc">outbound-only</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-amber">no open ports</span></div>
-            </div>
-            <div class="az-node">
-              <div class="az-node-label">exposed subdomains</div>
-              <div class="az-node-name">7 Services</div>
-              <div class="az-node-desc">grafana · prometheus · n8n · adguard · homer · cadvisor · npm</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-amber">auth protected</span></div>
-            </div>
+          <div class="az-node">
+            <div class="az-node-label">performance</div>
+            <div class="az-node-name">Lighthouse CI</div>
+            <div class="az-node-desc">perf ≥ 90 · a11y ≥ 90</div>
+            <div class="az-node-tags"><span class="lab-tag lab-tag-purple">gates all pass</span></div>
           </div>
-        </div>
 
+          <div class="az-node">
+            <div class="az-node-label">deploy</div>
+            <div class="az-node-name">GitHub Pages</div>
+            <div class="az-node-desc">OIDC auth · no stored secrets</div>
+            <div class="az-node-tags"><span class="lab-tag lab-tag-purple">username.github.io</span></div>
+          </div>
+
+        </div>
+        <div class="az-connector-text">also triggers → Terraform plan on .tf changes via OIDC → AWS</div>
       </div>
     </div>
-  </div>
 
-  <!-- Zone divider -->
-  <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
+    <!-- Zone divider -->
+    <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
 
-  <!-- ── Zone 03 — Infrastructure Control Plane ── -->
-  <div class="az-zone az-z3">
-    <div class="az-zone-header">
-      <span class="az-zone-num">03</span>
-      <span class="az-zone-dot"></span>
-      <span class="az-zone-title">Infrastructure Control Plane</span>
-      <span class="az-zone-badge">AWS · Terraform IaC · GitOps</span>
-    </div>
-    <div class="az-zone-body">
-      <div class="az-node-grid cols-4">
-
-        <div class="az-node">
-          <div class="az-node-label">IaC engine</div>
-          <div class="az-node-name">Terraform</div>
-          <div class="az-node-desc">manages Cloudflare · DNS + OCI instances</div>
-          <div class="az-node-tags">
-            <span class="lab-tag lab-tag-red">plan on PR</span>
-            <span class="lab-tag lab-tag-red">apply on merge</span>
-          </div>
-        </div>
-
-        <div class="az-node">
-          <div class="az-node-label">state storage</div>
-          <div class="az-node-name">AWS S3</div>
-          <div class="az-node-desc">terraform-state · versioned encrypted</div>
-          <div class="az-node-tags">
-            <span class="lab-tag lab-tag-red">AES-256</span>
-            <span class="lab-tag lab-tag-red">us-east-1</span>
-          </div>
-        </div>
-
-        <div class="az-node">
-          <div class="az-node-label">state locking</div>
-          <div class="az-node-name">DynamoDB</div>
-          <div class="az-node-desc">terraform-state-lock · prevents conflicts</div>
-          <div class="az-node-tags"><span class="lab-tag lab-tag-red">PAY_PER_REQUEST</span></div>
-        </div>
-
-        <div class="az-node">
-          <div class="az-node-label">access control</div>
-          <div class="az-node-name">IAM + OIDC</div>
-          <div class="az-node-desc">GitHub Actions trust · no stored keys</div>
-          <div class="az-node-tags"><span class="lab-tag lab-tag-red">$1 budget alert</span></div>
-        </div>
-
+    <!-- ── Zone 02 — Edge Security & Global Delivery ── -->
+    <div class="az-zone az-z2">
+      <div class="az-zone-header">
+        <span class="az-zone-num">02</span>
+        <span class="az-zone-dot"></span>
+        <span class="az-zone-title">Edge Security &amp; Global Delivery</span>
+        <span class="az-zone-badge">Cloudflare · DNS · ZT Tunnels</span>
       </div>
-    </div>
-  </div>
+      <div class="az-zone-body">
+        <div class="az-subzone-row">
 
-  <!-- Zone divider -->
-  <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
-
-  <!-- ── Zone 04 — Hybrid Compute & Storage ── -->
-  <div class="az-zone az-z4">
-    <div class="az-zone-header">
-      <span class="az-zone-num">04</span>
-      <span class="az-zone-dot"></span>
-      <span class="az-zone-title">Hybrid Compute &amp; Storage</span>
-      <span class="az-zone-badge">K3s · Docker · Three Continents</span>
-    </div>
-    <div class="az-zone-body">
-      <div class="az-location-row">
-
-        <!-- Waco, Texas -->
-        <div class="az-location-col">
-          <div class="az-location-header">
-            <span class="az-location-flag">🇺🇸</span>
-            <div class="az-location-info">
-              <span class="az-location-name">Waco, Texas</span>
-              <span class="az-location-detail">On-premise · Debian laptop</span>
-            </div>
-            <span class="az-location-badge lb-waco">K3s master</span>
-          </div>
           <div class="az-subzone">
-            <div class="az-subzone-title">Docker services</div>
+            <div class="az-subzone-title">Public traffic — portfolio</div>
             <div class="az-subzone-grid">
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">Prometheus</div>
-                <div class="az-node-desc">global aggregator · scrapes all 3 nodes</div>
+              <div class="az-node">
+                <div class="az-node-label">DNS + CDN</div>
+                <div class="az-node-name">Cloudflare Edge</div>
+                <div class="az-node-desc">prajwolbikramadhikari.com.np</div>
+                <div class="az-node-tags">
+                  <span class="lab-tag lab-tag-amber">proxied</span>
+                  <span class="lab-tag lab-tag-amber">SSL</span>
+                  <span class="lab-tag lab-tag-amber">DDoS</span>
+                </div>
               </div>
-              <div class="az-node az-node-sm">
+              <div class="az-node">
+                <div class="az-node-label">email security</div>
+                <div class="az-node-name">DNS Records</div>
+                <div class="az-node-desc">DMARC p=reject · SPF -all · DKIM</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-amber">TXT managed</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="az-subzone">
+            <div class="az-subzone-title">Private access — homelab services</div>
+            <div class="az-subzone-grid">
+              <div class="az-node">
+                <div class="az-node-label">tunnel id</div>
+                <div class="az-node-name">Zero Trust Tunnel</div>
+                <div class="az-node-desc">outbound-only</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-amber">no open ports</span></div>
+              </div>
+              <div class="az-node">
+                <div class="az-node-label">exposed subdomains</div>
+                <div class="az-node-name">7 Services</div>
+                <div class="az-node-desc">grafana · prometheus · n8n · adguard · homer · cadvisor · npm</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-amber">auth protected</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Zone divider -->
+    <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
+
+    <!-- ── Zone 03 — Infrastructure Control Plane ── -->
+    <div class="az-zone az-z3">
+      <div class="az-zone-header">
+        <span class="az-zone-num">03</span>
+        <span class="az-zone-dot"></span>
+        <span class="az-zone-title">Infrastructure Control Plane</span>
+        <span class="az-zone-badge">AWS · Terraform IaC · GitOps</span>
+      </div>
+      <div class="az-zone-body">
+        <div class="az-node-grid cols-4">
+
+          <div class="az-node">
+            <div class="az-node-label">IaC engine</div>
+            <div class="az-node-name">Terraform</div>
+            <div class="az-node-desc">manages Cloudflare · DNS + OCI instances</div>
+            <div class="az-node-tags">
+              <span class="lab-tag lab-tag-red">plan on PR</span>
+              <span class="lab-tag lab-tag-red">apply on merge</span>
+            </div>
+          </div>
+
+          <div class="az-node">
+            <div class="az-node-label">state storage</div>
+            <div class="az-node-name">AWS S3</div>
+            <div class="az-node-desc">terraform-state · versioned encrypted</div>
+            <div class="az-node-tags">
+              <span class="lab-tag lab-tag-red">AES-256</span>
+              <span class="lab-tag lab-tag-red">us-east-1</span>
+            </div>
+          </div>
+
+          <div class="az-node">
+            <div class="az-node-label">state locking</div>
+            <div class="az-node-name">DynamoDB</div>
+            <div class="az-node-desc">terraform-state-lock · prevents conflicts</div>
+            <div class="az-node-tags"><span class="lab-tag lab-tag-red">PAY_PER_REQUEST</span></div>
+          </div>
+
+          <div class="az-node">
+            <div class="az-node-label">access control</div>
+            <div class="az-node-name">IAM + OIDC</div>
+            <div class="az-node-desc">GitHub Actions trust · no stored keys</div>
+            <div class="az-node-tags"><span class="lab-tag lab-tag-red">$1 budget alert</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Zone divider -->
+    <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
+
+    <!-- ── Zone 04 — Hybrid Compute & Storage ── -->
+    <div class="az-zone az-z4">
+      <div class="az-zone-header">
+        <span class="az-zone-num">04</span>
+        <span class="az-zone-dot"></span>
+        <span class="az-zone-title">Hybrid Compute &amp; Storage</span>
+        <span class="az-zone-badge">K3s · Docker · Two Continents</span>
+      </div>
+      <div class="az-zone-body">
+        <div class="az-location-row">
+
+          <!-- Waco, Texas -->
+          <div class="az-location-col">
+            <div class="az-location-header">
+              <span class="az-location-flag">🇺🇸</span>
+              <div class="az-location-info">
+                <span class="az-location-name">Waco, Texas</span>
+                <span class="az-location-detail">On-premise · Debian laptop</span>
+              </div>
+              <span class="az-location-badge lb-waco">K3s master</span>
+            </div>
+            <div class="az-subzone">
+              <div class="az-subzone-title">Docker services</div>
+              <div class="az-subzone-grid">
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">Prometheus</div>
+                  <div class="az-node-desc">global aggregator · scrapes all 3 nodes</div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">Grafana</div>
+                  <div class="az-node-desc">cross-cloud dash · global latency</div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">n8n</div>
+                  <div class="az-node-desc">event automation · incident routing</div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">AdGuard Home</div>
+                  <div class="az-node-desc">local DNS · ad blocking</div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">Homer</div>
+                  <div class="az-node-desc">homelab dashboard · service overview</div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">NPM</div>
+                  <div class="az-node-desc">Nginx Proxy Mgr · reverse proxy</div>
+                </div>
+              </div>
+            </div>
+            <div class="az-node az-node-connector">
+              <div class="az-node-label">tunnel agent</div>
+              <div class="az-node-name">cloudflared</div>
+              <div class="az-node-desc">outbound-only to CF ZT · exposes all 7 services</div>
+              <div class="az-node-tags"><span class="lab-tag lab-tag-teal">running</span></div>
+            </div>
+          </div>
+
+          <!-- Phoenix, Arizona -->
+          <div class="az-location-col">
+            <div class="az-location-header">
+              <span class="az-location-flag">🇺🇸</span>
+              <div class="az-location-info">
+                <span class="az-location-name">Phoenix, Arizona</span>
+                <span class="az-location-detail">Oracle Cloud Free Tier</span>
+              </div>
+              <span class="az-location-badge lb-oracle">K3s worker</span>
+            </div>
+            <div class="az-subzone">
+              <div class="az-subzone-title">OCI ARM Ampere A1</div>
+              <div class="az-subzone-grid">
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">K3s worker</div>
+                  <div class="az-node-desc">4 vCPU · 24GB RAM · 200GB storage · ARM</div>
+                  <div class="az-node-tags"><span class="lab-tag lab-tag-accent">always free</span></div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">Prometheus agent</div>
+                  <div class="az-node-desc">node exporter · federated to Waco</div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">AdGuard Home</div>
+                  <div class="az-node-desc">public DNS · redundant resolver</div>
+                </div>
+              </div>
+            </div>
+            <div class="az-node az-node-connector">
+              <div class="az-node-label">mesh VPN</div>
+              <div class="az-node-name">Tailscale</div>
+              <div class="az-node-desc">100.x.x.x stable IP · WireGuard under hood</div>
+              <div class="az-node-tags"><span class="lab-tag lab-tag-teal">Waco ↔ Phoenix</span></div>
+            </div>
+          </div>
+
+          <!-- Amsterdam, NL -->
+          <div class="az-location-col">
+            <div class="az-location-header">
+              <span class="az-location-flag">🇳🇱</span>
+              <div class="az-location-info">
+                <span class="az-location-name">Amsterdam, NL</span>
+                <span class="az-location-detail">Insomnia 24/7 · shared shell</span>
+              </div>
+              <span class="az-location-badge lb-nl">no root</span>
+            </div>
+            <div class="az-subzone">
+              <div class="az-subzone-title">User-land processes (tmux)</div>
+              <div class="az-subzone-grid">
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">Node exporter</div>
+                  <div class="az-node-desc">bound to 127.0.0.1:9100 · user-land binary</div>
+                </div>
+                <div class="az-node az-node-sm">
+                  <div class="az-node-name">Probe script</div>
+                  <div class="az-node-desc">cron every 5min · latency → Pushgateway</div>
+                </div>
+              </div>
+            </div>
+            <div class="az-node az-node-connector">
+              <div class="az-node-label">connectivity</div>
+              <div class="az-node-name">Reverse SSH tunnel</div>
+              <div class="az-node-desc">localhost:19100 on Waco = NL node exporter</div>
+              <div class="az-node-tags"><span class="lab-tag lab-tag-purple">+ rsync backups</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Connection fabric -->
+        <div class="az-fabric">
+          <div class="az-fabric-title">Connection fabric</div>
+          <div class="az-fabric-rows">
+            <div class="az-fabric-row">
+              <span class="az-fabric-from">Waco (master)</span>
+              <span class="az-fabric-arrow">⟷</span>
+              <span class="az-fabric-to">Phoenix (worker)</span>
+              <span class="az-fabric-via via-teal">Tailscale mesh VPN · WireGuard</span>
+            </div>
+            <div class="az-fabric-row">
+              <span class="az-fabric-from">Waco (homelab)</span>
+              <span class="az-fabric-arrow">⟷</span>
+              <span class="az-fabric-to">Amsterdam (NL)</span>
+              <span class="az-fabric-via via-blue">Reverse SSH tunnel · port 19100</span>
+            </div>
+            <div class="az-fabric-row">
+              <span class="az-fabric-from">Waco → NL</span>
+              <span class="az-fabric-arrow">→</span>
+              <span class="az-fabric-to">rsync backups</span>
+              <span class="az-fabric-via via-amber">SSH · K3s etcd + Terraform state</span>
+            </div>
+            <div class="az-fabric-row">
+              <span class="az-fabric-from">All services</span>
+              <span class="az-fabric-arrow">→</span>
+              <span class="az-fabric-to">public internet</span>
+              <span class="az-fabric-via via-gray">Cloudflare ZT tunnel · outbound only</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Zone divider -->
+    <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
+
+    <!-- ── Zone 05 — Global Observability & Automation ── -->
+    <div class="az-zone az-z5">
+      <div class="az-zone-header">
+        <span class="az-zone-num">05</span>
+        <span class="az-zone-dot"></span>
+        <span class="az-zone-title">Global Observability &amp; Automation</span>
+        <span class="az-zone-badge">Prometheus · Grafana · n8n · Discord</span>
+      </div>
+      <div class="az-zone-body">
+        <div class="az-subzone-row">
+
+          <div class="az-subzone">
+            <div class="az-subzone-title">Federated monitoring</div>
+            <div class="az-subzone-grid">
+              <div class="az-node">
+                <div class="az-node-label">scrape targets</div>
+                <div class="az-node-name">3 geographic nodes</div>
+                <div class="az-node-desc">Waco · Phoenix · Amsterdam · via Tailscale + SSH</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">location labels</span></div>
+              </div>
+              <div class="az-node">
+                <div class="az-node-label">probes</div>
+                <div class="az-node-name">Blackbox exporter</div>
+                <div class="az-node-desc">portfolio uptime · NL latency via cron push</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">Pushgateway</span></div>
+              </div>
+              <div class="az-node">
+                <div class="az-node-label">dashboards</div>
                 <div class="az-node-name">Grafana</div>
-                <div class="az-node-desc">cross-cloud dash · global latency</div>
-              </div>
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">n8n</div>
-                <div class="az-node-desc">event automation · incident routing</div>
-              </div>
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">AdGuard Home</div>
-                <div class="az-node-desc">local DNS · ad blocking</div>
-              </div>
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">Homer</div>
-                <div class="az-node-desc">homelab dashboard · service overview</div>
-              </div>
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">NPM</div>
-                <div class="az-node-desc">Nginx Proxy Mgr · reverse proxy</div>
+                <div class="az-node-desc">global latency panel · cross-cloud health</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">public status widget</span></div>
               </div>
             </div>
           </div>
-          <div class="az-node az-node-connector">
-            <div class="az-node-label">tunnel agent</div>
-            <div class="az-node-name">cloudflared</div>
-            <div class="az-node-desc">outbound-only to CF ZT · exposes all 7 services</div>
-            <div class="az-node-tags"><span class="lab-tag lab-tag-teal">running</span></div>
-          </div>
-        </div>
 
-        <!-- Phoenix, Arizona -->
-        <div class="az-location-col">
-          <div class="az-location-header">
-            <span class="az-location-flag">🇺🇸</span>
-            <div class="az-location-info">
-              <span class="az-location-name">Phoenix, Arizona</span>
-              <span class="az-location-detail">Oracle Cloud Free Tier</span>
-            </div>
-            <span class="az-location-badge lb-oracle">K3s worker</span>
-          </div>
           <div class="az-subzone">
-            <div class="az-subzone-title">OCI ARM Ampere A1</div>
+            <div class="az-subzone-title">Event-driven automation (n8n)</div>
             <div class="az-subzone-grid">
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">K3s worker</div>
-                <div class="az-node-desc">4 vCPU · 24GB RAM · 200GB storage · ARM</div>
-                <div class="az-node-tags"><span class="lab-tag lab-tag-accent">always free</span></div>
+              <div class="az-node">
+                <div class="az-node-label">trigger 1</div>
+                <div class="az-node-name">GitHub webhook</div>
+                <div class="az-node-desc">workflow_run failure → Discord alert</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">deploy fail</span></div>
               </div>
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">Prometheus agent</div>
-                <div class="az-node-desc">node exporter · federated to Waco</div>
+              <div class="az-node">
+                <div class="az-node-label">trigger 2</div>
+                <div class="az-node-name">Alertmanager</div>
+                <div class="az-node-desc">node down / critical → Discord + remediation</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">MTTA &lt; 2min</span></div>
               </div>
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">AdGuard Home</div>
-                <div class="az-node-desc">public DNS · redundant resolver</div>
+              <div class="az-node">
+                <div class="az-node-label">trigger 3</div>
+                <div class="az-node-name">Health poll</div>
+                <div class="az-node-desc">Oracle + NL check · every 2 min</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">auto-remediate</span></div>
               </div>
-            </div>
-          </div>
-          <div class="az-node az-node-connector">
-            <div class="az-node-label">mesh VPN</div>
-            <div class="az-node-name">Tailscale</div>
-            <div class="az-node-desc">100.x.x.x stable IP · WireGuard under hood</div>
-            <div class="az-node-tags"><span class="lab-tag lab-tag-teal">Waco ↔ Phoenix</span></div>
-          </div>
-        </div>
-
-        <!-- Amsterdam, NL -->
-        <div class="az-location-col">
-          <div class="az-location-header">
-            <span class="az-location-flag">🇳🇱</span>
-            <div class="az-location-info">
-              <span class="az-location-name">Amsterdam, NL</span>
-              <span class="az-location-detail">Insomnia 24/7 · shared shell</span>
-            </div>
-            <span class="az-location-badge lb-nl">no root</span>
-          </div>
-          <div class="az-subzone">
-            <div class="az-subzone-title">User-land processes (tmux)</div>
-            <div class="az-subzone-grid">
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">Node exporter</div>
-                <div class="az-node-desc">bound to 127.0.0.1:9100 · user-land binary</div>
-              </div>
-              <div class="az-node az-node-sm">
-                <div class="az-node-name">Probe script</div>
-                <div class="az-node-desc">cron every 5min · latency → Pushgateway</div>
+              <div class="az-node">
+                <div class="az-node-label">output</div>
+                <div class="az-node-name">Discord</div>
+                <div class="az-node-desc">rich embeds · severity routing</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">resolved alerts</span></div>
               </div>
             </div>
           </div>
-          <div class="az-node az-node-connector">
-            <div class="az-node-label">connectivity</div>
-            <div class="az-node-name">Reverse SSH tunnel</div>
-            <div class="az-node-desc">localhost:19100 on Waco = NL node exporter</div>
-            <div class="az-node-tags"><span class="lab-tag lab-tag-purple">+ rsync backups</span></div>
-          </div>
-        </div>
 
-      </div>
-
-      <!-- Connection fabric -->
-      <div class="az-fabric">
-        <div class="az-fabric-title">Connection fabric</div>
-        <div class="az-fabric-rows">
-          <div class="az-fabric-row">
-            <span class="az-fabric-from">Waco (master)</span>
-            <span class="az-fabric-arrow">⟷</span>
-            <span class="az-fabric-to">Phoenix (worker)</span>
-            <span class="az-fabric-via via-teal">Tailscale mesh VPN · WireGuard</span>
-          </div>
-          <div class="az-fabric-row">
-            <span class="az-fabric-from">Waco (homelab)</span>
-            <span class="az-fabric-arrow">⟷</span>
-            <span class="az-fabric-to">Amsterdam (NL)</span>
-            <span class="az-fabric-via via-blue">Reverse SSH tunnel · port 19100</span>
-          </div>
-          <div class="az-fabric-row">
-            <span class="az-fabric-from">Waco → NL</span>
-            <span class="az-fabric-arrow">→</span>
-            <span class="az-fabric-to">rsync backups</span>
-            <span class="az-fabric-via via-amber">SSH · K3s etcd + Terraform state</span>
-          </div>
-          <div class="az-fabric-row">
-            <span class="az-fabric-from">All services</span>
-            <span class="az-fabric-arrow">→</span>
-            <span class="az-fabric-to">public internet</span>
-            <span class="az-fabric-via via-gray">Cloudflare ZT tunnel · outbound only</span>
-          </div>
         </div>
       </div>
-
     </div>
-  </div>
 
-  <!-- Zone divider -->
-  <div class="az-zone-divider"><span class="az-zone-divider-icon">↓</span></div>
+  </div><!-- /.az-zones -->
 
-  <!-- ── Zone 05 — Global Observability & Automation ── -->
-  <div class="az-zone az-z5">
-    <div class="az-zone-header">
-      <span class="az-zone-num">05</span>
-      <span class="az-zone-dot"></span>
-      <span class="az-zone-title">Global Observability &amp; Automation</span>
-      <span class="az-zone-badge">Prometheus · Grafana · n8n · Discord</span>
-    </div>
-    <div class="az-zone-body">
-      <div class="az-subzone-row">
-
-        <div class="az-subzone">
-          <div class="az-subzone-title">Federated monitoring</div>
-          <div class="az-subzone-grid">
-            <div class="az-node">
-              <div class="az-node-label">scrape targets</div>
-              <div class="az-node-name">3 geographic nodes</div>
-              <div class="az-node-desc">Waco · Phoenix · Amsterdam · via Tailscale + SSH</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-green">location labels</span></div>
-            </div>
-            <div class="az-node">
-              <div class="az-node-label">probes</div>
-              <div class="az-node-name">Blackbox exporter</div>
-              <div class="az-node-desc">portfolio uptime · NL latency via cron push</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-green">Pushgateway</span></div>
-            </div>
-            <div class="az-node">
-              <div class="az-node-label">dashboards</div>
-              <div class="az-node-name">Grafana</div>
-              <div class="az-node-desc">global latency panel · cross-cloud health</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-green">public status widget</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="az-subzone">
-          <div class="az-subzone-title">Event-driven automation (n8n)</div>
-          <div class="az-subzone-grid">
-            <div class="az-node">
-              <div class="az-node-label">trigger 1</div>
-              <div class="az-node-name">GitHub webhook</div>
-              <div class="az-node-desc">workflow_run failure → Discord alert</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-green">deploy fail</span></div>
-            </div>
-            <div class="az-node">
-              <div class="az-node-label">trigger 2</div>
-              <div class="az-node-name">Alertmanager</div>
-              <div class="az-node-desc">node down / critical → Discord + remediation</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-green">MTTA &lt; 2min</span></div>
-            </div>
-            <div class="az-node">
-              <div class="az-node-label">trigger 3</div>
-              <div class="az-node-name">Health poll</div>
-              <div class="az-node-desc">Oracle + NL check · every 2 min</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-green">auto-remediate</span></div>
-            </div>
-            <div class="az-node">
-              <div class="az-node-label">output</div>
-              <div class="az-node-name">Discord</div>
-              <div class="az-node-desc">rich embeds · severity routing</div>
-              <div class="az-node-tags"><span class="lab-tag lab-tag-green">resolved alerts</span></div>
-            </div>
-          </div>
-        </div>
-
+  <!-- ════ Legend ════ -->
+  <div class="az-legend">
+    <div class="az-legend-title">Zone legend</div>
+    <div class="az-legend-items">
+      <div class="az-legend-item"><span class="az-legend-dot az-dot-purple"></span> Zone 1 — CI/CD pipeline</div>
+      <div class="az-legend-item"><span class="az-legend-dot az-dot-amber"></span> Zone 2 — Cloudflare edge</div>
+      <div class="az-legend-item"><span class="az-legend-dot az-dot-coral"></span> Zone 3 — AWS IaC control plane</div>
+      <div class="az-legend-item"><span class="az-legend-dot az-dot-teal"></span> Zone 4 — Hybrid compute</div>
+      <div class="az-legend-item"><span class="az-legend-dot az-dot-green"></span> Zone 5 — Observability + automation
       </div>
     </div>
-  </div>
 
-</div><!-- /.az-zones -->
-
-<!-- ════ Legend ════ -->
-<div class="az-legend">
-  <div class="az-legend-title">Zone legend</div>
-  <div class="az-legend-items">
-    <div class="az-legend-item"><span class="az-legend-dot az-dot-purple"></span> Zone 1 — CI/CD pipeline</div>
-    <div class="az-legend-item"><span class="az-legend-dot az-dot-amber"></span> Zone 2 — Cloudflare edge</div>
-    <div class="az-legend-item"><span class="az-legend-dot az-dot-coral"></span> Zone 3 — AWS IaC control plane</div>
-    <div class="az-legend-item"><span class="az-legend-dot az-dot-teal"></span> Zone 4 — Hybrid compute</div>
-    <div class="az-legend-item"><span class="az-legend-dot az-dot-green"></span> Zone 5 — Observability + automation</div>
+    <div class="az-status-row">
+      <div class="az-status-item"><span class="status-dot green"></span> CI/CD live</div>
+      <div class="az-status-item"><span class="status-dot green"></span> Cloudflare DNS + tunnels live</div>
+      <div class="az-status-item"><span class="status-dot amber"></span> Terraform IaC — in progress</div>
+      <div class="az-status-item"><span class="status-dot gray"></span> K3s cluster — planned</div>
+      <div class="az-status-item"><span class="status-dot gray"></span> Prometheus federation — planned</div>
+      <div class="az-status-item"><span class="status-dot gray"></span> n8n automation — planned</div>
+    </div>
   </div>
-
-  <div class="az-status-row">
-    <div class="az-status-item"><span class="status-dot green"></span> CI/CD live</div>
-    <div class="az-status-item"><span class="status-dot green"></span> Cloudflare DNS + tunnels live</div>
-    <div class="az-status-item"><span class="status-dot amber"></span> Terraform IaC — in progress</div>
-    <div class="az-status-item"><span class="status-dot gray"></span> K3s cluster — planned</div>
-    <div class="az-status-item"><span class="status-dot gray"></span> Prometheus federation — planned</div>
-    <div class="az-status-item"><span class="status-dot gray"></span> n8n automation — planned</div>
-  </div>
-</div>
 
 </div><!-- /.arch-wrap -->
 {{- end }}
