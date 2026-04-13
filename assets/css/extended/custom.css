@@ -303,6 +303,8 @@ html:not(.dark) a {
 
 /* Buttons (Resume Button) */
 .button,
+a.button,
+html:not(.dark) a.button,
 .dark a.button {
     background-color: var(--accent-tag);
     color: #ffffff;
@@ -2537,4 +2539,4 @@ html.dark .lab-callout {
 code.language-text, 
 pre > code.language-text {
     font-family: ui-monospace, Consolas, "Cascadia Code", "Courier New", monospace !important;
-}
+}
