@@ -13,12 +13,12 @@ tags:
   - Deepseek-r1
   - Self-Hosting
   - Homelab
-weight: 120
+weight: 150
 project_series: "Standalone Deployments"
 author: " | Prajwol Bikram Adikari"
 cover:
-    image: "/projects/deepseek-r1-docker/docker-ai.png"
-    alt: "A stylized illustration of a container ship, representing Docker, carrying cargo of servers. The ship is integrated into a larger technical diagram, symbolizing a containerized application and its ecosystem."
+  image: "/projects/deepseek-r1-docker/docker-ai.png"
+  alt: "A stylized illustration of a container ship, representing Docker, carrying cargo of servers. The ship is integrated into a larger technical diagram, symbolizing a containerized application and its ecosystem."
 ---
 
 # What's a Docker Container?
@@ -34,6 +34,7 @@ Docker containers encapsulate everything required to run an application: the cod
 ## Step 1: Install Ubuntu on Windows (If You Haven't Already)
 
 If you're using Windows, the easiest way to get an Ubuntu environment is through the Microsoft Store. Here's how:
+
 1. Open the Microsoft Store and search for Ubuntu.
 2. Click Get and let it install.
 3. Once installed, open Ubuntu from the Start menu and follow the setup instructions.
@@ -50,10 +51,13 @@ Now, you have an Ubuntu terminal running on Windows!
 ## Step 2: Install Docker (If You Haven't Already)
 
 First, let's check if you have Docker installed. Open a terminal and run:
+
 ```
 docker --version
 ```
+
 If that returns a version number, congrats! If not, install Docker:
+
 ```
 sudo apt update && sudo apt install docker.io -y
 sudo systemctl enable --now docker
@@ -87,9 +91,11 @@ sudo apt-get install -y nvidia-container-toolkit
 ```
 
 ---
+
 # Running Ollama Inside Docker
 
 Run these commands(P.S. shoutout to NetworkChuck):
+
 ```
 docker run -d \
 --gpus all \
@@ -107,18 +113,23 @@ ollama/ollama
 ```
 
 ---
+
 # Running DeepSeek-R1 Locally
 
 Time to bring DeepSeek-R1 to life locally and containerized:
+
 ```
 docker exec -it ollama ollama run deepseek-r1
 ```
+
 or you can run other versions of deepseek-r1 just by typing in the version at the end after a colon(:)
+
 ```
 docker exec -it ollama ollama run deepseek-r1:7b
 ```
 
-After this, play around with the AI, if you wanna exit just type: 
+After this, play around with the AI, if you wanna exit just type:
+
 ```
 /bye
 ```
@@ -126,10 +137,13 @@ After this, play around with the AI, if you wanna exit just type:
 # Starting Deepseek-R1
 
 To Start Deepseek-R1 from next time go to Ubuntu and type:
+
 ```
 docker start ollama
 ```
+
 this will start ollama docker container; then type:
+
 ```
 docker exec -it ollama ollama run deepseek-r1:7b
 ```
