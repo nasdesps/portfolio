@@ -35,12 +35,15 @@ The goal for this first part is to lay a solid foundation. We'll take an old lap
 ### 1. Choosing the Hardware & OS
 
 #### Why an Old Laptop?
+
 Before diving in, why use an old laptop instead of a Raspberry Pi or a dedicated server? For a starter homelab, a laptop has three huge advantages:
-* **Cost-Effective:** It's free if you have one lying around!
-* **Built-in UPS:** The battery acts as a built-in Uninterruptible Power Supply (UPS), keeping the server running through short power outages.
-* **Low Power Consumption:** Laptop hardware is designed to be power-efficient, which is great for a device that will be running 24/7.
+
+- **Cost-Effective:** It's free if you have one lying around!
+- **Built-in UPS:** The battery acts as a built-in Uninterruptible Power Supply (UPS), keeping the server running through short power outages.
+- **Low Power Consumption:** Laptop hardware is designed to be power-efficient, which is great for a device that will be running 24/7.
 
 #### Why Debian 13 "Trixie"?
+
 For the operating system, I chose Debian. It's renowned for its stability, security, and massive package repository. It’s the bedrock of many other distributions (like Ubuntu) and is perfect for a server because it's lightweight and doesn't include unnecessary software. We'll be using the minimal "net-install" to ensure we only install what we absolutely need.
 
 ---
@@ -50,6 +53,7 @@ For the operating system, I chose Debian. It's renowned for its stability, secur
 The installation process is straightforward, but the network setup is key to a reliable server.
 
 #### Minimal Installation
+
 1. **Create a Bootable USB:** I downloaded the Debian 13 "netinst" ISO from the official website and used Rufus on Windows to create a bootable USB drive.
 2. **Boot from USB:** I plugged the USB into the laptop and booted from it (usually pressing **F12**, **F2**, or **Esc** during startup to select the USB device).
 3. **Language, Location, and Keyboard:** Selected English, United States, and the default keyboard layout.
@@ -67,6 +71,7 @@ The installation process is straightforward, but the network setup is key to a r
 10. **Finish Installation:** Removed the USB drive when prompted and rebooted into the fresh Debian install.
 
 #### Setting a Static IP
+
 A server needs a permanent, unchanging IP address. The best way to do this is with **DHCP Reservation** on your router. This tells your router to always assign the same IP address to your server's unique MAC address.
 
 First, find your laptop’s current IP address and network interface name by running:
@@ -84,15 +89,17 @@ You’ll see output similar to:
 ```
 
 In this example:
+
 - **Interface name:** `enp3s0`
 - **Current IP:** `192.168.0.45`
 - **MAC address:** shown under `link/ether` in the same section.
 
-With this info, log into your router’s admin panel, find the "DHCP Reservation" or "Static Leases" section, and assign a memorable IP address (e.g., `192.168.0.45`) to your server’s MAC address.  
+With this info, log into your router’s admin panel, find the "DHCP Reservation" or "Static Leases" section, and assign a memorable IP address (e.g., `192.168.0.45`) to your server’s MAC address.
 
 This ensures the server always gets the same IP from your router, making it easy to find on your network.
 
 #### Connecting Remotely with SSH
+
 With a static IP set, all future management will be done remotely using an SSH client. For Windows, I highly recommend **Solar-PuTTY**. I created a new session, entered the server's static IP address, my username, and password, and connected.
 
 ---
@@ -102,6 +109,7 @@ With a static IP set, all future management will be done remotely using an SSH c
 With a remote SSH session active, the first thing to do is secure the server and configure it for its headless role.
 
 #### Update the System
+
 First, let's make sure all packages are up to date.
 
 ```bash
@@ -109,6 +117,7 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 #### Configure the Firewall
+
 `ufw` (Uncomplicated Firewall) is perfect for a simple setup. We'll set it to deny all incoming traffic by default and only allow SSH connections.
 
 ```bash
@@ -123,6 +132,7 @@ sudo ufw enable
 ```
 
 #### Configure Lid-Close Action
+
 To ensure the laptop keeps running when the lid is closed, we edit the `logind.conf` file.
 
 ```bash
@@ -148,6 +158,7 @@ sudo systemctl restart systemd-logind.service
 Instead of installing applications directly on our host, we'll use Docker to keep the system clean and make management easier.
 
 #### Install Docker Engine
+
 The official convenience script is the easiest way to get the latest version.
 
 ```bash
@@ -156,6 +167,7 @@ sudo sh get-docker.sh
 ```
 
 #### Add User to Docker Group
+
 To run docker commands without `sudo`, add your user to the docker group. The `$USER` variable automatically uses the currently logged-in user.
 
 ```bash
@@ -165,6 +177,7 @@ sudo usermod -aG docker $USER
 After this, log out and log back in for the change to take effect.
 
 #### Install Docker Compose
+
 Docker Compose is essential for managing multi-container applications with a simple YAML file.
 
 ```bash

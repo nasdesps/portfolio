@@ -10,7 +10,7 @@
   <div class="arch-status-bar">
     <div class="arch-status-item"><span class="status-dot green"></span> CI/CD — live</div>
     <div class="arch-status-item"><span class="status-dot green"></span> Cloudflare — live</div>
-    <div class="arch-status-item"><span class="status-dot amber"></span> Terraform — in progress</div>
+    <div class="arch-status-item"><span class="status-dot green"></span> Terraform — live</div>
     <div class="arch-status-item"><span class="status-dot gray"></span> K3s — planned</div>
     <div class="arch-status-item"><span class="status-dot gray"></span> Prometheus — planned</div>
     <div class="arch-status-item"><span class="status-dot gray"></span> n8n — planned</div>
@@ -160,9 +160,9 @@
 
           <div class="az-node">
             <div class="az-node-label">state locking</div>
-            <div class="az-node-name">DynamoDB</div>
-            <div class="az-node-desc">terraform-state-lock · prevents conflicts</div>
-            <div class="az-node-tags"><span class="lab-tag lab-tag-red">PAY_PER_REQUEST</span></div>
+            <div class="az-node-name">S3 Locking</div>
+            <div class="az-node-desc">use_lockfile · S3-native · no DynamoDB needed</div>
+            <div class="az-node-tags"><span class="lab-tag lab-tag-red">S3-native</span></div>
           </div>
 
           <div class="az-node">
@@ -355,7 +355,7 @@
         <div class="az-subzone-row">
 
           <div class="az-subzone">
-            <div class="az-subzone-title">Federated monitoring</div>
+            <div class="az-subzone-title">Distributed monitoring</div>
             <div class="az-subzone-grid">
               <div class="az-node">
                 <div class="az-node-label">scrape targets</div>
@@ -429,7 +429,7 @@
     <div class="az-status-row">
       <div class="az-status-item"><span class="status-dot green"></span> CI/CD live</div>
       <div class="az-status-item"><span class="status-dot green"></span> Cloudflare DNS + tunnels live</div>
-      <div class="az-status-item"><span class="status-dot amber"></span> Terraform IaC — in progress</div>
+      <div class="az-status-item"><span class="status-dot green"></span> Terraform IaC — live</div>
       <div class="az-status-item"><span class="status-dot gray"></span> K3s cluster — planned</div>
       <div class="az-status-item"><span class="status-dot gray"></span> Prometheus federation — planned</div>
       <div class="az-status-item"><span class="status-dot gray"></span> n8n automation — planned</div>

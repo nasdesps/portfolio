@@ -70,13 +70,13 @@
     </div>
 
     <div class="status-card">
-      <div class="status-dot amber"></div>
+      <div class="status-dot green"></div>
       <div class="status-info">
         <div class="status-name-row">
           <div class="status-name">Terraform IaC</div>
-          <span class="lab-tag lab-tag-amber">in progress</span>
+          <span class="lab-tag lab-tag-green">operational</span>
         </div>
-        <div class="status-meta">AWS S3 state · Cloudflare DNS<br>12 records under management</div>
+        <div class="status-meta">AWS S3 state · S3-native locking · OIDC<br>13 records under management</div>
       </div>
     </div>
 
@@ -129,7 +129,7 @@
         <div class="zone-tags">
           <span class="lab-tag lab-tag-red">Terraform</span>
           <span class="lab-tag lab-tag-red">AWS S3 state</span>
-          <span class="lab-tag lab-tag-red">DynamoDB lock</span>
+          <span class="lab-tag lab-tag-red">S3 locking</span>
           <span class="lab-tag lab-tag-red">IAM + OIDC</span>
         </div>
       </div>
@@ -153,7 +153,7 @@
       <div class="zone-row">
         <div class="zone-label">observe</div>
         <div class="zone-tags">
-          <span class="lab-tag lab-tag-gray">Prometheus federation</span>
+          <span class="lab-tag lab-tag-gray">Prometheus</span>
           <span class="lab-tag lab-tag-gray">Grafana dashboards</span>
           <span class="lab-tag lab-tag-gray">Blackbox exporter</span>
           <span class="lab-tag lab-tag-gray">n8n automation</span>
@@ -187,10 +187,11 @@
     <div class="tech-card">
       <div class="tech-category">Infrastructure as Code</div>
       <div class="tech-tags">
-        <span class="lab-tag lab-tag-amber">Terraform</span>
-        <span class="lab-tag lab-tag-amber">AWS S3</span>
-        <span class="lab-tag lab-tag-amber">DynamoDB</span>
-        <span class="lab-tag lab-tag-amber">Cloudflare TF</span>
+        <span class="lab-tag lab-tag-green">Terraform</span>
+        <span class="lab-tag lab-tag-green">AWS S3</span>
+        <span class="lab-tag lab-tag-green">S3 Locking</span>
+        <span class="lab-tag lab-tag-green">Cloudflare TF</span>
+        <span class="lab-tag lab-tag-gray">Ansible</span>
       </div>
     </div>
 
@@ -220,8 +221,8 @@
         <span class="lab-tag lab-tag-green">Prometheus</span>
         <span class="lab-tag lab-tag-green">Grafana</span>
         <span class="lab-tag lab-tag-green">cAdvisor</span>
+        <span class="lab-tag lab-tag-green">Alertmanager</span>
         <span class="lab-tag lab-tag-gray">Blackbox</span>
-        <span class="lab-tag lab-tag-gray">Alertmanager</span>
       </div>
     </div>
 
@@ -264,9 +265,9 @@
       <div class="phase-icon">⚙</div>
       <div class="phase-info">
         <div class="phase-name">Infrastructure as Code</div>
-        <div class="phase-detail">Terraform · AWS S3 state · Cloudflare DNS · OCI instances</div>
+        <div class="phase-detail">Terraform · AWS S3 state · Cloudflare DNS · OCI instances · GitHub Actions OIDC · GitOps pipeline</div>
       </div>
-      <div class="phase-badge"><span class="lab-tag lab-tag-amber">in progress</span></div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-green">complete</span></div>
     </div>
 
     <div class="phase-row">
@@ -304,7 +305,7 @@
   <div class="progress-container">
     <div class="progress-fill"></div>
   </div>
-  <div class="progress-label">1 of 5 phases complete</div>
+  <div class="progress-label">2 of 5 phases complete</div>
 </section>
 
 <!-- ════ Section 5 — Certifications ════ -->

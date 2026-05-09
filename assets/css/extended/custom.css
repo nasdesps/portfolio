@@ -2397,7 +2397,7 @@ html.dark .progress-fill {
     background: linear-gradient(90deg, var(--lab-green), #58a6ff);
 }
 
-@keyframes lab-growBar { from { width: 0; } to { width: 22%; } }
+@keyframes lab-growBar { from { width: 0; } to { width: 40%; } }
 
 .progress-label {
     font-family: var(--font-code);

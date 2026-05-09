@@ -19,7 +19,7 @@ tags:
   - Automation
   - GitHub
   - Homelab
-weight: 101
+weight: 102
 project_series: "Hybrid Cloud"
 cover:
   image: "/projects/hybrid-cloud-part1/hybrid-cloud-part1.png"
@@ -39,18 +39,19 @@ So that is what this post is about. Building a proper **multi-stage, security-ga
 Fair warning: it did not all go smoothly. There were failed runs, confusing errors, and at least one moment where I had no idea why the build was failing. I will walk you through all of it.
 
 ---
+
 ### See it live
 
-This post documents the first phase of a five-phase hybrid cloud 
-engineering showcase. If you want to see the current state of the 
+This post documents the first phase of a five-phase hybrid cloud
+engineering showcase. If you want to see the current state of the
 infrastructure before reading the build walkthrough:
 
-- [The Lab](/lab/) — live infrastructure status, technology stack, 
+- [The Lab](/lab/) — live infrastructure status, technology stack,
   and build progress tracker
-- [Architecture diagram](/architecture/) — five-zone infrastructure 
+- [Architecture diagram](/architecture/) — five-zone infrastructure
   map spanning Waco TX, Phoenix AZ, and Amsterdam NL
 
-The lab page updates as each phase completes. By the time you read 
+The lab page updates as each phase completes. By the time you read
 this, Phase 2 Terraform IaC may already be marked complete.
 
 ---
