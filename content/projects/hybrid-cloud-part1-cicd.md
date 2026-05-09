@@ -19,7 +19,7 @@ tags:
   - Automation
   - GitHub
   - Homelab
-weight: 102
+weight: 103
 project_series: "Hybrid Cloud"
 cover:
   image: "/projects/hybrid-cloud-part1/hybrid-cloud-part1.png"

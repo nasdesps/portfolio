@@ -1,6 +1,6 @@
 ---
 title: "Building an LLM-Powered Log Triage Pipeline with Python and DeepSeek-R1"
-date: 2026-05-10
+date: 2026-05-09
 dateString: May 2026
 description: "How I built a Python automation that reads Docker container logs, classifies severity, and sends critical events to a self-hosted DeepSeek-R1 model for natural-language summarization — with alerts delivered to Discord every 15 minutes."
 draft: false
@@ -21,7 +21,7 @@ weight: 147
 project_series: "Standalone Deployments"
 cover:
   image: "/projects/deepseek-log-triage/deepseek-log-triage.webp"
-  alt: "An infographic diagram titled 'Spidey Bot APP' and dated '5/10/2026' on a dark blue grid background, illustrating a four-stage DevSecOps log triage pipeline. Stage 1, located at a 'Local Server (Waco, Texas)', is titled '1. Cron: Read and Classify logs' and uses icons of gears for 'rules-based triage' to filter 'Docker logs'. It shows logs funneling forward with red ('crit') and green ('ignore') lines, where only critical ones escalate. A connecting line labeled 'Encrypted Tailscale VPN' links to Stage 2 at 'Oracle Cloud (Phoenix, Arizona)', titled '2. Ollama / DeepSeek-R1 1.5B'. A neural network icon ('LLM') and a prompt-response loop process the logs, where the 'model writes plain-English summary of critical logs' for a 'log summary'. A line labeled 'Discord webhook' then links to a dark message embed card titled 'Alert — [CONTAINER NAME]', containing fields for 'Trigger keyword', 'Severity', 'AI Analysis', and more. The text indicates the summary is 'Summary delivered to Discord channel'. At the bottom, a green panel links to a toolbox with six logos: Ollama, DeepSeek, Docker, Python, Tailscale, and a final 'alerts' text icon."
+  alt: "Architecture diagram showing an LLM-powered log triage pipeline with rules-based classification and DeepSeek-R1 summarization, delivering alerts to Discord."
 ---
 
 ### Introduction

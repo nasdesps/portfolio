@@ -18,7 +18,7 @@ tags:
   - Security
   - Automation
   - Homelab
-weight: 101
+weight: 102
 project_series: "Hybrid Cloud"
 cover:
   image: "/projects/hybrid-cloud-part2/hybrid-cloud-part2.webp"
