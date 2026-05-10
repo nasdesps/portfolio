@@ -1,0 +1,29 @@
+{{- $currentSeries := .Params.project_series }}
+{{- if $currentSeries }}
+{{- $allProjects := where (where .Site.RegularPages "Type" "projects") "Params.project_series" $currentSeries }}
+{{- if gt (len $allProjects) 1 }}
+<nav class="series-nav" aria-label="Series navigation">
+    <div class="series-nav-header">
+        <div class="series-nav-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            <span>{{ $currentSeries }} Series</span>
+        </div>
+        <span class="series-nav-count">{{ len $allProjects }} parts</span>
+    </div>
+    <div class="series-nav-items">
+        {{- range $allProjects }}
+        <a href="{{ .RelPermalink }}" class="series-nav-item{{ if eq $.RelPermalink .RelPermalink }} active{{ end }}">
+            <span class="series-nav-indicator">
+                {{- if eq $.RelPermalink .RelPermalink }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
+                {{- else }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>
+                {{- end }}
+            </span>
+            <span class="series-nav-title">{{ .Title }}</span>
+        </a>
+        {{- end }}
+    </div>
+</nav>
+{{- end }}
+{{- end }}

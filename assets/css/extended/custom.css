@@ -2540,3 +2540,132 @@ code.language-text,
 pre > code.language-text {
     font-family: ui-monospace, Consolas, "Cascadia Code", "Courier New", monospace !important;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Series Navigation — In-article nav for multi-part project series
+   ══════════════════════════════════════════════════════════════ */
+
+.series-nav {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    margin: 2rem 0 2.5rem 0;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.series-nav:hover {
+    border-color: var(--lab-border-hover);
+}
+
+.series-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: var(--card-header-bg);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.series-nav-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-code);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--card-text-primary);
+}
+
+.series-nav-label svg {
+    color: #58a6ff;
+    flex-shrink: 0;
+}
+
+:root:not(.dark) .series-nav-label svg {
+    color: var(--accent-tag);
+}
+
+.series-nav-count {
+    font-family: var(--font-code);
+    font-size: 11px;
+    color: var(--lab-muted);
+    letter-spacing: 0.04em;
+}
+
+.series-nav-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.series-nav-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: var(--card-text-secondary);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--card-border);
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.series-nav-item:last-child {
+    border-bottom: none;
+}
+
+.series-nav-item:hover {
+    background: var(--card-header-bg);
+    color: var(--card-text-primary);
+}
+
+.series-nav-item.active {
+    color: #58a6ff;
+    font-weight: 600;
+    background: rgba(88, 166, 255, 0.04);
+}
+
+:root:not(.dark) .series-nav-item.active {
+    color: var(--accent-tag);
+    background: rgba(9, 105, 218, 0.04);
+}
+
+.series-nav-indicator {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    color: var(--lab-muted);
+}
+
+.series-nav-item.active .series-nav-indicator {
+    color: #58a6ff;
+}
+
+:root:not(.dark) .series-nav-item.active .series-nav-indicator {
+    color: var(--accent-tag);
+}
+
+.series-nav-title {
+    min-width: 0;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .series-nav {
+        margin: 1.5rem 0 2rem 0;
+    }
+
+    .series-nav-item {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+
+    .series-nav-header {
+        padding: 10px 14px;
+    }
+}

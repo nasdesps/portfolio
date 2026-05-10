@@ -31,6 +31,8 @@
     </figure>
     {{- end }}
 
+    {{- partial "series_nav.html" . }}
+
     {{- if (.Param "ShowToc") }}
     {{- partial "toc.html" . }}
     {{- end }}
