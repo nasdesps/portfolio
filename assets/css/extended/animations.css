@@ -1,0 +1,337 @@
+/* ══════════════════════════════════════════════════════════════
+   animations.css — Page Transitions + Image Lightbox
+   Hugo PaperMod override  ·  Pure CSS  ·  No external deps
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────
+   1. VIEW TRANSITION API — Page Transitions (Chrome 111+)
+   Transitions are triggered programmatically via
+   document.startViewTransition() in animations.js.
+   The @view-transition / <meta> MPA opt-in is NOT used.
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Exclude the entire header (including nav) from the transition ── */
+.header {
+    view-transition-name: nav-bar;
+}
+
+::view-transition-old(nav-bar),
+::view-transition-new(nav-bar) {
+    animation: none;
+}
+
+/* ── Main content exit / enter ── */
+.page-transition-main {
+    view-transition-name: main-content;
+}
+
+/* Old page exits: fade out + slide up 14px */
+::view-transition-old(main-content) {
+    animation: vt-fade-slide-out 200ms ease-in both;
+}
+
+/* New page enters: fade in + slide up from 18px below */
+::view-transition-new(main-content) {
+    animation: vt-fade-slide-in 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes vt-fade-slide-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes vt-fade-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. FALLBACK TRANSITIONS (Firefox / older Safari)
+   ───────────────────────────────────────────────────────────── */
+
+/* Body gets .js-ready after DOMContentLoaded (no FOUC) */
+body:not(.js-ready) .page-transition-main {
+    /* Prevent invisible content before JS loads */
+    opacity: 1;
+}
+
+/* ── Exit transition: triggered by JS adding .page-exit ── */
+.page-transition-main.page-exit {
+    opacity: 0;
+    transform: translateY(-14px);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+/* ── Enter transition: new page starts hidden ── */
+.page-transition-main.page-enter {
+    opacity: 0;
+    transform: translateY(18px);
+}
+
+/* Transition to natural position */
+.page-transition-main.page-entered {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. EDUCATION TIMELINE STAGGER
+   ───────────────────────────────────────────────────────────── */
+
+/* Timeline items start hidden; JS adds .timeline-stagger-in */
+.timeline-item.timeline-stagger-ready {
+    opacity: 0;
+    transform: translateX(-12px);
+}
+
+.timeline-item.timeline-stagger-in {
+    animation: timeline-slide-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--stagger-delay, 0ms);
+}
+
+@keyframes timeline-slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. LIGHTBOX — Scrim
+   ───────────────────────────────────────────────────────────── */
+
+.lightbox-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* Dark mode default */
+    background: rgba(13, 17, 23, 0.94);
+    opacity: 0;
+    transition: opacity 220ms ease-out;
+    cursor: default;
+}
+
+/* Light mode scrim */
+html:not(.dark) .lightbox-scrim {
+    background: rgba(240, 242, 245, 0.94);
+}
+
+.lightbox-scrim.lightbox-visible {
+    opacity: 1;
+}
+
+/* Closing state — reverse */
+.lightbox-scrim.lightbox-closing {
+    opacity: 0;
+    transition: opacity 260ms ease-in;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. LIGHTBOX — Image
+   ───────────────────────────────────────────────────────────── */
+
+.lightbox-image {
+    max-width: 88vw;
+    max-height: 82vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 6px;
+    /* Shadow settles after FLIP completes */
+    box-shadow:
+        0 0 0 1px rgba(88, 166, 255, 0.20),
+        0 32px 80px rgba(0, 0, 0, 0.60);
+    /* Prevent any accidental text selection */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   6. LIGHTBOX — Caption
+   ───────────────────────────────────────────────────────────── */
+
+.lightbox-caption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #8b949e;
+    text-align: center;
+    max-width: 88vw;
+    margin-top: 14px;
+    opacity: 0;
+    transition: opacity 200ms ease;
+    transition-delay: 60ms;
+    line-height: 1.5;
+}
+
+.lightbox-caption.lightbox-caption-visible {
+    opacity: 1;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. LIGHTBOX — Close Button
+   ───────────────────────────────────────────────────────────── */
+
+.lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 10000;
+    border-radius: 6px;
+    transition: background 150ms ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+html:not(.dark) .lightbox-close:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* × glyph */
+.lightbox-close::before,
+.lightbox-close::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    border-radius: 1px;
+    /* Dark mode: white cross */
+    background: #e6edf3;
+}
+
+html:not(.dark) .lightbox-close::before,
+html:not(.dark) .lightbox-close::after {
+    /* Light mode: dark cross */
+    background: #0f172a;
+}
+
+.lightbox-close::before {
+    transform: rotate(45deg);
+}
+
+.lightbox-close::after {
+    transform: rotate(-45deg);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   8. LIGHTBOX — Cursor for zoomable images
+   ───────────────────────────────────────────────────────────── */
+
+/* Only card-image imgs inside project cards (the architecture diagrams) */
+.card-image img,
+.entry-cover img,
+.post-content img {
+    cursor: zoom-in;
+}
+
+/* Do NOT apply to: profile image, nav logo, social icons, card-icon,
+   or any img that is a direct child of an <a> tag */
+.profile-image-wrapper img,
+.logo img,
+.social-icons img,
+.card-icon img,
+a > img {
+    cursor: default !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   9. SCROLL LOCK — Prevent layout shift
+   ───────────────────────────────────────────────────────────── */
+
+body.lightbox-open {
+    overflow: hidden;
+    /* padding-right is set dynamically by JS to compensate for scrollbar */
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   10. PREFERS-REDUCED-MOTION — Disable everything
+   ───────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    /* Kill view transitions */
+    ::view-transition-old(main-content),
+    ::view-transition-new(main-content),
+    ::view-transition-old(nav-bar),
+    ::view-transition-new(nav-bar) {
+        animation: none !important;
+    }
+
+    /* Kill fallback transitions */
+    .page-transition-main.page-exit,
+    .page-transition-main.page-enter,
+    .page-transition-main.page-entered {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Kill timeline stagger */
+    .timeline-item.timeline-stagger-ready {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .timeline-item.timeline-stagger-in {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Kill lightbox transitions — instant show/hide */
+    .lightbox-scrim {
+        transition: none !important;
+    }
+
+    .lightbox-scrim.lightbox-closing {
+        transition: none !important;
+    }
+
+    .lightbox-caption {
+        transition: none !important;
+        transition-delay: 0ms !important;
+    }
+
+    .lightbox-image {
+        transition: none !important;
+    }
+}

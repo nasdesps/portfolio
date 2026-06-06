@@ -1,0 +1,10 @@
+{{- /* Page Transition & Animation Scripts */ -}}
+{{- /* Old inline stagger/ripple/image-expand script replaced by animations.js */ -}}
+
+{{- $animations := resources.Get "js/animations.js" | minify -}}
+{{- if not site.Params.assets.disableFingerprinting -}}
+{{- $animations = $animations | fingerprint -}}
+<script defer crossorigin="anonymous" src="{{ $animations.RelPermalink }}" integrity="{{ $animations.Data.Integrity }}"></script>
+{{- else -}}
+<script defer crossorigin="anonymous" src="{{ $animations.RelPermalink }}"></script>
+{{- end -}}

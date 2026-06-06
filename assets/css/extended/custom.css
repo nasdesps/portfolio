@@ -2669,3 +2669,244 @@ pre > code.language-text {
         padding: 10px 14px;
     }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Page Transitions & Entrance Animations
+   View transition + lightbox CSS → assets/css/extended/animations.css
+   Below: stagger, click feedback, card hover, and profile entrance
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── 3. Staggered Entrance Animations for Content Elements ── */
+/* Elements start hidden and animate in when observed by IntersectionObserver */
+
+.stagger-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stagger-visible {
+    animation: stagger-in 0.5s cubic-bezier(0.0, 0, 0.2, 1) both;
+    animation-delay: var(--stagger-delay, 0ms);
+}
+
+@keyframes stagger-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── 4. Card Click Feedback ── */
+/* Scale-down effect on click for tactile feel */
+
+.click-scale {
+    transform: scale(0.97) !important;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Ripple effect emanating from click point */
+.click-ripple {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(88, 166, 255, 0.15);
+    transform: translate(-50%, -50%);
+    animation: ripple-expand 0.6s cubic-bezier(0, 0, 0.2, 1) forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+html:not(.dark) .click-ripple {
+    background: rgba(9, 105, 218, 0.1);
+}
+
+@keyframes ripple-expand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.6;
+    }
+    100% {
+        width: 400px;
+        height: 400px;
+        opacity: 0;
+    }
+}
+
+/* ── 5. Enhanced Card Hover Transitions ── */
+/* Override existing transitions with smoother cubic-bezier curves */
+
+.project-card,
+.blog-card,
+.timeline-card,
+.tag-card,
+.tag-post-card,
+.status-card,
+.chrome-card,
+.skill-card,
+.cert-card,
+.source-card,
+.post-entry {
+    transition:
+        transform 0.3s cubic-bezier(0.0, 0, 0.2, 1),
+        border-color 0.3s cubic-bezier(0.0, 0, 0.2, 1),
+        box-shadow 0.3s cubic-bezier(0.0, 0, 0.2, 1);
+}
+
+/* ── 7. Project Card Image Hover Parallax ── */
+/* Subtle scale on hover for card images */
+
+.card-image img {
+    transition:
+        transform 0.5s cubic-bezier(0.0, 0, 0.2, 1),
+        opacity 0.3s ease;
+}
+
+.project-card:hover .card-image img {
+    transform: scale(1.06);
+    opacity: 1;
+}
+
+/* ── 8. Navigation Link Hover Animation ── */
+/* Smooth underline animation on nav links */
+
+#menu li a span::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1.5px;
+    background: var(--card-text-primary);
+    transition: width 0.3s cubic-bezier(0.0, 0, 0.2, 1);
+    margin-top: 2px;
+}
+
+#menu li a:hover span::after {
+    width: 100%;
+}
+
+/* Don't double up with the active underline */
+#menu li a span.active::after {
+    display: none;
+}
+
+/* ── 9–11. Per-Element Entrance Animations ── */
+/* These only run on browsers WITHOUT the View Transitions API.            */
+/* On VT-capable browsers (Chrome/Edge), the API already handles the       */
+/* entire page transition as a composited animation — running these         */
+/* per-element animations on top would cause a "double animation" effect.  */
+
+@supports not (view-transition-name: none) {
+
+    /* ── 9. Profile Section Entrance ── */
+    .profile-image-wrapper {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.1s both;
+    }
+
+    .profile h1 {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.2s both;
+    }
+
+    .code-tag {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.25s both;
+    }
+
+    .profile-description {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.3s both;
+    }
+
+    .location-tag {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.35s both;
+    }
+
+    .tech-stack {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.4s both;
+    }
+
+    .profile-actions {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.45s both;
+    }
+
+    .skills-section {
+        animation: profile-float-in 0.6s cubic-bezier(0.0, 0, 0.2, 1) 0.5s both;
+    }
+
+    /* ── 10. Page Header Entrance (non-home pages) ── */
+
+    .page-header,
+    .post-header {
+        animation: header-slide-in 0.5s cubic-bezier(0.0, 0, 0.2, 1) 0.1s both;
+    }
+
+    /* ── 11. Breadcrumbs fade in before content ── */
+
+    .breadcrumbs {
+        animation: breadcrumb-fade 0.4s cubic-bezier(0.0, 0, 0.2, 1) 0.05s both;
+    }
+}
+
+/* Keyframes kept outside @supports so they're defined for all browsers */
+
+@keyframes profile-float-in {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes header-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes breadcrumb-fade {
+    from {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ── Accessibility: Respect prefers-reduced-motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .stagger-hidden {
+        opacity: 1;
+        transform: none;
+    }
+
+    .page-transition-main {
+        animation: none;
+    }
+
+    ::view-transition-old(main-content),
+    ::view-transition-new(main-content) {
+        animation: none;
+    }
+}
