@@ -550,4 +550,4 @@ EXPOSE 5000
 CMD ["python", "app.py"]
 ```
 
-The full source — Flask app, manifests, and a README explaining the multi-arch build and failover test — is on my GitHub as `k3s-status-page`.
+The full source — Flask app, manifests, and a README explaining the multi-arch build and failover test — is on my GitHub as <a href="https://github.com/nasdesps/k3s-status-page" target="_blank">k3s-status-page</a>.
