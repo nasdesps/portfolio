@@ -83,6 +83,32 @@ chmod +x kubectl && sudo mv kubectl /usr/local/bin/
 
 ---
 
+### Prerequisites: The Mesh Network
+ 
+This cluster is built on top of the Tailscale mesh I set up back in Part 2, so by the time I got to Kubernetes the network was already there. If you are starting fresh, the mesh is the one piece you need in place before anything else — the cluster cannot form without it.
+ 
+The setup is genuinely short. On each machine that will join the cluster:
+ 
+```bash
+# Install Tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
+ 
+# Bring it up and authenticate (opens a login URL)
+sudo tailscale up
+```
+ 
+Then confirm each node can see the others, and note the `100.x` mesh addresses they were assigned — those are the values that become `<CONTROL_PLANE_IP>` and `<WORKER_IP>` in the rest of this guide:
+ 
+```bash
+tailscale status
+```
+ 
+By default, every device in your tailnet can reach every other device, which is exactly what a Kubernetes cluster needs — the control plane and worker have to talk freely on the cluster ports. If you later lock down the tailnet with ACLs, remember to leave the nodes able to reach each other. (The deeper mesh topics — ACL policy, MagicDNS, and a memorable conflict between Tailscale and Android's Private DNS — belong with my DNS writeup, not here. For the cluster, "all nodes can reach each other on the mesh" is all you need.)
+ 
+One detail worth knowing up front: the mesh interface is named `tailscale0`. That name shows up in the next chapter as the interface K3s pins its networking to, and it is the single most important flag in the whole install.
+
+---
+
 ### Chapter 2: Joining the Nodes Over Tailscale
 
 The two machines are not on the same physical network. One is behind a home router; the other is in a cloud data center. For Kubernetes nodes to form a cluster, they need to talk to each other on a stable, private network.
