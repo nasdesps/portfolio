@@ -11,8 +11,8 @@
     <div class="arch-status-item"><span class="status-dot green"></span> CI/CD — live</div>
     <div class="arch-status-item"><span class="status-dot green"></span> Cloudflare — live</div>
     <div class="arch-status-item"><span class="status-dot green"></span> Terraform — live</div>
-    <div class="arch-status-item"><span class="status-dot gray"></span> K3s — planned</div>
-    <div class="arch-status-item"><span class="status-dot gray"></span> Prometheus — planned</div>
+    <div class="arch-status-item"><span class="status-dot green"></span> K3s — live</div>
+    <div class="arch-status-item"><span class="status-dot green"></span> Prometheus — live</div>
     <div class="arch-status-item"><span class="status-dot gray"></span> n8n — planned</div>
   </div>
 
@@ -205,7 +205,7 @@
               <div class="az-subzone-grid">
                 <div class="az-node az-node-sm">
                   <div class="az-node-name">Prometheus</div>
-                  <div class="az-node-desc">global aggregator · scrapes all 3 nodes</div>
+                  <div class="az-node-desc">scrapes node_exporter from all nodes</div>
                 </div>
                 <div class="az-node az-node-sm">
                   <div class="az-node-name">Grafana</div>
@@ -256,8 +256,8 @@
                   <div class="az-node-tags"><span class="lab-tag lab-tag-accent">always free</span></div>
                 </div>
                 <div class="az-node az-node-sm">
-                  <div class="az-node-name">Prometheus agent</div>
-                  <div class="az-node-desc">node exporter · federated to Waco</div>
+                  <div class="az-node-name">node_exporter</div>
+                  <div class="az-node-desc">scraped by Waco Prometheus</div>
                 </div>
                 <div class="az-node az-node-sm">
                   <div class="az-node-name">AdGuard Home</div>
@@ -373,7 +373,13 @@
                 <div class="az-node-label">dashboards</div>
                 <div class="az-node-name">Grafana</div>
                 <div class="az-node-desc">global latency panel · cross-cloud health</div>
-                <div class="az-node-tags"><span class="lab-tag lab-tag-green">public status widget</span></div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">status widget</span></div>
+              </div>
+              <div class="az-node">
+                <div class="az-node-label">out-of-band watchdog</div>
+                <div class="az-node-name">External Uptime Watchdog</div>
+                <div class="az-node-desc">Phoenix watches Waco · alerts if home goes offline · 2-fail threshold</div>
+                <div class="az-node-tags"><span class="lab-tag lab-tag-green">live · alert-only</span></div>
               </div>
             </div>
           </div>
@@ -430,8 +436,8 @@
       <div class="az-status-item"><span class="status-dot green"></span> CI/CD live</div>
       <div class="az-status-item"><span class="status-dot green"></span> Cloudflare DNS + tunnels live</div>
       <div class="az-status-item"><span class="status-dot green"></span> Terraform IaC — live</div>
-      <div class="az-status-item"><span class="status-dot gray"></span> K3s cluster — planned</div>
-      <div class="az-status-item"><span class="status-dot gray"></span> Prometheus federation — planned</div>
+      <div class="az-status-item"><span class="status-dot green"></span> K3s cluster — live</div>
+      <div class="az-status-item"><span class="status-dot green"></span> Prometheus scraping — live</div>
       <div class="az-status-item"><span class="status-dot gray"></span> n8n automation — planned</div>
     </div>
   </div>
