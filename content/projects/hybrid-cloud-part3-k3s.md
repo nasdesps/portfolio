@@ -27,11 +27,11 @@ cover:
 
 ### Introduction
 
-In Part 1, I built a security-gated CI/CD pipeline. In Part 2, I brought my infrastructure under Terraform — every DNS record and cloud resource defined in code, deployed through a GitOps pipeline. Both of those were about *how things get delivered and provisioned*.
+In Part 1, I built a security-gated CI/CD pipeline. In Part 2, I brought my infrastructure under Terraform — every DNS record and cloud resource defined in code, deployed through a GitOps pipeline. Both of those were about _how things get delivered and provisioned_.
 
-Part 3 is about *where things actually run*.
+Part 3 is about _where things actually run_.
 
-Up to this point, every service in my homelab ran as a Docker container on a single machine. If that machine rebooted, everything went down with it. If I closed the laptop lid by accident, my whole stack disappeared until I opened it again. There was no redundancy. One machine, one point of failure.
+Up to this point, every service in my homelab ran as a Docker container on a single machine. If that machine rebooted, everything went down with it. There was no redundancy. One machine, one power cut or one bad update away from everything being offline, and no second node to catch the fall.
 
 The plan for Part 3 was to change that — to take two always-on machines, a Debian laptop in one location and an ARM server in a cloud region a thousand-plus miles away, and join them into a single Kubernetes cluster. Not because a homelab needs Kubernetes (it does not), but because Kubernetes is the layer where "keep this running even if a machine dies" stops being something I do by hand and becomes something the system does for me.
 
@@ -58,7 +58,7 @@ Kubernetes is a system that keeps your desired state true. You write down what y
 
 The mental model that made it click for me: imagine a building manager with an instruction sheet that says "there should always be three guards at the front desk." If one goes home sick, the manager calls in a replacement. You do not micromanage — you declare the desired state, and the manager reconciles reality against it, continuously. Kubernetes is that manager, for your containers.
 
-The "scaling for demand" thing everyone mentions is just one instruction you *can* add ("if CPU gets high, add more copies"). It is not the essence. The essence is the reconciliation loop: desired state versus actual state, corrected automatically, forever.
+The "scaling for demand" thing everyone mentions is just one instruction you _can_ add ("if CPU gets high, add more copies"). It is not the essence. The essence is the reconciliation loop: desired state versus actual state, corrected automatically, forever.
 
 I am running **K3s**, which is a lightweight, fully certified Kubernetes distribution — the same Kubernetes API and behavior, packaged as a single small binary instead of the usual sprawl of components. On a resume it is fair to write "K3s (Kubernetes)," because it passes the same conformance tests the full distribution does.
 
@@ -84,27 +84,27 @@ chmod +x kubectl && sudo mv kubectl /usr/local/bin/
 ---
 
 ### Prerequisites: The Mesh Network
- 
-This cluster is built on top of the Tailscale mesh I set up back in Part 2, so by the time I got to Kubernetes the network was already there. If you are starting fresh, the mesh is the one piece you need in place before anything else — the cluster cannot form without it.
- 
+
+This cluster runs on top of a Tailscale mesh network. I had the mesh in place before I started on Kubernetes, so by the time I got here the two machines could already reach each other privately. I have not written up the mesh setup in its own post yet, but it is short, and the cluster cannot form without it, so here is the part you need.
+
 The setup is genuinely short. On each machine that will join the cluster:
- 
+
 ```bash
 # Install Tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
- 
+
 # Bring it up and authenticate (opens a login URL)
 sudo tailscale up
 ```
- 
+
 Then confirm each node can see the others, and note the `100.x` mesh addresses they were assigned — those are the values that become `<CONTROL_PLANE_IP>` and `<WORKER_IP>` in the rest of this guide:
- 
+
 ```bash
 tailscale status
 ```
- 
+
 By default, every device in your tailnet can reach every other device, which is exactly what a Kubernetes cluster needs — the control plane and worker have to talk freely on the cluster ports. If you later lock down the tailnet with ACLs, remember to leave the nodes able to reach each other. (The deeper mesh topics — ACL policy, MagicDNS, and a memorable conflict between Tailscale and Android's Private DNS — belong with my DNS writeup, not here. For the cluster, "all nodes can reach each other on the mesh" is all you need.)
- 
+
 One detail worth knowing up front: the mesh interface is named `tailscale0`. That name shows up in the next chapter as the interface K3s pins its networking to, and it is the single most important flag in the whole install.
 
 ---
@@ -113,7 +113,7 @@ One detail worth knowing up front: the mesh interface is named `tailscale0`. Tha
 
 The two machines are not on the same physical network. One is behind a home router; the other is in a cloud data center. For Kubernetes nodes to form a cluster, they need to talk to each other on a stable, private network.
 
-That is what Tailscale provides — a mesh VPN built on WireGuard that gives every device a stable address in the `100.64.0.0/10` range that works regardless of where the device physically sits. From Part 2, all my machines were already on this mesh. Each node's mesh address is what I refer to as `<CONTROL_PLANE_IP>` and `<WORKER_IP>` below.
+That is what Tailscale provides. It is a mesh VPN built on WireGuard that gives every device a stable address in the `100.64.0.0/10` range that works no matter where the device physically sits. All my machines were already on this mesh before I started the cluster. Each node's mesh address is what I refer to as `<CONTROL_PLANE_IP>` and `<WORKER_IP>` below.
 
 **Install the control plane**, pinned to its mesh IP and told to use the mesh interface for cluster networking:
 
@@ -260,7 +260,7 @@ sudo k3s ctr images import ~/status-page-multiarch.tar
 
 After redeploying, both copies started cleanly — one on the x86_64 control plane, one on the ARM64 worker, from the same image. The architecture mismatch was gone.
 
-One honest note: moving images by exporting to a tar and copying it to each node works, but it is a manual crutch. The proper solution is a container registry that both nodes pull from automatically, and that is on the list for a future phase. Doing it the manual way first taught me *why* a registry exists, which I do not regret.
+One honest note: moving images by exporting to a tar and copying it to each node works, but it is a manual crutch. The proper solution is a container registry that both nodes pull from automatically, and that is on the list for a future phase. Doing it the manual way first taught me _why_ a registry exists, which I do not regret.
 
 ---
 
@@ -325,7 +325,7 @@ A few pieces are worth explaining because they are the difference between "a con
 
 **`imagePullPolicy: IfNotPresent`** — critical when you import images manually instead of using a registry. It tells Kubernetes "use the local image if it exists, do not try to pull from a registry." Without this, it would try to fetch from Docker Hub and fail.
 
-**Health probes.** The app exposes a `/health` endpoint. The *liveness probe* asks "is this pod alive? if not, restart it." The *readiness probe* asks "should this pod receive traffic right now? if not, stop routing to it but leave it alone." That distinction — restart versus stop-sending-traffic — is the heart of automated health management.
+**Health probes.** The app exposes a `/health` endpoint. The _liveness probe_ asks "is this pod alive? if not, restart it." The _readiness probe_ asks "should this pod receive traffic right now? if not, stop routing to it but leave it alone." That distinction — restart versus stop-sending-traffic — is the heart of automated health management.
 
 **Resource limits.** Each pod is guaranteed a small amount of CPU and memory (`requests`) and capped at a larger amount (`limits`). If a pod exceeds its memory ceiling, Kubernetes kills and restarts it, so one misbehaving pod cannot take down the whole node.
 
@@ -372,7 +372,86 @@ The responses alternate between the two pods. Every other request, I am being se
 
 ---
 
-### Chapter 6: Killing a Pod to Prove It Heals
+### Chapter 6: Three Firewalls in a Trench Coat (The Oracle Node Fights Back)
+
+The cluster worked. Pods scheduled, the app served, failover healed. Then I tried to reach a service on the Oracle worker from outside the cluster, and spent a genuinely humbling amount of time discovering that a cloud ARM node running K3s has not one firewall but three, stacked on top of each other, each capable of silently dropping your traffic.
+
+If you only ever talk to your cluster through `kubectl` from the control plane, you may never hit this. The moment you try to reach a NodePort or a host service on the Oracle node from your laptop, or from anywhere else, you walk straight into it. Here is the map, because I wish I'd had one.
+
+**Layer one: Oracle's security list.** This is the cloud firewall, configured in the Oracle console, and it sits in front of the instance before traffic ever touches the OS. Oracle's default is restrictive. A port that is not explicitly allowed here never arrives. This one is at least visible and obvious once you know to look.
+
+**Layer two: the host's iptables, with a `DROP` policy.** Oracle's Ubuntu image ships with an `INPUT` chain whose default policy is `DROP`, meaning anything not explicitly accepted is thrown away. Fine so far. The trap is _ordering_. When K3s starts, it inserts its own `KUBE-ROUTER-INPUT` chain at the very top of `INPUT`. So even after I added ACCEPT rules for my ports, they were landing _below_ K3s's rules and never getting evaluated. You can see it plainly:
+
+```bash
+sudo iptables -L INPUT -n --line-numbers | head -10
+```
+
+```text
+Chain INPUT (policy DROP)
+num  target             prot ...
+1    KUBE-ROUTER-INPUT  ...      <- K3s runs first
+2    ACCEPT             udp dpt:853
+3    ACCEPT             tcp dpt:80
+```
+
+The fix is to insert your ACCEPT rules at position 1, above K3s's chain, so they are evaluated first:
+
+```bash
+sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 443 -j ACCEPT
+```
+
+**Layer three, the one that actually got me: Tailscale's own `ts-input` chain.** This is the sneaky one, because it explains a symptom that made no sense for hours. Some ports worked from some devices and not others. SSH and my DoT port worked from my Windows machine over the mesh. Everything else timed out. Ping worked, TCP did not. I chased Windows Firewall, routing tables, and my own sanity before I looked at Tailscale's iptables chain:
+
+```bash
+sudo iptables -L ts-input -n --line-numbers
+```
+
+```text
+Chain ts-input
+...
+7    RETURN   100.115.92.0/23   0.0.0.0/0
+8    DROP     100.64.0.0/10     0.0.0.0/0    <- drops the whole tailnet range
+```
+
+That last line drops all traffic from `100.64.0.0/10`, which is the entire Tailscale address range. My other machines' mesh IPs live in that range, so their traffic was being dropped by Tailscale itself, unless a port had an explicit accept above the drop. SSH and DoT worked only because they happened to be accepted earlier in the chain. The fix is the same pattern as before: insert accepts ahead of the drop.
+
+```bash
+sudo iptables -I ts-input 1 -s 100.64.0.0/10 -p tcp --dport <PORT> -j ACCEPT
+```
+
+**And then the real culprit, which was not a firewall at all.** Even with all three layers opened, port 80 on the Oracle node still did not reach the service I expected. So I watched the packets arrive with `tcpdump` and finally saw the truth:
+
+```bash
+sudo tcpdump -i any port 80 -n -c 10
+```
+
+The packet arrived on the physical interface, and then K3s immediately grabbed it and forwarded it to a pod IP (`10.42.x.x`) and then a cluster service IP (`10.43.x.x`). It never reached the host service at all. K3s's bundled Traefik ingress controller had claimed port 80 on every node the moment the cluster came up, and it was swallowing the traffic.
+
+I disabled Traefik entirely, because I use Cloudflare Tunnels for all public ingress and never needed it. On the control plane, in the K3s systemd unit, I added the disable flag to the server arguments:
+
+```bash
+sudo nano /etc/systemd/system/k3s.service
+# add to the ExecStart server args:
+#   '--disable=traefik'
+sudo systemctl daemon-reload
+sudo systemctl restart k3s
+```
+
+With Traefik gone, port 80 on the worker stopped being hijacked, and the host service answered. This is why Chapter 5 mentions disabling Traefik almost in passing. The real reason is this whole chapter. Traefik is a fine default for people who want K3s to handle their ingress, but if you already have your own ingress path, it will quietly fight you for ports 80 and 443 on every node.
+
+**One last thing that will save you a reboot's worth of confusion.** All of these iptables rules vanish on reboot unless you persist them. Installing `iptables-persistent` saves them, but on Ubuntu it removes UFW in the process, so know that going in:
+
+```bash
+sudo apt install iptables-persistent -y
+sudo netfilter-persistent save
+```
+
+The lesson from this whole chapter is the same one from the networking bug earlier, sharpened. On a cloud node running Kubernetes, "I allowed the port" can be true at one layer and false at three others, and the traffic can also be technically allowed everywhere and still get eaten by an ingress controller you forgot was running. The only way to actually know is to follow a single packet all the way in and watch where it dies.
+
+---
+
+### Chapter 7: Killing a Pod to Prove It Heals
 
 A claim like "Kubernetes self-heals" is worth nothing until you watch it happen. So I tested it the most direct way possible: I deleted a running pod and watched what the system did.
 
@@ -389,11 +468,11 @@ Within seconds, two things happened automatically. The Service stopped routing t
 
 I did not restart anything. I did not SSH anywhere. I did not run a recovery script. I deleted a pod and the system repaired itself in under a minute.
 
-That is the entire value proposition of Kubernetes, demonstrated on my own hardware across two regions. Not speed, not splitting work across machines — *resilience*. The system notices failure and corrects it without me.
+That is the entire value proposition of Kubernetes, demonstrated on my own hardware across two regions. Not speed, not splitting work across machines — _resilience_. The system notices failure and corrects it without me.
 
 ---
 
-### Chapter 7: The Blind Spot — My Monitoring Could Not See My Own Outage
+### Chapter 8: The Blind Spot — My Monitoring Could Not See My Own Outage
 
 Partway through this work, while thinking about how the cluster behaves when a node goes offline, I realized something uncomfortable about my monitoring.
 
@@ -478,13 +557,19 @@ I also made a point of keeping the portfolio honest. My monitoring scrapes metri
 
 ### What is Next?
 
-**Part 4** is about seeing everything from the outside. The cluster runs, the metrics flow into Grafana, and the external watchdog covers the worst-case blind spot. The next layer is true external uptime monitoring — probing my public endpoints from a third location entirely, so I measure availability the way a real visitor experiences it, not the way my own infrastructure reports it.
+By the time I'm publishing this, a lot of what I once listed as "next" is already running, so here is the honest state of things rather than a wishlist.
 
-Alongside that, the manual image-distribution crutch from Chapter 4 gets replaced with a proper container registry, so deploying a new version becomes a push instead of a file copy — which in turn sets up the final piece: application deployments driven by Git, the same GitOps discipline from Part 2 extended from infrastructure to the workloads running on top of it.
+The manual image-copying from Chapter 4, the part where I built a tar file and moved it to each node by hand, is gone. Both nodes now pull from a container registry (GitHub's ghcr.io), so a new version is a push, not a file copy. That change is small but it unlocked the rest.
 
-The layers are starting to converge. The pipeline from Part 1 builds the images. The Terraform from Part 2 provisions the nodes. The Kubernetes from Part 3 runs the workloads and keeps them alive. What is left is closing the loop between them.
+On top of the registry, application deployments now run through GitOps with ArgoCD. My Kubernetes manifests live in a Git repo, ArgoCD watches that repo, and the cluster reconciles itself to match whatever is committed. I don't run `kubectl apply` to deploy anymore. I change a file, push it, and the cluster follows. It's the same discipline from the Terraform pipeline in Part 2, now extended from infrastructure to the workloads running on top of it.
 
-Stay tuned, and happy building.
+I also added the two things this cluster was missing to be genuinely observable and genuinely resilient. External uptime probing now watches my public endpoints from a separate region, so I measure availability the way a real visitor experiences it rather than the way my own machines report it. And a stateful app runs on persistent storage, with the data proven to survive a pod being destroyed and recreated, which is the part of Kubernetes I'd been avoiding because it's the hard part.
+
+What's genuinely still ahead: internal TLS between services so traffic inside the cluster is encrypted, not just at the edge. Centralized logging, so I can search every container's logs in one place instead of SSHing around. A secrets manager, to pull my scattered environment files into one auditable store. And the piece I'm most curious about, an AI assistant that watches the cluster's own alerts and logs, explains what's going wrong in plain language, and eventually suggests fixes, with me approving anything before it acts.
+
+I'll write those up as they solidify. Some of them are already partly built as I type this, which is the nice problem with documenting a homelab: the writeup is always a little behind the soldering iron.
+
+Thanks for reading, and happy building.
 
 ---
 
