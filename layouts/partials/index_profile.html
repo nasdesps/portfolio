@@ -64,12 +64,12 @@
                 </svg>
                 <h3>Cloud Computing</h3>
             </div>
-            <p>Architecting and deploying resilient, scalable infrastructure on public and hybrid clouds.</p>
+            <p>Hybrid cloud infrastructure across three regions, provisioned as code with remote state and secretless CI authentication.</p>
             <div class="skill-tags">
                 <span class="skill-tag">AWS</span>
-                <span class="skill-tag">OCI</span>
+                <span class="skill-tag">Oracle Cloud</span>
                 <span class="skill-tag">Cloudflare</span>
-                <span class="skill-tag">Terraform</span>
+                <span class="skill-tag">Tailscale</span>
             </div>
         </div>
         <div class="skill-card">
@@ -80,13 +80,14 @@
                     <rect width="16" height="16" x="4" y="4" rx="2" ry="2" />
                     <rect width="6" height="6" x="9" y="9" rx="1" ry="1" />
                 </svg>
-                <h3>Containerization</h3>
+                <h3>Kubernetes and Containers</h3>
             </div>
-            <p>Designing lightweight, portable, and secure application environments using modern orchestration.</p>
+            <p>A two-region K3s cluster running multi-architecture workloads that reschedule themselves when a node goes dark.</p>
             <div class="skill-tags">
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Docker Compose</span>
+                <span class="skill-tag">Kubernetes</span>
                 <span class="skill-tag">K3s</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">multi-arch builds</span>
             </div>
         </div>
         <div class="skill-card">
@@ -100,11 +101,12 @@
                 </svg>
                 <h3>Infrastructure as Code</h3>
             </div>
-            <p>Automating infrastructure provisioning, configuration management, and robust CI/CD pipelines.</p>
+            <p>Every DNS record and cloud resource defined in Terraform, applied through a pipeline with plan-on-PR review and no stored credentials.</p>
             <div class="skill-tags">
                 <span class="skill-tag">Terraform</span>
                 <span class="skill-tag">OIDC</span>
                 <span class="skill-tag">GitHub Actions</span>
+                <span class="skill-tag">AWS</span>
             </div>
         </div>
         <div class="skill-card">
@@ -117,14 +119,53 @@
                     <line x1="6" x2="6.01" y1="18" y2="18" />
                     <line x1="6" x2="6.01" y1="6" y2="6" />
                 </svg>
-                <h3>Homelab / On-Prem</h3>
+                <h3>Homelab and On-Prem</h3>
             </div>
-            <p>Operating a bare-metal environment to simulate enterprise deployments, high availability, and DNS.</p>
+            <p>Bare-metal Debian infrastructure operated the way production is operated, including the failure cases.</p>
             <div class="skill-tags">
                 <span class="skill-tag">Debian</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">AdGuard Home</span>
+                <span class="skill-tag">Cloudflare Tunnel</span>
+                <span class="skill-tag">Nginx Proxy Manager</span>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="skill-icon">
+                    <line x1="6" x2="6" y1="3" y2="15" />
+                    <circle cx="18" cy="6" r="3" />
+                    <circle cx="6" cy="18" r="3" />
+                    <path d="M18 9a9 9 0 0 1-9 9" />
+                </svg>
+                <h3>GitOps Delivery</h3>
+            </div>
+            <p>Applications deploy from Git, not from my terminal. ArgoCD reconciles the cluster to whatever the repo says and corrects it when it drifts.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">ArgoCD</span>
+                <span class="skill-tag">GitOps</span>
+                <span class="skill-tag">ghcr.io</span>
+                <span class="skill-tag">persistent volumes</span>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="skill-icon">
+                    <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" />
+                </svg>
+                <h3>Observability and SRE</h3>
+            </div>
+            <p>Metrics and logs unified in one place, probed from outside my own infrastructure, with alerting that survives the lab going offline.</p>
+            <div class="skill-tags">
                 <span class="skill-tag">Prometheus</span>
                 <span class="skill-tag">Grafana</span>
-                <span class="skill-tag">n8n</span>
+                <span class="skill-tag">Loki</span>
+                <span class="skill-tag">Alertmanager</span>
+                <span class="skill-tag">blackbox_exporter</span>
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
           <div class="status-name">Oracle Cloud</div>
           <span class="lab-tag lab-tag-green">operational</span>
         </div>
-        <div class="status-meta">ARM Ampere A1 · 4vCPU 24GB<br>Phoenix, AZ · K3s worker</div>
+        <div class="status-meta">ARM Ampere A1 · 2 OCPU 12GB<br>Phoenix, AZ · K3s worker</div>
       </div>
     </div>
 
@@ -212,6 +212,8 @@
         <span class="lab-tag lab-tag-green">Docker Compose</span>
         <span class="lab-tag lab-tag-green">K3s</span>
         <span class="lab-tag lab-tag-green">Kubernetes</span>
+        <span class="lab-tag lab-tag-green">ArgoCD</span>
+        <span class="lab-tag lab-tag-green">ghcr.io</span>
         <span class="lab-tag lab-tag-gray">Helm</span>
       </div>
     </div>
@@ -223,7 +225,10 @@
         <span class="lab-tag lab-tag-green">Grafana</span>
         <span class="lab-tag lab-tag-green">cAdvisor</span>
         <span class="lab-tag lab-tag-green">Alertmanager</span>
-        <span class="lab-tag lab-tag-gray">Blackbox</span>
+        <span class="lab-tag lab-tag-green">Blackbox</span>
+        <span class="lab-tag lab-tag-green">Loki</span>
+        <span class="lab-tag lab-tag-green">Promtail</span>
+        <span class="lab-tag lab-tag-green">Uptime Kuma</span>
       </div>
     </div>
 
@@ -233,7 +238,6 @@
         <span class="lab-tag lab-tag-green">n8n</span>
         <span class="lab-tag lab-tag-green">Discord webhooks</span>
         <span class="lab-tag lab-tag-gray">Pushgateway</span>
-        <span class="lab-tag lab-tag-gray">rsync</span>
       </div>
     </div>
 
@@ -275,8 +279,8 @@
       <div class="phase-num">03</div>
       <div class="phase-icon">☸</div>
       <div class="phase-info">
-        <div class="phase-name">K3s high availability cluster</div>
-        <div class="phase-detail">Waco master + Phoenix worker · Tailscale mesh VPN</div>
+        <div class="phase-name">Two-region K3s cluster</div>
+        <div class="phase-detail">Waco control plane + Phoenix ARM worker · Tailscale mesh · multi-arch workloads · deliberately single control plane</div>
       </div>
       <div class="phase-badge"><span class="lab-tag lab-tag-green">complete</span></div>
     </div>
@@ -286,17 +290,37 @@
       <div class="phase-icon">◎</div>
       <div class="phase-info">
         <div class="phase-name">Global observability</div>
-        <div class="phase-detail">Prometheus federation · 2-continent Grafana · NL latency probes</div>
+        <div class="phase-detail">Multi-region Prometheus · Grafana · Loki centralized logging · blackbox external probing · Alertmanager → Discord</div>
       </div>
-      <div class="phase-badge"><span class="lab-tag lab-tag-gray">planned</span></div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-green">complete</span></div>
     </div>
 
     <div class="phase-row">
       <div class="phase-num">05</div>
-      <div class="phase-icon">⟳</div>
+      <div class="phase-icon">⟲</div>
       <div class="phase-info">
-        <div class="phase-name">Event-driven automation</div>
-        <div class="phase-detail">n8n · Alertmanager · GitHub webhooks · Discord incident routing</div>
+        <div class="phase-name">GitOps application delivery</div>
+        <div class="phase-detail">ghcr.io multi-arch registry · ArgoCD auto-sync + self-heal · persistent storage (PVC) · Uptime Kuma stateful workload</div>
+      </div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-green">complete</span></div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">06</div>
+      <div class="phase-icon">🛡</div>
+      <div class="phase-info">
+        <div class="phase-name">Reliability engineering and hardening</div>
+        <div class="phase-detail">cert-manager TLS · Velero backups with tested restores · Infisical secrets · Kyverno policies · NetworkPolicies · SLOs and burn-rate alerts</div>
+      </div>
+      <div class="phase-badge"><span class="lab-tag lab-tag-amber">in progress</span></div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">07</div>
+      <div class="phase-icon">🤖</div>
+      <div class="phase-info">
+        <div class="phase-name">Agentic AI operations</div>
+        <div class="phase-detail">n8n orchestration · tiered LLM inference (local DeepSeek → frontier API) · Discord human-in-the-loop · whitelisted remediation</div>
       </div>
       <div class="phase-badge"><span class="lab-tag lab-tag-gray">planned</span></div>
     </div>
@@ -306,7 +330,7 @@
   <div class="progress-container">
     <div class="progress-fill"></div>
   </div>
-  <div class="progress-label">3 of 5 phases complete</div>
+  <div class="progress-label">5 of 7 phases complete</div>
 </section>
 
 <!-- ════ Section 5 — Certifications ════ -->
@@ -327,8 +351,8 @@
       <div class="cert-icon">☁</div>
       <div class="cert-info">
         <div class="cert-name">AWS SAA-C03</div>
-        <div class="cert-sub">Solutions Architect Associate<br>studying post-WGU completion</div>
-        <span class="cert-eta">target Q1 2027</span>
+        <div class="cert-sub">Solutions Architect Associate · studying post-WGU completion</div>
+        <span class="cert-eta">target 2026</span>
       </div>
     </div>
 
@@ -336,8 +360,17 @@
       <div class="cert-icon">⬡</div>
       <div class="cert-info">
         <div class="cert-name">HashiCorp Terraform Associate</div>
-        <div class="cert-sub">hands-on IaC from this project<br>next certification</div>
-        <span class="cert-eta">after SAA-C03</span>
+        <div class="cert-sub">hands-on IaC from this project · daily Terraform use in production pipeline</div>
+        <span class="cert-eta">after AWS SAA</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">☸</div>
+      <div class="cert-info">
+        <div class="cert-name">CKA — Certified Kubernetes Administrator</div>
+        <div class="cert-sub">practicing on my own two-region cluster · matches the K8s-centric focus</div>
+        <span class="cert-eta">after Terraform Associate</span>
       </div>
     </div>
 
@@ -381,6 +414,22 @@
       </div>
     </a>
 
+    <a href="https://github.com/nasdesps/gitops" target="_blank" rel="noopener noreferrer" class="source-card">
+      <div class="source-icon">⌥</div>
+      <div class="source-info">
+        <div class="source-name">gitops</div>
+        <div class="source-sub">ArgoCD app manifests</div>
+      </div>
+    </a>
+
+    <a href="https://github.com/nasdesps/homelab-watchdog" target="_blank" rel="noopener noreferrer" class="source-card">
+      <div class="source-icon">⌥</div>
+      <div class="source-info">
+        <div class="source-name">homelab-watchdog</div>
+        <div class="source-sub">Out-of-band watchdog</div>
+      </div>
+    </a>
+
     <a href="https://dev.to/prajwol-ad" target="_blank" rel="noopener noreferrer" class="source-card">
       <div class="source-icon">✍</div>
       <div class="source-info">
@@ -402,9 +451,7 @@
 
 <!-- ════ Footer Note ════ -->
 <div class="lab-callout">
-  <strong>Note:</strong> Status indicators above reflect manually updated states during the build phase. Once Phase 4
-  (observability) is complete, this page will pull live node health from a sanitized public API endpoint — real uptime
-  data, no raw Prometheus exposure.
+  <strong>Note:</strong> Status indicators above reflect manually updated states. A sanitized public status endpoint (live uptime data via Uptime Kuma, no raw Prometheus exposure) is planned as part of Phase 6.
 </div>
 
 {{- end }}
