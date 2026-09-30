@@ -1,7 +1,7 @@
 ---
 title: "Master's of Science in Software Engineering and DevOps Engineering"
 description: "Western Governors University | Millcreek, Utah"
-dateString: Expected 2027
+dateString: Graduated September 2026
 draft: false
 disableShare: true
 weight: 101
