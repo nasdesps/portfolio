@@ -5,119 +5,246 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
+  schedule:
+    # Weekly re-scan + external link check (Mondays 06:23 UTC).
+    # New CVEs / CodeQL queries / dead external links show up even when the code doesn't change.
+    - cron: "23 6 * * 1"
 
-# ── Global Permissions ──
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# ── Least privilege: nothing granted globally. Each job opts in to what it needs. ──
+permissions: {}
+
+# One run per branch/PR. Superseded PR runs are cancelled; runs on master are never
+# cancelled mid-flight so a deploy can't be interrupted.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # Hugo build image. Upgrading Hugo also requires updating the vendored PaperMod theme
+  # (see PR notes). Pin by digest once you've looked it up:
+  #   docker buildx imagetools inspect floryn90/hugo:0.120.4-ext-alpine
+  #   -> floryn90/hugo:0.120.4-ext-alpine@sha256:<digest>
+  HUGO_IMAGE: floryn90/hugo:0.120.4-ext-alpine
+  SITE_URL: https://www.prajwolbikramadhikari.com.np
 
 jobs:
-  # ── Stage 1: Secret Scanning ──────────────────────────────────────
+  # ── Gate 1: Secret scanning (full history) ──────────────────────────
   secret-scan:
     name: Gitleaks
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read # list PR commits
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: false # findings go to the job summary; avoids needing pull-requests: write
 
-  # ── Stage 2: SAST (CodeQL) ────────────────────────────────────────
+  # ── Gate 2: SAST (CodeQL) ───────────────────────────────────────────
   codeql:
     name: CodeQL
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
-      security-events: write
       contents: read
+      actions: read
+      security-events: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v3
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
-          languages: javascript
-      - uses: github/codeql-action/autobuild@v3
-      - uses: github/codeql-action/analyze@v3
+          persist-credentials: false
+      - uses: github/codeql-action/init@1190a975f95ce23525efb6a3fc21ea29567c1b52 # v3.38.2
+        with:
+          # javascript = your assets/js; actions = this workflow file itself
+          # (catches injection / over-permission issues in CI).
+          languages: javascript-typescript, actions
+          build-mode: none # interpreted languages: no autobuild needed
+          config: |
+            paths-ignore:
+              - themes/**
+              - public/**
+              - resources/**
+      - uses: github/codeql-action/analyze@1190a975f95ce23525efb6a3fc21ea29567c1b52 # v3.38.2
 
-  # ── Stage 3: Dependency Review ────────────────────────────────────
+  # ── Gate 3: Dependency review (PRs only) ────────────────────────────
+  # There's no package.json, so today this mainly reviews GitHub Actions
+  # version changes in PRs (e.g. Dependabot bumps).
   dependency-review:
     name: Dependency Review
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/dependency-review-action@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4.9.0
         with:
           fail-on-severity: high
 
-  # ── Stage 4: Build ────────────────────────────────────────────────
+  # ── Build (runs in parallel with the gates; deploy waits for all) ──
   build:
     name: Build Hugo
     runs-on: ubuntu-latest
-    needs: [secret-scan, codeql, dependency-review]
-    if: ${{ !failure() && !cancelled() }}
+    timeout-minutes: 10
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      # PaperMod is vendored in themes/ (not a real submodule), so no submodule checkout.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
-          submodules: true
-      - name: Build with Docker
+          persist-credentials: false
+
+      - name: Build with Docker (non-root)
         run: |
           docker run --rm \
-            --user $(id -u):$(id -g) \
-            -v ${{ github.workspace }}:/src \
+            --user "$(id -u):$(id -g)" \
+            -v "${GITHUB_WORKSPACE}:/src" \
             -w /src \
-            floryn90/hugo:0.120.4-ext-alpine \
+            "${HUGO_IMAGE}" \
             --minify --gc
 
-      # Upload uncompressed HTML for Lighthouse
-      - name: Upload uncompressed artifact for Lighthouse
-        uses: actions/upload-artifact@v4
+      - name: Sanity-check output
+        run: |
+          test -s public/index.html
+          test -s public/sitemap.xml
+          echo "Built $(find public -name '*.html' | wc -l) HTML pages" >> "$GITHUB_STEP_SUMMARY"
+
+      # Uncompressed copy for link check + Lighthouse
+      - name: Upload site artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: public-site
+          path: public/
+          retention-days: 7
+          if-no-files-found: error
+
+      # Tarball in the format deploy-pages expects (only needed when we might deploy)
+      - name: Upload Pages artifact
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
+        with:
+          path: public/
+
+  # ── Quality: link check ─────────────────────────────────────────────
+  link-check:
+    name: Link Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [build]
+    permissions:
+      contents: read
+    steps:
+      - name: Download site
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: public-site
           path: public/
 
-        # Upload compressed tarball for GitHub Pages
-      - name: Upload artifact for Pages
-        uses: actions/upload-pages-artifact@v3
+      # Internal links: offline, fast, deterministic -> blocks deploy.
+      # Absolute links to our own domain are remapped to the local build.
+      - name: Internal links (blocking)
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
-          path: public/
+          args: >-
+            --offline --no-progress
+            --root-dir '${{ github.workspace }}/public'
+            --index-files index.html
+            --remap 'https://www\.prajwolbikramadhikari\.com\.np/(.*) file://${{ github.workspace }}/public/$1'
+            'public/**/*.html'
+          output: lychee/internal.md
 
-  # ── Stage 4: Lighthouse ───────────────────────────────────────────
+      # External links: network-dependent and flaky -> weekly/manual only, never blocks.
+      - name: External links (report only)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: >-
+            --no-progress --max-concurrency 8 --max-retries 2
+            --root-dir '${{ github.workspace }}/public'
+            --scheme https --scheme http
+            --accept '200..=299,403,429'
+            --exclude 'prajwolbikramadhikari\.com\.np'
+            --exclude 'linkedin\.com'
+            'public/**/*.html'
+          output: lychee/external.md
+          fail: false
+
+  # ── Quality: Lighthouse ─────────────────────────────────────────────
   lighthouse:
     name: Lighthouse Audit
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: [build]
-    if: ${{ !failure() && !cancelled() }}
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - name: Download artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+          sparse-checkout: .lighthouserc.json
+          sparse-checkout-cone-mode: false
+
+      - name: Download site
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: public-site
           path: public/
 
-      # SRE FIX: Delete admin files before the audit so LHCI ignores them
+      # Search Console verification + 404 aren't content pages; they'd skew the audit.
       - name: Prune non-content files from audit
         run: rm -f public/google*.html public/404.html
 
+      # Upload target (temporary-public-storage) is set in .lighthouserc.json — single source of truth.
       - name: Serve & audit
-        uses: treosh/lighthouse-ci-action@v11
+        uses: treosh/lighthouse-ci-action@72f881228236981b625ed765b928efb1786a1f55 # v11
         with:
-          uploadArtifacts: true
-          temporaryPublicStorage: true
           configPath: .lighthouserc.json
+          uploadArtifacts: true
 
-  # ── Stage 6: Deploy (Blue/Green Staging) ─────────────────────────
+  # ── Deploy + smoke test (master only, never from PRs) ──────────────
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    needs: [build, lighthouse]
-    if: ${{ !failure() && !cancelled() }}
+    timeout-minutes: 10
+    needs: [secret-scan, codeql, dependency-review, build, link-check, lighthouse]
+    # dependency-review is skipped on push; !failure() treats skipped as OK
+    # but still blocks if any gate failed.
+    if: >-
+      !failure() && !cancelled()
+      && github.ref == 'refs/heads/master'
+      && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      pages: write # publish to Pages
+      id-token: write # OIDC token for deploy-pages — no stored secrets
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+
+      - name: Smoke test live site
+        run: |
+          set -euo pipefail
+          sleep 15 # let Pages/Cloudflare pick up the new build
+          for path in / /projects/ /blog/ /lab/ /sitemap.xml /index.json; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' \
+                   --retry 5 --retry-delay 10 --retry-all-errors \
+                   "${SITE_URL}${path}")
+            echo "${code}  ${SITE_URL}${path}" | tee -a "$GITHUB_STEP_SUMMARY"
+            [ "$code" = "200" ] || { echo "::error::${path} returned ${code}"; exit 1; }
+          done
