@@ -58,7 +58,7 @@ params:
   # Default image for OpenGraph and Twitter Cards (creates rich link previews)
   images: ["images/og-default.png"]
   
-  description: "M.S. in Software Engineering & DevOps from WGU. Building homelabs, automating pipelines, and bringing operational excellence to pharma manufacturing at AbbVie."
+  description: "M.S. in Software Engineering - DevOps Engineering from WGU. Building homelabs, automating pipelines, and bringing operational excellence to pharma manufacturing at AbbVie."
   # for enchanced SEO
   env: production
 
