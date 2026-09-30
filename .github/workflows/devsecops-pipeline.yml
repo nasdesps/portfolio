@@ -71,7 +71,7 @@ jobs:
               - themes/**
               - public/**
               - resources/**
-      - uses: github/codeql-action/analyze@1190a975f95ce23525efb6a3fc21ea29567c1b52 # v3.38.2
+      - uses: github/codeql-action/analyze@2892aa5e19bbd11bc0cff5427e3b750a04d9e3c2 # v4.38.2
 
   # ── Gate 3: Dependency review (PRs only) ────────────────────────────
   # There's no package.json, so today this mainly reviews GitHub Actions
