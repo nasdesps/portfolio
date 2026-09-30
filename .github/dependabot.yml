@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Keeps the SHA-pinned actions in .github/workflows up to date.
+  # Dependabot understands the "@<sha> # vX.Y.Z" format and bumps both.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ["*"]
+        update-types: [minor, patch] # one grouped PR for safe bumps
+    commit-message:
+      prefix: "ci"

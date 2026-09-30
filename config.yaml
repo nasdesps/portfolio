@@ -4,11 +4,6 @@ title: "Prajwol Bikram Adhikari"
 theme: PaperMod
 enableRobotsTXT: true
 
-params:
-  author:
-    name: "Prajwol Bikram Adhikari"
-    email: "prajwolad18@gmail.com"
-
 sitemap:
   changefreq: monthly
   filename: sitemap.xml
