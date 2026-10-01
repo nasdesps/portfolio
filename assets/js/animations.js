@@ -59,8 +59,34 @@
 
     /* ── View Transitions API path (Chrome 111+) ──────────── */
     function initViewTransitions() {
+        // ── Initial page-load entrance animation ──
+        // The inline <style> in <head> starts .page-transition-main at
+        // opacity:0 / translateY(18px). Animate it in on first load.
+        var main = document.querySelector('.page-transition-main');
+        if (main) {
+            // Force reflow to ensure the browser has painted the hidden state
+            void main.offsetHeight;
+
+            // Use Web Animations API for a clean entrance
+            main.animate([
+                { opacity: 0, transform: 'translateY(18px)' },
+                { opacity: 1, transform: 'translateY(0)' }
+            ], {
+                duration: 300,
+                easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+                fill: 'forwards'
+            }).onfinish = function () {
+                // Clear the inline <style> overrides so normal styles apply
+                main.style.opacity = '';
+                main.style.transform = '';
+                // Override the <head> inline style by setting explicit values
+                main.style.setProperty('opacity', '1');
+                main.style.setProperty('transform', 'none');
+            };
+        }
+
         document.addEventListener('click', function (e) {
-            const anchor = findAnchorAncestor(e.target);
+            var anchor = findAnchorAncestor(e.target);
             if (!anchor || !isInternalLink(anchor)) return;
 
             // Don't intercept if modifier keys are held (open in new tab)
@@ -72,9 +98,9 @@
             if (transitionInFlight) return;
             transitionInFlight = true;
 
-            const href = anchor.href;
+            var href = anchor.href;
 
-            const transition = document.startViewTransition(function () {
+            var transition = document.startViewTransition(function () {
                 return new Promise(function (resolve) {
                     // Navigate by changing location; resolve to let the old snapshot be captured
                     window.location.href = href;
@@ -93,32 +119,41 @@
 
     /* ── Fallback path (Firefox / older Safari) ───────────── */
     function initFallbackTransitions() {
-        const main = document.querySelector('.page-transition-main');
+        var main = document.querySelector('.page-transition-main');
         if (!main) return;
 
         // Mark body as JS-ready
         document.body.classList.add('js-ready');
 
-        // Entrance animation on page load
-        main.classList.add('page-enter');
-        // Force reflow so the browser paints the initial state
+        // The content is already hidden by the inline <style> in <head>
+        // (opacity: 0; transform: translateY(18px)).
+        // We just need to animate it in — no class toggling that causes blinks.
+
+        // Force reflow to ensure the browser has painted the hidden state
         void main.offsetHeight;
-        // Trigger the enter transition
+
+        // Apply transition properties, then reveal
+        main.style.transition = 'opacity 300ms cubic-bezier(0.22, 1, 0.36, 1), transform 300ms cubic-bezier(0.22, 1, 0.36, 1)';
+
+        // Use rAF to ensure the transition triggers from the hidden state
         requestAnimationFrame(function () {
-            main.classList.add('page-entered');
+            // Animate to visible — these inline styles override the <head> inline <style>
+            main.style.opacity = '1';
+            main.style.transform = 'translateY(0)';
         });
 
-        // Clean up classes after transition completes
+        // Clean up after transition
         main.addEventListener('transitionend', function handler(e) {
             if (e.target === main && e.propertyName === 'opacity') {
-                main.classList.remove('page-enter', 'page-entered');
+                // Remove inline styles; content stays visible via default styles
+                main.style.transition = '';
                 main.removeEventListener('transitionend', handler);
             }
         });
 
         // Intercept link clicks for exit animation
         document.addEventListener('click', function (e) {
-            const anchor = findAnchorAncestor(e.target);
+            var anchor = findAnchorAncestor(e.target);
             if (!anchor || !isInternalLink(anchor)) return;
             if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
 
@@ -127,7 +162,7 @@
             if (transitionInFlight) return;
             transitionInFlight = true;
 
-            const href = anchor.href;
+            var href = anchor.href;
 
             // Trigger exit animation
             main.classList.add('page-exit');

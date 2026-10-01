@@ -3,6 +3,21 @@
 
 <head>
     {{- partial "head.html" . }}
+    {{- /* ── Prevent animation blink: hide main content before JS loads ── */}}
+    <style>
+        .page-transition-main {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+    </style>
+    <noscript>
+        <style>
+            .page-transition-main {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 
 <body class="
