@@ -26,7 +26,7 @@ env:
   #   docker buildx imagetools inspect floryn90/hugo:0.120.4-ext-alpine
   #   -> floryn90/hugo:0.120.4-ext-alpine@sha256:<digest>
   HUGO_IMAGE: floryn90/hugo:0.120.4-ext-alpine
-  SITE_URL: https://www.prajwolbikramadhikari.com.np
+  SITE_URL: https://prajwolbikramadhikari.com.np
 
 jobs:
   # ── Gate 1: Secret scanning (full history) ──────────────────────────
@@ -159,7 +159,7 @@ jobs:
             --offline --no-progress
             --root-dir '${{ github.workspace }}/public'
             --index-files index.html
-            --remap 'https://www\.prajwolbikramadhikari\.com\.np/(.*) file://${{ github.workspace }}/public/$1'
+            --remap 'https://(www\.)?prajwolbikramadhikari\.com\.np/(.*) file://${{ github.workspace }}/public/$2'
             'public/**/*.html'
           output: lychee/internal.md
 
@@ -236,15 +236,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
-
-      - name: Smoke test live site
+      # Bot Fight Mode (Cloudflare) challenges requests from datacenter IPs like
+      # GitHub runners, so the smoke test goes straight to GitHub Pages instead.
+      # -k: Pages holds no cert for our domain while Cloudflare proxies it.
+      - name: Smoke test (GitHub Pages origin)
+        env:
+          PAGES_IP: 185.199.108.153
         run: |
           set -euo pipefail
-          sleep 15 # let Pages/Cloudflare pick up the new build
-          for path in / /projects/ /blog/ /lab/ /sitemap.xml /index.json; do
-            code=$(curl -sS -o /dev/null -w '%{http_code}' \
+          host="${SITE_URL#https://}"
+          check() { # usage: check <expected-code> <host> <path>
+            code=$(curl -ksS -o /dev/null -w '%{http_code}' \
                    --retry 5 --retry-delay 10 --retry-all-errors \
-                   "${SITE_URL}${path}")
-            echo "${code}  ${SITE_URL}${path}" | tee -a "$GITHUB_STEP_SUMMARY"
-            [ "$code" = "200" ] || { echo "::error::${path} returned ${code}"; exit 1; }
+                   --resolve "$2:443:${PAGES_IP}" "https://$2$3")
+            echo "${code}  https://$2$3 (expected $1)" | tee -a "$GITHUB_STEP_SUMMARY"
+            [ "$code" = "$1" ] || { echo "::error::https://$2$3 returned ${code}, expected $1"; exit 1; }
+          }
+          sleep 15 # give Pages a moment to publish the new build
+          for path in / /projects/ /blog/ /lab/ /sitemap.xml /index.json; do
+            check 200 "$host" "$path"
           done
+          check 301 "www.${host}" / # www should redirect to the main domain
