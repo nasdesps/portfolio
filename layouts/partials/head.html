@@ -154,7 +154,6 @@ fingerprint }}
 
 {{- /* Favicons */}}
 <link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon | default "favicon.svg" | relURL }}">
-<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
 {{- /* PNG / Apple / Safari icons are only linked when the file is configured in params.assets (they don't exist in static/ yet) */}}
 {{- with site.Params.assets.favicon16x16 }}
 <link rel="icon" type="image/png" sizes="16x16" href="{{ . | relURL }}">
