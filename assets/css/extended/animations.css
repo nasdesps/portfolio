@@ -60,33 +60,19 @@
 
 /* ─────────────────────────────────────────────────────────────
    2. FALLBACK TRANSITIONS (Firefox / older Safari)
-   ───────────────────────────────────────────────────────────── */
+   ─────────────────────────────────────────────────────────────
 
-/* Body gets .js-ready after DOMContentLoaded (no FOUC) */
-body:not(.js-ready) .page-transition-main {
-    /* Prevent invisible content before JS loads */
-    opacity: 1;
-}
+   The initial hidden state (opacity:0; transform:translateY(18px))
+   is set by an inline <style> in <head> on .page-transition-main.
+   The JS reveals the content by setting inline styles directly,
+   so no class-based enter rules are needed here.
+   ───────────────────────────────────────────────────────────── */
 
 /* ── Exit transition: triggered by JS adding .page-exit ── */
 .page-transition-main.page-exit {
     opacity: 0;
     transform: translateY(-14px);
     transition: opacity 200ms ease-in, transform 200ms ease-in;
-}
-
-/* ── Enter transition: new page starts hidden ── */
-.page-transition-main.page-enter {
-    opacity: 0;
-    transform: translateY(18px);
-}
-
-/* Transition to natural position */
-.page-transition-main.page-entered {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
-                transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
@@ -297,9 +283,13 @@ body.lightbox-open {
     }
 
     /* Kill fallback transitions */
-    .page-transition-main.page-exit,
-    .page-transition-main.page-enter,
-    .page-transition-main.page-entered {
+    .page-transition-main {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .page-transition-main.page-exit {
         transition: none !important;
         opacity: 1 !important;
         transform: none !important;
