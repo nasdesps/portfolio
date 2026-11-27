@@ -6,6 +6,9 @@
 (function () {
     'use strict';
 
+    /* ── Cancel safety-reveal timeout (set by inline script in <head>) ── */
+    if (window._safetyReveal) { clearTimeout(window._safetyReveal); delete window._safetyReveal; }
+
     /* ── Respect reduced-motion preference ─────────────────── */
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (reducedMotion.matches) return;
