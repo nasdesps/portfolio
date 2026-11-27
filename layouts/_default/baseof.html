@@ -2,22 +2,43 @@
 <html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
 
 <head>
-    {{- partial "head.html" . }}
-    {{- /* ── Prevent animation blink: hide main content before JS loads ── */}}
+    {{- /* ── Prevent animation blink: hide animated content before first paint ── */}}
     <style>
         .page-transition-main {
             opacity: 0;
             transform: translateY(18px);
         }
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-12px);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .page-transition-main,
+            .timeline-item {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
     <noscript>
         <style>
-            .page-transition-main {
+            .page-transition-main,
+            .timeline-item {
                 opacity: 1 !important;
                 transform: none !important;
             }
         </style>
     </noscript>
+    {{- /* Safety net: if animations.js fails to load, reveal content after 3 s */}}
+    <script>
+        window._safetyReveal = setTimeout(function () {
+            document.querySelectorAll('.page-transition-main, .timeline-item').forEach(function (el) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }, 3000);
+    </script>
+    {{- partial "head.html" . }}
 </head>
 
 <body class="
